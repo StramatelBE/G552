@@ -1,0 +1,135 @@
+/*body, html {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*}*/
+
+/*.container {*/
+/*    position: relative;*/
+/*    width: 100vw;*/
+/*    height: 100vh;*/
+/*    min-width: 100vw;*/
+/*    min-height: 100vh;*/
+/*    overflow: hidden;*/
+/*    display: flex;*/
+/*    align-items: stretch;*/
+/*    justify-content: stretch;*/
+/*}*/
+
+/*.container > img, .container > video {*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    object-fit: fill;*/
+/*}*/
+
+/* TableTennis.css */
+.table-tennis-container {
+    font-family: 'DigitalFont', sans-serif; /* Make sure you link to a digital font */
+    background-color: black;
+    color: red;
+    padding: 2rem;
+    border: 5px solid #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%; /* or any other width you want */
+    margin: 0 auto;
+}
+
+.score-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    border: 3px solid red;
+    background-color: #111;
+    padding: 1rem;
+}
+
+.team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%; /* adjust as necessary */
+}
+
+.team-name {
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+
+.team-score, .team-sets-won, .team-points-by-set, .team-service, .team-winner {
+    background-color: #111;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+    border: 2px solid red;
+}
+
+.chrono-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+    background-color: #111;
+    padding: 1rem;
+    border: 3px solid red;
+}
+
+.chrono {
+    font-size: 3em;
+}
+
+.timer-status-container, .display-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+    border: 3px solid red;
+    background-color: #111;
+    padding: 0.5rem;
+}
+
+.timer-status, .led, .clock-display, .chrono-display {
+    background-color: #111;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    border-radius: 5px;
+    border: 2px solid red;
+}
+
+/* Animations */
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.team-winner:after {
+    content: "Winner!";
+    animation: blink 1s infinite;
+}
+
+.led {
+    animation: blink 1s infinite;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+}
+
+.logo {
+    width: 75%;
+    max-width: 100%; /* To ensure it doesn't overflow its container */
+    height: auto; /* To maintain the image aspect ratio */
+    display: block; /* Images are inline by default, setting it to block */
+}
+

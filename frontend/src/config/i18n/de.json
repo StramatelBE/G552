@@ -1,0 +1,72 @@
+{
+  "Macro": {
+    "title": "Makro",
+    "number": "Nummer",
+    "slideshow": "Diashow",
+    "none": "keine"
+  },
+  "Profile": {
+    "title": "Einstellungen",
+    "application": "Anwendung",
+    "changePassword": "Passwort ändern",
+    "darkMode": "Dunkelmodus",
+    "usedStorageSpace": "Genutzter Speicherplatz",
+    "panelsTest": "Paneltest",
+    "language": "Sprache",
+    "info": "Informationen",
+    "account": "Konto",
+    "automaticStandby": "Automatische Standby",
+    "Dialog": {
+      "chooseTime": "Zeit wählen",
+      "pleaseSelectMinutesAndSeconds": "Bitte Minuten und Sekunden auswählen"
+    }
+  },
+  "Diaporama": {
+    "title": "Diashow",
+    "emptyListMessage": "Medien hier ablegen",
+    "listTitle": "Diashow-Liste",
+    "Dialog": {
+      "addNew": "Neue Diashow hinzufügen",
+      "name": "Name",
+      "areYouSureToDelete": "Sind Sie sicher, dass Sie löschen möchten",
+      "areYouSureToDeleteMediaEvent": "Sind Sie sicher, dass Sie dieses Diashow-Ereignis löschen möchten?"
+    }
+  },
+  "Login": {
+    "passwordMismatch": "Passwörter stimmen nicht überein",
+    "passwordChange": "Passwort ändern",
+    "passwordChangeSuccess": "Passwort erfolgreich geändert",
+    "newPassword": "Neues Passwort",
+    "confirmNewPassword": "Neues Passwort bestätigen",
+    "errorMessage": "Benutzername oder Passwort falsch",
+    "passwordAdmin": "Administratorpasswort",
+    "title": "Anmeldung",
+    "username": "Benutzername",
+    "password": "Passwort",
+    "loginButton": "Anmelden",
+    "lostPassword": "Passwort vergessen?",
+    "Dialog": {
+      "doYouReallyWantToLogout": "Möchten Sie sich wirklich abmelden?",
+      "userAlreadyConnected": "Ein Benutzer ist bereits verbunden",
+      "doYouWantToDisconnect": "Möchten Sie die Verbindung trennen?"
+    }
+  },
+  "Media": {
+    "title": "Medien",
+    "add": "Hinzufügen",
+    "upload": "Hochladen",
+    "Dialog": {
+      "areYouSureToDelete": "Sind Sie sicher, dass Sie diese Medien löschen möchten?"
+    }
+  },
+  "Dialog": {
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen",
+    "delete": "Löschen",
+    "close": "Schließen",
+    "save": "Speichern",
+    "confirmDeletion": "Löschung bestätigen",
+    "yes": "Ja",
+    "no": "Nein"
+  }
+}

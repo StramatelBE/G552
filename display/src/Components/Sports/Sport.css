@@ -1,0 +1,78 @@
+/* Sport.css */
+* {
+    font-family: 'Calibri', sans-serif;
+    box-sizing: border-box;
+}
+
+/* :root {
+    --red: #fff;
+    --green: #fff;
+    --blue: #fff;
+} */
+
+/* General container for each sport */
+.sport-container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    background-color: #000;
+    color: #fff;
+    font-size: 1vw;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Styles for the title */
+.sport-container h1 {
+    text-align: center;
+    color: var(--green);
+}
+
+/* Styles for the score container */
+.score-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+}
+
+/* Styles for each team's info */
+.team {
+    display: grid;
+    justify-items: center;
+}
+
+.team h2 {
+    color: var(--red);
+}
+
+.team p {
+    color: var(--blue);
+}
+
+/* Styles for the chrono, timer status, display container */
+.chrono-container, .timer-status-container, .display-container {
+    display: grid;
+    justify-items: center;
+}
+
+.chrono-container p, .timer-status-container p, .display-container p {
+    color: var(--green);
+}
+
+/* Styles for the timer24s container */
+.timer24s-container {
+    display: grid;
+    justify-items: center;
+}
+
+.timer24s {
+    color: var(--red);
+}
+
+.timer24s-status, .timer24s-led {
+    color: var(--green);
+}

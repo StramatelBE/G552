@@ -1,0 +1,72 @@
+{
+  "Macro": {
+    "title": "Macro",
+    "number": "número",
+    "slideshow": "diapositivas",
+    "none": "ninguno"
+  },
+  "Profile": {
+    "title": "Configuración",
+    "application": "Aplicación",
+    "changePassword": "Cambiar contraseña",
+    "darkMode": "Modo oscuro",
+    "usedStorageSpace": "Espacio de almacenamiento utilizado",
+    "panelsTest": "Prueba de paneles",
+    "language": "Idioma",
+    "info": "Información",
+    "account": "Cuenta",
+    "automaticStandby": "Espera automática",
+    "Dialog": {
+      "chooseTime": "Elegir tiempo",
+      "pleaseSelectMinutesAndSeconds": "Por favor seleccione minutos y segundos"
+    }
+  },
+  "Diaporama": {
+    "title": "Diaporama",
+    "emptyListMessage": "Suelta medios aquí",
+    "listTitle": "Lista de diaporamas",
+    "Dialog": {
+      "addNew": "Agregar nuevo diaporama",
+      "name": "Nombre",
+      "areYouSureToDelete": "¿Estás seguro de que quieres eliminar",
+      "areYouSureToDeleteMediaEvent": "¿Estás seguro de que quieres eliminar este evento de diaporama?"
+    }
+  },
+  "Login": {
+    "passwordMismatch": "Las contraseñas no coinciden",
+    "passwordChange": "Cambiar contraseña",
+    "passwordChangeSuccess": "Contraseña cambiada con éxito",
+    "newPassword": "Nueva contraseña",
+    "confirmNewPassword": "Confirmar nueva contraseña",
+    "errorMessage": "Nombre de usuario o contraseña incorrecta",
+    "passwordAdmin": "Contraseña de administrador",
+    "title": "Iniciar sesión",
+    "username": "Nombre de usuario",
+    "password": "Contraseña",
+    "loginButton": "Iniciar sesión",
+    "lostPassword": "¿Olvidaste tu contraseña?",
+    "Dialog": {
+      "doYouReallyWantToLogout": "¿Realmente quieres cerrar sesión?",
+      "userAlreadyConnected": "Un usuario ya está conectado",
+      "doYouWantToDisconnect": "¿Quieres desconectarlo?"
+    }
+  },
+  "Media": {
+    "title": "Medios",
+    "add": "Agregar",
+    "upload": "Subir",
+    "Dialog": {
+      "areYouSureToDelete": "¿Estás seguro de que quieres eliminar este medio?"
+    }
+  },
+  "Dialog": {
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "delete": "Eliminar",
+    "close": "Cerrar",
+    "save": "Guardar",
+    "confirmDeletion": "Confirmar eliminación",
+    "yes": "Sí",
+    "no": "No"
+  }
+}

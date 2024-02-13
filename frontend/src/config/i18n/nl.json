@@ -1,0 +1,72 @@
+{
+  "Macro": {
+    "title": "Macro",
+    "number": "nummer",
+    "slideshow": "diavoorstelling",
+    "none": "geen"
+  },
+  "Profile": {
+    "title": "Instellingen",
+    "application": "Applicatie",
+    "changePassword": "Wachtwoord wijzigen",
+    "darkMode": "Donkere modus",
+    "usedStorageSpace": "Gebruikte opslagruimte",
+    "panelsTest": "Panelen Test",
+    "language": "Taal",
+    "info": "Informatie",
+    "account": "Account",
+    "automaticStandby": "Automatische stand-by",
+    "Dialog": {
+      "chooseTime": "Kies tijd",
+      "pleaseSelectMinutesAndSeconds": "Selecteer minuten en seconden"
+    }
+  },
+  "Slideshow": {
+    "title": "Diavoorstelling",
+    "emptyListMessage": "Sleep media hier",
+    "listTitle": "Diavoorstelling lijst",
+    "Dialog": {
+      "addNew": "Nieuwe diavoorstelling toevoegen",
+      "name": "Naam",
+      "areYouSureToDelete": "Weet u zeker dat u wilt verwijderen",
+      "areYouSureToDeleteMediaEvent": "Weet u zeker dat u deze diavoorstelling gebeurtenis wilt verwijderen?"
+    }
+  },
+  "Login": {
+    "passwordMismatch": "Wachtwoorden komen niet overeen",
+    "passwordChange": "Wachtwoord wijzigen",
+    "passwordChangeSuccess": "Wachtwoord succesvol gewijzigd",
+    "newPassword": "Nieuw wachtwoord",
+    "confirmNewPassword": "Bevestig nieuw wachtwoord",
+    "errorMessage": "Onjuiste gebruikersnaam of wachtwoord",
+    "passwordAdmin": "Beheerderswachtwoord",
+    "title": "Inloggen",
+    "username": "Gebruikersnaam",
+    "password": "Wachtwoord",
+    "loginButton": "Inloggen",
+    "lostPassword": "Wachtwoord vergeten?",
+    "Dialog": {
+      "doYouReallyWantToLogout": "Wilt u echt uitloggen?",
+      "userAlreadyConnected": "Een gebruiker is al verbonden",
+      "doYouWantToDisconnect": "Wilt u de verbinding verbreken?"
+    }
+  },
+  "Media": {
+    "title": "Media",
+    "add": "Toevoegen",
+    "upload": "Uploaden",
+    "Dialog": {
+      "areYouSureToDelete": "Weet u zeker dat u deze media wilt verwijderen?"
+    }
+  },
+  "Dialog": {
+    "cancel": "Annuleren",
+    "confirm": "Bevestigen",
+    "delete": "Verwijderen",
+    "close": "Sluiten",
+    "save": "Opslaan",
+    "confirmDeletion": "Verwijdering bevestigen",
+    "yes": "Ja",
+    "no": "Nee"
+  }
+}

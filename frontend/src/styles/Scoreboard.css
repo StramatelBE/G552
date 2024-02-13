@@ -1,0 +1,91 @@
+.mainBox {
+    padding: 0 2vw 2vw 2vw !important;
+  }
+  
+  .gridItem {
+    display: flex !important;
+  
+    flex-direction: column !important;
+    gap: 1vw !important;
+  }
+  
+  .gridItemPadding {
+    padding-right: 0vw !important;
+  }
+  
+  .itemPaperTypo {
+    height: 16vh;
+    width: 100%;
+  }
+  
+  .buttonEdit {
+    height: 10vh;
+    width: 100%;
+  }
+  
+  .itemPaperColor {
+    background-color: var(--secondary-main) !important;
+  }
+  
+  
+  
+  .divider {
+    width: 80%;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 8px !important;
+  }
+  
+  
+  
+  .buttonEditMargin {
+    margin-right: 1vw !important;
+  }
+  
+  .column {
+    flex-direction: column !important;
+  }
+  
+  .hiddenSpace {
+    visibility: hidden !important;
+  }
+  
+  .centered {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  
+  .iconServeurTrue {
+    color: white;
+  }
+  
+  .iconServeurFalse {
+    color: var(--primary-main);
+  }
+  /* Styles for phone */
+  @media (max-width: 600px) {
+  .itemPaperTypo{
+    height: 12vh;
+    width: 100%;
+  }
+    .buttonEdit {
+      height: 8vh;
+      width: 100%;
+    }
+  
+    .buttonEditTimer {
+      height: 3.6vh; ;
+      width: 3.6vh;
+    }
+  
+  }
+  
+  /* Styles for tablet */
+  /*  @media screen and (max-width: 1024px), screen and (min-width: 768px) {
+      .itemPaperScore {
+        height: 25vh ;
+        width: 25vw ;
+      }
+    } */
+  
