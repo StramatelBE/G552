@@ -20,38 +20,46 @@ function print_progress {
 }
 
 #SOFTWARE UPDATE
+echo -ne "                                    "
 print_progress "Updating software packages..."
 sudo apt update >/dev/null 2>&1
 sudo apt upgrade -y >/dev/null 2>&1
 
 #BASIC UTILITIES
+echo -ne "                                    "
 print_progress "Installing basic utilities..."
 sudo apt install -y vim curl wget git >/dev/null 2>&1
 
 #CLONE REPOSITORY
+echo -ne "                                    "
 print_progress "Cloning repository..."
 cd ~
 git clone $GITHUB_REPOSITORY $WORKDIR >/dev/null 2>&1
 
 #NODE INSTALL
+echo -ne "                                    "
 print_progress "Installing Node.js..."
 bash ~/$WORKDIR/scripts/setup/node_install.sh >/dev/null 2>&1
 npm install -g serve >/dev/null 2>&1
 
 #NODE MODULE INSTALL
+echo -ne "                                    "
 print_progress "Installing Node modules..."
 bash ~/$WORKDIR/scripts/setup/npm_init.sh >/dev/null 2>&1
 
 #BUILD
+echo -ne "                                    "
 print_progress "Building project..."
 bash ~/$WORKDIR/scripts/build/project_build.sh >/dev/null 2>&1
 
 #RUN
+# echo -ne "                                    "
 # Commented out since it might not return control back to the script
 # print_progress "Running application..."
 # bash ~/$WORKDIR/scripts/run/run.sh >/dev/null 2>&1
 
 #SERVICE
+# echo -ne "                                    "
 # Uncomment and modify as needed
 # print_progress "Initializing services..."
 # bash ~/$WORKDIR/scripts/services/services_init.sh >/dev/null 2>&1
