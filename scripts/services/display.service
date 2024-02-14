@@ -1,0 +1,14 @@
+[Unit]
+Description=Display Service
+After=network.target
+
+[Service]
+Type=simple
+User=stramatel
+WorkingDirectory=/home/stramatel/server/build/display
+ExecStart=/bin/bash /home/stramatel/server/build/display/startDisplay.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+

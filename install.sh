@@ -23,21 +23,12 @@ npm install -g serve
 ~/$WORKDIR/scripts/setup/npm_init.sh
 
 #BUILD
-~/$WORKDIR/scripts/build/build.sh
+~/$WORKDIR/scripts/build/project_build.sh
 
-#START SCRIPT COPY
-cp ~/$WORKDIR/scripts/run/startBackend.sh ~/$WORKDIR/build/backend
-cp ~/$WORKDIR/scripts/run/startFrontend.sh ~/$WORKDIR/build/frontend
-cp ~/$WORKDIR/scripts/run/startDisplay.sh ~/$WORKDIR/build/display
+#RUN
+~/$WORKDIR/scripts/run/run.sh
 
-#SERVICE INITIALIZATION
-sudo cp ~/$WORKDIR/scripts/services/* /etc/systemd/system/
-sudo systemctl enable frontend.service
-sudo systemctl enable backend.service
-sudo systemctl enable display.service
+#SERVICE
+# ~/$WORKDIR/scripts/services/services_init.sh
 
-
-
-
-
-
+echo "### PROJECT FULLY INITIALISED ###"
