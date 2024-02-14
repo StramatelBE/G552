@@ -4,7 +4,7 @@ GITHUB_REPOSITORY=https://github.com/StramatelBE/G552.git
 WORKDIR=server
 
 
- Function to display a loading bar based on steps
+#Function to display a loading bar based on steps
 display_progress() {
     local step=$1
     local total_steps=$2
@@ -13,21 +13,17 @@ display_progress() {
     local bar=''
     local spaces=''
 
-    # Generate the bar
+    # Generate the progress bar and empty space
     for ((i=0; i<filled_length; i++)); do
         bar="${bar}#"
     done
-    
-    # Generate the empty part
     for ((i=filled_length; i<50; i++)); do
         spaces="${spaces} "
     done
 
-    # Move to the beginning of the line and clear it
-    echo -ne "\r\033[0K"
-
-    # Print the progress bar
-    printf "Progress: [%-50s] %s%%" "$bar$spaces" "$percent"
+    # Clear the line and display the progress bar using echo
+    echo -ne "\r\033[0K" # Move to the start of the line and clear the line
+    echo -ne "Progress: [${bar}${spaces}] ${percent}%"
 }
 
 total_steps=7
@@ -39,7 +35,6 @@ update_progress() {
 }
 
 echo "Starting project initialization..."
-update_progress
 
 echo "Updating software packages..."
 sudo apt-get update > /dev/null 2>&1
@@ -73,8 +68,7 @@ echo "Building project..."
 update_progress
 
 echo "Running project..."
-# Uncomment the next line if your run script outputs to the terminal and you want to keep it running
-# ~/$WORKDIR/scripts/run/run.sh > /dev/null 2>&1 &
+~/$WORKDIR/scripts/run/run.sh > /dev/null 2>&1 &
 update_progress
 
 echo -e "\n### PROJECT FULLY INITIALIZED ###"
