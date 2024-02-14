@@ -27,7 +27,6 @@ current_step=0
 
 update_progress() {
     ((current_step++))
-    echo "updating"
     display_progress $current_step $total_steps
 }
 
