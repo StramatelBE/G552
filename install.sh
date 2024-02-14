@@ -13,8 +13,8 @@ function print_progress {
     CURRENT_STEP=$((CURRENT_STEP + 1))
     PERCENT=$(( (CURRENT_STEP * 100) / TOTAL_STEPS ))
     echo -ne "Progress: ["
-    for ((i = 0; i < (PERCENT / 10); i++)); do echo -ne " \033[32m #"; done
-    for ((i = (PERCENT / 10); i < 10; i++)); do echo -ne " \033[31m -"; done
+    for ((i = 0; i < (PERCENT / 10); i++)); do echo -ne "\033[32m#\033[0m"; done
+    for ((i = (PERCENT / 10); i < 10; i++)); do echo -ne "\033[31m-\033[0m"; done
     echo -ne "] $PERCENT% - \033[36m $1 \033[0m \r"
     sleep 1 # Simulating time taken for the step
 }
