@@ -1,9 +1,9 @@
 #!/bin/bash
-WORKDIR=~/home/$USER/server/
-BUILDDIR=~/home/$USER/server/build/
-FRONTDIR=~/home/$USER/server/frontend
-BACKDIR=~/home/$USER/server/backend
-DISPDIR=~/home/$USER/server/display
+WORKDIR=~/server/
+BUILDDIR=~/server/build/
+FRONTDIR=~/server/frontend
+BACKDIR=~/server/backend
+DISPDIR=~/server/display
 
 $BACKDIR/build.sh
 $FRONTDIR/build.sh
