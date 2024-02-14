@@ -19,6 +19,9 @@ git clone $GITHUB_REPOSITORY $WORKDIR
 ~/$WORKDIR/scripts/setup/node_install.sh
 npm install -g serve
 
+#NODE MODULE INSTALL
+~/$WORKDIR/scripts/setup/npm_init.sh
+
 #BUILD
 ~/$WORKDIR/scripts/build/build.sh
 
