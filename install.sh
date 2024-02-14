@@ -4,19 +4,34 @@ GITHUB_REPOSITORY=https://github.com/StramatelBE/G552.git
 
 WORKDIR=server
 
-
 #SOFTWARE UPDATE
 sudo apt update
 sudo apt upgrade -y
 
-#INITIALISATION
+#BASIC UTILITIES
 sudo apt install -y vim curl wget git
-cd /home/$USER
+
+#CLONE REPOSITORY
+cd ~
 git clone $GITHUB_REPOSITORY $WORKDIR
-cd /home/$USER/$WORKDIR/scripts/setup/
-./install_node.sh
-cd ../../
+
+#NODE INSTALL
+~/$WORKDIR/scripts/setup/node_install.sh
 npm install -g serve
+
+#BUILD
+~/$WORKDIR/scripts/build/build.sh
+
+#START SCRIPT COPY
+cp ~/$WORKDIR/scripts/run/startBackend.sh ~/$WORKDIR/build/backend
+cp ~/$WORKDIR/scripts/run/startFrontend.sh ~/$WORKDIR/build/frontend
+cp ~/$WORKDIR/scripts/run/startDisplay.sh ~/$WORKDIR/build/display
+
+#SERVICE INITIALIZATION
+sudo cp ~/$WORKDIR/scripts/services/* /etc/systemd/system/
+sudo systemctl enable frontend.service
+sudo systemctl enable backend.service
+sudo systemctl enable display.service
 
 
 
