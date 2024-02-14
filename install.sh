@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Starting \033[35m setup \033[0m process..."
+echo -e "Starting \033[35m setup \033[0m process..."
 
 GITHUB_REPOSITORY=https://github.com/StramatelBE/G552.git
 WORKDIR=server
@@ -13,8 +13,8 @@ function print_progress {
     CURRENT_STEP=$((CURRENT_STEP + 1))
     PERCENT=$(( (CURRENT_STEP * 100) / TOTAL_STEPS ))
     echo -ne "Progress: ["
-    for ((i = 0; i < (PERCENT / 10); i++)); do echo -n " \033[32m #"; done
-    for ((i = (PERCENT / 10); i < 10; i++)); do echo -n " \033[31m -"; done
+    for ((i = 0; i < (PERCENT / 10); i++)); do echo -ne " \033[32m #"; done
+    for ((i = (PERCENT / 10); i < 10; i++)); do echo -ne " \033[31m -"; done
     echo -ne "] $PERCENT% - \033[36m $1 \033[0m \r"
     sleep 1 # Simulating time taken for the step
 }
@@ -57,4 +57,4 @@ bash ~/$WORKDIR/scripts/build/project_build.sh >/dev/null 2>&1
 # bash ~/$WORKDIR/scripts/services/services_init.sh >/dev/null 2>&1
 
 echo -ne '\n'
-echo "### PROJECT FULLY INITIALISED ###"
+echo -ne "### PROJECT \033[32m SUCCESSFULLY \033[36m INITIALISED \033[0m ###"
