@@ -2,7 +2,6 @@
 WORKDIR=~/home/$USER/server/
 BUILDDIR=~/home/$USER/server/build/
 
-sudo apt install python2
 
 cd $WORKDIR/backend
 npm i
