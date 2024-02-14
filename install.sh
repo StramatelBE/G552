@@ -4,24 +4,30 @@ GITHUB_REPOSITORY=https://github.com/StramatelBE/G552.git
 WORKDIR=server
 
 
+ Function to display a loading bar based on steps
 display_progress() {
     local step=$1
     local total_steps=$2
     local percent=$((200*step/total_steps % 2 + 100*step/total_steps))
     local filled_length=$((50*step/total_steps))
     local bar=''
+    local spaces=''
 
-    # Prepare the bar and the empty space
+    # Generate the bar
     for ((i=0; i<filled_length; i++)); do
         bar="${bar}#"
     done
+    
+    # Generate the empty part
     for ((i=filled_length; i<50; i++)); do
-        bar="${bar} "
+        spaces="${spaces} "
     done
 
-    # Clear the line before printing the new progress
-    echo -en "\r\033[K"
-    printf "Progress: [%-50s] %s%%" "$bar" "$percent"
+    # Move to the beginning of the line and clear it
+    echo -ne "\r\033[0K"
+
+    # Print the progress bar
+    printf "Progress: [%-50s] %s%%" "$bar$spaces" "$percent"
 }
 
 total_steps=7
