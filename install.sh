@@ -20,7 +20,6 @@ function print_progress {
 }
 
 #SOFTWARE UPDATE
-echo -ne "                                    "
 print_progress "Updating software packages..."
 sudo apt update >/dev/null 2>&1
 sudo apt upgrade -y >/dev/null 2>&1
