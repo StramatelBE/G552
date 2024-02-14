@@ -6,7 +6,7 @@ GITHUB_REPOSITORY=https://github.com/StramatelBE/G552.git
 WORKDIR=server
 
 # Initialize progress
-TOTAL_STEPS=7
+TOTAL_STEPS=8
 CURRENT_STEP=-1
 
 function print_progress {
@@ -53,6 +53,9 @@ print_progress "Running application...              "
 #SERVICE
 print_progress "Initializing services...            "
 # bash ~/$WORKDIR/scripts/services/services_init.sh >/dev/null 2>&1
+
+#FINISHING
+print_progress "Installation complete !            "
 
 echo -ne '\n'
 echo -e "\033[34m#\033[0m#\033[31m# \033[34mPROJECT \033[0m SUCCESSFULLY \033[31m INITIALIZED \033[0m \033[34m#\033[0m#\033[31m#"
