@@ -1,34 +1,61 @@
 #!/bin/bash
 
 GITHUB_REPOSITORY=https://github.com/StramatelBE/G552.git
-
 WORKDIR=server
 
-#SOFTWARE UPDATE
-sudo apt update
-sudo apt upgrade -y
+# Function to simulate a loading bar
+function loading_bar {
+    echo -ne "$1\r"
+    sleep 1
+    echo -ne '#####                     (33%)\r'
+    sleep 1
+    echo -ne '#############             (66%)\r'
+    sleep 1
+    echo -ne '#######################   (100%)\r'
+    echo -ne '\n'
+}
 
-#BASIC UTILITIES
-sudo apt install -y vim curl wget git
+# SOFTWARE UPDATE
+echo "Updating software packages..."
+sudo apt update >/dev/null 2>&1
+sudo apt upgrade -y >/dev/null 2>&1
+loading_bar "Updating software..."
 
-#CLONE REPOSITORY
+# BASIC UTILITIES
+echo "Installing basic utilities..."
+sudo apt install -y vim curl wget git >/dev/null 2>&1
+loading_bar "Installing utilities..."
+
+# CLONE REPOSITORY
+echo "Cloning repository..."
 cd ~
-git clone $GITHUB_REPOSITORY $WORKDIR
+git clone $GITHUB_REPOSITORY $WORKDIR >/dev/null 2>&1
+loading_bar "Cloning repository..."
 
-#NODE INSTALL
-~/$WORKDIR/scripts/setup/node_install.sh
-npm install -g serve
+# NODE INSTALL
+echo "Installing Node.js..."
+~/$WORKDIR/scripts/setup/node_install.sh >/dev/null 2>&1
+npm install -g serve >/dev/null 2>&1
+loading_bar "Installing Node.js..."
 
-#NODE MODULE INSTALL
-~/$WORKDIR/scripts/setup/npm_init.sh
+# NODE MODULE INSTALL
+echo "Installing Node modules..."
+~/$WORKDIR/scripts/setup/npm_init.sh >/dev/null 2>&1
+loading_bar "Installing modules..."
 
-#BUILD
-~/$WORKDIR/scripts/build/project_build.sh
+# BUILD
+echo "Building project..."
+~/$WORKDIR/scripts/build/project_build.sh >/dev/null 2>&1
+loading_bar "Building project..."
 
-#RUN
-~/$WORKDIR/scripts/run/run.sh
+# RUN
+echo "Running project..."
+~/$WORKDIR/scripts/run/run.sh >/dev/null 2>&1
+loading_bar "Running project..."
 
-#SERVICE
-# ~/$WORKDIR/scripts/services/services_init.sh
+# Uncomment below if you wish to initialize services
+# echo "Initializing services..."
+# ~/$WORKDIR/scripts/services/services_init.sh >/dev/null 2>&1
+# loading_bar "Initializing services..."
 
 echo "### PROJECT FULLY INITIALISED ###"
