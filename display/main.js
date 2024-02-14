@@ -1,6 +1,6 @@
 const {app, BrowserWindow, ipcMain} = require("electron");
 const path = require("path");
-const config = require("./config.js");
+const config = require("./src/config.js");
 const net = require("net");
 const {saveData, readData} = require("./store");
 

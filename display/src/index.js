@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import ReactDOM from "react-dom/client";
 import ScoringMode from "./Components/ScoringMode";
 import MediaMode from "./Components/MediaMode";
-import config from "../config.js";
+import config from "./config.js";
 import LogoMode from "./Components/LogoMode";
 
 const {ipcRenderer} = window.require("electron");

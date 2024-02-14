@@ -4,10 +4,11 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "webpack --mode=development && electron .",
-	"electron": "electron .",
+    "start": "PORT=2001 serve -s build",
+    "electron": "electron .",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "build": "react-scripts build"
   },
   "keywords": [],
   "author": "",
@@ -31,7 +32,8 @@
     "bulma": "^0.9.4",
     "iconv-lite": "^0.6.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1"
   },
   "repository": {
     "type": "git",
@@ -42,6 +44,17 @@
     "mac": {
       "category": "your.app.category.type"
     }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
-
 }
