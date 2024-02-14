@@ -21,40 +21,40 @@ function print_progress {
 
 #SOFTWARE UPDATE
 print_progress "Updating software packages..."
-sudo apt update >/dev/null
-sudo apt upgrade -y >/dev/null
+sudo apt update >/dev/null 2>&1
+sudo apt upgrade -y >/dev/null 2>&1
 
 #BASIC UTILITIES
 print_progress "Installing basic utilities..."
-sudo apt install -y vim curl wget git >/dev/null
+sudo apt install -y vim curl wget git >/dev/null 2>&1
 
 #CLONE REPOSITORY
 print_progress "Cloning repository..."
 cd ~
-git clone $GITHUB_REPOSITORY $WORKDIR >/dev/null
+git clone $GITHUB_REPOSITORY $WORKDIR >/dev/null 2>&1
 
 #NODE INSTALL
 print_progress "Installing Node.js..."
-bash ~/$WORKDIR/scripts/setup/node_install.sh >/dev/null
-npm install -g serve >/dev/null
+bash ~/$WORKDIR/scripts/setup/node_install.sh >/dev/null 2>&1
+npm install -g serve >/dev/null 2>&1
 
 #NODE MODULE INSTALL
 print_progress "Installing Node modules..."
-bash ~/$WORKDIR/scripts/setup/npm_init.sh >/dev/null
+bash ~/$WORKDIR/scripts/setup/npm_init.sh >/dev/null 2>&1
 
 #BUILD
 print_progress "Building project..."
-bash ~/$WORKDIR/scripts/build/project_build.sh >/dev/null
+bash ~/$WORKDIR/scripts/build/project_build.sh >/dev/null 2>&1
 
 #RUN
 # Commented out since it might not return control back to the script
 # print_progress "Running application..."
-# bash ~/$WORKDIR/scripts/run/run.sh >/dev/null
+# bash ~/$WORKDIR/scripts/run/run.sh >/dev/null 2>&1
 
 #SERVICE
 # Uncomment and modify as needed
 # print_progress "Initializing services..."
-# bash ~/$WORKDIR/scripts/services/services_init.sh >/dev/null
+# bash ~/$WORKDIR/scripts/services/services_init.sh >/dev/null 2>&1
 
 echo -ne '\n'
 echo "### PROJECT FULLY INITIALISED ###"
