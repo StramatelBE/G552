@@ -3,6 +3,7 @@
 GITHUB_REPOSITORY=https://github.com/StramatelBE/G552.git
 WORKDIR=server
 
+
 display_progress() {
     local step=$1
     local total_steps=$2
