@@ -6,7 +6,7 @@ GITHUB_REPOSITORY=https://github.com/StramatelBE/G552.git
 WORKDIR=server
 
 # Initialize progress
-TOTAL_STEPS=6
+TOTAL_STEPS=5
 CURRENT_STEP=-1
 
 function print_progress {
