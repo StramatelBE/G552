@@ -18,6 +18,7 @@ function print_progress {
     echo -ne "] $PERCENT% - $1\r"
     sleep 1 # Simulating time taken for the step
 }
+clear
 
 #SOFTWARE UPDATE
 print_progress "Updating software packages..."
