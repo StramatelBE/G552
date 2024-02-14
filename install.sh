@@ -47,13 +47,11 @@ print_progress "Building project...                   "
 bash ~/$WORKDIR/scripts/build/project_build.sh >/dev/null 2>&1
 
 #RUN
-# Commented out since it might not return control back to the script
-# print_progress "Running application...              "
+print_progress "Running application...              "
 # bash ~/$WORKDIR/scripts/run/run.sh >/dev/null 2>&1
 
 #SERVICE
-# Uncomment and modify as needed
-# print_progress "Initializing services...            "
+print_progress "Initializing services...            "
 # bash ~/$WORKDIR/scripts/services/services_init.sh >/dev/null 2>&1
 
 echo -ne '\n'
