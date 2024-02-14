@@ -3,49 +3,44 @@
 GITHUB_REPOSITORY=https://github.com/StramatelBE/G552.git
 WORKDIR=server
 
-# Function to display a loading bar
-loading_bar() {
-    local duration=$1
-    local steps=30 # Width of the loading bar
-    local percent step
+# Function to display a loading bar based on steps
+display_progress() {
+    local step=$1
+    local total_steps=$2
+    local percent=$((200*step/total_steps % 2 + 100*step/total_steps))
+    local filled_length=$((50*step/total_steps))
+    local bar=''
 
-    echo -n "["
-    # Initialize loading bar with blanks
-    for ((i=0; i<steps; i++)); do echo -n " "; done
-    echo -ne "] 0%%\r["
-    
-    # Fill the loading bar
-    for ((i=0; i<=steps; i++)); do
-        sleep $(echo "scale=2; $duration/$steps" | bc)
-        percent=$(( (i * 100) / steps ))
-        step=$((i*steps/100))
-        
-        # Move cursor to start of the bar
-        echo -ne "\r["
-        
-        # Fill with #
-        for ((j=0; j<i; j++)); do echo -n "#"; done
-        
-        # Fill the rest with spaces
-        for ((k=i; k<steps; k++)); do echo -n " "; done
-        
-        # Print percentage
-        echo -n "] "
-        echo -n "${percent}%"
+    for ((i=0; i<filled_length; i++)); do
+        bar="${bar}#"
     done
-    echo # Move to the next line after completion
+
+    for ((i=filled_length; i<50; i++)); do
+        bar="${bar} "
+    done
+
+    printf "\rProgress: [%-50s] %s%%" "$bar" "$percent"
+}
+
+total_steps=7
+current_step=0
+
+update_progress() {
+    ((current_step++))
+    display_progress $current_step $total_steps
 }
 
 echo "Starting project initialization..."
+update_progress
 
 echo "Updating software packages..."
 sudo apt-get update > /dev/null 2>&1
 sudo apt-get upgrade -y > /dev/null 2>&1
-loading_bar 3 # Simulate loading for 3 seconds
+update_progress
 
 echo "Installing basic utilities..."
 sudo apt-get install -y vim curl wget git > /dev/null 2>&1
-loading_bar 3
+update_progress
 
 echo "Cloning repository..."
 cd ~
@@ -54,24 +49,24 @@ if [ -d "$WORKDIR" ]; then
 else
     git clone $GITHUB_REPOSITORY $WORKDIR > /dev/null 2>&1
 fi
-loading_bar 3
+update_progress
 
 echo "Installing Node.js..."
 ~/$WORKDIR/scripts/setup/node_install.sh > /dev/null 2>&1
 npm install -g serve > /dev/null 2>&1
-loading_bar 3
+update_progress
 
 echo "Installing Node modules..."
 ~/$WORKDIR/scripts/setup/npm_init.sh > /dev/null 2>&1
-loading_bar 3
+update_progress
 
 echo "Building project..."
 ~/$WORKDIR/scripts/build/project_build.sh > /dev/null 2>&1
-loading_bar 3
+update_progress
 
 echo "Running project..."
 # Uncomment the next line if your run script outputs to the terminal and you want to keep it running
-# ~/$WORKDIR/scripts/run/run.sh > /dev/null 2>&1 & 
-loading_bar 3
+# ~/$WORKDIR/scripts/run/run.sh > /dev/null 2>&1 &
+update_progress
 
-echo "### PROJECT FULLY INITIALIZED ###"
+echo -e "\n### PROJECT FULLY INITIALIZED ###"
