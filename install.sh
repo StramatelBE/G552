@@ -55,4 +55,4 @@ print_progress "Initializing services...            "
 # bash ~/$WORKDIR/scripts/services/services_init.sh >/dev/null 2>&1
 
 echo -ne '\n'
-echo -ne "### PROJECT \033[32m SUCCESSFULLY \033[36m INITIALISED \033[0m ###"
+echo -ne "### \033[36mPROJECT \033[0m SUCCESSFULLY \033[31m INITIALISED \033[0m ###"
