@@ -1,74 +1,60 @@
 #!/bin/bash
 
+echo "Starting setup process..."
+
 GITHUB_REPOSITORY=https://github.com/StramatelBE/G552.git
 WORKDIR=server
 
+# Initialize progress
+TOTAL_STEPS=7
+CURRENT_STEP=0
 
-#Function to display a loading bar based on steps
-display_progress() {
-    local step=$1
-    local total_steps=$2
-    local percent=$((200*step/total_steps % 2 + 100*step/total_steps))
-    local filled_length=$((50*step/total_steps))
-    local bar=''
-    local spaces=''
-
-    # Generate the progress bar and empty space
-    for ((i=0; i<filled_length; i++)); do
-        bar="${bar}#"
-    done
-    for ((i=filled_length; i<50; i++)); do
-        spaces="${spaces} "
-    done
-
-    # Clear the line and display the progress bar using echo
-    echo -ne "\r\033[0K" # Move to the start of the line and clear the line
-    echo -ne "Progress: [${bar}${spaces}] ${percent}%"
+function print_progress {
+    CURRENT_STEP=$((CURRENT_STEP + 1))
+    PERCENT=$(( (CURRENT_STEP * 100) / TOTAL_STEPS ))
+    echo -ne "Progress: ["
+    for ((i = 0; i < (PERCENT / 10); i++)); do echo -n "#"; done
+    for ((i = (PERCENT / 10); i < 10; i++)); do echo -n "-"; done
+    echo -ne "] $PERCENT% - $1\r"
+    sleep 1 # Simulating time taken for the step
 }
 
-total_steps=7
-current_step=0
+#SOFTWARE UPDATE
+print_progress "Updating software packages..."
+sudo apt update >/dev/null
+sudo apt upgrade -y >/dev/null
 
-update_progress() {
-    ((current_step++))
-    display_progress $current_step $total_steps
-}
+#BASIC UTILITIES
+print_progress "Installing basic utilities..."
+sudo apt install -y vim curl wget git >/dev/null
 
-echo "Starting project initialization..."
-
-echo "Updating software packages..."
-sudo apt-get update > /dev/null 2>&1
-sudo apt-get upgrade -y > /dev/null 2>&1
-update_progress
-
-echo "Installing basic utilities..."
-sudo apt-get install -y vim curl wget git > /dev/null 2>&1
-update_progress
-
-echo "Cloning repository..."
+#CLONE REPOSITORY
+print_progress "Cloning repository..."
 cd ~
-if [ -d "$WORKDIR" ]; then
-    echo "Directory $WORKDIR already exists, skipping clone."
-else
-    git clone $GITHUB_REPOSITORY $WORKDIR > /dev/null 2>&1
-fi
-update_progress
+git clone $GITHUB_REPOSITORY $WORKDIR >/dev/null
 
-echo "Installing Node.js..."
-~/$WORKDIR/scripts/setup/node_install.sh > /dev/null 2>&1
-npm install -g serve > /dev/null 2>&1
-update_progress
+#NODE INSTALL
+print_progress "Installing Node.js..."
+bash ~/$WORKDIR/scripts/setup/node_install.sh >/dev/null
+npm install -g serve >/dev/null
 
-echo "Installing Node modules..."
-~/$WORKDIR/scripts/setup/npm_init.sh > /dev/null 2>&1
-update_progress
+#NODE MODULE INSTALL
+print_progress "Installing Node modules..."
+bash ~/$WORKDIR/scripts/setup/npm_init.sh >/dev/null
 
-echo "Building project..."
-~/$WORKDIR/scripts/build/project_build.sh > /dev/null 2>&1
-update_progress
+#BUILD
+print_progress "Building project..."
+bash ~/$WORKDIR/scripts/build/project_build.sh >/dev/null
 
-echo "Running project..."
-~/$WORKDIR/scripts/run/run.sh > /dev/null 2>&1 &
-update_progress
+#RUN
+# Commented out since it might not return control back to the script
+# print_progress "Running application..."
+# bash ~/$WORKDIR/scripts/run/run.sh >/dev/null
 
-echo -e "\n### PROJECT FULLY INITIALIZED ###"
+#SERVICE
+# Uncomment and modify as needed
+# print_progress "Initializing services..."
+# bash ~/$WORKDIR/scripts/services/services_init.sh >/dev/null
+
+echo -ne '\n'
+echo "### PROJECT FULLY INITIALISED ###"
