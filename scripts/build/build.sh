@@ -1,6 +1,6 @@
 #!/bin/bash
 WORKDIR=~/server/
-BUILDDIR=~/server/build/
+BUILDDIR=~/server/build
 FRONTDIR=~/server/frontend
 BACKDIR=~/server/backend
 DISPDIR=~/server/display
