@@ -14,7 +14,6 @@ class User {
   }
 
   static getInstance() {
-    console.log("getInstance");
     if (!User.instance) {
       User.instance = new User();
     }

@@ -331,7 +331,7 @@ function Profile() {
                       checked={param.event_auto === 1}
                     />
                   </Stack> */}
-                  <Stack
+                  {/* <Stack
                     direction="row"
                     justifyContent="space-between"
                     alignItems="center"
@@ -349,13 +349,13 @@ function Profile() {
                       checked={veille.enable === 1}
                       onChange={handleVeilleChange}
                     />
-                  </Stack>
+                  </Stack> */}
                   <Stack
                     direction="row"
                     justifyContent="space-between"
                     alignItems="center"
                     spacing={3}
-                    /*  onClick={handleVeilleChange} */
+                    onClick={handleVeilleChange}
                   >
                     <Stack spacing={3} direction="row" alignItems="center">
                       <IconButton disabled>
@@ -363,8 +363,7 @@ function Profile() {
                       </IconButton>
                       <Typography>heure de restart:</Typography>
                     </Stack>
-                    {/* textinput */}
-                    {/* to int */}
+
                     <TextField
                       type="text"
                       value={veille.restart_at}
@@ -379,7 +378,7 @@ function Profile() {
                       margin="normal"
                     />
                   </Stack>
-                  <Stack>
+                  {/*  <Stack>
                     <Slider
                       m={5}
                       color="secondary"
@@ -398,7 +397,7 @@ function Profile() {
                       onChange={handleSliderChange}
                       disabled={veille.enable === 0}
                     />
-                  </Stack>
+                  </Stack> */}
                 </Stack>
               </Grid>
             </Grid>
