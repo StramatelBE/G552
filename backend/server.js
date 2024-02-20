@@ -9,16 +9,15 @@ const Game = require("./RSCOM/Game");
 const MacroController = require("./Controllers/macroController");
 const handleScoring = require("./RSCOM/scoringHandler");
 
-
-const User = require('./Models/userModel');
+const User = require("./Models/userModel");
 require("dotenv").config();
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.listen(config.portAPI, () => {
-    console.log(`API Server started on ${config.ip}:${config.portAPI}`);
+  console.log(`API Server started on ${config.ip}:${config.portAPI}`);
 });
 
 const webSocketSetup = require("./Sockets/Websocket.js");
@@ -27,12 +26,15 @@ webSocketSetup(app);
 const unixSocketSetup = require("./Sockets/Unixsocket.js");
 unixSocketSetup.startServer(); */
 
-const {SerialPortConnection, sharedEmitter} = require("./RSCOM/SerialPorts/SerialPortConnection");
+const {
+  SerialPortConnection,
+  sharedEmitter,
+} = require("./RSCOM/SerialPorts/SerialPortConnection");
 const sp = new SerialPortConnection();
 
 sp.StartReading();
 sharedEmitter.on("data", (data) => {
-    Game.update(data);
+  Game.update(data);
 });
 
 // let previousScoring = 0;
@@ -92,9 +94,8 @@ sharedEmitter.on("scoring", handleScoring);
 //     }
 // });
 
-
 sharedEmitter.on("media", (media) => {
-    unixSocketSetup.sendMedia(media);
+  unixSocketSetup.sendMedia(media);
 });
 
 const authRoutes = require("./Routes/authRoutes");
@@ -105,7 +106,6 @@ app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 
 app.use(checkToken);
-
 
 const scoringRoutes = require("./Routes/scoringRoutes");
 const mediaRoutes = require("./Routes/mediaRoutes");
@@ -132,8 +132,7 @@ app.use("/admin", adminRoutes);
 
 User.getInstance().createTable();
 app.get("/", (req, res) => {
-    res.send(`Le serveur fonctionne sur le port ${config.portAPI}`);
+  res.send(`Le serveur fonctionne sur le port ${config.portAPI}`);
 });
-
 
 module.exports = app;

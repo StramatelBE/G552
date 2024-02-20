@@ -10,7 +10,7 @@ require("dotenv").config();
 
 const signUp = async (req, res) => {
   console.log(req.body);
-  const folderName = process.env.UPLOAD_PATH + req.body.username;
+  const folderName = `../../Server/Frontend/public/medias/${req.body.username}`;
   const user = {
     username: req.body.username,
     password: req.body.password,

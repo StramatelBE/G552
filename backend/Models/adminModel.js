@@ -9,7 +9,9 @@ class Admin {
     const createTableSql = `
       CREATE TABLE IF NOT EXISTS admin (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        serialnumber TEXT
+        serialnumber TEXT,
+        canal TEXT,
+        ip TEXT
       )
     `;
 
@@ -36,14 +38,20 @@ class Admin {
 
   insertInitialAdminRow() {
     const insertSql = `
-      INSERT INTO admin (serialnumber)
-      VALUES (?)
+      INSERT INTO admin (serialnumber, canal, ip)
+      VALUES (?, ?, ?)
     `;
-    const serialNumber = "initia";
+    const serialNumber = "000000000"; // Change this to your desired initial serial number
+    const initialCanal = "0"; // Change this to your desired initial canal
+    const initialIp = "192.168.100.1"; // Change this to your desired initial IP
 
-    db.run(insertSql, [serialNumber], (err) => {
+    db.run(insertSql, [serialNumber, initialCanal, initialIp], (err) => {
       if (err) {
-        console.error("Error inserting initial row into admin table:", err.message);
+        console.error(
+          "Error inserting initial row into admin table:",
+          err.message
+        );
+        console.log(err);
       } else {
         console.log("Initial row inserted into admin table.");
       }
@@ -62,15 +70,19 @@ class Admin {
     });
   }
 
-  updateAdmin(serialNumber) {
+  updateAdmin(serialNumber, canal, ip) {
     return new Promise((resolve, reject) => {
-      db.run(`UPDATE admin SET serialnumber = ?`, [serialNumber], (err) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve();
+      db.run(
+        `UPDATE admin SET serialnumber = ?, canal = ?, ip = ?`,
+        [serialNumber, canal, ip],
+        (err) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve();
+          }
         }
-      });
+      );
     });
   }
 }

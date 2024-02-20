@@ -35,8 +35,7 @@ function Login() {
 
   async function getUsers() {
     const result = await userService.getAll();
-    console.log("result", result);
-    setUsers(result);
+    if (result) setUsers(result);
   }
 
   function deleteUserConected() {
@@ -103,7 +102,7 @@ function Login() {
                 required
               >
                 {users &&
-                  users.map((userOption) => (
+                  users?.map((userOption) => (
                     <MenuItem key={userOption.id} value={userOption.username}>
                       {userOption.username}
                     </MenuItem>

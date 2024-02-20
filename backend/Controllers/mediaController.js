@@ -10,7 +10,7 @@ class MediaController {
     this.storage = multer.diskStorage({
       destination: (req, file, cb) => {
         const username = req.params.user;
-        const userFolder =`${process.env.UPLOAD_PATH}${username}`;
+        const userFolder = `${process.env.UPLOAD_PATH}${username}`;
         cb(null, userFolder);
       },
       filename: (req, file, cb) => {
@@ -31,7 +31,6 @@ class MediaController {
     this.delete = this.delete.bind(this);
   }
 
-
   create = (req, res) => {
     const username = req.params.user;
     this.upload.single("file")(req, res, (err) => {
@@ -45,22 +44,7 @@ class MediaController {
 
         this.media
           .create(req.file, id, username)
-          .then((media) => {
-            fs.rename(
-              req.file.path,
-              `${process.env.UPLOAD_PATH} ${username} / ${req.file.filename}`,
-              (erreur) => {
-                if (erreur) {
-                  console.error(
-                    "Erreur lors du déplacement du fichier :",
-                    erreur
-                  );
-                } else {
-                  console.log("Fichier déplacé avec succès");
-                }
-              }
-            );
-          })
+          .then((media) => {})
           .catch((err) => {
             res.status(500).json({ message: err });
           });

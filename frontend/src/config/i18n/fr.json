@@ -22,14 +22,14 @@
     }
   },
   "Diaporama": {
-    "title": "Diaporama",
-    "emptyListMessage": "Ajouter des diaporamas avec +",
-    "listTitle": "Liste des diaporamas",
+    "title": "playlists",
+    "emptyListMessage": "Ajouter des playlists avec +",
+    "listTitle": "Liste des playlists",
     "Dialog": {
-      "addNew": "Ajouter un nouveau diaporama",
+      "addNew": "Ajouter un nouveau playlists",
       "name": "Nom",
       "areYouSureToDelete": "Êtes-vous sûr de vouloir supprimer",
-      "areYouSureToDeleteMediaEvent": "Êtes-vous sûr de vouloir supprimer cet événement diaporama ?"
+      "areYouSureToDeleteMediaEvent": "Êtes-vous sûr de vouloir supprimer cet événement playlists ?"
     }
   },
   "Login": {
@@ -53,7 +53,7 @@
   },
   "Media": {
     "title": "Média",
-    "add": "Ajouter",
+    "add": "Ajouter des Medias avec +",
     "upload": "Télécharger",
     "Dialog": {
       "areYouSureToDelete": "Do you want to delete this media?"

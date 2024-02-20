@@ -14,6 +14,7 @@ class User {
   }
 
   static getInstance() {
+    console.log("getInstance");
     if (!User.instance) {
       User.instance = new User();
     }
@@ -121,17 +122,10 @@ class User {
       await Promise.all(macroPromises);
 
       (async () => {
-        const veille = new Veille();
-        const veilleId = await veille.create({
-          enable: false,
-          startTime: "1",
-          endTime: "24",
-        });
-
         const param = new Param();
         await param.create({
           userId: userId,
-          veilleId: veilleId,
+          veilleId: 1,
           eventAuto: true,
         });
       })();

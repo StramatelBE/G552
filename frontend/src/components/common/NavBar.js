@@ -23,8 +23,8 @@ function NavBar() {
     setLogoutDialogOpen(false);
   }
 
-  function logout() {
-    AuthService.logout();
+  async function logout() {
+    await AuthService.logout();
     window.location.reload();
   }
 

@@ -1,4 +1,4 @@
-import fetchWithAuth from '../utils/fetchWithAuth'; // Ajustez le chemin en fonction de la structure de votre projet
+import fetchWithAuth from "../utils/fetchWithAuth"; // Ajustez le chemin en fonction de la structure de votre projet
 
 const URL_API = process.env.REACT_APP_API_URL;
 
@@ -10,8 +10,8 @@ class AuthService {
   async login(username, password) {
     try {
       const response = await fetch(`${URL_API}/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
       });
 
@@ -33,17 +33,15 @@ class AuthService {
   }
 
   async logout() {
-    console.log("Logout");
     try {
       const response = await fetchWithAuth(`${URL_API}/activeSessions/logout`, {
-        method: 'PUT',
+        method: "PUT",
       });
 
       const data = await response.json();
 
-      localStorage.removeItem("user");
+      localStorage.clear();
       this.currentUser = null;
-      window.location.reload();
 
       return data;
     } catch (error) {
@@ -55,8 +53,8 @@ class AuthService {
     try {
       const roles = [role];
       const response = await fetch(`${URL_API}/auth/signup`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password, roles }),
       });
 
@@ -80,11 +78,14 @@ class AuthService {
       console.log("user", user);
 
       if (user) {
-        const response = await fetchWithAuth(`${URL_API}/auth/modifyPassword/${user.user.id}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ newPassword })
-        });
+        const response = await fetchWithAuth(
+          `${URL_API}/auth/modifyPassword/${user.user.id}`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ newPassword }),
+          }
+        );
 
         return await response.json();
       } else {
@@ -99,11 +100,14 @@ class AuthService {
   async lostPassword(newPassword, id) {
     try {
       if (id) {
-        const response = await fetchWithAuth(`${URL_API}/auth/modifyPassword/${id}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ newPassword })
-        });
+        const response = await fetchWithAuth(
+          `${URL_API}/auth/modifyPassword/${id}`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ newPassword }),
+          }
+        );
 
         return await response.json();
       } else {
@@ -121,9 +125,12 @@ class AuthService {
 
   async updateFirstLogin(id) {
     try {
-      const response = await fetchWithAuth(`${URL_API}/auth/updateFirstLogin/${id}`, {
-        method: 'POST',
-      });
+      const response = await fetchWithAuth(
+        `${URL_API}/auth/updateFirstLogin/${id}`,
+        {
+          method: "POST",
+        }
+      );
 
       return await response.json();
     } catch (error) {

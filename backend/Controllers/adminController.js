@@ -6,10 +6,10 @@ class AdminController {
   }
 
   update = (req, res) => {
-    const { serialNumber } = req.body;
+    const { serialnumber, canal, ip } = req.body;
 
     this.admin
-      .updateAdmin(serialNumber)
+      .updateAdmin(serialnumber, canal, ip)
       .then(() => {
         res.status(200).json({ message: "Admin updated successfully." });
       })

@@ -361,21 +361,25 @@ function Profile() {
                       <IconButton disabled>
                         <ModeNightIcon sx={{ color: "text.secondary" }} />
                       </IconButton>
-                      <Typography>heure de restart:</Typography>
+                      <Typography>heure de redémarrage:</Typography>
                     </Stack>
 
                     <TextField
-                      type="text"
+                      type="time"
                       value={veille.restart_at}
-                      onChange={(e) => {
+                      onInput={(e) => {
+                        console.log("Input changed", e.target.value);
                         const updatedVeille = {
                           ...veille,
-                          restart_at: parseInt(e.target.value),
+                          restart_at: e.target.value,
                         };
-                        updatedVeille01(updatedVeille); // Assuming setVeille is the state setter function for 'veille'
+                        updatedVeille01(updatedVeille);
                       }}
                       required
                       margin="normal"
+                      inputProps={{
+                        step: 300, // Pas de 5 minutes pour la sélection de l'heure
+                      }}
                     />
                   </Stack>
                   {/*  <Stack>

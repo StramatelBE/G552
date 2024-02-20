@@ -71,7 +71,7 @@ function App() {
             )}
             <Header darkMode={darkMode} />
             <Box className="mainContainer">
-              {token && token.user.firstLogin === 1 ? (
+              {token?.user.firstLogin && token?.user.firstLogin === 1 ? (
                 <Grid
                   container
                   sx={{
@@ -120,7 +120,7 @@ function App() {
                 </Grid>
               )}
             </Box>
-            {token && token.user.firstLogin !== 1 ? (
+            {token && token?.user.firstLogin !== 1 ? (
               <Box>
                 <Navbar />
               </Box>
