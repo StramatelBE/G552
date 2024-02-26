@@ -1,14 +1,10 @@
 const {app, BrowserWindow, ipcMain} = require("electron");
 const path = require("path");
-const config = require("./src/config.js");
+const config = require("./config.js");
 const net = require("net");
 const {saveData, readData} = require("./store");
 
 const socketPath = "/tmp/_sysmes.sock";
-
-require("electron-reload")(__dirname, {
-    electron: require(`${__dirname}/node_modules/electron`),
-});
 
 let mainWindow;
 
