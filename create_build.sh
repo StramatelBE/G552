@@ -51,7 +51,7 @@ else
     echo "Building project version: $VERSION_NUMBER."
     bash ./scripts/build/project_build.sh > /dev/null 2>&1
     echo "Packaging builds..."
-    zip -9 -r $BUILD build/ > /dev/null 2>&1
+    zip -9 -r $BUILD build/* > /dev/null 2>&1
     echo "Creating checksum..."
     sha256sum $BUILD | awk '{print $1'} > $CHECKSUM
     check_duplicate_checksums
