@@ -1,0 +1,14 @@
+[Unit]
+Description=Update Service
+After=network.target
+
+[Service]
+Type=simple
+User=stramatel
+WorkingDirectory=/home/stramatel/server/scripts/updates/
+ExecStart=/bin/bash /home/stramatel/server/scripts/updates/update.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
