@@ -1,4 +1,11 @@
-import { Box, ImageList, ImageListItem, Paper, Stack } from "@mui/material";
+import {
+  Box,
+  Hidden,
+  ImageList,
+  ImageListItem,
+  Paper,
+  Stack,
+} from "@mui/material";
 import React, { useContext, useState } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import { useTranslation } from "react-i18next";
@@ -44,6 +51,7 @@ function Medias(props) {
   const { setProgress } = useContext(LoadingContext);
   const [sortCriteria, setSortCriteria] = useState("recent");
   const [viewMode, setViewMode] = useState("grid");
+  const [inputKey, setInputKey] = useState(0);
 
   const toggleViewMode = () => {
     console.log("toggleViewMode", viewMode);
@@ -136,7 +144,9 @@ function Medias(props) {
   }
 
   function goToCrop(event) {
-    console.log("upload");
+    setImageToCrop(event.target.files[0]);
+    setInputKey((prevKey) => prevKey + 1);
+    setImageToCrop(null);
     if (event && event.target.files[0].type.split("/")[0] === "video") {
       uploadService
         .upload(setLoading, event.target.files[0], setProgress)
@@ -213,7 +223,9 @@ function Medias(props) {
             <IconButton
               className="headerButton"
               onClick={() => {
+                //remove the file input
                 document.getElementById("inputFile").click();
+                console.log("inputFile", document.getElementById("inputFile"));
               }}
             >
               <AddIcon sx={{ color: "secondary.main" }} />
@@ -224,6 +236,7 @@ function Medias(props) {
               id="inputFile"
               style={{ display: "none" }}
               onChange={goToCrop}
+              key={inputKey}
             />
           </Box>
         </Stack>
@@ -251,9 +264,12 @@ function Medias(props) {
             <div ref={provided.innerRef}>
               {props.eventMedia[1].medias ? (
                 props.eventMedia[1].medias.length > 0 ? (
-                  <Box className="containerPage">
+                  <Box
+                    className="containerPage"
+                    sx={{ height: "calc(94vh - 220px)", overflowY: "auto" }}
+                  >
                     {viewMode === "grid" ? (
-                      <ImageList variant="masonry" cols={2} gap={8}>
+                      <ImageList variant="visible" cols={2} gap={8}>
                         {props.eventMedia[1].medias.map((file, index) => (
                           <ImageListItem key={file.id}>
                             <Draggable
@@ -364,12 +380,17 @@ function Medias(props) {
                                 }}
                               >
                                 <TableCell align="right">
-                                  {" "}
-                                  <IconButton
-                                    onClick={() => addmediatodiaporam(file)}
-                                  >
-                                    <AddIcon color="error" />
-                                  </IconButton>
+                                  {props.id === undefined ? (
+                                    <IconButton disabled={true}>
+                                      <AddIcon />
+                                    </IconButton>
+                                  ) : (
+                                    <IconButton
+                                      onClick={() => addmediatodiaporam(file)}
+                                    >
+                                      <AddIcon color="error" />
+                                    </IconButton>
+                                  )}
                                 </TableCell>
                                 <TableCell
                                   align="right"

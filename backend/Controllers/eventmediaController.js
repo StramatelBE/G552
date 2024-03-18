@@ -101,6 +101,8 @@ class EventMediaController {
       });
   };
   deleteAllByMedia = (req, res) => {
+    console.log("deleteAllByMedia");
+    console.log(req.params.id);
     const mediaId = req.params.id;
     this.eventmedia
       .deleteAllByMedia(mediaId)
