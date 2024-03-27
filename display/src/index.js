@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
-/* import ScoringMode from "./Components/ScoringMode"; */
+import ScoringMode from "./Components/ScoringMode";
 import MediaMode from "./Components/MediaMode";
 import config from "./config.js";
 import LogoMode from "./Components/LogoMode";
