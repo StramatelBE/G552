@@ -47,7 +47,7 @@ const MediaMode = ({mediaState, mediaMode}) => {
                         loop={shouldLoop}
                     /> :
                     <video
-                        src={mediaPath}
+                        src={"http://localhost:3000" + mediaPath}
                         autoPlay
                         preload={"auto"}
                         onEnded={() => setCurrentMediaIndex((currentMediaIndex + 1) % mediaState.length)}
@@ -59,7 +59,7 @@ const MediaMode = ({mediaState, mediaMode}) => {
                              style={{width: "512px", height: "256px"}}
                              alt="Media content"/>
                         :
-                        <img src={mediaPath} alt="Media content"/>
+                        <img src={"http://localhost:3000" + mediaPath} alt="Media content"/>
                     }
                 </>
             )}

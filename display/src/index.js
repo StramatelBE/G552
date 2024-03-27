@@ -156,7 +156,6 @@ const App = () => {
             }
             {mode === "sleep" && <></>}
             {mode === "" && <div>Waiting for data...</div>}
-            {/*<ScoringMode gameState={gameState}/>*/}
         </>
     );
 };
