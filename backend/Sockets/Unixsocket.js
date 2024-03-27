@@ -191,6 +191,7 @@ const server = net.createServer((client) => {
 
         try {
             handleData(data);
+            console.log("Selected mode:", data?.Mode)
 
 
             if (scoreModes.includes(data?.Mode) || stopModes.includes(data?.Mode)) {
@@ -258,12 +259,12 @@ module.exports = {
         });
     },
     sendData: function (data) {
-        // console.log('UNIX Socket is sending scoring')
-        // console.log(data)
+        console.log('UNIX Socket is sending scoring')
+        console.log(data)
         sharedEmitter.emit('data-received', data);
     },
     sendMedia: function (data) {
-        // console.log('UNIX Socket is sending media')
+        console.log('UNIX Socket is sending media')
         sharedEmitter.emit('data-received', data);
     }
 }
