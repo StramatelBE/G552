@@ -60,7 +60,7 @@ function createWindows() {
         },
     });
     //TODO:TRUC DEV
-    //mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
     //mainWindow.loadFile("dist/index.html");
 	mainWindow.loadURL('http://localhost:2001');
 	mainWindow.removeMenu();
