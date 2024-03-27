@@ -17,7 +17,6 @@ const App = () => {
   const [mediaState, setMediaState] = useState([]);
   const [mediaMode, setMediaMode] = useState(false);
 
-<<<<<<< HEAD
   useEffect(() => {
     document.documentElement.style.setProperty(
       "--maxWidth",
