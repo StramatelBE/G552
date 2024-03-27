@@ -274,7 +274,7 @@ function Basketball({ gameState: incomingGameState }) {
           top: "230px",
           position: "absolute",
         }}
-        src="stramatel.png"
+        src="LOGO_Stramatel.gif"
       />{" "}
       <img
         style={{
