@@ -16,6 +16,7 @@ cp $SCRIPTDIR/build.sh $BACKDIR/
 cd $BACKDIR
 $BACKDIR/build.sh
 cp -r $BACKDIR/* $BUILDDIR/backend/
+cp $BACKDIR/.env.production $BUILDDIR/backend/
 cp $BACKDIR/package.json $BUILDDIR/backend/
 sudo rm -r $BUILDDIR/backend/node_modules
 echo "FRONTEND BUILD"
