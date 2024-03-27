@@ -41,7 +41,7 @@ const handleScoring = async (scoring) => {
             } else {
                 macrosData = await macro.getMacrosByButton(mode);
             }
-            // console.log("macrosData", macrosData)
+            console.log("macrosData", macrosData)
             if (scoreMode.includes(macrosData)) {
                 console.log("No event for this macro, sending Mode", scoring.Mode);
                 scoring.Mode = scoreMode[0];
