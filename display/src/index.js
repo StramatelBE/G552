@@ -46,7 +46,7 @@ const App = () => {
                         mediaArray = [
                             {
                                 order: 1,
-                                path: "staticMedias/English/_DEFENCE.mp4",
+                                path: "/medias/English/_DEFENCE.mp4",
                                 duration: 5,
                                 type: "video",
                             },
@@ -66,7 +66,7 @@ const App = () => {
                         mediaArray = [
                             {
                                 order: 1,
-                                path: "staticMedias/English/_NOISE.mp4",
+                                path: "/medias/English/_NOISE.mp4",
                                 duration: 6,
                                 type: "video",
                             },
@@ -76,7 +76,7 @@ const App = () => {
                         mediaArray = [
                             {
                                 order: 1,
-                                path: "staticMedias/English/_1_POINTS.mp4",
+                                path: "/medias/English/_1_POINTS.mp4",
                                 duration: 3,
                                 type: "video",
                             },
@@ -86,7 +86,7 @@ const App = () => {
                         mediaArray = [
                             {
                                 order: 1,
-                                path: "staticMedias/English/_2_POINTS.mp4",
+                                path: "/medias/English/_2_POINTS.mp4",
                                 duration: 3,
                                 type: "video",
                             },
@@ -96,7 +96,7 @@ const App = () => {
                         mediaArray = [
                             {
                                 order: 1,
-                                path: "staticMedias/English/_3_POINTS.mp4",
+                                path: "/medias/English/_3_POINTS.mp4",
                                 duration: 4,
                                 type: "video",
                             },
@@ -106,7 +106,7 @@ const App = () => {
                         mediaArray = [
                             {
                                 order: 1,
-                                path: "staticMedias/English/_TIME_OUT.mp4",
+                                path: "/medias/English/_TIME_OUT.mp4",
                                 duration: 3,
                                 type: "video",
                             },
@@ -116,7 +116,7 @@ const App = () => {
                         mediaArray = [
                             {
                                 order: 1,
-                                path: "staticMedias/English/_FOUL.mp4",
+                                path: "/medias/English/_FOUL.mp4",
                                 duration: 3,
                                 type: "video",
                             },
