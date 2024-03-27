@@ -259,12 +259,13 @@ module.exports = {
         });
     },
     sendData: function (data) {
-        console.log('UNIX Socket is sending scoring')
-        console.log(data)
+        console.log('Mode sended:')
+        console.log(data?.Mode)
         sharedEmitter.emit('data-received', data);
     },
     sendMedia: function (data) {
-        console.log('UNIX Socket is sending media')
+        console.log('Mode sended:')
+        console.log(data?.Mode)
         sharedEmitter.emit('data-received', data);
     }
 }

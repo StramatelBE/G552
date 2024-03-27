@@ -31,7 +31,7 @@ const MediaMode = ({mediaState, mediaMode}) => {
 
     const currentMedia = mediaState[currentMediaIndex];
     const isVideo = currentMedia.type === "video" || currentMedia.type === "video/mp4"
-    const mediaPath = currentMedia.path || ''; // Default to empty string if path is not provided
+    const mediaPath = currentMedia.path || ''; 
     const shouldLoop = mediaState.length === 1 && isVideo;
 
     return (
