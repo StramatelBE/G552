@@ -126,7 +126,7 @@ if (fs.existsSync(socketPath)) {
 }
 
 function handleData(data) {
-    console.log("Handle Data", data)
+    //console.log("Handle Data", data)
     if (data.mode === 9) {
         // Handle score data
     } else {
@@ -194,6 +194,7 @@ const server = net.createServer((client) => {
 
 
             if (scoreModes.includes(data?.Mode) || stopModes.includes(data?.Mode)) {
+                console.log("Mode scoring:", data?.Mode)
                 previousDataMode = data?.Mode;
                 previousData = data;
                 client.write(JSON.stringify(data) + '\n');
@@ -208,10 +209,12 @@ const server = net.createServer((client) => {
 
                 // console.log('Sent score gameState', data)
             } else if (immediateModes.includes(data?.Mode)) {
+                console.log("Mode instant:", data?.Mode)
                 previousDataMode = data?.Mode;
                 previousData = data;
                 client.write(JSON.stringify(data) + '\n');
             } else if (!deepEqual(data, previousData) && macroModes.includes(data?.Mode)) {
+                console.log("Mode Macro:", data?.Mode)
                 previousDataMode = data?.Mode;
                 previousData = data;
                 console.log("+")
