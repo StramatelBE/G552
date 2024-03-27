@@ -55,37 +55,38 @@ sharedEmitter.on("scoring", async (scoring) => {
 
         console.log("Scoring Mode:", scoring.Mode);
         if (scoring.Mode === 9) {
+            console.log("The mode scoring has been sended");
             unixSocketSetup.sendData(scoring);
             previousMacrosDataMode = null;
         } else if (scoring.Mode === 0 || scoring.Mode === 1 || scoring.Mode === 2 || scoring.Mode === 16 || scoring.Mode === 17 || scoring.Mode === 18 || scoring.Mode === 19 || scoring.Mode === 20) {
             mode = scoring.Mode;
-            scoring.Mode = 9;
-            unixSocketSetup.sendData(scoring);
+            // scoring.Mode = 9;
+            // unixSocketSetup.sendData(scoring);
             scoring.Mode = mode;
             unixSocketSetup.sendData(scoring);
             previousMacrosDataMode = null;
         } else if (scoring.Mode === 3 || scoring.Mode === 4 || scoring.Mode === 5 || scoring.Mode === 6 || scoring.Mode === 7 || scoring.Mode === 8) {
             mode = scoring.Mode;
-            scoring.Mode = 9;
-            unixSocketSetup.sendData(scoring);
+            // scoring.Mode = 9;
+            // unixSocketSetup.sendData(scoring);
             scoring.Mode = mode;
             const macrosData = await macro.getMacrosByButton(scoring.Mode);
-            console.log(scoring.Mode, "!==", previousMacrosDataMode)
-            console.log("Medias datas were different from the previous one, sending data...")
+            // console.log(scoring.Mode, "!==", previousMacrosDataMode)
+            // console.log("Medias datas were different from the previous one, sending data...")
             macrosData[0].Mode = scoring.Mode;
             previousMacrosDataMode = scoring.Mode; // Update the cache
             unixSocketSetup.sendMedia(macrosData[0]);
-            unixSocketSetup.sendData(scoring);
+            // unixSocketSetup.sendData(scoring);
 
-            if (!macrosData) {
-                scoring.Mode = 9;
-                unixSocketSetup.sendData(scoring);
-                console.log("No event for this macro, sending Mode", scoring.Mode)
-            
-            } else {
-                // Only send data if it's different from the previous macro's data
-            
-            }
+            // if (!macrosData) {
+            //     scoring.Mode = 9;
+            //     unixSocketSetup.sendData(scoring);
+            //     console.log("No event for this macro, sending Mode", scoring.Mode)
+            //
+            // } else {
+            //     // Only send data if it's different from the previous macro's data
+            //
+            // }
         }
     } catch (error) {
         console.error("Erreur lors de la récupération des macros:", error.message);
