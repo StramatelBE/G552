@@ -41,7 +41,7 @@ const handleScoring = async (scoring) => {
             } else {
                 macrosData = await macro.getMacrosByButton(mode);
             }
-            console.log("macrosData", macrosData)
+            //console.log("macrosData", macrosData)
             if (scoreMode.includes(macrosData)) {
                 console.log("No event for this macro, sending Mode", scoring.Mode);
                 scoring.Mode = scoreMode[0];
@@ -74,7 +74,7 @@ const handleScoring = async (scoring) => {
 
     } catch (error) {
         console.error("Error fetching macros:", error.message);
-        scoring.Mode = 9;
+        //scoring.Mode = 9;
         unixSocketSetup.sendData(scoring);
     }
 };
