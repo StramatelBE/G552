@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
-/* import ScoringMode from "./Components/ScoringMode"; */
-import MediaMode from "./Components/MediaMode";
-import config from "./config.js";
-import LogoMode from "./Components/LogoMode";
-import "./main.css";
 
+import config from "./config.js";
+
+import "./main.css";
 const { ipcRenderer } = window.require("electron");
 
 const root = document.getElementById("root");
@@ -42,7 +40,6 @@ const App = () => {
         setMode("media");
 
         // if data.medias is not an array, wrap it in one
-        console.log(data.Mode);
         switch (data.Mode) {
           case 0:
             mediaArray = [
@@ -155,8 +152,8 @@ const App = () => {
       {mode === "logo" && <LogoMode />}
       {mode === "sleep" && <></>}
       {mode === "" && <div>Waiting for data...</div>} */}
-      {/*<ScoringMode gameState={gameState}/>*/}
-      fsdfsd
+      <ScoringMode gameState={gameState} />
+      {/* <Volleyball /> */}
     </>
   );
 };
