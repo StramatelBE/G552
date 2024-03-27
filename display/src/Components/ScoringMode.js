@@ -1,45 +1,35 @@
 import React, { useEffect, useState } from "react";
-import {
-  TableTennis,
-  Basketball,
-  Badminton,
-  SimpleTimer,
-  Soccer,
-  Volleyball,
-  Tennis,
-  Hockey,
-  Handball,
-  Boxing,
-  StandardDisplay,
-} from "./Sports/";
-import "./Mode.css";
+
+import Basketball from "./Sports/Basketball"
+import Handball from "./Sports/Handball"
+import Tennis from "./Sports/Tennis"
+import Volleyball from "./Sports/Volleyball"
 
 //TODO: DISPLAY TIMEOUT COUNTDOWN WHEN TIMEOUT IS CALLED
 
 const SPORT_COMPONENT_MAP = {
-  "Table Tennis": TableTennis,
-  Basketball: Basketball,
-  Badminton: Badminton,
-  "Simple Timer": SimpleTimer,
-  Soccer: Soccer,
-  Volleyball: Volleyball,
+  BasketBall: Basketball,
+  HandBall: Handball,
   Tennis: Tennis,
-  Hockey: Hockey,
-  Handball: Handball,
-  Boxing: Boxing,
+  Volleyball: Volleyball,
+
 };
 
 const ScoringMode = ({ gameState }) => {
   const [sport, setSport] = useState("none");
 
   useEffect(() => {
+    console.log(gameState);
+  }, []);
+  useEffect(() => {
+
     if (gameState && gameState.Sport) {
       setSport(gameState.Sport);
     }
   }, [gameState]);
 
   const CurrentSportComponent =
-    StandardDisplay ||
+    SPORT_COMPONENT_MAP[sport] ||
     (() => (
       <div style={{ backgroundColor: "black", color: "white" }}>
         Waiting for data...ScoringMode
