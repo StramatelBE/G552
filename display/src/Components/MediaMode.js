@@ -39,7 +39,7 @@ const MediaMode = ({mediaState, mediaMode}) => {
             {isVideo ? (
                 mediaMode ?
                     <video
-                        src={"../../Frontend/build" + mediaPath}
+                        src={"http://localhost:3000" + mediaPath}
                         style={{width: "512px", height: "256px"}}
                         autoPlay
                         preload={"auto"}
@@ -55,7 +55,7 @@ const MediaMode = ({mediaState, mediaMode}) => {
             ) : (
                 <>
                     {mediaMode ?
-                        <img src={"../../Frontend/build" + mediaPath}
+                        <img src={"http://localhost:3000" + mediaPath}
                              style={{width: "512px", height: "256px"}}
                              alt="Media content"/>
                         :
