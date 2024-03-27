@@ -228,6 +228,7 @@ class Game {
   static Send() {
     // console.log("Send method was called");
     //TODO: save in db
+    console.log('received mode:', this.State.Mode);
     sharedEmitter.emit("scoring", this.State);
   }
 }

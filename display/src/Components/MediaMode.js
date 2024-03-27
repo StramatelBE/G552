@@ -31,7 +31,7 @@ const MediaMode = ({mediaState, mediaMode}) => {
 
     const currentMedia = mediaState[currentMediaIndex];
     const isVideo = currentMedia.type === "video" || currentMedia.type === "video/mp4"
-    const mediaPath = currentMedia.path || ''; // Default to empty string if path is not provided
+    const mediaPath = currentMedia.path || ''; 
     const shouldLoop = mediaState.length === 1 && isVideo;
 
     return (
@@ -39,7 +39,7 @@ const MediaMode = ({mediaState, mediaMode}) => {
             {isVideo ? (
                 mediaMode ?
                     <video
-                        src={"../../Frontend/build" + mediaPath}
+                        src={"http://localhost:3000" + mediaPath}
                         style={{width: "512px", height: "256px"}}
                         autoPlay
                         preload={"auto"}
@@ -47,7 +47,7 @@ const MediaMode = ({mediaState, mediaMode}) => {
                         loop={shouldLoop}
                     /> :
                     <video
-                        src={mediaPath}
+                        src={"http://localhost:3000" + mediaPath}
                         autoPlay
                         preload={"auto"}
                         onEnded={() => setCurrentMediaIndex((currentMediaIndex + 1) % mediaState.length)}
@@ -55,11 +55,11 @@ const MediaMode = ({mediaState, mediaMode}) => {
             ) : (
                 <>
                     {mediaMode ?
-                        <img src={"../../Frontend/build" + mediaPath}
+                        <img src={"http://localhost:3000" + mediaPath}
                              style={{width: "512px", height: "256px"}}
                              alt="Media content"/>
                         :
-                        <img src={mediaPath} alt="Media content"/>
+                        <img src={"http://localhost:3000" + mediaPath} alt="Media content"/>
                     }
                 </>
             )}

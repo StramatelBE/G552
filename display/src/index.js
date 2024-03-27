@@ -28,27 +28,26 @@ const App = () => {
     );
     console.log("App mounted");
     ipcRenderer.on("server-data", (event, data) => {
-      console.log("!Received gameState", data, event);
+      console.log('!Received gameState', data, event);
       if (data.Mode === 9) {
         setMode("scoring");
         setGameState(data || {}); // Assuming the data for scoring mode contains a 'gameState' property
       } else if (data.Mode === 22) {
         setMode("logo");
       } else if (data.Mode === 23) {
-        setMode("sleep");
+        setMode("sleep")
       } else {
         let mediaArray = [];
         setMediaMode(false);
         setMode("media");
 
         // if data.medias is not an array, wrap it in one
-        console.log(data.Mode);
         switch (data.Mode) {
           case 0:
             mediaArray = [
               {
                 order: 1,
-                path: "staticMedias/English/_DEFENCE.mp4",
+                path: "/medias/English/_DEFENCE.mp4",
                 duration: 5,
                 type: "video",
               },
@@ -68,7 +67,7 @@ const App = () => {
             mediaArray = [
               {
                 order: 1,
-                path: "staticMedias/English/_NOISE.mp4",
+                path: "/medias/English/_NOISE.mp4",
                 duration: 6,
                 type: "video",
               },
@@ -78,7 +77,7 @@ const App = () => {
             mediaArray = [
               {
                 order: 1,
-                path: "staticMedias/English/_1_POINTS.mp4",
+                path: "/medias/English/_1_POINTS.mp4",
                 duration: 3,
                 type: "video",
               },
@@ -88,7 +87,7 @@ const App = () => {
             mediaArray = [
               {
                 order: 1,
-                path: "staticMedias/English/_2_POINTS.mp4",
+                path: "/medias/English/_2_POINTS.mp4",
                 duration: 3,
                 type: "video",
               },
@@ -98,7 +97,7 @@ const App = () => {
             mediaArray = [
               {
                 order: 1,
-                path: "staticMedias/English/_3_POINTS.mp4",
+                path: "/medias/English/_3_POINTS.mp4",
                 duration: 4,
                 type: "video",
               },
@@ -108,7 +107,7 @@ const App = () => {
             mediaArray = [
               {
                 order: 1,
-                path: "staticMedias/English/_TIME_OUT.mp4",
+                path: "/medias/English/_TIME_OUT.mp4",
                 duration: 3,
                 type: "video",
               },
@@ -118,7 +117,7 @@ const App = () => {
             mediaArray = [
               {
                 order: 1,
-                path: "staticMedias/English/_FOUL.mp4",
+                path: "/medias/English/_FOUL.mp4",
                 duration: 3,
                 type: "video",
               },
@@ -147,18 +146,19 @@ const App = () => {
 
   return (
     <>
-      {/*   {mode === "scoring" && <ScoringMode gameState={gameState} />}
+      {mode === "scoring" &&
+        <ScoringMode gameState={gameState} />
+      }
 
-      {mode === "media" && (
+      {mode === "media" &&
         <MediaMode mediaState={mediaState} mediaMode={mediaMode} />
-      )}
-      {mode === "logo" && <LogoMode />}
+      }
+      {mode === "logo" && <LogoMode />
+      }
       {mode === "sleep" && <></>}
-      {mode === "" && <div>Waiting for data...</div>} */}
-      {/*<ScoringMode gameState={gameState}/>*/}
-      fsdfsd
+      {mode === "" && <div>Waiting for data...</div>}
     </>
   );
-};
 
+};
 appRoot.render(<App />);

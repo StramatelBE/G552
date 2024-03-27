@@ -126,7 +126,7 @@ if (fs.existsSync(socketPath)) {
 }
 
 function handleData(data) {
-    console.log("Handle Data", data)
+    //console.log("Handle Data", data)
     if (data.mode === 9) {
         // Handle score data
     } else {
@@ -191,9 +191,11 @@ const server = net.createServer((client) => {
 
         try {
             handleData(data);
+            console.log("Selected mode:", data?.Mode)
 
 
             if (scoreModes.includes(data?.Mode) || stopModes.includes(data?.Mode)) {
+                console.log("Mode scoring:", data?.Mode)
                 previousDataMode = data?.Mode;
                 previousData = data;
                 client.write(JSON.stringify(data) + '\n');
@@ -208,10 +210,12 @@ const server = net.createServer((client) => {
 
                 // console.log('Sent score gameState', data)
             } else if (immediateModes.includes(data?.Mode)) {
+                console.log("Mode instant:", data?.Mode)
                 previousDataMode = data?.Mode;
                 previousData = data;
                 client.write(JSON.stringify(data) + '\n');
             } else if (!deepEqual(data, previousData) && macroModes.includes(data?.Mode)) {
+                console.log("Mode Macro:", data?.Mode)
                 previousDataMode = data?.Mode;
                 previousData = data;
                 console.log("+")
@@ -255,12 +259,13 @@ module.exports = {
         });
     },
     sendData: function (data) {
-        // console.log('UNIX Socket is sending scoring')
-        // console.log(data)
+        console.log('DataMode sended:')
+        console.log(data?.Mode)
         sharedEmitter.emit('data-received', data);
     },
     sendMedia: function (data) {
-        // console.log('UNIX Socket is sending media')
+        console.log('MediaMode sended:')
+        console.log(data?.Mode)
         sharedEmitter.emit('data-received', data);
     }
 }

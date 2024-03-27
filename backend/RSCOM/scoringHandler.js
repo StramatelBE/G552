@@ -30,18 +30,20 @@ const handleScoring = async (scoring) => {
         // console.log("Handle Scoring:", scoring.Mode)
 
         const handleImmediateMode = (mode) => {
+            console.log("immediate mode");
             unixSocketSetup.sendData(scoring);
             previousMacrosDataMode = mode;
         };
 
         const handleMacroMode = async (mode) => {
+            console.log("macro mode");
             let macrosData = null;
             if (mode === 21) {
                 macrosData = await macro.getMacrosByButton(15);
             } else {
                 macrosData = await macro.getMacrosByButton(mode);
             }
-            // console.log("macrosData", macrosData)
+            //console.log("macrosData", macrosData)
             if (scoreMode.includes(macrosData)) {
                 console.log("No event for this macro, sending Mode", scoring.Mode);
                 scoring.Mode = scoreMode[0];
@@ -57,7 +59,7 @@ const handleScoring = async (scoring) => {
             }
         };
 
-        // console.log("Scoring Mode:", scoring.Mode);
+        console.log("Mode:", scoring.Mode);
 
         if (scoreMode.includes(scoring.Mode)){
             unixSocketSetup.sendData(scoring);
