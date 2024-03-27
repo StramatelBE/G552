@@ -3,7 +3,17 @@
     "title": "Macro",
     "number": "nombre",
     "slideshow": "diaporama",
-    "none": "aucun"
+    "none": "aucun",
+    "Explanation": {
+      "1": "lance l'animation defense",
+      "2": "lance l'animation dunk",
+      "3": "lance l'animation faite du bruit",
+      "10": "affiche le score",
+      "11": "lance l'animation 1 point",
+      "12": "lance l'animation 2 points",
+      "13": "lance l'animation 3 points",
+      "14": "lance l'animation faute"
+    }
   },
   "Profile": {
     "title": "Paramètre",

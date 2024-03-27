@@ -15,7 +15,7 @@ require("dotenv").config();
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.listen(config.portAPI, () => {
     console.log(`API Server started on ${config.ip}:${config.portAPI}`);
@@ -23,10 +23,10 @@ app.listen(config.portAPI, () => {
 
 const webSocketSetup = require("./Sockets/Websocket.js");
 webSocketSetup(app);
-const unixSocketSetup = require("./Sockets/Unixsocket.js");
-unixSocketSetup.startServer(); 
+/* const unixSocketSetup = require("./Sockets/Unixsocket.js");
+unixSocketSetup.startServer();  */
 
-const {SerialPortConnection, sharedEmitter} = require("./RSCOM/SerialPorts/SerialPortConnection");
+const { SerialPortConnection, sharedEmitter } = require("./RSCOM/SerialPorts/SerialPortConnection");
 const sp = new SerialPortConnection();
 
 sp.StartReading();
