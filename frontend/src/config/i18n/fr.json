@@ -12,7 +12,8 @@
       "11": "lance l'animation 1 point",
       "12": "lance l'animation 2 points",
       "13": "lance l'animation 3 points",
-      "14": "lance l'animation faute"
+      "14": "lance l'animation temps mort",
+      "15": "lance l'animation faute"
     }
   },
   "Profile": {
