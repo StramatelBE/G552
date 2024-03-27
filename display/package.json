@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=2001 react-scripts start",
     "electron": "electron .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "bulma": "^0.9.4",
+    "concurrently": "^8.2.2",
     "iconv-lite": "^0.6.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

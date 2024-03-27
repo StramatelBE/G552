@@ -61,7 +61,7 @@ const StandardDisplay = ({ gameState: incomingGameState }) => {
     }
     timerString = timerString.toString();
     const formatted = timerString.split("").map((char, index) => (
-        <span key={index} className="character">
+      <span key={index} className="character">
         {char}
       </span>
     ));
@@ -160,8 +160,8 @@ const StandardDisplay = ({ gameState: incomingGameState }) => {
 
   const TimeoutsTimer = formatTimeoutsTimer(
     gameState?.Home?.Timeout?.Time ||
-      savedGameState?.Home?.Timeout?.Time ||
-      "0:00"
+    savedGameState?.Home?.Timeout?.Time ||
+    "0:00"
   );
 
   const TimeoutsTimerString =
@@ -179,7 +179,7 @@ const StandardDisplay = ({ gameState: incomingGameState }) => {
             ref={teamNameRef}
             style={{ fontSize: `${homeFontSize}px` }}
           >
-            {homeTeamName}
+            {homeTeamName} salut
           </span>
         </div>
 
@@ -252,7 +252,7 @@ const StandardDisplay = ({ gameState: incomingGameState }) => {
         </div>
         <div className="timeout-display">
           {[...Array(3)].map((_, i) => {
-            return   i < guestTeamTimeouts ? (
+            return i < guestTeamTimeouts ? (
               <div className="circleIcon filled" key={i}></div>
             ) : (
               <div className="circleIcon " key={i}></div>
