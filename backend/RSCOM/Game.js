@@ -1,5 +1,7 @@
 const Frames = require("./Frame/Frame_index");
 const { sharedEmitter } = require("./SerialPorts/SerialPortConnection");
+const fs = require('fs');
+const path = require('path');
 
 class Game {
   static State = {
@@ -203,41 +205,58 @@ class Game {
   static updateState(toInsert) {
     // Recursive function to compare and update the game state
     function recursiveUpdate(mainObject, updateObject, path = "") {
+      const storagePath = './storage.json'; // Path to your JSON storage file
+
+      // Function to read the current storage state
+      function readStorage() {
+        try {
+          const data = fs.readFileSync(storagePath, 'utf8');
+          return JSON.parse(data);
+        } catch (err) {
+          console.error('Error reading from storage:', err);
+          return {};
+        }
+      }
+
+      // Function to write to the storage
+      function writeStorage(data) {
+        try {
+          fs.writeFileSync(storagePath, JSON.stringify(data, null, 2), 'utf8');
+        } catch (err) {
+          console.error('Error writing to storage:', err);
+        }
+      }
+
       for (let key in updateObject) {
-        // Constructing a unique path for each property for potential localStorage use
         const currentPath = path ? `${path}.${key}` : key;
-    
-        // If the current property in the update object is an object itself
         if (typeof updateObject[key] === "object" && updateObject[key] !== null) {
-          // Ensure the main object has this property defined
           if (!mainObject[key]) {
             mainObject[key] = {};
           }
-          // Recursive call with the updated path
           recursiveUpdate(mainObject[key], updateObject[key], currentPath);
         } else {
-          // Check if we are updating a TeamName for either Guest or Home
+          // Handling TeamName specifically
           if (currentPath.endsWith(".TeamName")) {
-            // If the TeamName is not empty, save it to localStorage
+            const storage = readStorage();
             if (updateObject[key].trim() !== "") {
-              localStorage.setItem(currentPath, updateObject[key]);
+              // Save to "localStorage"
+              storage[currentPath] = updateObject[key];
+              writeStorage(storage);
             } else {
-              // If the TeamName is empty, try to retrieve it from localStorage
-              const storedName = localStorage.getItem(currentPath);
-              if (storedName) {
-                updateObject[key] = storedName;
+              // Retrieve from "localStorage" if exists
+              if (storage[currentPath]) {
+                updateObject[key] = storage[currentPath];
               }
             }
           }
-          // Directly update the property value in the main object
           mainObject[key] = updateObject[key];
         }
       }
     }
-    
 
     recursiveUpdate(this.State, toInsert);
   }
+    
 
   static Send() {
     // console.log("Send method was called");
