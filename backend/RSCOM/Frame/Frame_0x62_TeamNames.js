@@ -8,7 +8,7 @@ const Tools = require('../Utils/Frame_Tools/Frame_Tools_index');
 class Frame_0x62_TeamNames {
     static build(_message) {
         // let reEncodedMessage = Encode(_message);
-        console.log("Frame_0x62_TeamNames.build was called with _message: ", _message);
+        //console.log("Frame_0x62_TeamNames.build was called with _message: ", _message);
 
         return {
             insertType: 'DirectConsoleData',
