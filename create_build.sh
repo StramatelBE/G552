@@ -50,6 +50,7 @@ else
     echo "$VERSION_NUMBER" > $VERSION
     echo "Building project version: $VERSION_NUMBER."
     bash ./scripts/build/project_build.sh
+    rm -r build/backend/node_modules
     echo "Packaging builds..."
     zip -9 -r $BUILD build/*
     echo "Creating checksum..."
