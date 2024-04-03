@@ -36,11 +36,11 @@ function Handball() {
           width: "130px",
           height: "21px",
           left: "191px",
-          top: "224px",
+          top: "230px",
           position: "absolute",
         }}
-        src="https://via.placeholder.com/130x21"
-      />{" "}
+        src="LOGO_Stramatel.gif"
+      />
       <div
         style={{
           width: "30px",
