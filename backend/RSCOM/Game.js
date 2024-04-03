@@ -1,3 +1,4 @@
+const { log } = require("console");
 const Frames = require("./Frame/Frame_index");
 const { sharedEmitter } = require("./SerialPorts/SerialPortConnection");
 const fs = require('fs');
@@ -237,14 +238,19 @@ class Game {
         } else {
           // Handling TeamName specifically
           if (currentPath.endsWith(".TeamName")) {
+            console.log("reading storage");
             const storage = readStorage();
+            console.log(storage);
+            console.log(updateObject[key.trim()])
             if (updateObject[key].trim() !== "") {
               // Save to "localStorage"
               storage[currentPath] = updateObject[key];
               writeStorage(storage);
+              console.log("saved to storage");
             } else {
               // Retrieve from "localStorage" if exists
               if (storage[currentPath]) {
+                console.log("teamname updatedupdated");
                 updateObject[key] = storage[currentPath];
               }
             }
