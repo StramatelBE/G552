@@ -14,7 +14,7 @@ class Veille {
                 enable BOOLEAN NOT NULL DEFAULT 1,
                 start_time INTEGER,
                 end_time INTEGER,
-                restart_at INTEGER
+                restart_at STRING
             )
         `;
     db.run(createTable, (err) => {
@@ -30,20 +30,21 @@ class Veille {
     const checkTableEmpty = `SELECT COUNT(id) AS count FROM veille`;
     console.log("initializeTableIfEmpty", checkTableEmpty);
     db.get(checkTableEmpty, (err, row) => {
-        if (err) {
-            console.error(err.message);
-            return;
-        }
-        if (row.count === 0) {
-            // Table is empty, so we can initialize the buttons
-            const veille = {
-              enable: 1,
-              startTime: 7,
-              endTime: 23,
-              restartAt: 1
-            };
-            this.create(veille);
-        }
+      console.log("row1", row);
+      if (err) {
+        console.error(err.message);
+        return;
+      }
+      if (row.count === 0) {
+        // Table is empty, so we can initialize the buttons
+        const veille = {
+          enable: 1,
+          startTime: 7,
+          endTime: 23,
+          restartAt: "04:00",
+        };
+        this.create(veille);
+      }
     });
   }
 
@@ -95,7 +96,13 @@ class Veille {
         `UPDATE veille
          SET enable = ?, start_time = ?, end_time = ?, restart_at = ?
          WHERE id = ?`,
-        [veille.enable, veille.start_time, veille.end_time, veille.restart_at,1],
+        [
+          veille.enable,
+          veille.start_time,
+          veille.end_time,
+          veille.restart_at,
+          1,
+        ],
         (err) => {
           if (err) {
             reject(err);

@@ -2,27 +2,25 @@
   "name": "G552_Display",
   "version": "1.0.0",
   "description": "",
-  "main": "electron.js",
+  "main": "main.js",
   "scripts": {
-    "start": "PORT=2001 serve -s build",
+    "start": "PORT=2001 react-scripts start",
     "electron": "electron .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
-    "build": "react-scripts build && npx electron-builder --linux --armv7l && dpkg dist/apps/g552-display_1.0.0_armv7l.deb",
-    "postinstall": "electron-builder install-app-deps"
+    "build": "react-scripts build"
   },
   "keywords": [],
-  "homepage": "https://github.com/StramatelBE/G552",
-  "author": "StramatelBE <mderoir@stramatel.fr>",
+  "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.22.5",
     "@babel/preset-env": "^7.22.5",
     "@babel/preset-react": "^7.22.5",
     "babel-loader": "^9.1.2",
+    "concurrently": "^8.2.2",
     "css-loader": "^6.8.1",
     "electron": "^25.2.0",
-    "electron-builder": "^23.6.0",
     "electron-reload": "^2.0.0-alpha.1",
     "electron-reloader": "^1.2.3",
     "html-webpack-plugin": "^5.5.3",
@@ -33,55 +31,21 @@
   },
   "dependencies": {
     "bulma": "^0.9.4",
+    "concurrently": "^8.2.2",
     "iconv-lite": "^0.6.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "^5.0.1",
-    "serve": "^13.0.2"
+    "react-scripts": "^5.0.1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://yourrepositoryurl.git"
+    "url": "git+"
   },
   "build": {
-    "appId": "com.yourcompany.G552Display",
-    "productName": "G552 Display",
-    "directories": {
-      "output": "dist/apps"
-    },
-    "files": [
-      "build/**/*",
-      "node_modules/**/*",
-      "main.js",
-      "electron.js",
-      "package.json"
-    ],
-    "linux": {
-      "target": [
-        {
-          "target": "deb",
-          "arch": [
-            "armv7l"
-          ]
-        },
-        {
-          "target": "deb",
-          "arch": [
-            "x64"
-          ]
-        }
-      ],
-      "icon": "build/icons"
-    },
-    "extraResources": [
-      {
-        "from": "some/additional/files",
-        "to": "destFolderName",
-        "filter": [
-          "**/*"
-        ]
-      }
-    ]
+    "appId": "your.id",
+    "mac": {
+      "category": "your.app.category.type"
+    }
   },
   "browserslist": {
     "production": [

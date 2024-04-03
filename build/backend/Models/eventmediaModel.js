@@ -5,7 +5,6 @@ class EventMedia {
     this.createTable();
   }
 
-
   createTable() {
     const createTable = `
         CREATE TABLE IF NOT EXISTS event_media
@@ -18,8 +17,7 @@ class EventMedia {
         )
     `;
     db.run(createTable);
-}
-
+  }
 
   create(event) {
     return new Promise((resolve, reject) => {
@@ -78,15 +76,16 @@ class EventMedia {
 
   deleteAllByMedia(mediaId) {
     return new Promise((resolve, reject) => {
-      db.run("DELETE FROM event_media WHERE media_id = ?", [mediaId], (err) => {
+      db.run("DELETE FROM event_media WHERE id = ?", [mediaId], (err) => {
         if (err) {
+          console.log("deleteAllByMedia error", err);
           reject(err);
         } else {
           resolve();
         }
       });
     });
-}
+  }
 
   deleteAllByEventId(eventId) {
     return new Promise((resolve, reject) => {

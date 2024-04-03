@@ -10,38 +10,41 @@ class EventMediaController {
 
   create = (req, res) => {
     const { mediaId, eventId, duration, userId, media_pos_in_event } = req.body;
-  
+
     // Vérifier si la mediaId correspond à une vidéo
-    this.media.getById(mediaId)
+    this.media
+      .getById(mediaId)
       .then((media) => {
         if (media && media.type === "video") {
           // Obtenir la durée de la vidéo en utilisant fluent-ffmpeg
-          ffmpeg.ffprobe('../../Server/Frontend/build'+media.path, (err, metadata) => {
-            if (err) {
-              console.log(err);
-              res.status(500).json({ message: err });
-            } else {
+          ffmpeg.ffprobe(
+            process.env.MEDIA_DISPLAY_PATH + media.path,
+            (err, metadata) => {
+              if (err) {
+                console.log(err);
+                res.status(500).json({ message: err });
+              } else {
+                const videoDuration = metadata.format.duration; // Durée de la vidéo en secondes
 
-              const videoDuration = metadata.format.duration; // Durée de la vidéo en secondes
-
-              // Ajouter la durée de la vidéo à l'événement
-              this.eventmedia
-                .create({
-                  mediaId,
-                  eventId,
-                  duration: videoDuration,
-                  userId,
-                  media_pos_in_event,
-                })
-                .then((eventmedia) => {
-                  res.status(201).json(eventmedia);
-                })
-                .catch((err) => {
-                  console.log(err);
-                  res.status(500).json({ message: err });
-                });
+                // Ajouter la durée de la vidéo à l'événement
+                this.eventmedia
+                  .create({
+                    mediaId,
+                    eventId,
+                    duration: videoDuration,
+                    userId,
+                    media_pos_in_event,
+                  })
+                  .then((eventmedia) => {
+                    res.status(201).json(eventmedia);
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                    res.status(500).json({ message: err });
+                  });
+              }
             }
-          });
+          );
         } else {
           // Créer l'événement sans la durée de la vidéo
           this.eventmedia
@@ -61,16 +64,16 @@ class EventMediaController {
       });
   };
 
-    getAllByEvent = (req, res) => {
-        this.eventmedia.getAllByEvent(req.params.eventId)
-            .then((eventmedias) => {
-                res.status(200).json(eventmedias);
-            })
-            .catch((err) => {
-                res.status(500).json({message: err});
-            });
-    }
-
+  getAllByEvent = (req, res) => {
+    this.eventmedia
+      .getAllByEvent(req.params.eventId)
+      .then((eventmedias) => {
+        res.status(200).json(eventmedias);
+      })
+      .catch((err) => {
+        res.status(500).json({ message: err });
+      });
+  };
 
   getAllByMedia = (req, res) => {
     this.eventmedia
@@ -87,7 +90,7 @@ class EventMediaController {
     const eventId = req.params.id;
     const mediaId = req.body.idBdd;
     this.eventmedia
-      .delete(eventId,mediaId)
+      .delete(eventId, mediaId)
       .then(() => {
         res.status(204).json();
       })
@@ -98,6 +101,8 @@ class EventMediaController {
       });
   };
   deleteAllByMedia = (req, res) => {
+    console.log("deleteAllByMedia");
+    console.log(req.params.id);
     const mediaId = req.params.id;
     this.eventmedia
       .deleteAllByMedia(mediaId)
@@ -140,7 +145,6 @@ class EventMediaController {
         res.sendStatus(500);
       });
   };
-
 }
 
 module.exports = EventMediaController;
