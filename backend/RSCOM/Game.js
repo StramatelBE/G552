@@ -202,25 +202,39 @@ class Game {
 
   static updateState(toInsert) {
     // Recursive function to compare and update the game state
-    function recursiveUpdate(mainObject, updateObject) {
+    function recursiveUpdate(mainObject, updateObject, path = "") {
       for (let key in updateObject) {
+        // Constructing a unique path for each property for potential localStorage use
+        const currentPath = path ? `${path}.${key}` : key;
+    
         // If the current property in the update object is an object itself
-        if (
-          typeof updateObject[key] === "object" &&
-          updateObject[key] !== null
-        ) {
+        if (typeof updateObject[key] === "object" && updateObject[key] !== null) {
           // Ensure the main object has this property defined
           if (!mainObject[key]) {
             mainObject[key] = {};
           }
-          // Recursive call
-          recursiveUpdate(mainObject[key], updateObject[key]);
+          // Recursive call with the updated path
+          recursiveUpdate(mainObject[key], updateObject[key], currentPath);
         } else {
+          // Check if we are updating a TeamName for either Guest or Home
+          if (currentPath.endsWith(".TeamName")) {
+            // If the TeamName is not empty, save it to localStorage
+            if (updateObject[key].trim() !== "") {
+              localStorage.setItem(currentPath, updateObject[key]);
+            } else {
+              // If the TeamName is empty, try to retrieve it from localStorage
+              const storedName = localStorage.getItem(currentPath);
+              if (storedName) {
+                updateObject[key] = storedName;
+              }
+            }
+          }
           // Directly update the property value in the main object
           mainObject[key] = updateObject[key];
         }
       }
     }
+    
 
     recursiveUpdate(this.State, toInsert);
   }
