@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -e .env.production node server.js",
+    "start": "dotenv -e .env.production node server.js",
     "dev": "dotenv -e .env.development nodemon server.js"
   },
   "repository": {
