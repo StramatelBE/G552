@@ -1,6 +1,6 @@
 import React from "react";
 
-function Tennis() {
+function Tennis({ gamestat: incomingGameState }) {
   return (
     <div
       style={{
