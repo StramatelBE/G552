@@ -191,7 +191,6 @@ class Game {
       case 0x9f:
         break;
       default:
-        toInsert = "Unknown Frame: " + _message[1];
         console.log("Unknown Frame: " + _message[1]);
         break;
     }
