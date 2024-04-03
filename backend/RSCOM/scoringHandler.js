@@ -59,7 +59,7 @@ const handleScoring = async (scoring) => {
             }
         };
 
-        console.log("Mode:", scoring.Mode);
+        //console.log("Mode:", scoring.Mode);
 
         if (scoreMode.includes(scoring.Mode)){
             unixSocketSetup.sendData(scoring);
