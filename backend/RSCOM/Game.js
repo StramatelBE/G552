@@ -207,6 +207,7 @@ class Game {
     // Recursive function to compare and update the game state
     function recursiveUpdate(mainObject, updateObject, path = "") {
       const storagePath = './storage.json'; // Path to your JSON storage file
+      console.log(this.State)
 
       // Function to read the current storage state
       function readStorage() {
