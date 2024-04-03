@@ -242,7 +242,7 @@ class Game {
             const storage = readStorage();
             console.log(storage);
             console.log(updateObject[key.trim()])
-            if (updateObject[key].trim() !== "") {
+            if (updateObject[key].trim() !== null) {
               // Save to "localStorage"
               storage[currentPath] = updateObject[key];
               writeStorage(storage);
