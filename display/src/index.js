@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
-/* import ScoringMode from "./Components/ScoringMode"; */
+import ScoringMode from "./Components/ScoringMode";
 import MediaMode from "./Components/MediaMode";
 import config from "./config.js";
 import LogoMode from "./Components/LogoMode";
-import "./main.css";
+import "./main.css"
 
 const { ipcRenderer } = window.require("electron");
 
@@ -17,29 +17,29 @@ const App = () => {
   const [mediaState, setMediaState] = useState([]);
   const [mediaMode, setMediaMode] = useState(false);
 
-  useEffect(() => {
-    document.documentElement.style.setProperty(
-      "--maxWidth",
-      config.display.width
-    );
-    document.documentElement.style.setProperty(
-      "--maxHeight",
-      config.display.height
-    );
-    console.log("App mounted");
-    ipcRenderer.on("server-data", (event, data) => {
-      console.log('!Received gameState', data, event);
-      if (data.Mode === 9) {
-        setMode("scoring");
-        setGameState(data || {}); // Assuming the data for scoring mode contains a 'gameState' property
-      } else if (data.Mode === 22) {
-        setMode("logo");
-      } else if (data.Mode === 23) {
-        setMode("sleep")
-      } else {
-        let mediaArray = [];
-        setMediaMode(false);
-        setMode("media");
+    useEffect(() => {
+        document.documentElement.style.setProperty(
+            "--maxWidth",
+            config.display.width
+        );
+        document.documentElement.style.setProperty(
+            "--maxHeight",
+            config.display.height
+        );
+        console.log("App mounted");
+        ipcRenderer.on("server-data", (event, data) => {
+            console.log('!Received gameState', data, event);
+            if (data.Mode === 9) {
+                setMode("scoring");
+                setGameState(data || {}); // Assuming the data for scoring mode contains a 'gameState' property
+            } else if (data.Mode === 22) {
+                setMode("logo");
+            } else if (data.Mode === 23) {
+                setMode("sleep")
+            } else {
+                let mediaArray = [];
+                setMediaMode(false);
+                setMode("media");
 
         // if data.medias is not an array, wrap it in one
         switch (data.Mode) {

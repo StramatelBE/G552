@@ -60,11 +60,15 @@ function createWindows() {
         },
     });
     //TODO:TRUC DEV
-    // mainWindow.webContents.openDevTools();
-    mainWindow.loadFile("dist/index.html");
+    mainWindow.webContents.openDevTools();
+    //mainWindow.loadFile("dist/index.html");
+	mainWindow.loadURL('http://localhost:2001');
+	mainWindow.removeMenu();
     mainWindow.setMenu(null);
     mainWindow.setAlwaysOnTop(true, "screen-saver");
     mainWindow.webContents.on("did-finish-load", () => {
+	    const css = `body { overflow: hidden; }`;
+	    mainWindow.webContents.insertCSS(css);
         console.log("Main window loaded");
         mainWindow.webContents.send("message", "Hello second window!");
     });

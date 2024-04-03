@@ -7,9 +7,14 @@
   font-style: normal;
 }
 body {
+  min-width: 512px;
+  min-height: 256px;
+  max-width: 512px;
+  max-height: 256px;
   font-family: "D-DIN-Bold", sans-serif;
   margin: 0px !important;
   background-color: #000000;
+  /*border: #e0159d 1px solid;*/
 }
 div {
   font-family: "D-DIN-Bold", sans-serif;
