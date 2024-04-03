@@ -59,3 +59,9 @@ else
     cp -r $FOLDER $BUILD_REPO
     echo "Files copied!"
 fi
+    rm -r build/
+    rm -r display/build
+    rm -r frontend/build
+    
+    rm -r zip/*
+    echo "Cleaned!"
