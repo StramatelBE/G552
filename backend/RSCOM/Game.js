@@ -194,8 +194,11 @@ class Game {
         console.log("Unknown Frame: " + _message[1]);
         break;
     }
-    this.updateState(toInsert);
-    this.Send();
+    if (toInsert != null){
+      this.updateState(toInsert);
+ 
+    }
+       this.Send();
   };
 
   static getState() {
