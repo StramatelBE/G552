@@ -75,11 +75,11 @@ const server = net.createServer((client) => {
 
         try {
             handleData(data);
-            console.log("Selected mode:", data?.Mode)
+            //console.log("Selected mode:", data?.Mode)
 
 
             if (scoreModes.includes(data?.Mode) || stopModes.includes(data?.Mode)) {
-                console.log("Mode scoring:", data?.Mode)
+                //console.log("Mode scoring:", data?.Mode)
                 previousDataMode = data?.Mode;
                 previousData = data;
                 client.write(JSON.stringify(data) + '\n');
@@ -143,13 +143,13 @@ module.exports = {
         });
     },
     sendData: function (data) {
-        console.log('DataMode sended:')
-        console.log(data?.Mode)
+        //console.log('DataMode sended:')
+        //console.log(data?.Mode)
         sharedEmitter.emit('data-received', data);
     },
     sendMedia: function (data) {
-        console.log('MediaMode sended:')
-        console.log(data?.Mode)
+        //console.log('MediaMode sended:')
+        //console.log(data?.Mode)
         sharedEmitter.emit('data-received', data);
     }
 }
