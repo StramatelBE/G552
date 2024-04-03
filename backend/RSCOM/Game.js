@@ -204,63 +204,57 @@ class Game {
   }
 
   static updateState(toInsert) {
-    console.log(this.State)
-    // Recursive function to compare and update the game state
-    function recursiveUpdate(mainObject, updateObject, path = "") {
-      const storagePath = './storage.json'; // Path to your JSON storage file
-      
+    // Define the path for the JSON storage file
+    const storagePath = './storage.json'; 
 
-      // Function to read the current storage state
-      function readStorage() {
-        try {
-          const data = fs.readFileSync(storagePath, 'utf8');
-          return JSON.parse(data);
-        } catch (err) {
-          console.error('Error reading from storage:', err);
-          return {};
+    // Function to read the current storage state
+    const readStorage = () => {
+      try {
+        const data = fs.readFileSync(storagePath, 'utf8');
+        return JSON.parse(data);
+      } catch (err) {
+        console.error('Error reading from storage:', err);
+        return {};
+      }
+    };
+
+    // Function to write to the storage
+    const writeStorage = (data) => {
+      try {
+        fs.writeFileSync(storagePath, JSON.stringify(data, null, 2), 'utf8');
+      } catch (err) {
+        console.error('Error writing to storage:', err);
+      }
+    };
+
+    // Handle TeamName updates or retrievals before recursive update
+    const storage = readStorage();
+    ['Guest', 'Home'].forEach(side => {
+      const teamPath = `${side}.TeamName`;
+      if (toInsert[side] && toInsert[side].TeamName) {
+        // If TeamName is provided, update storage
+        storage[teamPath] = toInsert[side].TeamName;
+        writeStorage(storage);
+      } else if (!toInsert[side] || !toInsert[side].TeamName) {
+        // If TeamName is not provided, try to retrieve it from storage
+        if (storage[teamPath]) {
+          if (!toInsert[side]) toInsert[side] = {}; // Ensure side object exists
+          toInsert[side].TeamName = storage[teamPath];
         }
       }
+    });
 
-      // Function to write to the storage
-      function writeStorage(data) {
-        try {
-          fs.writeFileSync(storagePath, JSON.stringify(data, null, 2), 'utf8');
-        } catch (err) {
-          console.error('Error writing to storage:', err);
-        }
-      }
-
+    // Now perform the recursive update
+    const recursiveUpdate = (mainObject, updateObject) => {
       for (let key in updateObject) {
-        const currentPath = path ? `${path}.${key}` : key;
         if (typeof updateObject[key] === "object" && updateObject[key] !== null) {
-          if (!mainObject[key]) {
-            mainObject[key] = {};
-          }
-          recursiveUpdate(mainObject[key], updateObject[key], currentPath);
+          if (!mainObject[key]) mainObject[key] = {};
+          recursiveUpdate(mainObject[key], updateObject[key]);
         } else {
-          // Handling TeamName specifically
-          if (currentPath.endsWith(".TeamName")) {
-            console.log("reading storage");
-            const storage = readStorage();
-            console.log(storage);
-            console.log(updateObject[key.trim()])
-            if (updateObject[key].trim() !== null) {
-              // Save to "localStorage"
-              storage[currentPath] = updateObject[key];
-              writeStorage(storage);
-              console.log("saved to storage");
-            } else {
-              // Retrieve from "localStorage" if exists
-              if (storage[currentPath]) {
-                console.log("teamname updatedupdated");
-                updateObject[key] = storage[currentPath];
-              }
-            }
-          }
           mainObject[key] = updateObject[key];
         }
       }
-    }
+    };
 
     recursiveUpdate(this.State, toInsert);
   }
