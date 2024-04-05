@@ -35,7 +35,7 @@ class Frame_0x35 {
                     Counts: nBytesToNumber(_message[17]),
                 },
                 Exclusion: {
-                    Timer: Tools.Exclusion(22, 5, 3, _message).Timer,
+                    Timer: [Tools.TimeOut(24, 25, 26), Tools.TimeOut(29, 30, 31), Tools.TimeOut(34, 35, 36)],
                     ShirtNumber: Tools.Exclusion(22, 5, 3, _message).ShirtNumber,
                 }
             },
