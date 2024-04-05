@@ -8,7 +8,7 @@ const checkToken = require("./Middlewares/signInCheck");
 const Game = require("./RSCOM/Game");
 const MacroController = require("./Controllers/macroController");
 const handleScoring = require("./RSCOM/scoringHandler");
-
+const cronJobs = require('./Cronjob/Cron_index');
 
 const User = require('./Models/userModel');
 require("dotenv").config();
@@ -33,6 +33,8 @@ sp.StartReading();
 sharedEmitter.on("data", (data) => {
     Game.update(data);
 });
+
+cronJobs.startAllJobs();
 
 let previousScoring = 0;
 let previousMacrosDataMode = null;
