@@ -100,6 +100,7 @@ const server = net.createServer((client) => {
                 client.write(JSON.stringify(data) + '\n');
             } else if (!deepEqual(data, previousData) && macroModes.includes(data?.Mode)) {
                 console.log("Mode Macro:", data?.Mode)
+                console.log(data);
                 previousDataMode = data?.Mode;
                 previousData = data;
                 console.log("+")
