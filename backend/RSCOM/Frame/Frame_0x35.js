@@ -3,6 +3,7 @@ const nBytesToTables = require('../Utils/nBytesToTables');
 const LED = require("../Utils/Enums/eLED");
 const Tools = require("../Utils/Frame_Tools/Frame_Tools_index");
 const eSport = require("../Utils/Enums/eSport");
+const { Home } = require('../Utils/Enums/eTeam');
 
 /*
     * 0x35 : Handball / Soccer / Boxe
@@ -52,6 +53,9 @@ class Frame_0x35 {
             },
 
         };
+        console.log(Home.Exclusion.Timer)
+        console.log(Guest.Exclusion.Timer)
+
     }
 }
 
