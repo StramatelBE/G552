@@ -35,8 +35,7 @@ class Frame_0x35 {
                     Counts: nBytesToNumber(_message[17]),
                 },
                 Exclusion: {
-                    Timer: [Tools.TimeOut(24, 25, 26), Tools.TimeOut(29, 30, 31), Tools.TimeOut(34, 35, 36)],
-                    ShirtNumber: Tools.Exclusion(22, 5, 3, _message).ShirtNumber,
+                    Timer: [Tools.TimeOut(22, 23, 24), Tools.TimeOut(25, 26, 27), Tools.TimeOut(28, 29, 30)],
                 }
             },
 
@@ -48,8 +47,7 @@ class Frame_0x35 {
                 PenaltiesInProgress: Tools.PenaltiesInProgress(_message[16]),
                 TimeoutsCounts: nBytesToNumber(_message[18]),
                 Exclusion: {
-                    Timer: [Tools.TimeOut(41, 39, 40), Tools.TimeOut(44, 45, 46), Tools.TimeOut(49, 50, 51)],
-                    ShirtNumber: Tools.Exclusion(37, 5, 3, _message).ShirtNumber,
+                    Timer: [Tools.TimeOut(35, 36, 37), Tools.TimeOut(38, 39, 40), Tools.TimeOut(41, 42, 43)],
                 },
             },
 
