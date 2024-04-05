@@ -48,7 +48,7 @@ class Frame_0x35 {
                 PenaltiesInProgress: Tools.PenaltiesInProgress(_message[16]),
                 TimeoutsCounts: nBytesToNumber(_message[18]),
                 Exclusion: {
-                    Timer: Tools.Exclusion(37, 5, 3, _message).Timer,
+                    Timer: [Tools.TimeOut(39, 40, 41), Tools.TimeOut(44, 45, 46), Tools.TimeOut(49, 50, 51)],
                     ShirtNumber: Tools.Exclusion(37, 5, 3, _message).ShirtNumber,
                 },
             },
