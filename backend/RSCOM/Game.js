@@ -117,7 +117,7 @@ class Game {
   }
 
   static select = (_message) => {
-    console.log("select method was called with _message: ", _message);
+    //console.log("select method was called with _message: ", _message);
     let toInsert = null;
 
     switch (_message[1]) {
@@ -195,6 +195,8 @@ class Game {
         break;
     }
     if (toInsert != null){
+      console.log(toInsert.Home.Exclusion.Timer)
+      console.log(toInsert.Guest.Exclusion.Timer)
       this.updateState(toInsert);
  
     }
