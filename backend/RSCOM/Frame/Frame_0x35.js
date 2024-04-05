@@ -20,8 +20,7 @@ class Frame_0x35 {
                 Value: Tools.Chrono(_message[4], _message[5], _message[6], _message[7]),
                 Display: Tools.ClockTimerDisplay(_message[8]).Timer,
                 Status: Tools.TimerStartStop(_message[20]).Status,
-                LED: Tools.TimerStartStop(_messag
-                    e[20]).LED,
+                LED: Tools.TimerStartStop(_message[20]).LED,
                 Horn: Tools.Horn(_message[19]),
             },
 
