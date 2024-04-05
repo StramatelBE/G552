@@ -36,7 +36,7 @@ class Frame_0x35 {
                     Counts: nBytesToNumber(_message[17]),
                 },
                 Exclusion: {
-                    Timer: [Tools.TimeOut(22, 23, 24), Tools.TimeOut(25, 26, 27), Tools.TimeOut(28, 29, 30)],
+                    Timer: Tools.Exclusion(22, 9, _message),
                 }
             },
 
@@ -53,8 +53,7 @@ class Frame_0x35 {
             },
 
         };
-        console.log(Home.Exclusion.Timer)
-        console.log(Guest.Exclusion.Timer)
+    
 
     }
 }
