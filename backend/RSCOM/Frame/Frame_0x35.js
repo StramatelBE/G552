@@ -36,7 +36,7 @@ class Frame_0x35 {
                     Counts: nBytesToNumber(_message[17]),
                 },
                 Exclusion: {
-                    Timer: Tools.Exclusion(22, 9, _message),
+                    Timer: Tools.Exclusion(22, 3, _message),
                 }
             },
 
@@ -48,8 +48,8 @@ class Frame_0x35 {
                 PenaltiesInProgress: Tools.PenaltiesInProgress(_message[16]),
                 TimeoutsCounts: nBytesToNumber(_message[18]),
                 Exclusion: {
-                    Timer: [Tools.TimeOut(35, 36, 37), Tools.TimeOut(38, 39, 40), Tools.TimeOut(41, 42, 43)],
-                },
+                    Timer: Tools.Exclusion(35, 3, _message),
+                }
             },
 
         };
