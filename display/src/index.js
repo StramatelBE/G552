@@ -38,7 +38,7 @@ const App = () => {
         setMode("sleep")
       } else {
         let mediaArray = [];
-        setMediaMode(false);
+        setMediaMode(true);
         setMode("media");
 
         // if data.medias is not an array, wrap it in one
