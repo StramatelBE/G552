@@ -14,7 +14,6 @@ function Exclusion(startIndex, size, _message) {
         }
     }
 
-    console.log("Exclusion timer", Timer);
 
     return Timer;
 }
