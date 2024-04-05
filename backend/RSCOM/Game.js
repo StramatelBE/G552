@@ -199,7 +199,6 @@ class Game {
         console.log(toInsert.Home.Exclusion.Timer)
         console.log(toInsert.Guest.Exclusion.Timer)
       } 
-      console.log(toInsert)
       this.updateState(toInsert);
     }
        this.Send();
