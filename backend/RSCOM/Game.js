@@ -195,10 +195,11 @@ class Game {
         break;
     }
     if (toInsert != null){
-      console.log(toInsert.Home.Exclusion.Timer)
-      console.log(toInsert.Guest.Exclusion.Timer)
+      if (toInsert.Home.Exclusion.Timer && toInsert.Guest.Exclusion.Timer){
+        console.log(toInsert.Home.Exclusion.Timer)
+        console.log(toInsert.Guest.Exclusion.Timer)
+      } 
       this.updateState(toInsert);
- 
     }
        this.Send();
   };
