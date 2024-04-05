@@ -13,6 +13,8 @@ function Exclusion (startIndex, step, size, _message){
         }
     }
 
+    console.log("Exclusion timer", Timer)
+
     return {
         ShirtNumber,
         Timer,
