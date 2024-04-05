@@ -5,6 +5,7 @@ const MediaMode = ({mediaState, mediaMode}) => {
     const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
 
     useEffect(() => {
+        mediaMode = true
         if (!Array.isArray(mediaState) || mediaState.length === 0) {
             console.log("No media available");
             return;
