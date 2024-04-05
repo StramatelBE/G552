@@ -5,6 +5,7 @@ const MediaMode = ({mediaState, mediaMode}) => {
     const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
 
     useEffect(() => {
+
         if (!Array.isArray(mediaState) || mediaState.length === 0) {
             console.log("No media available");
             return;
@@ -37,7 +38,7 @@ const MediaMode = ({mediaState, mediaMode}) => {
     return (
         <>
             {isVideo ? (
-                mediaMode ?
+         
                     <video
                         src={"http://localhost:3000" + mediaPath}
                         style={{width: "512px", height: "256px"}}
@@ -45,21 +46,14 @@ const MediaMode = ({mediaState, mediaMode}) => {
                         preload={"auto"}
                         onEnded={() => setCurrentMediaIndex((currentMediaIndex + 1) % mediaState.length)}
                         loop={shouldLoop}
-                    /> :
-                    <video
-                        src={"http://localhost:3000" + mediaPath}
-                        autoPlay
-                        preload={"auto"}
-                        onEnded={() => setCurrentMediaIndex((currentMediaIndex + 1) % mediaState.length)}
                     />
             ) : (
                 <>
-                    {mediaMode ?
+                    {
                         <img src={"http://localhost:3000" + mediaPath}
                              style={{width: "512px", height: "256px"}}
                              alt="Media content"/>
-                        :
-                        <img src={"http://localhost:3000" + mediaPath} alt="Media content"/>
+                       
                     }
                 </>
             )}
