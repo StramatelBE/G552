@@ -5,8 +5,12 @@ import MediaMode from "./Components/MediaMode";
 import config from "./config.js";
 import LogoMode from "./Components/LogoMode";
 import "./main.css"
+import Basketball from "./Components/Sports/Basketball/Basketball.js";
+import Handball from "./Components/Sports/Handball.js";
+import Volleyball from "./Components/Sports/Volleyball/Volleyball.js";
+import Tennis from "./Components/Sports/Tennis/Tennis.js";
 
-const { ipcRenderer } = window.require("electron");
+/* const { ipcRenderer } = window.require("electron"); */
 
 const root = document.getElementById("root");
 const appRoot = ReactDOM.createRoot(root);
@@ -17,7 +21,7 @@ const App = () => {
   const [mediaState, setMediaState] = useState([]);
   const [mediaMode, setMediaMode] = useState(false);
 
-  useEffect(() => {
+  /* useEffect(() => {
     document.documentElement.style.setProperty(
       "--maxWidth",
       config.display.width
@@ -141,11 +145,11 @@ const App = () => {
     return () => {
       ipcRenderer.removeAllListeners("server-data");
     };
-  }, []);
+  }, []); */
 
   return (
     <>
-      {mode === "scoring" &&
+      {/* {mode === "scoring" &&
         <ScoringMode gameState={gameState} />
       }
 
@@ -155,7 +159,11 @@ const App = () => {
       {mode === "logo" && <LogoMode />
       }
       {mode === "sleep" && <></>}
-      {mode === "" && <div>Waiting for data...</div>}
+      {mode === "" && <div>Waiting for data...</div>} */}
+      <Basketball />
+      {/* <Handball /> */}
+      {/* <Volleyball /> */}
+      {/* <Tennis /> */}
     </>
   );
 
