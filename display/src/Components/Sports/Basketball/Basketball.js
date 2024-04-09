@@ -25,14 +25,14 @@ function Basketball({ gameState: incomingGameState }) {
       setTimeout(() => {
         setHomeScoreAnimating(false);
         setPrevHomeScore(homeScore);
-      }, 500); // Durée de l'animation (à ajuster en fonction de votre CSS)
+      }, 480); // Durée de l'animation (à ajuster en fonction de votre CSS)
     }
     if (guestScore !== prevGuestScore) {
       setGuestScoreAnimating(true);
       setTimeout(() => {
         setGuestScoreAnimating(false);
         setPrevGuestScore(guestScore);
-      }, 500); // Durée de l'animation (à ajuster en fonction de votre CSS)
+      }, 480); // Durée de l'animation (à ajuster en fonction de votre CSS)
     }
   }, [homeScore, guestScore, prevHomeScore, prevGuestScore]);
 
