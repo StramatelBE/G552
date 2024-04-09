@@ -144,7 +144,7 @@ const App = () => {
 
   return (
     <>
-        {mode === "scoring" && <ScoringMode gameState={gameState} />}
+      {mode === "scoring" && <ScoringMode gameState={gameState} />}
 
       {mode === "media" && (
         <MediaMode mediaState={mediaState} mediaMode={mediaMode} />
@@ -152,7 +152,7 @@ const App = () => {
       {mode === "logo" && <LogoMode />}
       {mode === "sleep" && <></>}
       {mode === "" && <div>Waiting for data...</div>}
-     
+
     </>
   );
 };
