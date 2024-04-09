@@ -16,10 +16,28 @@ function Basketball({ gameState: incomingGameState }) {
     return () => clearInterval(intervalId);
   }, []);
 
+  const [homeScoreAnimating, setHomeScoreAnimating] = useState(false);
+  const [guestScoreAnimating, setGuestScoreAnimating] = useState(false);
+
   useEffect(() => {
-    setPrevHomeScore(homeScore);
-    setPrevGuestScore(guestScore);
-  }, [homeScore, guestScore]);
+    if (homeScore !== prevHomeScore) {
+      setHomeScoreAnimating(true);
+      setTimeout(() => {
+        setHomeScoreAnimating(false);
+        setPrevHomeScore(homeScore);
+      }, 500); // Durée de l'animation (à ajuster en fonction de votre CSS)
+    }
+    if (guestScore !== prevGuestScore) {
+      setGuestScoreAnimating(true);
+      setTimeout(() => {
+        setGuestScoreAnimating(false);
+        setPrevGuestScore(guestScore);
+      }, 500); // Durée de l'animation (à ajuster en fonction de votre CSS)
+    }
+  }, [homeScore, guestScore, prevHomeScore, prevGuestScore]);
+
+
+
 
   function formatTimer(timerString, showHomeTimeout, showGuestTimeout) {
     if (!timerString) {
@@ -73,7 +91,17 @@ function Basketball({ gameState: incomingGameState }) {
   return (
     <div className="container">
       <div className="home">
-        <div className="home-score">{homeScore}</div>
+        <div className="container-score-home">
+          {homeScoreAnimating && (
+            <>
+              <div className="home-score score-out">{prevHomeScore}</div>
+              <div className="home-score score-in">{homeScore}</div>
+            </>
+          )}
+          {!homeScoreAnimating && (
+            <div className="home-score">{homeScore}</div>
+          )}
+        </div>
         <div className="home-name">
           {gameState?.Home?.TeamName || "HOME"} {/* team name HOME */}
         </div>
@@ -119,7 +147,19 @@ function Basketball({ gameState: incomingGameState }) {
           {gameState?.Guest?.TeamName || "GUEST"} {/* team name GUEST */}
         </div>{" "}
 
-        <div className={`guest-score score`}>{guestScore}</div>{" "}
+        <div className="container-score-guest">
+          {guestScoreAnimating && (
+            <>
+              <div className="guest-score score-out">{prevGuestScore}</div>
+              <div className="guest-score score-in">{guestScore}</div>
+            </>
+          )}
+          {!guestScoreAnimating && (
+            <div className="guest-score">{guestScore}</div>
+          )}
+
+
+        </div>
         {gameState?.Guest?.Timeout?.Team > 0 && (
           <>
             {[...Array(gameState?.Guest?.Timeout?.Team || 0)].map((_, i) => (

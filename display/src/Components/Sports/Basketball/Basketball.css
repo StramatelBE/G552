@@ -6,6 +6,14 @@
   justify-content: center;
   align-items: center;
 }
+.container-score-home {
+  width: 226px;
+  height: 93px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  overflow: hidden;
+}
 
 .home-score {
   width: 226px;
@@ -132,7 +140,7 @@
 .guest-score {
   width: 226px;
   height: 100px;
-  left: 286px;
+  left: 0px;
   top: 0px;
   position: absolute;
   text-align: center;
@@ -141,6 +149,23 @@
   font-family: "D-DIN-Bold";
   font-weight: 700;
   word-wrap: break-word;
+}
+
+.container-score-guest {
+  width: 226px;
+  height: 100px;
+  left: 286px;
+  top: 0px;
+  position: absolute;
+  overflow: hidden;
+}
+.container-score-home {
+  width: 226px;
+  height: 93px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  overflow: hidden;
 }
 
 .guest-timeout {
@@ -183,14 +208,20 @@
   top: 230px;
   position: absolute;
 }
-.score {
+.score-in {
   /* no warp */
   overflow: hidden;
-  animation: text-animation 1s ease-in-out;
+  animation: text-animation-in 0.5s ease-in-out;
+}
+
+.score-out {
+  /* no warp */
+  overflow: hidden;
+  animation: text-animation_out 0.5s ease-in-out;
 }
 
 /* Define the keyframes for the animation */
-@keyframes text-animation {
+@keyframes text-animation-in {
   0% {
     margin-top: -11.24rem;
   }
@@ -199,7 +230,7 @@
     margin-top: 0;
   }
 }
-@keyframes text-animation {
+@keyframes text-animation_out {
   0% {
     margin-top: 0;
   }
