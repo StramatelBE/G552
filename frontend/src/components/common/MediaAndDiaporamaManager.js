@@ -60,6 +60,7 @@ function MediaAndDiaporamaManager() {
             if (index === pos) {
               // Mettre à jour la durée du média dans la base de données
               EventMediaService.updateDuration({
+                position: media.media_pos_in_event,
                 eventId: id,
                 mediaId: media.idBdd,
                 duration: nouveauTemps,

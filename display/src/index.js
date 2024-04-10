@@ -9,6 +9,8 @@ import Basketball from "./Components/Sports/Basketball/Basketball.js";
 import Handball from "./Components/Sports/Handball.js";
 import Volleyball from "./Components/Sports/Volleyball/Volleyball.js";
 import Tennis from "./Components/Sports/Tennis/Tennis.js";
+import TestPage from "./Components/TestPage.js";
+import modeService from "./service/modeService.js";
 
 /* const { ipcRenderer } = window.require("electron"); */
 
@@ -20,6 +22,22 @@ const App = () => {
   const [gameState, setGameState] = useState({});
   const [mediaState, setMediaState] = useState([]);
   const [mediaMode, setMediaMode] = useState(false);
+  const [test, setTest] = useState(false);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      modeService.getMode().then((data) => {
+        console.log(data);
+        setTest(data.mode);
+      });
+    }, 10000); // 10000 ms = 10 seconds
+
+    // Clear the interval when the component is unmounted
+    return () => clearInterval(intervalId);
+  }, []); // Empty dependency array means this effect runs only once on mount
+
+
+
 
   /* useEffect(() => {
     document.documentElement.style.setProperty(
@@ -149,18 +167,20 @@ const App = () => {
 
   return (
     <>
-      {/* {mode === "scoring" &&
-        <ScoringMode gameState={gameState} />
-      }
-
-      {mode === "media" &&
-        <MediaMode mediaState={mediaState} mediaMode={mediaMode} />
-      }
-      {mode === "logo" && <LogoMode />
-      }
-      {mode === "sleep" && <></>}
-      {mode === "" && <div>Waiting for data...</div>} */}
-      <Basketball />
+      {mode}
+      {test === "test" ? (
+        <TestPage />
+      ) : (
+        <>
+          {mode === "scoring" && <ScoringMode gameState={gameState} />}
+          {mode === "media" && <MediaMode mediaState={mediaState} mediaMode={mediaMode} />}
+          {mode === "logo" && <LogoMode />}
+          {mode === "sleep" && <></>}
+          {mode === "" && <div>Waiting for data...</div>}
+          {test === "test" && <TestPage />}
+        </>
+      )}
+      {/* <Basketball /> */}
       {/* <Handball /> */}
       {/* <Volleyball /> */}
       {/* <Tennis /> */}

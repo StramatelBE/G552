@@ -134,10 +134,11 @@ class EventMediaController {
   };
 
   updateMediaDuration = (req, res) => {
-    const { eventId, mediaId, duration } = req.body;
+    const { position, eventId, mediaId, duration } = req.body;
+    console.log("updateMediaDuration", position, eventId, mediaId, duration);
 
     this.eventmedia
-      .updateDuration(eventId, mediaId, duration)
+      .updateDuration(eventId, mediaId, duration, position)
       .then(() => {
         res.sendStatus(200);
       })

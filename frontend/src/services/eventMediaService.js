@@ -118,8 +118,10 @@ class EventMediaService {
     }
   }
 
-  async updateDuration({ eventId, mediaId, duration }) {
+  async updateDuration({ position, eventId, mediaId, duration }) {
+    console.log("updateDuration", position, eventId, mediaId, duration);
     const data = {
+      position,
       eventId,
       mediaId,
       duration,

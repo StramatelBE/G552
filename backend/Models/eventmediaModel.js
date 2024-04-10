@@ -136,13 +136,13 @@ class EventMedia {
       );
     });
   }
-  updateDuration(eventId, mediaId, duration) {
+  updateDuration(eventId, mediaId, duration, position) {
     return new Promise((resolve, reject) => {
       db.run(
         `UPDATE event_media
          SET media_dur_in_event = ?
-         WHERE event_id = ? AND media_id = ?`,
-        [duration, eventId, mediaId],
+         WHERE event_id = ? AND media_pos_in_event = ?`,
+        [duration, eventId, position],
         (err) => {
           if (err) {
             reject(err);
