@@ -145,6 +145,25 @@ class EventMediaService {
       throw error;
     }
   }
+  async addPanel(eventId, media_pos_in_event) {
+    try {
+      const response = await fetchWithAuth(`${URL_API}/eventmedias/add-panel`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ eventId, media_pos_in_event }),
+      });
+      if (response.ok) {
+        return "Panel added";
+      } else {
+        console.error("Error adding panel", response.statusText);
+        return null;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 const eventMediaService = new EventMediaService();

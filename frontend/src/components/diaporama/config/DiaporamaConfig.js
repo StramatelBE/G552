@@ -2,6 +2,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PermMediaIcon from "@mui/icons-material/PermMedia";
 import SlideshowIcon from "@mui/icons-material/Slideshow";
+import AddIcon from "@mui/icons-material/Add";
 import {
   Box,
   IconButton,
@@ -11,6 +12,8 @@ import {
   TableBody,
   TableContainer,
   Typography,
+  MenuItem,
+  Menu
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Droppable } from "react-beautiful-dnd";
@@ -28,7 +31,6 @@ import DiaporamaModal from "../../dialogs/DiaporamaModal";
 import DiaporamaMedia from "../media/DiaporamaMedia";
 
 function DiaporamaConfig(props) {
-  const { id } = useParams();
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -42,6 +44,8 @@ function DiaporamaConfig(props) {
   const [activeMediaIndex, setActiveMediaIndex] = useState(0);
   const [isAutoPlayEnabled, setIsAutoPlayEnabled] = useState(true);
   const [mode, setMode] = useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
 
   useEffect(() => {
     props.getEvents();
@@ -193,6 +197,24 @@ function DiaporamaConfig(props) {
       console.error("Erreur lors de la suppression d'un événement :", error);
     }
   }
+  const handleOpenMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+  };
+
+  function addPanel() {
+    console.log("test", props.id);
+    eventMediaService.addPanel(props.id, props.eventMedia[0].medias.length).then((res) => {
+
+      getMediasByID();
+      handleCloseMenu();
+
+    });
+
+  }
 
   return (
     <Box>
@@ -221,6 +243,26 @@ function DiaporamaConfig(props) {
             </Typography>
           </Box>
           <Box className="headerRight">
+            <IconButton
+              aria-controls={open ? "basic-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleOpenMenu}
+              className="headerButton"
+            >
+              <AddIcon sx={{ color: "secondary.main" }} />
+            </IconButton>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleCloseMenu}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+              }}
+            >
+              <MenuItem onClick={addPanel}>Panneau</MenuItem>
+            </Menu>
             <IconButton
               className="headerButton"
               onClick={openDeleteEventDialog}

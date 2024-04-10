@@ -11,7 +11,7 @@ class EventMedia {
         (
             id INTEGER PRIMARY KEY,
             event_id INTEGER,
-            media_id INTEGER,
+            media_id INTEGER NULL,
             media_dur_in_event INTEGER,
             media_pos_in_event INTEGER
         )
@@ -41,7 +41,7 @@ class EventMedia {
       db.all(
         `SELECT media.*, event_media.media_pos_in_event, event_media.media_dur_in_event, event_media.id AS event_media_id
         FROM event_media
-        JOIN media ON event_media.media_id = media.id
+        LEFT JOIN media ON event_media.media_id = media.id
         WHERE event_media.event_id = ?
         `,
         [eventId],
@@ -50,7 +50,7 @@ class EventMedia {
             console.log(err);
             reject(err);
           } else {
-            // console.log("medias", medias);
+            console.log("medias", medias);
             resolve(medias);
           }
         }
@@ -143,6 +143,24 @@ class EventMedia {
          SET media_dur_in_event = ?
          WHERE event_id = ? AND media_id = ?`,
         [duration, eventId, mediaId],
+        (err) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve();
+          }
+        }
+      );
+    });
+  }
+  addPanel(eventId, media_pos_in_event) {
+    const media_dur_in_event = 10;
+    console.log(eventId);
+    return new Promise((resolve, reject) => {
+      db.run(
+        `INSERT INTO event_media (event_id, media_id, media_dur_in_event, media_pos_in_event)
+        VALUES (?, null, ?, ?)`,
+        [eventId, media_dur_in_event, media_pos_in_event],
         (err) => {
           if (err) {
             reject(err);

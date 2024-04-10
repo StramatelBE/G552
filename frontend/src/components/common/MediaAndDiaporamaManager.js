@@ -26,6 +26,9 @@ function MediaAndDiaporamaManager() {
       medias: [],
     },
   ]);
+  useEffect(() => {
+    console.log("eventMedia", eventMedia);
+  }, [eventMedia]);
 
   const { id } = useParams();
 
