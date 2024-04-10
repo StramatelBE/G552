@@ -2,39 +2,38 @@ import React, { useEffect, useState } from "react";
 
 import {
   Box,
+  CircularProgress,
   Grid,
   IconButton,
+  LinearProgress,
   Paper,
   Stack,
   Switch,
-  Typography,
-  Slider,
-  LinearProgress,
   TextField,
-  CircularProgress,
+  Typography
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-import PermMediaIcon from "@mui/icons-material/PermMedia";
-import SettingsIcon from "@mui/icons-material/Settings";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
-import LockIcon from "@mui/icons-material/Lock";
-import StorageIcon from "@mui/icons-material/Storage";
 import BugReportIcon from "@mui/icons-material/BugReport";
-import PhoneIcon from "@mui/icons-material/Phone";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LanguageIcon from "@mui/icons-material/Language";
+import LockIcon from "@mui/icons-material/Lock";
 import ModeNightIcon from "@mui/icons-material/ModeNight";
+import PhoneIcon from "@mui/icons-material/Phone";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import SettingsIcon from "@mui/icons-material/Settings";
 import StopIcon from "@mui/icons-material/Stop";
+import StorageIcon from "@mui/icons-material/Storage";
 
 import { useDarkMode } from "../../contexts/DarkModeContext";
-import ChangePasswordDialog from "../dialogs/ChangePasswordDialog";
 import authService from "../../services/authService";
 import paramService from "../../services/paramService";
 import veilleService from "../../services/veilleService";
 import LanguageSelector from "../common/LanguageSelector";
+import ChangePasswordDialog from "../dialogs/ChangePasswordDialog";
 
 import modeServiceInstance from "../../services/modeService";
+import spaceService from "../../services/spaceService";
 
 function Profile() {
   const { t } = useTranslation();
@@ -47,11 +46,16 @@ function Profile() {
   const [user, setUser] = useState(null);
   const { darkMode, setDarkMode } = useDarkMode();
   const [mode, setMode] = useState({});
+  const [space, setSpace] = useState({});
 
   useEffect(() => {
     modeServiceInstance.getMode().then((data) => {
       console.log("data", data.mode);
       setMode(data.mode);
+    });
+    spaceService.getSpace().then((data) => {
+      console.log("data", data);
+      setSpace(data);
     });
   }, []);
   useEffect(() => {
@@ -101,13 +105,13 @@ function Profile() {
   const handleEventAutoChange = (event) => {
     const updatedParam = { ...param, event_auto: event.target.checked ? 1 : 0 };
     setParam(updatedParam);
-    paramService.update(updatedParam).then((response) => {});
+    paramService.update(updatedParam).then((response) => { });
   };
 
   const handleVeilleChange = (event) => {
     const updatedVeille = { ...veille, enable: event.target.checked ? 1 : 0 };
     setVeille(updatedVeille);
-    veilleService.update(updatedVeille).then((response) => {});
+    veilleService.update(updatedVeille).then((response) => { });
   };
 
   function updatedVeille01(veille) {
@@ -125,7 +129,7 @@ function Profile() {
       end_time: newValue[1],
     };
     setVeille(updatedVeille);
-    veilleService.update(updatedVeille).then((response) => {});
+    veilleService.update(updatedVeille).then((response) => { });
   };
 
   const percentage = (usedSize / totalSize) * 100;
