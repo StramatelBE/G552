@@ -27,7 +27,7 @@ const App = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       modeService.getMode().then((data) => {
-        console.log(data);
+
         setTest(data.mode);
       });
     }, 10000); // 10000 ms = 10 seconds

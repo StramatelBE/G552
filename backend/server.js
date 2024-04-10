@@ -100,11 +100,13 @@ sharedEmitter.on("media", (media) => {
 const authRoutes = require("./Routes/authRoutes");
 const activeSessionsRoutes = require("./Routes/activeSessionsRoutes");
 const userRoutes = require("./Routes/userRoutes");
+const spaceRoutes = require("./Routes/spaceRoutes");
 const modeRoutes = require("./Routes/modeRoutes");
 app.use("/activeSessions", activeSessionsRoutes);
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/mode", modeRoutes);
+app.use("/space", spaceRoutes);
 
 app.use(checkToken);
 
