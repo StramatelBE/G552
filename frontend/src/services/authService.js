@@ -40,7 +40,7 @@ class AuthService {
 
       const data = await response.json();
 
-      localStorage.removeItem("user");
+     
       this.currentUser = null;
 
       return data;

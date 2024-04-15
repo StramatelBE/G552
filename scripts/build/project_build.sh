@@ -12,9 +12,9 @@ echo "APP BUILDING"
 CUR_POS=$PWD
 
 echo "BACKEND BUILD"
-cp $SCRIPTDIR/build.sh $BACKDIR/
+cp $SCRIPTDIR/buildb.sh $BACKDIR/
 cd $BACKDIR
-$BACKDIR/build.sh
+$BACKDIR/buildb.sh
 cp -r $BACKDIR/* $BUILDDIR/backend/
 cp $BACKDIR/package.json $BUILDDIR/backend/
 echo "FRONTEND BUILD"
