@@ -67,19 +67,19 @@ const server = net.createServer((client) => {
     function onDataReceived(data) {
 
         const scoreModes = [9];
-        const immediateModes = [0, 1, 2, 16, 17, 18, 19, 20];
-        const macroModes = [3, 4, 5, 6, 7, 8, 21];
+        const immediateModes = [16, 17, 18, 19, 20];
+        const macroModes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 21];
         const stopModes = [22, 23];
         // console.log("Previous Data Mode", previousDataMode)
         // console.log("Data Mode", data?.Mode)
 
         try {
             handleData(data);
-            console.log("Selected mode:", data?.Mode)
+            //console.log("Selected mode:", data?.Mode)
 
 
             if (scoreModes.includes(data?.Mode) || stopModes.includes(data?.Mode)) {
-                console.log("Mode scoring:", data?.Mode)
+                //console.log("Mode scoring:", data?.Mode)
                 previousDataMode = data?.Mode;
                 previousData = data;
                 client.write(JSON.stringify(data) + '\n');
@@ -100,6 +100,7 @@ const server = net.createServer((client) => {
                 client.write(JSON.stringify(data) + '\n');
             } else if (!deepEqual(data, previousData) && macroModes.includes(data?.Mode)) {
                 console.log("Mode Macro:", data?.Mode)
+                console.log(data);
                 previousDataMode = data?.Mode;
                 previousData = data;
                 console.log("+")
@@ -143,13 +144,13 @@ module.exports = {
         });
     },
     sendData: function (data) {
-        console.log('DataMode sended:')
-        console.log(data?.Mode)
+        //console.log('DataMode sended:')
+        //console.log(data?.Mode)
         sharedEmitter.emit('data-received', data);
     },
     sendMedia: function (data) {
-        console.log('MediaMode sended:')
-        console.log(data?.Mode)
+        //console.log('MediaMode sended:')
+        //console.log(data?.Mode)
         sharedEmitter.emit('data-received', data);
     }
 }

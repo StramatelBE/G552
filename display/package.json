@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "PORT=2001 react-scripts start",
+    "start": "concurrently \"PORT=2001 serve -s build\" \"npm run electron\"",
     "electron": "electron .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",

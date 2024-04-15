@@ -4,9 +4,9 @@ After=network.target
 
 [Service]
 Type=simple
-User=stramatel
-WorkingDirectory=/home/stramatel/server/build/frontend
-ExecStart=/bin/bash /home/stramatel/server/build/frontend/startFrontend.sh
+User=STRAMATEL
+WorkingDirectory=/home/STRAMATEL/builds/builds/
+ExecStart=/bin/bash /home/STRAMATEL/builds/builds/startFrontend.sh
 Restart=on-failure
 
 [Install]

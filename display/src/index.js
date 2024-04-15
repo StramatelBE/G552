@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
-import ScoringMode from "./Components/ScoringMode";
+import ScoringMode from "./Components/ScoringMode"; 
 import MediaMode from "./Components/MediaMode";
 import config from "./config.js";
 import LogoMode from "./Components/LogoMode";
@@ -60,90 +60,90 @@ const App = () => {
         setMode("sleep")
       } else {
         let mediaArray = [];
-        setMediaMode(false);
+        setMediaMode(true);
         setMode("media");
         // if data.medias is not an array, wrap it in one
         switch (data.Mode) {
-          case 0:
-            mediaArray = [
-              {
-                order: 1,
-                path: "/medias/English/_DEFENCE.mp4",
-                duration: 5,
-                type: "video",
-              },
-            ];
-            break;
-          case 1:
-            mediaArray = [
-              {
-                order: 1,
-                path: "staticMedias/English/_DUNK.mp4",
-                duration: 3,
-                type: "video",
-              },
-            ];
-            break;
-          case 2:
-            mediaArray = [
-              {
-                order: 1,
-                path: "/medias/English/_NOISE.mp4",
-                duration: 6,
-                type: "video",
-              },
-            ];
-            break;
-          case 16:
-            mediaArray = [
-              {
-                order: 1,
-                path: "/medias/English/_1_POINTS.mp4",
-                duration: 3,
-                type: "video",
-              },
-            ];
-            break;
-          case 17:
-            mediaArray = [
-              {
-                order: 1,
-                path: "/medias/English/_2_POINTS.mp4",
-                duration: 3,
-                type: "video",
-              },
-            ];
-            break;
-          case 18:
-            mediaArray = [
-              {
-                order: 1,
-                path: "/medias/English/_3_POINTS.mp4",
-                duration: 4,
-                type: "video",
-              },
-            ];
-            break;
-          case 19:
-            mediaArray = [
-              {
-                order: 1,
-                path: "/medias/English/_TIME_OUT.mp4",
-                duration: 3,
-                type: "video",
-              },
-            ];
-            break;
-          case 20:
-            mediaArray = [
-              {
-                order: 1,
-                path: "/medias/English/_FOUL.mp4",
-                duration: 3,
-                type: "video",
-              },
-            ];
-            break;
+        //   case 0:
+        //     mediaArray = [
+        //       {
+        //         order: 1,
+        //         path: "/medias/English/_DEFENCE.mp4",
+        //         duration: 5,
+        //         type: "video",
+        //       },
+        //     ];
+        //     break;
+        //   case 1:
+        //     mediaArray = [
+        //       {
+        //         order: 1,
+        //         path: "/medias/English/_DUNK.mp4",
+        //         duration: 3,
+        //         type: "video",
+        //       },
+        //     ];
+        //     break;
+        //   case 2:
+        //     mediaArray = [
+        //       {
+        //         order: 1,
+        //         path: "/medias/English/_NOISE.mp4",
+        //         duration: 6,
+        //         type: "video",
+        //       },
+        //     ];
+        //     break;
+        //   case 16:
+        //     mediaArray = [
+        //       {
+        //         order: 1,
+        //         path: "/medias/English/_1_POINTS.mp4",
+        //         duration: 3,
+        //         type: "video",
+        //       },
+        //     ];
+        //     break;
+        //   case 17:
+        //     mediaArray = [
+        //       {
+        //         order: 1,
+        //         path: "/medias/English/_2_POINTS.mp4",
+        //         duration: 3,
+        //         type: "video",
+        //       },
+        //     ];
+        //     break;
+        //   case 18:
+        //     mediaArray = [
+        //       {
+        //         order: 1,
+        //         path: "/medias/English/_3_POINTS.mp4",
+        //         duration: 4,
+        //         type: "video",
+        //       },
+        //     ];
+        //     break;
+        //   case 19:
+        //     mediaArray = [
+        //       {
+        //         order: 1,
+        //         path: "/medias/English/_TIME_OUT.mp4",
+        //         duration: 3,
+        //         type: "video",
+        //       },
+        //     ];
+        //     break;
+        //   case 20:
+        //     mediaArray = [
+        //       {
+        //         order: 1,
+        //         path: "/medias/English/_FOUL.mp4",
+        //         duration: 3,
+        //         type: "video",
+        //       },
+        //     ];
+        //     break;
           default:
             setMediaMode(true);
             mediaArray = Array.isArray(data.medias)

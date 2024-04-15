@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -e .env.production node server.js",
+    "start": "dotenv -e .env.production node server.js",
     "dev": "dotenv -e .env.development nodemon server.js"
   },
   "repository": {
@@ -33,6 +33,7 @@
     "jsonwebtoken": "^9.0.0",
     "moment": "^2.29.4",
     "multer": "^1.4.5-lts.1",
+    "node-cron": "^3.0.3",
     "nodemon": "^3.0.2",
     "request": "^2.88.2",
     "serialport": "^10.5.0",

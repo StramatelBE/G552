@@ -8,7 +8,7 @@ const checkToken = require("./Middlewares/signInCheck");
 const Game = require("./RSCOM/Game");
 const MacroController = require("./Controllers/macroController");
 const handleScoring = require("./RSCOM/scoringHandler");
-
+const cronJobs = require('./Cronjob/Cron_index');
 
 const User = require('./Models/userModel');
 require("dotenv").config();
@@ -23,16 +23,18 @@ app.listen(config.portAPI, () => {
 
 const webSocketSetup = require("./Sockets/Websocket.js");
 webSocketSetup(app);
-/* const unixSocketSetup = require("./Sockets/Unixsocket.js");
-unixSocketSetup.startServer();  */
+const unixSocketSetup = require("./Sockets/Unixsocket.js");
+unixSocketSetup.startServer(); 
 
-const { SerialPortConnection, sharedEmitter } = require("./RSCOM/SerialPorts/SerialPortConnection");
+const {SerialPortConnection, sharedEmitter} = require("./RSCOM/SerialPorts/SerialPortConnection");
 const sp = new SerialPortConnection();
 
 sp.StartReading();
 sharedEmitter.on("data", (data) => {
     Game.update(data);
 });
+
+cronJobs.startAllJobs();
 
 let previousScoring = 0;
 let previousMacrosDataMode = null;
@@ -52,9 +54,9 @@ sharedEmitter.on("scoring", async (scoring) => {
 
         //TODO: Test the sending of the scoring mode 9 before sending the media to avoid the bug of the media not being displayed
 
-        console.log("Scoring Mode:", scoring.Mode);
+        //console.log("Scoring Mode:", scoring.Mode);
         if (scoring.Mode === 9) {
-            console.log("The mode scoring has been sended");
+            //console.log("The mode scoring has been sended");
             unixSocketSetup.sendData(scoring);
             previousMacrosDataMode = null;
         } else if (scoring.Mode === 0 || scoring.Mode === 1 || scoring.Mode === 2 || scoring.Mode === 16 || scoring.Mode === 17 || scoring.Mode === 18 || scoring.Mode === 19 || scoring.Mode === 20) {

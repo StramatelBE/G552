@@ -40,7 +40,7 @@ class AuthService {
 
       const data = await response.json();
 
-      localStorage.clear();
+     
       this.currentUser = null;
 
       return data;

@@ -24,6 +24,7 @@ function NavBar() {
   }
 
   async function logout() {
+    localStorage.removeItem("user");
     await AuthService.logout();
     window.location.reload();
   }

@@ -1,5 +1,8 @@
+const { log } = require("console");
 const Frames = require("./Frame/Frame_index");
 const { sharedEmitter } = require("./SerialPorts/SerialPortConnection");
+const fs = require('fs');
+const path = require('path');
 
 class Game {
   static State = {
@@ -114,7 +117,7 @@ class Game {
   }
 
   static select = (_message) => {
-    // console.log("select method was called with _message: ", _message);
+    //console.log("select method was called with _message: ", _message);
     let toInsert = null;
 
     switch (_message[1]) {
@@ -188,12 +191,13 @@ class Game {
       case 0x9f:
         break;
       default:
-        toInsert = "Unknown Frame: " + _message[1];
         console.log("Unknown Frame: " + _message[1]);
         break;
     }
-    this.updateState(toInsert);
-    this.Send();
+    if (toInsert != null){
+      this.updateState(toInsert);
+    }
+       this.Send();
   };
 
   static getState() {
@@ -201,29 +205,61 @@ class Game {
   }
 
   static updateState(toInsert) {
-    // Recursive function to compare and update the game state
-    function recursiveUpdate(mainObject, updateObject) {
+    // Define the path for the JSON storage file
+    const storagePath = './storage.json'; 
+
+    // Function to read the current storage state
+    const readStorage = () => {
+      try {
+        const data = fs.readFileSync(storagePath, 'utf8');
+        return JSON.parse(data);
+      } catch (err) {
+        console.error('Error reading from storage:', err);
+        return {};
+      }
+    };
+
+    // Function to write to the storage
+    const writeStorage = (data) => {
+      try {
+        fs.writeFileSync(storagePath, JSON.stringify(data, null, 2), 'utf8');
+      } catch (err) {
+        console.error('Error writing to storage:', err);
+      }
+    };
+
+    // Handle TeamName updates or retrievals before recursive update
+    const storage = readStorage();
+    ['Guest', 'Home'].forEach(side => {
+      const teamPath = `${side}.TeamName`;
+      if (toInsert[side] && toInsert[side].TeamName) {
+        // If TeamName is provided, update storage
+        storage[teamPath] = toInsert[side].TeamName;
+        writeStorage(storage);
+      } else if (!toInsert[side] || !toInsert[side].TeamName) {
+        // If TeamName is not provided, try to retrieve it from storage
+        if (storage[teamPath]) {
+          if (!toInsert[side]) toInsert[side] = {}; // Ensure side object exists
+          toInsert[side].TeamName = storage[teamPath];
+        }
+      }
+    });
+
+    // Now perform the recursive update
+    const recursiveUpdate = (mainObject, updateObject) => {
       for (let key in updateObject) {
-        // If the current property in the update object is an object itself
-        if (
-          typeof updateObject[key] === "object" &&
-          updateObject[key] !== null
-        ) {
-          // Ensure the main object has this property defined
-          if (!mainObject[key]) {
-            mainObject[key] = {};
-          }
-          // Recursive call
+        if (typeof updateObject[key] === "object" && updateObject[key] !== null) {
+          if (!mainObject[key]) mainObject[key] = {};
           recursiveUpdate(mainObject[key], updateObject[key]);
         } else {
-          // Directly update the property value in the main object
           mainObject[key] = updateObject[key];
         }
       }
-    }
+    };
 
     recursiveUpdate(this.State, toInsert);
   }
+    
 
   static Send() {
     // console.log("Send method was called");
