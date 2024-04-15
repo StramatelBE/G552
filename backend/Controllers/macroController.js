@@ -5,16 +5,18 @@ const User = require("../Models/userModel");
 const Event = require("../Models/eventModel");
 const EventMedia = require("../Models/eventmediaModel");
 const Media = require("../Models/mediaModel");
-const {logPlugin} = require("@babel/preset-env/lib/debug");
+const Mode = require("../Models/modeModel");
+const { logPlugin } = require("@babel/preset-env/lib/debug");
 
 class MacroController {
     constructor() {
         this.activeSession = new ActiveSession();
-    /*     this.user = new User(); */
+        /*     this.user = new User(); */
         this.event = new Event();
         this.eventmedia = new EventMedia();
         this.media = new Media();
         this.macro = new Macro();
+        this.mode = new Mode();
     }
 
     async getMacrosByButton(buttonId) {
@@ -97,11 +99,12 @@ class MacroController {
                 });
             }
 
-
+            const mode = await this.mode.getAll()
             // 5. Ajouter au tableau final
             results.push({
                 event: event,
-                medias: medias
+                medias: medias,
+                mode: mode.mode
             });
 
         }
@@ -122,7 +125,7 @@ class MacroController {
                 res.status(201).json(macro);
             })
             .catch((err) => {
-                res.status(500).json({message: err});
+                res.status(500).json({ message: err });
             });
     }
 
@@ -132,7 +135,7 @@ class MacroController {
                 res.status(200).json(macro);
             })
             .catch((err) => {
-                res.status(500).json({message: err});
+                res.status(500).json({ message: err });
             });
     }
 
@@ -142,11 +145,11 @@ class MacroController {
                 if (macro) {
                     res.status(200).json(macro);
                 } else {
-                    res.status(404).json({message: 'Macro not found'});
+                    res.status(404).json({ message: 'Macro not found' });
                 }
             })
             .catch((err) => {
-                res.status(500).json({message: err});
+                res.status(500).json({ message: err });
             });
     }
 
@@ -156,7 +159,7 @@ class MacroController {
                 res.status(204).json();
             })
             .catch((err) => {
-                res.status(500).json({message: err});
+                res.status(500).json({ message: err });
             });
     }
 
@@ -166,7 +169,7 @@ class MacroController {
                 res.status(200).json(macros);
             })
             .catch((err) => {
-                res.status(500).json({message: err});
+                res.status(500).json({ message: err });
             });
     }
 
@@ -176,7 +179,7 @@ class MacroController {
                 res.status(200).json(macros);
             })
             .catch((err) => {
-                res.status(500).json({message: err});
+                res.status(500).json({ message: err });
             });
     }
 
@@ -186,7 +189,7 @@ class MacroController {
                 res.status(200).json(macros);
             })
             .catch((err) => {
-                res.status(500).json({message: err});
+                res.status(500).json({ message: err });
             });
     }
 }

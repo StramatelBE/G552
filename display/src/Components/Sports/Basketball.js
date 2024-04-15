@@ -295,6 +295,8 @@ function Basketball({ gameState: incomingGameState }) {
         </>
       )}{/* team GUEST time out */}
 
+
+
       <div style={guestFoulsStyle}>
         {gameState?.Guest?.Fouls?.Team} {/* team GUEST fouls */}
       </div>

@@ -118,8 +118,10 @@ class EventMediaService {
     }
   }
 
-  async updateDuration({ eventId, mediaId, duration }) {
+  async updateDuration({ position, eventId, mediaId, duration }) {
+    console.log("updateDuration", position, eventId, mediaId, duration);
     const data = {
+      position,
       eventId,
       mediaId,
       duration,
@@ -139,6 +141,25 @@ class EventMediaService {
         return response.json();
       } else {
         console.error("Error updating media duration", response.statusText);
+        return null;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+  async addPanel(eventId, media_pos_in_event) {
+    try {
+      const response = await fetchWithAuth(`${URL_API}/eventmedias/add-panel`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ eventId, media_pos_in_event }),
+      });
+      if (response.ok) {
+        return "Panel added";
+      } else {
+        console.error("Error adding panel", response.statusText);
         return null;
       }
     } catch (error) {

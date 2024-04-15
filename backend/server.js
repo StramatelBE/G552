@@ -15,7 +15,7 @@ require("dotenv").config();
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.listen(config.portAPI, () => {
     console.log(`API Server started on ${config.ip}:${config.portAPI}`);
@@ -102,9 +102,13 @@ sharedEmitter.on("media", (media) => {
 const authRoutes = require("./Routes/authRoutes");
 const activeSessionsRoutes = require("./Routes/activeSessionsRoutes");
 const userRoutes = require("./Routes/userRoutes");
+const spaceRoutes = require("./Routes/spaceRoutes");
+const modeRoutes = require("./Routes/modeRoutes");
 app.use("/activeSessions", activeSessionsRoutes);
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
+app.use("/mode", modeRoutes);
+app.use("/space", spaceRoutes);
 
 app.use(checkToken);
 
@@ -117,7 +121,7 @@ const macroRoutes = require("./Routes/macroRoutes");
 const buttonRoutes = require("./Routes/buttonRoutes");
 const paramRoutes = require("./Routes/paramRoutes");
 const veilleRoutes = require("./Routes/veilleRoutes");
-const modeRoutes = require("./Routes/modeRoutes");
+
 const adminRoutes = require("./Routes/adminRoutes");
 
 app.use("/scores", scoringRoutes);
@@ -129,7 +133,7 @@ app.use("/macros", macroRoutes);
 app.use("/buttons", buttonRoutes);
 app.use("/params", paramRoutes);
 app.use("/veilles", veilleRoutes);
-app.use("/mode", modeRoutes);
+
 app.use("/admin", adminRoutes);
 
 User.getInstance().createTable();

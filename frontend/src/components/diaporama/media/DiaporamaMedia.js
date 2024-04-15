@@ -17,12 +17,12 @@ function DiaporamaMedia(props) {
           ref={provided.innerRef}
           {...(isMobile
             ? {
-                onClick: () => props.handleRowHover(props.item.id),
-              }
+              onClick: () => props.handleRowHover(props.item.id),
+            }
             : {
-                onMouseEnter: () => props.handleRowHover(props.item.id),
-                onMouseLeave: () => props.handleRowHover(null),
-              })}
+              onMouseEnter: () => props.handleRowHover(props.item.id),
+              onMouseLeave: () => props.handleRowHover(null),
+            })}
           hover
           key={props.item.id}
         >
@@ -41,21 +41,23 @@ function DiaporamaMedia(props) {
                 alt={props.item.title}
                 src={props.item.path}
               />
-            ) : (
+            ) : props.item.type === "image" ? (
               <Box
-              sx={{
-                minHeight: "calc(15vh)",
-                minWidth: "calc(15vh)",
-                maxWidth: "calc(15vh)",
-                maxHeight: "calc(15vh)",
-              }}
+                sx={{
+                  minHeight: "calc(15vh)",
+                  minWidth: "calc(15vh)",
+                  maxWidth: "calc(15vh)",
+                  maxHeight: "calc(15vh)",
+                }}
                 src={props.item.path}
                 alt={props.item.title}
                 component="img"
               />
-            )}
+            ) : (<Box
+
+            > Panneau</Box>)}
           </TableCell>
-          <TableCell p={0}  align="right">
+          <TableCell p={0} align="right">
             <TextField
               value={props.item.media_dur_in_event}
               onChange={handleDurationChange}
@@ -78,7 +80,7 @@ function DiaporamaMedia(props) {
                 <DeleteIcon sx={{ color: "secondary.main" }} />
               </IconButton>
             ) : (
-              <IconButton sx={{ p: 0 , opacity:0}} >
+              <IconButton sx={{ p: 0, opacity: 0 }} >
                 <DeleteIcon />
               </IconButton>
             )}

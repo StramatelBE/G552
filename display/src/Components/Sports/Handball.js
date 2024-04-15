@@ -28,7 +28,7 @@ function Handball({ gameState: incomingGameState }) {
     width: "226px",
     height: "100px",
     left: "0px",
-    top: "90px",
+    top: "83px",
     position: "absolute",
     textAlign: "center",
     color: "white",
@@ -101,7 +101,7 @@ function Handball({ gameState: incomingGameState }) {
     width: "226px",
     height: "56px",
     left: "286px",
-    top: "90px",
+    top: "85px",
     position: "absolute",
     textAlign: "center",
     color: "white",
@@ -293,3 +293,5 @@ function Handball({ gameState: incomingGameState }) {
     </div>);
 };
 export default Handball;
+
+

@@ -68,6 +68,7 @@ class EventMediaController {
     this.eventmedia
       .getAllByEvent(req.params.eventId)
       .then((eventmedias) => {
+        console.log("eventmedias", eventmedias, req.params.eventId);
         res.status(200).json(eventmedias);
       })
       .catch((err) => {
@@ -133,10 +134,11 @@ class EventMediaController {
   };
 
   updateMediaDuration = (req, res) => {
-    const { eventId, mediaId, duration } = req.body;
+    const { position, eventId, mediaId, duration } = req.body;
+    console.log("updateMediaDuration", position, eventId, mediaId, duration);
 
     this.eventmedia
-      .updateDuration(eventId, mediaId, duration)
+      .updateDuration(eventId, mediaId, duration, position)
       .then(() => {
         res.sendStatus(200);
       })
@@ -145,6 +147,22 @@ class EventMediaController {
         res.sendStatus(500);
       });
   };
+
+  addPanel = (req, res) => {
+
+    const { eventId, media_pos_in_event } = req.body;
+    console.log("addPanel", eventId, media_pos_in_event);
+
+    this.eventmedia
+      .addPanel(eventId, media_pos_in_event)
+      .then(() => {
+        res.sendStatus(200);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json({ message: err });
+      });
+  }
 }
 
 module.exports = EventMediaController;

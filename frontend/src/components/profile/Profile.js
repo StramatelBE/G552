@@ -2,43 +2,41 @@ import React, { useEffect, useState } from "react";
 
 import {
   Box,
+  CircularProgress,
   Grid,
   IconButton,
+  LinearProgress,
   Paper,
   Stack,
   Switch,
-  Typography,
-  Slider,
-  LinearProgress,
   TextField,
-  CircularProgress,
+  Typography
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-import PermMediaIcon from "@mui/icons-material/PermMedia";
-import SettingsIcon from "@mui/icons-material/Settings";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
-import LockIcon from "@mui/icons-material/Lock";
-import StorageIcon from "@mui/icons-material/Storage";
 import BugReportIcon from "@mui/icons-material/BugReport";
-import PhoneIcon from "@mui/icons-material/Phone";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LanguageIcon from "@mui/icons-material/Language";
+import LockIcon from "@mui/icons-material/Lock";
 import ModeNightIcon from "@mui/icons-material/ModeNight";
+import PhoneIcon from "@mui/icons-material/Phone";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import SettingsIcon from "@mui/icons-material/Settings";
 import StopIcon from "@mui/icons-material/Stop";
+import StorageIcon from "@mui/icons-material/Storage";
 
 import { useDarkMode } from "../../contexts/DarkModeContext";
-import ChangePasswordDialog from "../dialogs/ChangePasswordDialog";
 import authService from "../../services/authService";
 import paramService from "../../services/paramService";
 import veilleService from "../../services/veilleService";
 import LanguageSelector from "../common/LanguageSelector";
+import ChangePasswordDialog from "../dialogs/ChangePasswordDialog";
 
 import modeServiceInstance from "../../services/modeService";
+import spaceService from "../../services/spaceService";
 
 function Profile() {
   const { t } = useTranslation();
-  const [username, setUsername] = useState("John Doe");
   const [modalOpen, setModalOpen] = useState(false);
   const [param, setParam] = useState({});
   const [veille, setVeille] = useState({});
@@ -47,18 +45,49 @@ function Profile() {
   const [user, setUser] = useState(null);
   const { darkMode, setDarkMode } = useDarkMode();
   const [mode, setMode] = useState({});
+  const [Widths, setWidths] = useState({});
+
+
+  let currentWidth = 0;
 
   useEffect(() => {
     modeServiceInstance.getMode().then((data) => {
-      console.log("data", data.mode);
       setMode(data.mode);
     });
-  }, []);
-  useEffect(() => {
+    spaceService.getSpace().then((data) => {
+      const widths = [];
+      Object.entries(data).forEach(([sport, size]) => {
+        if (sport !== 'Total') {
+          const width = (size / data.Total) * 100;
+          widths.push(width);
+          currentWidth += width;
+        }
+      });
+      console.log("widths", widths);
+      setWidths(widths); // vous devez stocker les largeurs dans l'état pour les utiliser dans le rendu
+    });
     const currentUser = authService.getCurrentUser();
     setUser(currentUser);
   }, []);
 
+  const widths = [
+    10,
+    0.000001623275432180851,
+    30,
+    0.000001623275432180851,
+    0.000001623275432180851,
+    0.000001623275432180851,
+    0.000001623275432180851,
+    50,
+    0.000001623275432180851,
+    0.000001623275432180851,
+    0.000001623275432180851,
+    0.000001623275432180851,
+    0.000001623275432180851,
+    0.000001623275432180851,
+    0.000001623275432180851,
+    1.3617021276595747,
+  ];
   function setModeTest(mode) {
     const datamode = { event_id: null, mode: mode };
     modeServiceInstance.setMode(datamode).then((data) => {
@@ -67,9 +96,11 @@ function Profile() {
     });
   }
 
+
+
   useEffect(() => {
     if (user) {
-      setUsername(user.user.username);
+
       paramService.getByUserId(user.user.id).then((paramData) => {
         const paramDataItem = paramData?.[0] || {};
         setParam(paramDataItem);
@@ -101,13 +132,13 @@ function Profile() {
   const handleEventAutoChange = (event) => {
     const updatedParam = { ...param, event_auto: event.target.checked ? 1 : 0 };
     setParam(updatedParam);
-    paramService.update(updatedParam).then((response) => {});
+    paramService.update(updatedParam).then((response) => { });
   };
 
   const handleVeilleChange = (event) => {
     const updatedVeille = { ...veille, enable: event.target.checked ? 1 : 0 };
     setVeille(updatedVeille);
-    veilleService.update(updatedVeille).then((response) => {});
+    veilleService.update(updatedVeille).then((response) => { });
   };
 
   function updatedVeille01(veille) {
@@ -125,10 +156,33 @@ function Profile() {
       end_time: newValue[1],
     };
     setVeille(updatedVeille);
-    veilleService.update(updatedVeille).then((response) => {});
+    veilleService.update(updatedVeille).then((response) => { });
   };
 
-  const percentage = (usedSize / totalSize) * 100;
+  const calculateProgressValue = (usedSize, totalSize) => {
+    const percentage = (usedSize / totalSize) * 100;
+    return isNaN(percentage) ? 0 : percentage;
+  };
+
+  const colors = [
+    'red', // pour Basketball
+    'blue', // pour Handball
+    'green', // pour Volleyball
+    'yellow', // pour Tennis
+    'purple', // pour Badminton
+    'orange', // pour Boxe
+    'pink', // pour Roller hockey
+    'brown', // pour Rink hockey
+    'gray', // pour Floorball
+    'teal', // pour Tennis de table
+    'indigo', // pour Hockey sur glace
+    'lime', // pour Futsal
+    'cyan', // pour Sport libre
+    'magenta', // pour Netball
+    'black', // pour Chronométré
+    'gray', // pour Autres
+  ];
+
 
   return (
     <>
@@ -157,6 +211,7 @@ function Profile() {
           >
             <Grid container spacing={6}>
               <Grid item xs={12} sm={6}>
+
                 <Stack spacing={2}>
                   <Typography variant="h6" sx={{ color: "text.secondary" }}>
                     {t("Profile.application")}
@@ -198,27 +253,7 @@ function Profile() {
                     </Stack>
                     <Switch checked={darkMode} color="secondary" />
                   </Stack>
-                  <Stack
-                    onClick={toggleModal}
-                    direction="row"
-                    alignItems="center"
-                    spacing={3}
-                  >
-                    <IconButton disabled>
-                      <StorageIcon sx={{ color: "text.secondary" }} />
-                    </IconButton>
 
-                    <Box sx={{ flexGrow: 1 }}>
-                      <Typography variant="h8" sx={{ color: "text.primary" }}>
-                        {t("Profile.usedStorageSpace")}
-                      </Typography>
-                      <LinearProgress
-                        variant="determinate"
-                        value={percentage}
-                        color={percentage > 80 ? "error" : "secondary"}
-                      />
-                    </Box>
-                  </Stack>
                   <Stack
                     direction="row"
                     justifyContent="space-between"
@@ -405,6 +440,36 @@ function Profile() {
                 </Stack>
               </Grid>
             </Grid>
+            <Stack
+              onClick={toggleModal}
+              direction="row"
+              alignItems="center"
+              spacing={1}
+            >
+              <IconButton disabled>
+                <StorageIcon sx={{ color: "text.secondary" }} />
+              </IconButton>
+
+              <Box sx={{ flexGrow: 1 }}>
+                <Typography variant="h8" sx={{ color: "text.primary" }}>
+                  {t("Profile.usedStorageSpace")}
+                </Typography>
+              </Box>
+              <Box sx={{ flexGrow: 10 }}>
+
+                <Box sx={{ display: 'flex', height: '20px', outline: '1px solid #dbd2d2 !important' }}>
+                  {Widths.map((width, index) => (
+                    <Box
+                      key={index}
+                      sx={{
+                        width: `${width}%`,
+                        backgroundColor: colors[index],
+                      }}
+                    />
+                  ))}
+                </Box>
+              </Box>
+            </Stack>
           </Box>
         </Paper>
       </Grid>

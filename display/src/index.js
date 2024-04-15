@@ -4,9 +4,15 @@ import ScoringMode from "./Components/ScoringMode";
 import MediaMode from "./Components/MediaMode";
 import config from "./config.js";
 import LogoMode from "./Components/LogoMode";
-import "./main.css";
+import "./main.css"
+import Basketball from "./Components/Sports/Basketball/Basketball.js";
+import Handball from "./Components/Sports/Handball.js";
+import Volleyball from "./Components/Sports/Volleyball/Volleyball.js";
+import Tennis from "./Components/Sports/Tennis/Tennis.js";
+import TestPage from "./Components/TestPage.js";
+import modeService from "./service/modeService.js";
 
-const { ipcRenderer } = window.require("electron");
+/* const { ipcRenderer } = window.require("electron"); */
 
 const root = document.getElementById("root");
 const appRoot = ReactDOM.createRoot(root);
@@ -16,8 +22,24 @@ const App = () => {
   const [gameState, setGameState] = useState({});
   const [mediaState, setMediaState] = useState([]);
   const [mediaMode, setMediaMode] = useState(false);
+  const [test, setTest] = useState(false);
 
   useEffect(() => {
+    const intervalId = setInterval(() => {
+      modeService.getMode().then((data) => {
+
+        setTest(data.mode);
+      });
+    }, 10000); // 10000 ms = 10 seconds
+
+    // Clear the interval when the component is unmounted
+    return () => clearInterval(intervalId);
+  }, []); // Empty dependency array means this effect runs only once on mount
+
+
+
+
+  /* useEffect(() => {
     document.documentElement.style.setProperty(
       "--maxWidth",
       config.display.width
@@ -40,7 +62,6 @@ const App = () => {
         let mediaArray = [];
         setMediaMode(true);
         setMode("media");
-
         // if data.medias is not an array, wrap it in one
         switch (data.Mode) {
         //   case 0:
@@ -142,21 +163,27 @@ const App = () => {
     return () => {
       ipcRenderer.removeAllListeners("server-data");
     };
-  }, []);
+  }, []); */
 
   return (
     <>
-      {mode === "scoring" &&
-        <ScoringMode gameState={gameState} />
-      }
-
-      {mode === "media" &&
-        <MediaMode mediaState={mediaState} mediaMode={mediaMode} />
-      }
-      {mode === "logo" && <LogoMode />
-      }
-      {mode === "sleep" && <></>}
-      {mode === "" && <div>Waiting for data...</div>}
+      {mode}
+      {test === "test" ? (
+        <TestPage />
+      ) : (
+        <>
+          {mode === "scoring" && <ScoringMode gameState={gameState} />}
+          {mode === "media" && <MediaMode mediaState={mediaState} mediaMode={mediaMode} />}
+          {mode === "logo" && <LogoMode />}
+          {mode === "sleep" && <></>}
+          {mode === "" && <div>Waiting for data...</div>}
+          {test === "test" && <TestPage />}
+        </>
+      )}
+      {/* <Basketball /> */}
+      {/* <Handball /> */}
+      {/* <Volleyball /> */}
+      {/* <Tennis /> */}
     </>
   );
 
