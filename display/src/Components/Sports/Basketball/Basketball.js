@@ -20,7 +20,7 @@ function Basketball({ gameState: incomingGameState }) {
       console.log(gameState);
       setHomeScoreQueue(prev => [...prev, incomingGameState?.Home?.Points]);
     }
-    if (gameState?.Guest?.Points !== prevGuestScore) {
+    if (incomingGameState?.Guest?.Points !== prevGuestScore) {
       console.log(gameState);
       setGuestScoreQueue(prev => [...prev, incomingGameState?.Guest?.Points]);
     }
