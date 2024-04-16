@@ -60,6 +60,10 @@ const App = () => {
       } else {
         let mediaArray = [];
         setMediaMode(true);
+            mediaArray = Array.isArray(data.medias)
+              ? data.medias
+              : [data.medias];
+            console.log(mediaArray);
         setMode("media");
         // if data.medias is not an array, wrap it in one
         switch (data.Mode) {
