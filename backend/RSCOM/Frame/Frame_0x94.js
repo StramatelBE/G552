@@ -11,7 +11,7 @@ class Frame_0x94 {
         const GSI = {
             Mode: nBytesToNumber(_message[2]),
             insertType: 'DirectConsoleData',
-            Sport: eSport.Hockey,
+            Sport: eSport.Handball, //Hockey
 
             Period: nBytesToNumber(_message[14]),
 

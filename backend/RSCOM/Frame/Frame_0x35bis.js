@@ -13,7 +13,7 @@ class Frame_0x35 {
         return {
             Mode: nBytesToNumber(_message[2]),
             insertType: 'DirectConsoleData',
-            Sport: eSport.Boxe,
+            Sport: eSport.Handball,
 
             Timer: {
                 Value: Tools.Chrono(_message[4], _message[5], _message[6], _message[7]),
