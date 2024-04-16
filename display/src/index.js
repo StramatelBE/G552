@@ -53,6 +53,10 @@ const App = () => {
       if (data.Mode === 9) {
         setMode("scoring");
         setGameState(data || {}); // Assuming the data for scoring mode contains a 'gameState' property
+      }
+        else if (data.Mode === 21) {
+        setMode("prematch");
+      
       } else if (data.Mode === 22) {
         setMode("logo");
       } else if (data.Mode === 23) {

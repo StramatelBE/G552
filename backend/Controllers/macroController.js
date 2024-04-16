@@ -80,23 +80,44 @@ class MacroController {
                     const media = await this.media.getById(mediaInfo.id);
                     // console.log("media", media);
 
-                    medias.push({
-                        order: mediaInfo.media_pos_in_event,
-                        path: media.path,
-                        type: media.type,
-                        duration: mediaInfo.media_dur_in_event
-                    });
+                    if (!media) {
+                        medias.push({
+                            order: mediaInfo.media_pos_in_event,
+                            path: "panel",
+                            type: "panel",
+                            duration: mediaInfo.media_dur_in_event
+                        });
+                    } else {
+                        medias.push({
+                            order: mediaInfo.media_pos_in_event,
+                            path: media.path,
+                            type: media.type,
+                            duration: mediaInfo.media_dur_in_event
+                        });
+                    }
+
+                   
                 }
             } else {
                 const media = await this.media.getById(mediaList[0].id);
                 // console.log("media", media);
+                if (!media) {
+                    medias.push({
+                        order: mediaList[0].media_pos_in_event,
+                        path: "panel",
+                        type: "panel",
+                        duration: mediaList[0].media_dur_in_event
+                    });
+                } else {
+                    medias.push({
+                        order: mediaList[0].media_pos_in_event,
+                        path: media.path,
+                        type: media.type,
+                        duration: mediaList[0].media_dur_in_event
+                    });
+                }
 
-                medias.push({
-                    order: mediaList[0].media_pos_in_event,
-                    path: media.path,
-                    type: media.type,
-                    duration: mediaList[0].media_dur_in_event
-                });
+               
             }
 
             const mode = await this.mode.getAll()
