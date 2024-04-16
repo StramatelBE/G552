@@ -7,8 +7,8 @@ function Basketball({ gameState: incomingGameState }) {
 
   const [homeScoreQueue, setHomeScoreQueue] = useState([]);
   const [guestScoreQueue, setGuestScoreQueue] = useState([]);
-  const [prevHomeScore, setPrevHomeScore] = useState(0);
-  const [prevGuestScore, setPrevGuestScore] = useState(0);
+  const [prevHomeScore, setPrevHomeScore] = useState(incomingGameState?.Home?.Points || 0);
+  const [prevGuestScore, setPrevGuestScore] = useState(incomingGameState?.Guest?.Points || 0);
 
   const [homeScoreAnimating, setHomeScoreAnimating] = useState(false);
   const [guestScoreAnimating, setGuestScoreAnimating] = useState(false);
