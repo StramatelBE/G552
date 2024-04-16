@@ -63,9 +63,7 @@ const App = () => {
               ? data.medias
               : [data.medias];
             console.log(mediaArray);
-            setGameState(data.gameState);
-          console.log("gameState:", data.gameState)
-      
+            setGameState(data.gameState);      
       } else if (data.Mode === 22) {
         setMode("logo");
       } else if (data.Mode === 23) {
