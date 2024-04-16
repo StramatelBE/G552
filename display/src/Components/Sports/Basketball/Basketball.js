@@ -7,19 +7,12 @@ function Basketball({ gameState: incomingGameState }) {
   const [prevHomeScore, setPrevHomeScore] = useState(0);
   const [prevGuestScore, setPrevGuestScore] = useState(0);
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setHomeScore((prevScore) => prevScore + 1);
-      setGuestScore((prevScore) => prevScore + 1);
-    }, 1000);
-
-    return () => clearInterval(intervalId);
-  }, []);
-
   const [homeScoreAnimating, setHomeScoreAnimating] = useState(false);
   const [guestScoreAnimating, setGuestScoreAnimating] = useState(false);
 
   useEffect(() => {
+    setGuestScore(gameState.Guest.Points)
+    setHomeScore(gameState.Home.Points)
     if (homeScore !== prevHomeScore) {
       setHomeScoreAnimating(true);
       setTimeout(() => {
