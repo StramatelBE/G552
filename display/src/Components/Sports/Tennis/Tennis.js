@@ -14,8 +14,8 @@ function Tennis({ gameState: incomingGameState }) {
   }
 
   // Determine the color of the service dot for Home and Guest
-  const homeServiceDotColor = gameState?.Home?.Service === 1 ? "darkgreen" : "darkred";
-  const guestServiceDotColor = gameState?.Guest?.Service === 1 ? "darkgreen" : "darkred";
+  const homeServiceDotColor = gameState?.Home?.Service === 1 ? "darkblue" : "darkred";
+  const guestServiceDotColor = gameState?.Guest?.Service === 1 ? "darkblue" : "darkred";
 
   return (
     <div className="scoreboard">
