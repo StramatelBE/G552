@@ -19,10 +19,10 @@ function Basketball({ gameState: incomingGameState }) {
 
 
   useEffect(() => {
-    if (gameState?.Home?.Points !== prevHomeScore) {
+    if (gameState?.Home?.Points !== homeScoreQueue[homeScoreQueue.length - 1]) {
       setHomeScoreQueue(prev => [...prev, gameState?.Home?.Points]);
     }
-    if (gameState?.Guest?.Points !== prevGuestScore) {
+    if (gameState?.Guest?.Points !== homeScoreQueue[homeScoreQueue.length - 1]) {
       setGuestScoreQueue(prev => [...prev, gameState?.Guest?.Points]);
     }
   }, [incomingGameState]);
@@ -34,7 +34,7 @@ function Basketball({ gameState: incomingGameState }) {
     setPrevHomeScore(newHomeScore);
     setTimeout(() => {
       setHomeScoreAnimating(false);
-      setGuestScore(newHomeScore)
+      setHomeScore(newHomeScore)
       setHomeScoreQueue(prev => prev.slice(1)); // Remove the first element after animation
 
     }, 480);
