@@ -30,8 +30,8 @@ function Basketball({ gameState: incomingGameState }) {
   }, [incomingGameState]);
 
  useEffect(() => {
-  if (homeScoreQueue.length > 0 && !homeScoreAnimating) {
-    const newHomeScore = homeScoreQueue[0]; // Take the first element without removing it
+  if (homeScoreQueue.length > 1 && !homeScoreAnimating) {
+    const newHomeScore = homeScoreQueue[1]; // Take the first element without removing it
     setHomeScoreAnimating(true);
     setHomeScore(newHomeScore)
     setTimeout(() => {
