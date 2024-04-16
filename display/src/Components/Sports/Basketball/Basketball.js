@@ -12,6 +12,7 @@ function Basketball({ gameState: incomingGameState }) {
 
   useEffect(() => {
     if (gameState?.Home?.Points !== prevHomeScore) {
+      setHomeScoreAnimating(false);
       setHomeScoreAnimating(true);
       setTimeout(() => {
         setHomeScoreAnimating(false);
@@ -19,6 +20,7 @@ function Basketball({ gameState: incomingGameState }) {
       }, 480); // Durée de l'animation (à ajuster en fonction de votre CSS)
     }
     if (gameState?.Guest?.Points !== prevGuestScore) {
+      setHomeScoreAnimating(false);
       setGuestScoreAnimating(true);
       setTimeout(() => {
         setGuestScoreAnimating(false);
