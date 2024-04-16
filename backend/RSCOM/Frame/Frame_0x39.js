@@ -31,14 +31,14 @@ class Frame_0x39 {
                 SetsWon: nBytesToNumber(_message[15]),
                 Service: Tools.Service(_message[50]).Home,
                 Winner: Tools.Winner(_message[51]).Home,
-                PointsInSet: Tools.PointsInSet(24, 4, "L", _message),
+                PointsInSet: Tools.PointsInSet(24, 4, _message),
             },
             Guest: {
                 Points: nBytesToNumber(_message[12], _message[13]),
                 SetsWon: nBytesToNumber(_message[16]),
                 Service: Tools.Service(_message[50]).Guest,
                 Winner: Tools.Winner(_message[51]).Guest,
-                PointsInSet: Tools.PointsInSet(26, 4, "V", _message),
+                PointsInSet: Tools.PointsInSet(26, 4, _message),
             },
 
             TieBreak: Tools.TieBreak(_message[52]),
