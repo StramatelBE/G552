@@ -38,8 +38,10 @@ const handleScoring = async (scoring) => {
         const handleMacroMode = async (mode) => {
             console.log("macro mode");
             let macrosData = null;
+        
             if (mode === 21) {
                 macrosData = await macro.getMacrosByButton(15);
+                console.log("prematch medias :", macrosData)
             } else {
                 macrosData = await macro.getMacrosByButton(mode);
             }
