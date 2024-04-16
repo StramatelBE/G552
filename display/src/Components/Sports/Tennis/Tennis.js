@@ -3,6 +3,15 @@ import "./Tennis.css";
 
 function Tennis({gameState : incomingGameState}) {
   const gameState = incomingGameState || {};
+
+
+  if  (gameState?.Home?.TotalPoints === 17) {
+    gameState?.Home?.TotalPoints = "A";
+    gameState?.Guest?.TotalPoints = "-";
+  } else if (gameState?.Guest?.TotalPoints === 17) {
+    gameState?.Guest?.TotalPoints = "A";
+    gameState?.Home?.TotalPoints = "-";
+  }
   return (
     <div className="scoreboard">
       <div className="player player-bottom">
