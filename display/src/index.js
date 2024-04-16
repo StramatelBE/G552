@@ -192,11 +192,12 @@ const App = () => {
         <>
           {mode === "scoring" && <ScoringMode gameState={gameState} />}
           {mode === "media" && <MediaMode mediaState={mediaState} mediaMode={mediaMode}/>}
-          {mode === "prematch" && <PrematchMode mediaState={mediaState} mediaMode={mediaMode} gameState={gameState}/> }
+          {/* {mode === "prematch" && } */}
           {mode === "logo" && <LogoMode />}
           {mode === "sleep" && <></>}
           {mode === "" && <div>Waiting for data...</div>}
           {test === "test" && <TestPage />}
+          <PrematchMode mediaState={mediaState} mediaMode={mediaMode} gameState={gameState}/>
         </>
       )}
       {/* <Basketball /> */}
