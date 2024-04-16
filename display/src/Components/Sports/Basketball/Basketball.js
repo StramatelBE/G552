@@ -11,20 +11,18 @@ function Basketball({ gameState: incomingGameState }) {
   const [guestScoreAnimating, setGuestScoreAnimating] = useState(false);
 
   useEffect(() => {
-    setGuestScore(gameState.Guest.Points)
-    setHomeScore(gameState.Home.Points)
-    if (homeScore !== prevHomeScore) {
+    if (gameState?.Home?.Points !== prevHomeScore) {
       setHomeScoreAnimating(true);
       setTimeout(() => {
         setHomeScoreAnimating(false);
-        setPrevHomeScore(homeScore);
+        setPrevHomeScore(gameState?.Home?.Points);
       }, 480); // Durée de l'animation (à ajuster en fonction de votre CSS)
     }
-    if (guestScore !== prevGuestScore) {
+    if (gameState?.Guest?.Points !== prevGuestScore) {
       setGuestScoreAnimating(true);
       setTimeout(() => {
         setGuestScoreAnimating(false);
-        setPrevGuestScore(guestScore);
+        setPrevGuestScore(gameState?.Guest?.Points);
       }, 480); // Durée de l'animation (à ajuster en fonction de votre CSS)
     }
   }, [homeScore, guestScore, prevHomeScore, prevGuestScore]);
@@ -88,11 +86,11 @@ function Basketball({ gameState: incomingGameState }) {
           {homeScoreAnimating && (
             <>
               <div className="home-score score-out">{prevHomeScore}</div>
-              <div className="home-score score-in">{homeScore}</div>
+              <div className="home-score score-in">{gameState?.Home?.Points}</div>
             </>
           )}
           {!homeScoreAnimating && (
-            <div className="home-score">{homeScore}</div>
+            <div className="home-score">{gameState?.Home?.Points}</div>
           )}
         </div>
         <div className="home-name">
@@ -144,11 +142,11 @@ function Basketball({ gameState: incomingGameState }) {
           {guestScoreAnimating && (
             <>
               <div className="guest-score score-out">{prevGuestScore}</div>
-              <div className="guest-score score-in">{guestScore}</div>
+              <div className="guest-score score-in">{gameState?.Guest?.Points}</div>
             </>
           )}
           {!guestScoreAnimating && (
-            <div className="guest-score">{guestScore}</div>
+            <div className="guest-score">{gameState?.Guest?.Points}</div>
           )}
 
 
