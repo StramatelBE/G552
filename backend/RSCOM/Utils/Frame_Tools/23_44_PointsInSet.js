@@ -14,7 +14,7 @@ function pointsInSet(startIndex, size, team, message) {
     let indexOffset = team === "L" ? 0 : 3; // Adjust index based on team (L or V)
 
 
-    for (let i = 0; i < message.length; i+2) {
+    for (let i = 0; i < message.length; i=+2) {
         console.log(i, nBytesToNumber(message[i], message[i + 1]));
     }
 
