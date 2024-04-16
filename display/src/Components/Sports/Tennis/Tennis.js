@@ -6,11 +6,11 @@ function Tennis({gameState : incomingGameState}) {
 
 
   if  (gameState?.Home?.TotalPoints === 17) {
-    gameState?.Home?.TotalPoints = "A";
-    gameState?.Guest?.TotalPoints = "-";
+    gameState.Home.TotalPoints = "A";
+    gameState.Guest.TotalPoints = "-";
   } else if (gameState?.Guest?.TotalPoints === 17) {
-    gameState?.Guest?.TotalPoints = "A";
-    gameState?.Home?.TotalPoints = "-";
+    gameState.Guest.TotalPoints = "A";
+    gameState.Home.TotalPoints = "-";
   }
   return (
     <div className="scoreboard">
