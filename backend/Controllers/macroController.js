@@ -74,12 +74,18 @@ class MacroController {
             let medias = [];
 
 if (!mediaList) throw new Error("No media found for this event");
-
 if (mediaList.length > 1) {
     for (let mediaInfo of mediaList) {
         let media = await this.media.getById(mediaInfo.id);
-        // Handle case where media type and path are null
-        if (!media?.type && !media?.path) {
+        if (!media) {
+            // If no media found, default to panel type
+            media = {
+                type: 'panel',
+                path: 'panel',
+                // Ensure other properties are also set to prevent further errors
+                media_dur_in_event: 0
+            };
+        } else if (!media.type && !media.path) {
             media.type = "panel";
             media.path = "panel";
         }
@@ -90,10 +96,17 @@ if (mediaList.length > 1) {
             duration: mediaInfo.media_dur_in_event
         });
     }
-} else {
+} else if (mediaList.length === 1) {
     let media = await this.media.getById(mediaList[0].id);
-    // Handle case where media type and path are null
-    if (!media?.type && !media?.path) {
+    if (!media) {
+        // If no media found, default to panel type
+        media = {
+            type: 'panel',
+            path: 'panel',
+            // Ensure other properties are also set to prevent further errors
+            media_dur_in_event: 0
+        };
+    } else if (!media.type && !media.path) {
         media.type = "panel";
         media.path = "panel";
     }
@@ -104,7 +117,6 @@ if (mediaList.length > 1) {
         duration: mediaList[0].media_dur_in_event
     });
 }
-
             const mode = await this.mode.getAll()
             // 5. Ajouter au tableau final
             results.push({
