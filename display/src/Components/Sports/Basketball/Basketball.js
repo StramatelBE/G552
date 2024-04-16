@@ -4,8 +4,8 @@ import "./Basketball.css";
 function Basketball({ gameState: incomingGameState }) {
   const [homeScore, setHomeScore] = useState(0);
   const [guestScore, setGuestScore] = useState(0);
-  const [prevHomeScore, setPrevHomeScore] = useState(0);
-  const [prevGuestScore, setPrevGuestScore] = useState(0);
+  const [prevHomeScore, setPrevHomeScore] = useState(gameState?.Home?.Points);
+  const [prevGuestScore, setPrevGuestScore] = useState(gameState?.Guest?.Points);
 
   const [homeScoreAnimating, setHomeScoreAnimating] = useState(false);
   const [guestScoreAnimating, setGuestScoreAnimating] = useState(false);
