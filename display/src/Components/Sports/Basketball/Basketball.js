@@ -19,10 +19,12 @@ function Basketball({ gameState: incomingGameState }) {
 
 
   useEffect(() => {
-    if (gameState?.Home?.Points !== homeScoreQueue[homeScoreQueue.length - 1]) {
+    console.log(homeScoreQueue[homeScoreQueue.length - 1])
+    console.log()
+    if (gameState?.Home?.Points !== homeScoreQueue[homeScoreQueue.length - 1] && homeScoreQueue) {
       setHomeScoreQueue(prev => [...prev, gameState?.Home?.Points]);
     }
-    if (gameState?.Guest?.Points !== homeScoreQueue[homeScoreQueue.length - 1]) {
+    if (gameState?.Guest?.Points !== guestScoreQueue[guestScoreQueue.length - 1] && guestScoreQueue) {
       setGuestScoreQueue(prev => [...prev, gameState?.Guest?.Points]);
     }
   }, [incomingGameState]);
