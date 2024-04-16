@@ -11,7 +11,7 @@ const nBytesToNumber = require('../nBytesToNumber');
  */
 function pointsInSet(startIndex, size, team, message) {
     let pointsBySet = new Array(size);
-    let indexOffset = team === "L" ? 0 : 3; // Adjust index based on team (L or V)
+    let indexOffset = team === "L" ? 0 : 2; // Adjust index based on team (L or V)
 
 
     for (let i = 0; i < message.length; i+=2) {
