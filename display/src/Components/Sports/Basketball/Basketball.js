@@ -19,7 +19,7 @@ function Basketball({ gameState: incomingGameState }) {
 
 
   useEffect(() => {
-    console.log(homeScoreQueue[homeScoreQueue.length - 1])
+    console.log(homeScoreQueue)
     console.log()
     if (gameState?.Home?.Points !== homeScoreQueue[homeScoreQueue.length - 1] && homeScoreQueue) {
       setHomeScoreQueue(prev => [...prev, gameState?.Home?.Points]);
