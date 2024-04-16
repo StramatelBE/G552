@@ -39,7 +39,7 @@ const PrematchMode = ({mediaState, mediaMode, gameState, setSwitchToScore}) => {
 
     return (
         <>  {mediaPath === "panel" ?
-            setSwitchToScore == true
+            
         :
             isVideo ? (
          
