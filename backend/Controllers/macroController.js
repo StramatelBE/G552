@@ -80,7 +80,7 @@ class MacroController {
                     const media = await this.media.getById(mediaInfo.id);
                     console.log("media", media);
 
-                    if (!media.path) {
+                    if (!media) {
                         console.log("no info")
                         medias.push({
                             order: mediaInfo.media_pos_in_event,
@@ -102,7 +102,7 @@ class MacroController {
             } else {
                 const media = await this.media.getById(mediaList[0].id);
                 console.log("media", media);
-                if (!media.path) {
+                if (!media) {
                 console.log("no info")
 
                     medias.push({
