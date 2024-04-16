@@ -73,31 +73,37 @@ class MacroController {
             // console.log("mediaList", mediaList);
             let medias = [];
 
-            if (!mediaList) throw new Error("No media found for this event");
+if (!mediaList) throw new Error("No media found for this event");
 
-            if (mediaList.length > 1) {
-                for (let mediaInfo of mediaList) {
-                    const media = await this.media.getById(mediaInfo.id);
-                    // console.log("media", media);
-
-                    medias.push({
-                        order: mediaInfo.media_pos_in_event,
-                        path: media.path,
-                        type: media.type,
-                        duration: mediaInfo.media_dur_in_event
-                    });
-                }
-            } else {
-                const media = await this.media.getById(mediaList[0].id);
-                // console.log("media", media);
-
-                medias.push({
-                    order: mediaList[0].media_pos_in_event,
-                    path: media.path,
-                    type: media.type,
-                    duration: mediaList[0].media_dur_in_event
-                });
-            }
+if (mediaList.length > 1) {
+    for (let mediaInfo of mediaList) {
+        const media = await this.media.getById(mediaInfo.id);
+        // Handle case where media type and path are null
+        if (media.type === null && media.path === null) {
+            media.type = "panel";
+            media.path = "panel";
+        }
+        medias.push({
+            order: mediaInfo.media_pos_in_event,
+            path: media.path,
+            type: media.type,
+            duration: mediaInfo.media_dur_in_event
+        });
+    }
+} else {
+    const media = await this.media.getById(mediaList[0].id);
+    // Handle case where media type and path are null
+    if (media.type === null && media.path === null) {
+        media.type = "panel";
+        media.path = "panel";
+    }
+    medias.push({
+        order: mediaList[0].media_pos_in_event,
+        path: media.path,
+        type: media.type,
+        duration: mediaList[0].media_dur_in_event
+    });
+}
 
             const mode = await this.mode.getAll()
             // 5. Ajouter au tableau final
