@@ -34,6 +34,7 @@ function Basketball({ gameState: incomingGameState }) {
     setPrevHomeScore(newHomeScore);
     setTimeout(() => {
       setHomeScoreAnimating(false);
+      setGuestScore(newHomeScore)
       setHomeScoreQueue(prev => prev.slice(1)); // Remove the first element after animation
 
     }, 480);
@@ -47,6 +48,7 @@ useEffect(() => {
     setPrevGuestScore(newGuestScore);
     setTimeout(() => {
       setGuestScoreAnimating(false);
+      setGuestScore(newGuestScore)
       setGuestScoreQueue(prev => prev.slice(1)); // Remove the first element after animation
     }, 480);
   }
