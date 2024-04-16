@@ -71,7 +71,7 @@ const handleScoring = async (scoring) => {
             if (mode === 21) {
                 macrosData = await macro.getMacrosByButton(15);
                 console.log(gameState);
-                macrosData.push(gameState);
+                macrosData.concat(gameState);
                 console.log("prematch medias :", macrosData[0])
 
             } else {
