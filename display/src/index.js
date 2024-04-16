@@ -6,7 +6,7 @@ import config from "./config.js";
 import LogoMode from "./Components/LogoMode";
 import "./main.css"
 import Basketball from "./Components/Sports/Basketball/Basketball.js";
-import Handball from "./Components/Sports/Handball.js";
+import Handball from "./Components/Sports/Handball/Handball.js";
 import Volleyball from "./Components/Sports/Volleyball/Volleyball.js";
 import Tennis from "./Components/Sports/Tennis/Tennis.js";
 import TestPage from "./Components/TestPage.js";

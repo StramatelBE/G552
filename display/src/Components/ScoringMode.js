@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-import Basketball from "./Sports/Basketball"
-import Handball from "./Sports/Handball"
-import Tennis from "./Sports/Tennis"
-import Volleyball from "./Sports/Volleyball"
+import Basketball from "./Sports/Basketball/Basketball"
+import Handball from "./Sports/Handball/Handball"
+import Tennis from "./Sports/Tennis/Tennis"
+import Volleyball from "./Sports/Volleyball/Volleyball"
 
 //TODO: DISPLAY TIMEOUT COUNTDOWN WHEN TIMEOUT IS CALLED
 
