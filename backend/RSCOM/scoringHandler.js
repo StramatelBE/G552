@@ -108,6 +108,7 @@ const handleScoring = async (scoring) => {
             await handleMacroMode(scoring.Mode);
         } else if (prematchMode.includes(scoring.Mode)) {
             scoring.Mode = 21;
+            scoring.type = "scoring";
             unixSocketSetup.sendData(scoring);
             await handlePrematchMode(scoring.Mode, scoring);
         }
@@ -115,7 +116,7 @@ const handleScoring = async (scoring) => {
     } catch (error) {
         console.error("Error fetching macros:", error.message);
         scoring.Mode = 9;
-        scoring.type = "scoring";
+        
         unixSocketSetup.sendData(scoring);
     }
 };

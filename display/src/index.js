@@ -49,6 +49,8 @@ const App = () => {
       "--maxHeight",
       config.display.height
     );
+
+
     console.log("App mounted");
     ipcRenderer.on("server-data", (event, data) => {
       console.log('!Received gameState', data, event);
@@ -67,7 +69,7 @@ const App = () => {
                 
       } else if (data.Mode === 21 && data.type === "scoring"){
         setMode("prematch");
-        setGameState(data);  
+        setGameState(data || {});  
       }
       else if (data.Mode === 22) {
         setMode("logo");
