@@ -4,8 +4,8 @@ import "./Basketball.css";
 function Basketball({ gameState: incomingGameState }) {
   const [homeScore, setHomeScore] = useState(0);
   const [guestScore, setGuestScore] = useState(0);
-  const [prevHomeScore, setPrevHomeScore] = useState(gameState?.Home?.Points || 0);
-  const [prevGuestScore, setPrevGuestScore] = useState(gameState?.Guest?.Points || 0);
+  const [prevHomeScore, setPrevHomeScore] = useState(0);
+  const [prevGuestScore, setPrevGuestScore] = useState(0);
 
   const [homeScoreAnimating, setHomeScoreAnimating] = useState(false);
   const [guestScoreAnimating, setGuestScoreAnimating] = useState(false);
@@ -25,7 +25,7 @@ function Basketball({ gameState: incomingGameState }) {
         setPrevGuestScore(gameState?.Guest?.Points);
       }, 480); // Durée de l'animation (à ajuster en fonction de votre CSS)
     }
-  }, [homeScore, guestScore, prevHomeScore, prevGuestScore]);
+  }, [gameState?.Home?.Points, gameState?.Guest?.Points, prevHomeScore, prevGuestScore]);
 
 
 
