@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./Basketball.css";
 
 function Basketball({ gameState: incomingGameState }) {
-  const [homeScore, setHomeScore] = useState(0);
-  const [guestScore, setGuestScore] = useState(0);
+  const [homeScore, setHomeScore] = useState(incomingGameState?.Home?.Points || 0);
+  const [guestScore, setGuestScore] = useState(incomingGameState?.Guest?.Points || 0);
 
   const [homeScoreQueue, setHomeScoreQueue] = useState([]);
   const [guestScoreQueue, setGuestScoreQueue] = useState([]);
@@ -19,8 +19,6 @@ function Basketball({ gameState: incomingGameState }) {
 
 
   useEffect(() => {
-    console.log(homeScoreQueue)
-    console.log(gameState?.Home?.Points)
     if (gameState?.Home?.Points !== homeScoreQueue[homeScoreQueue.length - 1] && homeScoreQueue) {
       setHomeScoreQueue(prev => [...prev, gameState?.Home?.Points]);
     }
