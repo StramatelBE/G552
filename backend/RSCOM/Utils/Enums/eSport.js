@@ -2,7 +2,7 @@ const eSport = {
     Basketball: "BasketBall",
     Handball: "HandBall",
     Soccer: "Soccer",
-    Volleyball: "VolleyBall",
+    Volleyball: "Volleyball",
     Boxe: "Boxe",
     Tennis: "Tennis",
     TableTennis: "Table Tennis",
