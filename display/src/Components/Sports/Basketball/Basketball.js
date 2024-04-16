@@ -25,7 +25,7 @@ function Basketball({ gameState: incomingGameState }) {
         setPrevGuestScore(gameState?.Guest?.Points);
       }, 480); // Durée de l'animation (à ajuster en fonction de votre CSS)
     }
-  }, []);
+  }, [incomingGameState]);
 
 
 
