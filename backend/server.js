@@ -14,7 +14,6 @@ const User = require('./Models/userModel');
 require("dotenv").config();
 
 app.use(cors());
-app.use(bodyParser())
 app.use(bodyParser.json({limit:'800mb'}));
 app.use(bodyParser.urlencoded({
     parameterLimit: 100000,
