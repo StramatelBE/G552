@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import "./Basketball.css";
 
 function Basketball({ gameState: incomingGameState }) {
-  const [homeScore, setHomeScore] = useState(incomingGameState?.Home?.Points || 0);
-  const [guestScore, setGuestScore] = useState(incomingGameState?.Guest?.Points || 0);
+  const [homeScore, setHomeScore] = useState(incomingGameState?.Home?.Points || 0);
+  const [guestScore, setGuestScore] = useState(incomingGameState?.Guest?.Points || 0);
 
   const [homeScoreQueue, setHomeScoreQueue] = useState([]);
   const [guestScoreQueue, setGuestScoreQueue] = useState([]);
-  const [prevHomeScore, setPrevHomeScore] = useState(incomingGameState?.Home?.Points || 0);
-  const [prevGuestScore, setPrevGuestScore] = useState(incomingGameState?.Guest?.Points || 0);
+
+  const [prevHomeScore, setPrevHomeScore] = useState(incomingGameState?.Home?.Points || 0);
+  const [prevGuestScore, setPrevGuestScore] = useState(incomingGameState?.Guest?.Points || 0);
 
   const [homeScoreAnimating, setHomeScoreAnimating] = useState(false);
   const [guestScoreAnimating, setGuestScoreAnimating] = useState(false);
@@ -27,33 +28,33 @@ function Basketball({ gameState: incomingGameState }) {
     }
   }, [incomingGameState]);
 
- useEffect(() => {
-  if (homeScoreQueue.length > 1 && !homeScoreAnimating) {
-    const newHomeScore = homeScoreQueue[1]; // Take the first element without removing it
-    setHomeScoreAnimating(true);
-    setHomeScore(newHomeScore)
-    setTimeout(() => {
-      setPrevHomeScore(newHomeScore);
-      setHomeScoreAnimating(false);
-      
-      setHomeScoreQueue(prev => prev.slice(1)); // Remove the first element after animation
-    }, 480);
-  }
-}, [homeScoreQueue]);
+  useEffect(() => {
+    if (homeScoreQueue.length > 1 && !homeScoreAnimating) {
+      const newHomeScore = homeScoreQueue[1]; // Take the first element without removing it
+      setHomeScoreAnimating(true);
+      setHomeScore(newHomeScore)
+      setTimeout(() => {
+        setPrevHomeScore(newHomeScore);
+        setHomeScoreAnimating(false);
 
-useEffect(() => {
-  if (guestScoreQueue.length > 1 && !guestScoreAnimating) {
-    const newGuestScore = guestScoreQueue[1]; // Take the first element without removing it
-    setGuestScoreAnimating(true);
-    setGuestScore(newGuestScore)
-    setTimeout(() => {
-      
-      setPrevGuestScore(newGuestScore);
-      setGuestScoreAnimating(false);
-      setGuestScoreQueue(prev => prev.slice(1)); // Remove the first element after animation
-    }, 480);
-  }
-}, [guestScoreQueue]);
+        setHomeScoreQueue(prev => prev.slice(1)); // Remove the first element after animation
+      }, 480);
+    }
+  }, [homeScoreQueue]);
+
+  useEffect(() => {
+    if (guestScoreQueue.length > 1 && !guestScoreAnimating) {
+      const newGuestScore = guestScoreQueue[1]; // Take the first element without removing it
+      setGuestScoreAnimating(true);
+      setGuestScore(newGuestScore)
+      setTimeout(() => {
+
+        setPrevGuestScore(newGuestScore);
+        setGuestScoreAnimating(false);
+        setGuestScoreQueue(prev => prev.slice(1)); // Remove the first element after animation
+      }, 480);
+    }
+  }, [guestScoreQueue]);
 
 
 
@@ -122,10 +123,9 @@ useEffect(() => {
         <div className="home-name">
           {gameState?.Home?.TeamName || "HOME"} {/* team name HOME */}
         </div>
-
-        {gameState?.Home?.Timeout?.Team > 0 && (
+        {gameState?.Home?.Timeout?.Team >= 0 && (
           <>
-            {[...Array(gameState?.Home?.Timeout?.Team || 0)].map((_, i) => (
+            {[...Array(3 - gameState?.Home?.Timeout?.Team)].map((_, i) => (
               <div
                 key={i}
                 className="home-timeout"
@@ -133,8 +133,7 @@ useEffect(() => {
               />
             ))}
           </>
-        )}{/* team HOME time out */}
-
+        )}
         <div className="home-fouls">
           {gameState?.Home?.Fouls?.Team} {/* team HOME fouls */}
         </div>
@@ -177,9 +176,9 @@ useEffect(() => {
 
 
         </div>
-        {gameState?.Guest?.Timeout?.Team > 0 && (
+        {gameState?.Guest?.Timeout?.Team >= 0 && (
           <>
-            {[...Array(gameState?.Guest?.Timeout?.Team || 0)].map((_, i) => (
+            {[...Array(3 - gameState?.Guest?.Timeout?.Team)].map((_, i) => (
               <div
                 key={i}
                 className="guest-timeout"
@@ -187,8 +186,7 @@ useEffect(() => {
               />
             ))}
           </>
-        )}{/* team GUEST time out */}
-
+        )}
         <div className="guest-fouls">
           {gameState?.Guest?.Fouls?.Team} {/* team GUEST fouls */}
         </div>
