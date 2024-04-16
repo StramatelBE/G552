@@ -70,6 +70,7 @@ const handleScoring = async (scoring) => {
         
             if (mode === 21) {
                 macrosData = await macro.getMacrosByButton(15);
+                macrosData[0].mode = "prematch"
                 unixSocketSetup.sendMedia(macrosData[0]);            
                
             } else {
