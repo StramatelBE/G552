@@ -45,7 +45,7 @@ function Basketball({ gameState: incomingGameState }) {
 
 useEffect(() => {
   if (guestScoreQueue.length > 1 && !guestScoreAnimating) {
-    const newGuestScore = guestScoreQueue[0]; // Take the first element without removing it
+    const newGuestScore = guestScoreQueue[1]; // Take the first element without removing it
     setGuestScoreAnimating(true);
     setGuestScore(newGuestScore)
     setTimeout(() => {
