@@ -13,6 +13,44 @@
   position: absolute;
 }
 
+.score-in {
+  /* no warp */
+  overflow: hidden;
+  animation: text-animation-in 0.5s ease-in-out;
+}
+
+.score-out {
+  /* no warp */
+  overflow: hidden;
+  animation: text-animation_out 0.5s ease-in-out;
+}
+
+.container-score-guest-volleyball {
+  width: 226px;
+  height: 93px;
+  position: absolute;
+  overflow: hidden;
+}
+/* Define the keyframes for the animation */
+@keyframes text-animation-in {
+  0% {
+    margin-top: -11.24rem;
+  }
+
+  100% {
+    margin-top: 0;
+  }
+}
+@keyframes text-animation_out {
+  0% {
+    margin-top: 0;
+  }
+
+  100% {
+    margin-top: 11.24rem;
+  }
+}
+
 .home-text {
   width: 168px;
   height: 64px;
