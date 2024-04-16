@@ -20,7 +20,7 @@ function Basketball({ gameState: incomingGameState }) {
 
   useEffect(() => {
     console.log(homeScoreQueue)
-    console.log()
+    console.log(gameState?.Home?.Points)
     if (gameState?.Home?.Points !== homeScoreQueue[homeScoreQueue.length - 1] && homeScoreQueue) {
       setHomeScoreQueue(prev => [...prev, gameState?.Home?.Points]);
     }
@@ -33,22 +33,21 @@ function Basketball({ gameState: incomingGameState }) {
   if (homeScoreQueue.length > 0 && !homeScoreAnimating) {
     const newHomeScore = homeScoreQueue[0]; // Take the first element without removing it
     setHomeScoreAnimating(true);
-    setPrevHomeScore(newHomeScore);
     setTimeout(() => {
+      setPrevHomeScore(newHomeScore);
       setHomeScoreAnimating(false);
       setHomeScore(newHomeScore)
       setHomeScoreQueue(prev => prev.slice(1)); // Remove the first element after animation
-
     }, 480);
   }
 }, [homeScoreQueue]);
 
 useEffect(() => {
-  if (guestScoreQueue.length > 0 && !guestScoreAnimating) {
+  if (guestScoreQueue.length > 1 && !guestScoreAnimating) {
     const newGuestScore = guestScoreQueue[0]; // Take the first element without removing it
     setGuestScoreAnimating(true);
-    setPrevGuestScore(newGuestScore);
     setTimeout(() => {
+      setPrevGuestScore(newGuestScore);
       setGuestScoreAnimating(false);
       setGuestScore(newGuestScore)
       setGuestScoreQueue(prev => prev.slice(1)); // Remove the first element after animation
