@@ -155,14 +155,12 @@ class EventMedia {
   }
   addPanel(eventId, media_pos_in_event) {
     const media_dur_in_event = 10;
-    const type = "panel";
-    const path = "panel";
     console.log(eventId);
     return new Promise((resolve, reject) => {
       db.run(
-        `INSERT INTO event_media (event_id, media_id, media_dur_in_event, media_pos_in_event, type, path)
-        VALUES (?, null, ?, ?, ?, ?)`,
-        [eventId, media_dur_in_event, media_pos_in_event, type, path],
+        `INSERT INTO event_media (event_id, media_id, media_dur_in_event, media_pos_in_event)
+        VALUES (?, null, ?, ?)`,
+        [eventId, media_dur_in_event, media_pos_in_event],
         (err) => {
           if (err) {
             reject(err);

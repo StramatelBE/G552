@@ -175,7 +175,7 @@ const App = () => {
       ) : (
         <>
           {mode === "scoring" && <ScoringMode gameState={gameState} />}
-          {mode === "media" && <MediaMode mediaState={mediaState} mediaMode={mediaMode} />}
+          {mode === "media" && <MediaMode mediaState={mediaState} mediaMode={mediaMode} gameState={gameState} />}
           {mode === "logo" && <LogoMode />}
           {mode === "sleep" && <></>}
           {mode === "" && <div>Waiting for data...</div>}
