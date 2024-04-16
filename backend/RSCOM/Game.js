@@ -196,8 +196,9 @@ class Game {
     }
     if (toInsert != null){
       this.updateState(toInsert);
+      this.Send();
     }
-       this.Send();
+       
   };
 
   static getState() {
