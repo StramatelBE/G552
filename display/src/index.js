@@ -166,7 +166,6 @@ const App = () => {
 
   return (
     <>
-      {mode}
       {test === "test" ? (
         <TestPage />
       ) : (
