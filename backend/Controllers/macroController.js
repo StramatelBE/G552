@@ -80,11 +80,11 @@ class MacroController {
                     const media = await this.media.getById(mediaInfo.id);
                     // console.log("media", media);
 
-                    if (!media) {
+                    if (!media.path) {
                         medias.push({
                             order: mediaInfo.media_pos_in_event,
-                            path: "panel",
-                            type: "panel",
+                            path: 'panel',
+                            type: 'panel',
                             duration: mediaInfo.media_dur_in_event
                         });
                     } else {
@@ -101,7 +101,7 @@ class MacroController {
             } else {
                 const media = await this.media.getById(mediaList[0].id);
                 // console.log("media", media);
-                if (!media) {
+                if (!media.path) {
                     medias.push({
                         order: mediaList[0].media_pos_in_event,
                         path: "panel",
