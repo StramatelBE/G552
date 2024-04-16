@@ -73,7 +73,7 @@ const handleScoring = async (scoring) => {
                 // console.log(gameState);/
                 let prematchData = {
                     mode: mode,
-                    macrosData: macrosData[0].medias,
+                    medias: macrosData[0].medias,
                     gameState: gameState 
                 }
                 console.log("prematch mode :", prematchData.mode)
