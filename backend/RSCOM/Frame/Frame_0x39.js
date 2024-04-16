@@ -28,6 +28,7 @@ class Frame_0x39 {
 
             Home: {
                 Points: nBytesToNumber(_message[9], _message[10]),
+                GameInSet: nBytesToNumber(_message[22], _message[23]),
                 SetsWon: nBytesToNumber(_message[15]),
                 Service: Tools.Service(_message[50]).Home,
                 Winner: Tools.Winner(_message[51]).Home,
@@ -35,6 +36,7 @@ class Frame_0x39 {
             },
             Guest: {
                 Points: nBytesToNumber(_message[12], _message[13]),
+                GameInSet: nBytesToNumber(_message[35], _message[36]),
                 SetsWon: nBytesToNumber(_message[16]),
                 Service: Tools.Service(_message[50]).Guest,
                 Winner: Tools.Winner(_message[51]).Guest,
