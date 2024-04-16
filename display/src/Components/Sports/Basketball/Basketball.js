@@ -33,10 +33,11 @@ function Basketball({ gameState: incomingGameState }) {
   if (homeScoreQueue.length > 0 && !homeScoreAnimating) {
     const newHomeScore = homeScoreQueue[0]; // Take the first element without removing it
     setHomeScoreAnimating(true);
+    setHomeScore(newHomeScore)
     setTimeout(() => {
       setPrevHomeScore(newHomeScore);
       setHomeScoreAnimating(false);
-      setHomeScore(newHomeScore)
+      
       setHomeScoreQueue(prev => prev.slice(1)); // Remove the first element after animation
     }, 480);
   }
@@ -46,10 +47,11 @@ useEffect(() => {
   if (guestScoreQueue.length > 1 && !guestScoreAnimating) {
     const newGuestScore = guestScoreQueue[0]; // Take the first element without removing it
     setGuestScoreAnimating(true);
+    setGuestScore(newGuestScore)
     setTimeout(() => {
+      
       setPrevGuestScore(newGuestScore);
       setGuestScoreAnimating(false);
-      setGuestScore(newGuestScore)
       setGuestScoreQueue(prev => prev.slice(1)); // Remove the first element after animation
     }, 480);
   }
