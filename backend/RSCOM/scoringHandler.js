@@ -19,8 +19,7 @@ let previousMacrosDataMode = null;
 
 
 const handleScoring = async (scoring) => {
-    try {
-        const macro = new MacroController();
+    const macro = new MacroController();
 
         const scoreMode = [9];
         const immediateModes = [16, 17, 18, 19, 20];
@@ -73,6 +72,8 @@ const handleScoring = async (scoring) => {
         } else if (macroModes.includes(scoring.Mode)) {
             await handleMacroMode(scoring.Mode);
         }
+    try {
+        console.log("ry");
 
     } catch (error) {
         console.error("Error fetching macros:", error.message);
