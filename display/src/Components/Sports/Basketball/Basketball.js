@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./Basketball.css";
 
 function Basketball({ gameState: incomingGameState }) {
+  const [homeScore, setHomeScore] = useState(0);
+  const [guestScore, setGuestScore] = useState(0);
+
   const [homeScoreQueue, setHomeScoreQueue] = useState([]);
   const [guestScoreQueue, setGuestScoreQueue] = useState([]);
   const [prevHomeScore, setPrevHomeScore] = useState(0);
@@ -25,7 +28,7 @@ function Basketball({ gameState: incomingGameState }) {
   }, [incomingGameState]);
 
  useEffect(() => {
-  if (homeScoreQueue.length > 0) {
+  if (homeScoreQueue.length > 0 && !homeScoreAnimating) {
     const newHomeScore = homeScoreQueue[0]; // Take the first element without removing it
     setHomeScoreAnimating(true);
     setPrevHomeScore(newHomeScore);
@@ -38,7 +41,7 @@ function Basketball({ gameState: incomingGameState }) {
 }, [homeScoreQueue]);
 
 useEffect(() => {
-  if (guestScoreQueue.length > 0) {
+  if (guestScoreQueue.length > 0 && !guestScoreAnimating) {
     const newGuestScore = guestScoreQueue[0]; // Take the first element without removing it
     setGuestScoreAnimating(true);
     setPrevGuestScore(newGuestScore);
@@ -106,11 +109,11 @@ useEffect(() => {
           {homeScoreAnimating && (
             <>
               <div className="home-score score-out">{prevHomeScore}</div>
-              <div className="home-score score-in">{gameState?.Home?.Points}</div>
+              <div className="home-score score-in">{homeScore}</div>
             </>
           )}
           {!homeScoreAnimating && (
-            <div className="home-score">{gameState?.Home?.Points}</div>
+            <div className="home-score">{homeScore}</div>
           )}
         </div>
         <div className="home-name">
@@ -162,11 +165,11 @@ useEffect(() => {
           {guestScoreAnimating && (
             <>
               <div className="guest-score score-out">{prevGuestScore}</div>
-              <div className="guest-score score-in">{gameState?.Guest?.Points}</div>
+              <div className="guest-score score-in">{guestScore}</div>
             </>
           )}
           {!guestScoreAnimating && (
-            <div className="guest-score">{gameState?.Guest?.Points}</div>
+            <div className="guest-score">{guestScore}</div>
           )}
 
 
