@@ -2,159 +2,115 @@
   width: 100%;
   height: 100%;
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: black;
 }
 
-.home-score {
+.absolute-div {
+  position: absolute;
+}
+
+.guest-div {
   width: 226px;
-  height: 100px;
+  height: 256px;
+  left: 286px;
+  top: 0px;
+}
+
+.home-div {
+  width: 226px;
+  height: 256px;
   left: 0px;
   top: 0px;
+}
+
+.time-div {
+  width: 113px;
+  height: 45px;
+  position: absolute;
+  text-align: center;
+  color: #ebff00;
+  font-size: 48px;
+  font-family: "D-DIN-Bold";
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+.score-div {
+  width: 226px;
+  height: 100px;
   position: absolute;
   text-align: center;
   color: #ff0000;
   font-size: 100px;
-  font-family: "D-DIN-Bold", sans-serif;
+  font-family: "D-DIN-Bold";
   font-weight: 700;
   word-wrap: break-word;
 }
 
-.home-name {
+.team-name-div {
   width: 226px;
-  height: 100px;
-  left: 0px;
-  top: 83px;
+  height: 56px;
   position: absolute;
   text-align: center;
   color: white;
   font-size: 45px;
-  font-family: "D-DIN-Bold", sans-serif;
+  font-family: "D-DIN-Bold";
   font-weight: 700;
   word-wrap: break-word;
 }
 
-.home-timeout {
+.dots-div {
+  width: 15px;
+  height: 61px;
+  position: absolute;
+}
+
+.dot-hand {
   width: 15px;
   height: 15px;
-  left: 100px;
   position: absolute;
   background: #00a13b;
   border-radius: 9999px;
 }
 
-.home-fouls {
-  width: 25px;
-  height: 46px;
-  left: 31px;
-  top: 195px;
+.countdown-container {
+  width: 237px;
+  height: 223px;
+  left: 138px;
+  top: 18px;
+  position: absolute;
+}
+
+.image-handball {
+  width: 130px;
+  height: 21px;
+  top: 235px;
+  position: absolute;
+}
+
+.countdown-text {
+  width: 237px;
+  height: 76px;
+  left: 0px;
+  top: 119px;
   position: absolute;
   text-align: center;
-  color: #ebff00;
-  font-size: 50px;
-  font-family: "D-DIN-Bold", sans-serif;
+  color: white;
+  font-size: 100px;
+  font-family: "D-DIN-Bold";
   font-weight: 700;
   word-wrap: break-word;
 }
 
-.home-possession {
-  clip-path: polygon(100% 0%, 82.4% 49.5%, 100% 100%, 0% 50%);
-  background: #ff0000;
-  height: 20px;
-  width: 20px;
-  left: 203px;
-  top: 40px;
-  position: absolute;
-}
-
-.period {
+.round-number {
   width: 26px;
   height: 64px;
-  left: 243px;
-  top: 18px;
+  left: 105px;
+  top: 0px;
   position: absolute;
   color: #00a13b;
   font-size: 60px;
-  font-family: "D-DIN-Bold", sans-serif;
+  font-family: "D-DIN-Bold";
   font-weight: 700;
   word-wrap: break-word;
-}
-
-.timer {
-  width: 250px;
-  height: 76px;
-  left: 137px;
-  top: 134px;
-  position: absolute;
-  text-align: center;
-  color: white;
-  font-size: 95px;
-  font-family: "D-DIN-Bold", sans-serif;
-  word-wrap: break-word;
-}
-
-.guest-name {
-  width: 226px;
-  height: 56px;
-  left: 286px;
-  top: 85px;
-  position: absolute;
-  text-align: center;
-  color: white;
-  font-size: 45px;
-  font-family: "D-DIN-Bold", sans-serif;
-  font-weight: 700;
-  word-wrap: break-word;
-}
-
-.guest-score {
-  width: 226px;
-  height: 100px;
-  left: 286px;
-  top: 0px;
-  position: absolute;
-  text-align: center;
-  color: #ff0000;
-  font-size: 100px;
-  font-family: "D-DIN-Bold", sans-serif;
-  font-weight: 700;
-  word-wrap: break-word;
-}
-
-.guest-timeout {
-  width: 15px;
-  height: 15px;
-  left: 398px;
-  position: absolute;
-  background: #00a13b;
-  border-radius: 9999px;
-}
-
-.guest-fouls {
-  width: 25px;
-  height: 46px;
-  left: 456px;
-  top: 195px;
-  position: absolute;
-  text-align: center;
-  color: #ebff00;
-  font-size: 50px;
-}
-.guest-possession {
-  clip-path: polygon(0% 0%, 100% 50%, 0% 100%, 25% 50%);
-  background: #ff0000;
-  height: 20px;
-  width: 20px;
-  left: 293px;
-  top: 40px;
-  position: absolute;
-}
-
-.image {
-  width: 130px;
-  height: 21px;
-  left: 191px;
-  top: 230px;
-  position: absolute;
 }

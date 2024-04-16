@@ -1,167 +1,60 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import "./Handball.css";
 
 function Handball({ gameState: incomingGameState }) {
-  const containerStyle = {
-    width: "100%",
-    height: "100%",
-    position: "relative",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  };
+  const [homeScore, setHomeScore] = useState(incomingGameState?.Home?.Points || 0);
+  const [guestScore, setGuestScore] = useState(incomingGameState?.Guest?.Points || 0);
 
-  const homeScoreStyle = {
-    width: "226px",
-    height: "100px",
-    left: "0px",
-    top: "0px",
-    position: "absolute",
-    textAlign: "center",
-    color: "#FF0000",
-    fontSize: "100px",
-    fontFamily: '"D-DIN-Bold"',
-    fontWeight: "700",
-    wordWrap: "break-word",
-  };
+  const [homeScoreQueue, setHomeScoreQueue] = useState([]);
+  const [guestScoreQueue, setGuestScoreQueue] = useState([]);
 
-  const homeNameStyle = {
-    width: "226px",
-    height: "56px",
-    left: "0px",
-    top: "83px",
-    position: "absolute",
-    textAlign: "center",
-    color: "white",
-    fontSize: "45px",
-    fontFamily: '"D-DIN-Bold"',
-    fontWeight: "700",
-    wordWrap: "break-word",
-  };
+  const [prevHomeScore, setPrevHomeScore] = useState(incomingGameState?.Home?.Points || 0);
+  const [prevGuestScore, setPrevGuestScore] = useState(incomingGameState?.Guest?.Points || 0);
 
-  const homeTimeoutStyle = {
-    width: "15px",
-    height: "15px",
-    left: "100px",
-    position: "absolute",
-    background: "#00A13B",
-    borderRadius: "9999px",
-  };
+  const [homeScoreAnimating, setHomeScoreAnimating] = useState(false);
+  const [guestScoreAnimating, setGuestScoreAnimating] = useState(false);
 
-  const homeFoulsStyle = {
-    width: "25px",
-    height: "46px",
-    left: "31px",
-    top: "195px",
-    position: "absolute",
-    textAlign: "center",
-    color: "#EBFF00",
-    fontSize: "50px",
-    fontFamily: '"D-DIN-Bold"',
-    fontWeight: "700",
-    wordWrap: "break-word",
-  };
+  const gameState = incomingGameState || {};
+  const showHomeTimeout = gameState?.Home?.Timeout?.Time !== "0:00";
+  const showGuestTimeout = gameState?.Guest?.Timeout?.Time !== "0:00";
 
-  const homePossessionStyle = {
-    clipPath: "polygon(100% 0%, 82.4% 49.5%, 100% 100%, 0% 50%)",
-    background: "#ff0000",
-    height: "20px",
-    width: "20px",
-    left: "203px",
-    top: "40px",
-    position: "absolute",
-  };
+  useEffect(() => {
+    if (gameState?.Home?.Points !== homeScoreQueue[homeScoreQueue.length - 1] && homeScoreQueue) {
+      setHomeScoreQueue(prev => [...prev, gameState?.Home?.Points]);
+    }
+    if (gameState?.Guest?.Points !== guestScoreQueue[guestScoreQueue.length - 1] && guestScoreQueue) {
+      setGuestScoreQueue(prev => [...prev, gameState?.Guest?.Points]);
+    }
+  }, [incomingGameState]);
 
-  const periodStyle = {
-    width: "26px",
-    height: "64px",
-    left: "243px",
-    top: "18px",
-    position: "absolute",
-    color: "#00A13B",
-    fontSize: "60px",
-    fontFamily: '"D-DIN-Bold"',
-    fontWeight: "700",
-    wordWrap: "break-word",
-  };
+  useEffect(() => {
+    if (homeScoreQueue.length > 1 && !homeScoreAnimating) {
+      const newHomeScore = homeScoreQueue[1]; // Take the first element without removing it
+      setHomeScoreAnimating(true);
+      setHomeScore(newHomeScore)
+      setTimeout(() => {
+        setPrevHomeScore(newHomeScore);
+        setHomeScoreAnimating(false);
 
-  const timerStyle = {
-    width: "250px",
-    height: "76px",
-    left: "137px",
-    top: "134px",
-    position: "absolute",
-    textAlign: "center",
-    color: "white",
-    fontSize: "95px",
-    fontFamily: '"D-DIN-Bold"',
-    wordWrap: "break-word",
-  };
+        setHomeScoreQueue(prev => prev.slice(1)); // Remove the first element after animation
+      }, 480);
+    }
+  }, [homeScoreQueue]);
 
-  const guestNameStyle = {
-    width: "226px",
-    height: "56px",
-    left: "286px",
-    top: "85px",
-    position: "absolute",
-    textAlign: "center",
-    color: "white",
-    fontSize: "45px",
-    fontFamily: '"D-DIN-Bold"',
-    fontWeight: "700",
-    wordWrap: "break-word",
-  };
+  useEffect(() => {
+    if (guestScoreQueue.length > 1 && !guestScoreAnimating) {
+      const newGuestScore = guestScoreQueue[1]; // Take the first element without removing it
+      setGuestScoreAnimating(true);
+      setGuestScore(newGuestScore)
+      setTimeout(() => {
 
-  const guestScoreStyle = {
-    width: "226px",
-    height: "100px",
-    left: "286px",
-    top: "0px",
-    position: "absolute",
-    textAlign: "center",
-    color: "#FF0000",
-    fontSize: "100px",
-    fontFamily: '"D-DIN-Bold"',
-    fontWeight: "700",
-    wordWrap: "break-word",
-  };
-  const guestTimeoutStyle = {
-    width: "15px",
-    height: "15px",
-    left: "398px",
-    position: 'absolute'
-  };
+        setPrevGuestScore(newGuestScore);
+        setGuestScoreAnimating(false);
+        setGuestScoreQueue(prev => prev.slice(1)); // Remove the first element after animation
+      }, 480);
+    }
+  }, [guestScoreQueue]);
 
-  const guestFoulsStyle = {
-    width: "25px",
-    height: "46px",
-    left: "456px",
-    top: "195px",
-    position: "absolute",
-    textAlign: "center",
-    color: "#EBFF00",
-    fontSize: "50px",
-    fontFamily: '"D-DIN-Bold"',
-    fontWeight: "700",
-    wordWrap: "break-word",
-  };
-
-  const guestPossessionStyle = {
-    clipPath: "polygon(0% 0%, 100% 50%, 0% 100%, 25% 50%)",
-    background: "#ff0000",
-    height: "20px",
-    width: "20px",
-    left: "293px",
-    top: "40px",
-    position: "absolute",
-  };
-
-  const imageStyle = {
-    width: "130px",
-    height: "21px",
-    left: "191px",
-    top: "230px",
-    position: "absolute",
-  };
 
   function formatTimer(timerString, showHomeTimeout, showGuestTimeout) {
     if (!timerString) {
@@ -208,88 +101,79 @@ function Handball({ gameState: incomingGameState }) {
     });
   }
 
-
-  const gameState = incomingGameState || {};
-  const showHomeTimeout = gameState?.Home?.Timeout?.Time !== "0:00";
-  const showGuestTimeout = gameState?.Guest?.Timeout?.Time !== "0:00";
-
   return (
-    <div style={containerStyle}>
-      <div style={homeScoreStyle}>
-        {gameState?.Home?.Points || "0"} {/* team score */}
-      </div>
-      <div style={homeNameStyle}>
-        {gameState?.Home?.TeamName || "HOME"} {/* team name HOME */}
-      </div>
-
-      {gameState?.Home?.Timeout?.Team > 0 && (
-        <>
-          {[...Array(gameState?.Home?.Timeout?.Team || 3)].map((_, i) => {
-            return (
+    <div className="container">
+      <div className="absolute-div home-div">
+        <div className="team-name-div" style={{ left: "0px", top: " 85px" }} >{gameState?.Home?.TeamName || "HOME"}</div>
+        <div className="container-score-home">
+          {homeScoreAnimating && (
+            <>
+              <div className="home-score score-out">{prevHomeScore}</div>
+              <div className="home-score score-in">{homeScore}</div>
+            </>
+          )}
+          {!homeScoreAnimating && (
+            <div className="home-score">{homeScore}</div>
+          )}
+        </div>
+        {gameState?.Home?.Timeout?.Team >= 0 && (
+          <div className="dots-div" style={{ left: '10px', top: '140px' }}>
+            {[...Array(3 - gameState?.Guest?.Timeout?.Team)].map((_, i) => (
               <div
                 key={i}
-                style={{
-                  width: "15px",
-                  height: "15px",
-                  left: `${100 + i * 25}px`,
-                  top: `170px`,
-                  position: "absolute",
-                  background: "#00A13B",
-                  borderRadius: "9999px",
-                }}
+                className="dot-hand"
+                style={{ top: `${46 - i * 23}px`, }}
               />
-            );
-          })}
-        </>
-      )}{/* team HOME time out */}
+            ))}
 
-      <div style={homeFoulsStyle}>
-        {gameState?.Home?.Fouls?.Team} {/* team HOME fouls */}
+          </div>
+        )}
+        <div className="time-div" style={{ left: '25px', top: '211px' }}>{gameState?.Home?.Exclusion.Timer[0] === 0 || ""}</div>
+        <div className="time-div" style={{ left: '25px', top: '175px' }}>{gameState?.Home?.Exclusion.Timer[1] === 0 || ""}</div>
+        <div className="time-div" style={{ left: '25px', top: '139px' }}>{gameState?.Home?.Exclusion.Timer[2] === 0 || ""}</div>
       </div>
-      {gameState?.Home?.Possession && (
-        <div style={homePossessionStyle}></div>
-      )}
+      <div className="container-score-guest">
+        {guestScoreAnimating && (
+          <>
+            <div className="guest-score score-out">{prevGuestScore}</div>
+            <div className="guest-score score-in">{guestScore}</div>
+          </>
+        )}
+        {!guestScoreAnimating && (
+          <div className="guest-score">{guestScore}</div>
+        )}
 
-      <div style={periodStyle}>
-        {gameState?.Period || "0"} {/* period */}
+
       </div>
-      {gameState?.Guest?.Possession && (
-        <div style={guestPossessionStyle}></div>
-      )}
-      <div style={timerStyle}>
-        {formatTimer(
+      <div className="absolute-div guest-div">
+        <div className="team-name-div" style={{ left: "0px", top: " 85px" }} > {gameState?.Guest?.TeamName || "GUEST"}</div>
+        <div className="score-div"> {gameState?.Guest?.Points || "0"}</div>
+        {gameState?.Home?.Timeout?.Team >= 0 && (
+          <div className="dots-div" style={{ left: "202px", top: '140px' }}>
+            {[...Array(3 - gameState?.Guest?.Timeout?.Team)].map((_, i) => (
+              <div
+                key={i}
+                className="dot-hand"
+                style={{ top: `${46 - i * 23}px`, }}
+              />
+            ))}
+
+          </div>
+        )}
+        <div className="time-div" style={{ left: '88px', top: '211px' }}>{gameState?.Guest?.Exclusion.Timer[0] === 0 || ""}</div>
+        <div className="time-div" style={{ left: '88px', top: '175px' }}>{gameState?.Guest?.Exclusion.Timer[1] === 0 || ""}</div>
+        <div className="time-div" style={{ left: '88px', top: '139px' }}>{gameState?.Guest?.Exclusion.Timer[2] === 0 || ""}</div>
+      </div>
+      <div className="countdown-container">
+        <div className="countdown-text">{formatTimer(
           gameState?.Timer?.Value || "00:00",
           showHomeTimeout,
           showGuestTimeout
-        )}
+        )}</div>
+        <div className="round-number">{gameState?.Period || "1"}</div>
       </div>
-      <div style={guestNameStyle}>
-        {gameState?.Guest?.TeamName || "GUEST"} {/* team name GUEST */}
-      </div> <div style={guestScoreStyle}> {gameState?.Guest?.Points || "0"} {/* team score */} </div>
-      {(
-        <>
-
-          {[...Array(gameState?.Guest?.Timeout?.Team || 0)].map((_, i) => (
-            <div
-              key={i}
-              style={{
-                width: "15px",
-                height: "15px",
-                left: `${398 + i * 25}px`,
-                top: `170px`,
-                position: "absolute",
-                background: "#00A13B",
-                borderRadius: "9999px",
-              }}
-            />
-          ))}
-        </>
-      )}{/* team GUEST time out */}
-
-      <div style={guestFoulsStyle}> {gameState?.Guest?.Fouls?.Team} {/* team GUEST fouls */}
-      </div>
-      <img style={imageStyle} src="LOGO_Stramatel.gif" />
-    </div>);
+      <img className="image-handball" src="LOGO_Stramatel.gif" />{" "}
+    </div>
+  );
 };
 export default Handball;
-
