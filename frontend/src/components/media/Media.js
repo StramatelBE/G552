@@ -64,7 +64,7 @@ function Medias(props) {
 
   const sortMedia = (media, criteria) => {
     if (criteria === "name") {
-      console.log("media", media);
+      //console.log("media", media);
       return [...media].sort((a, b) =>
         a.originalFileName.localeCompare(b.originalFileName)
       );

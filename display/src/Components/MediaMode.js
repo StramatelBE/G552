@@ -37,7 +37,7 @@ const MediaMode = ({mediaState, mediaMode, gameState}) => {
     const shouldLoop = mediaState.length === 1 && isVideo;
 
     return (
-        <>  {mediaPath === null ?
+        <>  {mediaPath === "panel" ?
             <ScoringMode gameState={gameState} />
         :
             isVideo ? (
