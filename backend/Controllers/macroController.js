@@ -100,9 +100,8 @@ class MacroController {
                 }
             } else {
                 const media = await this.media.getById(mediaList[0].id);
-                console.log("media", media);
+                // console.log("media", media);
                 if (!media) {
-                console.log("no info")
 
                     medias.push({
                         order: mediaList[0].media_pos_in_event,
