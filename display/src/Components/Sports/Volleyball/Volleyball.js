@@ -99,12 +99,12 @@ function Volleyball({ gameState: incomingGameState }) {
 
 
 
-        <div className="side-numbers" style={{ left: 214 }}>
+        {/* <div className="side-numbers" style={{ left: 214 }}>
           <div className="side-number" style={{ top: 0 }}>{gameState?.Guest?.PointsPerSets[0] === 0 || ""}</div>
           <div className="side-number" style={{ top: 64 }}>{gameState?.Guest?.PointsPerSets[1] === 0 || ""}</div>
           <div className="side-number" style={{ top: 128 }}>{gameState?.Guest?.PointsPerSets[2] === 0 || ""}</div>
           <div className="side-number" style={{ top: 192 }}>{gameState?.Guest?.PointsPerSets[3] === 0 || ""}</div>
-        </div>
+        </div> */}
       </div>
       {/* <div className="green-number">{gameState?.Period || "0"}</div> */}
       <div className="time">{gameState?.Timer?.Value || "00:00"}</div>
