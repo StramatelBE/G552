@@ -63,8 +63,12 @@ const App = () => {
               ? data.medias
               : [data.medias];
             console.log(mediaArray);
-            setGameState(data.gameState);      
-      } else if (data.Mode === 22) {
+                
+      } else if (data.Mode === 21){
+        setMode("prematch");
+        setGameState(data);  
+      }
+      else if (data.Mode === 22) {
         setMode("logo");
       } else if (data.Mode === 23) {
         setMode("sleep")
