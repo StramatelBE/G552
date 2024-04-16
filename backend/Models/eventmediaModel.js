@@ -50,7 +50,7 @@ class EventMedia {
             console.log(err);
             reject(err);
           } else {
-            // console.log("medias", medias);
+            console.log("medias nb", medias.length);
             resolve(medias);
           }
         }
