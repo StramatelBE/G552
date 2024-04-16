@@ -23,7 +23,7 @@ function Basketball({ gameState: incomingGameState }) {
     if (homeScoreQueue.length > 0) {
       const newHomeScore = homeScoreQueue.shift();
       setHomeScoreAnimating(true);
-      setHomeScore(newHomeScore);
+      setHomeScoreQueue(newHomeScore);
       setTimeout(() => {
         setHomeScoreAnimating(false);
         setPrevHomeScore(newHomeScore);
