@@ -55,11 +55,13 @@ const App = () => {
         setGameState(data || {}); // Assuming the data for scoring mode contains a 'gameState' property
       }
         else if (data.Mode === 21) {
+          console.log("mode is prematch:", data)
         setMode("prematch");
         mediaArray = Array.isArray(data.medias)
               ? data.medias
               : [data.medias];
             console.log(mediaArray);
+            setGameState(data.gameState);
       
       } else if (data.Mode === 22) {
         setMode("logo");
