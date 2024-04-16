@@ -6,6 +6,7 @@ const PrematchMode = ({mediaState, mediaMode, gameState}) => {
     const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
 
     useEffect(() => {
+        console.log("ENTERING PREMATCH MODES");
 
         if (!Array.isArray(mediaState) || mediaState.length === 0) {
             console.log("No media available");
