@@ -56,7 +56,7 @@ const App = () => {
         setMode("scoring");
         setGameState(data || {}); // Assuming the data for scoring mode contains a 'gameState' property
       }
-        else if (data.medias?.Mode === 21) {
+        else if (data.Mode === 21) {
           console.log("mode is prematch:", data)
           setMode("prematch");
           console.log("medias:", data.medias)
