@@ -110,6 +110,8 @@ const handleScoring = async (scoring) => {
             scoring.Mode = 21;
             scoring.type = "scoring";
             unixSocketSetup.sendData(scoring);
+            previousMacrosDataMode = scoring.Mode;
+
             await handlePrematchMode(scoring.Mode, scoring);
         }
 
