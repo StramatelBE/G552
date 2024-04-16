@@ -22,32 +22,33 @@ function Basketball({ gameState: incomingGameState }) {
     if (gameState?.Guest?.Points !== prevGuestScore) {
       setGuestScoreQueue(prev => [...prev, gameState?.Guest?.Points]);
     }
-  }, [incomingGameState]);
+  }, [prev, incomingGameState]);
 
-  useEffect(() => {
-    if (homeScoreQueue.length > 0) {
-      const newHomeScore = homeScoreQueue[0]; // Take the first element without removing it
-      setHomeScoreAnimating(true);
-      setTimeout(() => {
-        setHomeScoreAnimating(false);
-        setPrevHomeScore(newHomeScore);
-        setHomeScoreQueue(prev => prev.slice(1)); // Remove the first element after animation
-      }, 480);
-    }
-  }, [homeScoreQueue]);
-  
-  useEffect(() => {
-    if (guestScoreQueue.length > 0) {
-      const newGuestScore = guestScoreQueue[0]; // Take the first element without removing it
-      setGuestScoreAnimating(true);
-      setTimeout(() => {
-        setGuestScoreAnimating(false);
-        setPrevGuestScore(newGuestScore);
-        setGuestScoreQueue(prev => prev.slice(1)); // Remove the first element after animation
-      }, 480);
-    }
-  }, [guestScoreQueue]);
-  
+ useEffect(() => {
+  if (homeScoreQueue.length > 0) {
+    const newHomeScore = homeScoreQueue[0]; // Take the first element without removing it
+    setHomeScoreAnimating(true);
+    setPrevHomeScore(newHomeScore);
+    setTimeout(() => {
+      setHomeScoreAnimating(false);
+      setHomeScoreQueue(prev => prev.slice(1)); // Remove the first element after animation
+
+    }, 480);
+  }
+}, [homeScoreQueue]);
+
+useEffect(() => {
+  if (guestScoreQueue.length > 0) {
+    const newGuestScore = guestScoreQueue[0]; // Take the first element without removing it
+    setGuestScoreAnimating(true);
+    setPrevGuestScore(newGuestScore);
+    setTimeout(() => {
+      setGuestScoreAnimating(false);
+      setGuestScoreQueue(prev => prev.slice(1)); // Remove the first element after animation
+    }, 480);
+  }
+}, [guestScoreQueue]);
+
 
 
 
