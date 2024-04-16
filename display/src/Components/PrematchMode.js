@@ -46,9 +46,7 @@ const PrematchMode = ({ mediaState, gameState }) => {
                 <ScoringMode gameState={gameState} />
             ) : (
                 <>
-                    {mediaPath === null ?
-                        <ScoringMode gameState={gameState} />
-                        :
+                    {
                         isVideo ? (
                             <video
                                 src={"http://localhost:3000" + mediaPath}
