@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import Basketball from "./Sports/Basketball"
-import Handball from "./Sports/Handball"
+import Handball from "./Sports/Handball/Handball"
 import Tennis from "./Sports/Tennis"
 import Volleyball from "./Sports/Volleyball"
 
