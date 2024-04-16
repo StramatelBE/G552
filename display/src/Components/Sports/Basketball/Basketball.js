@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./Basketball.css";
 
 function Basketball({ gameState: incomingGameState }) {
-  const [homeScore, setHomeScore] = useState(0);
-  const [guestScore, setGuestScore] = useState(0);
+  const [homeScoreQueue, setHomeScoreQueue] = useState([]);
+  const [guestScoreQueue, setGuestScoreQueue] = useState([]);
   const [prevHomeScore, setPrevHomeScore] = useState(0);
   const [prevGuestScore, setPrevGuestScore] = useState(0);
 
@@ -12,22 +12,38 @@ function Basketball({ gameState: incomingGameState }) {
 
   useEffect(() => {
     if (gameState?.Home?.Points !== prevHomeScore) {
-      setHomeScoreAnimating(false);
-      setHomeScoreAnimating(true);
-      setTimeout(() => {
-        setHomeScoreAnimating(false);
-        setPrevHomeScore(gameState?.Home?.Points);
-      }, 480); // Durée de l'animation (à ajuster en fonction de votre CSS)
+      setHomeScoreQueue(prev => [...prev, gameState?.Home?.Points]);
     }
     if (gameState?.Guest?.Points !== prevGuestScore) {
-      setHomeScoreAnimating(false);
+      setGuestScoreQueue(prev => [...prev, gameState?.Guest?.Points]);
+    }
+  }, [gameState]);
+
+  useEffect(() => {
+    if (homeScoreQueue.length > 0) {
+      const newHomeScore = homeScoreQueue.shift();
+      setHomeScoreAnimating(true);
+      setHomeScore(newHomeScore);
+      setTimeout(() => {
+        setHomeScoreAnimating(false);
+        setPrevHomeScore(newHomeScore);
+        setHomeScoreQueue(prev => prev.slice(1));
+      }, 480);
+    }
+  }, [homeScoreQueue]);
+
+  useEffect(() => {
+    if (guestScoreQueue.length > 0) {
+      const newGuestScore = guestScoreQueue.shift();
       setGuestScoreAnimating(true);
+      setGuestScore(newGuestScore);
       setTimeout(() => {
         setGuestScoreAnimating(false);
-        setPrevGuestScore(gameState?.Guest?.Points);
-      }, 480); // Durée de l'animation (à ajuster en fonction de votre CSS)
+        setPrevGuestScore(newGuestScore);
+        setGuestScoreQueue(prev => prev.slice(1));
+      }, 480);
     }
-  }, [incomingGameState]);
+  }, [guestScoreQueue]);
 
 
 
