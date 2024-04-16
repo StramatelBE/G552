@@ -14,7 +14,6 @@ require("electron-reload")(__dirname, {
 let mainWindow;
 
 function handleData(data) {
-    console.log(data);
     if (mainWindow && !mainWindow.isDestroyed()) {
         if (data.Mode === 9) {
             mainWindow.webContents.send("server-data", data);

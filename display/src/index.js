@@ -39,7 +39,7 @@ const App = () => {
 
 
 
-  /* useEffect(() => {
+   useEffect(() => {
     document.documentElement.style.setProperty(
       "--maxWidth",
       config.display.width
@@ -163,7 +163,7 @@ const App = () => {
     return () => {
       ipcRenderer.removeAllListeners("server-data");
     };
-  }, []); */
+  }, []); 
 
   return (
     <>
