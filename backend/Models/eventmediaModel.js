@@ -155,8 +155,8 @@ class EventMedia {
   }
   addPanel(eventId, media_pos_in_event) {
     const media_dur_in_event = 10;
-    type = "panel";
-    path = "panel";
+    const type = "panel";
+    const path = "panel";
     console.log(eventId);
     return new Promise((resolve, reject) => {
       db.run(
