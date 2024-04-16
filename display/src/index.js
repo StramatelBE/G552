@@ -58,6 +58,7 @@ const App = () => {
       } else if (data.Mode === 23) {
         setMode("sleep")
       } else {
+        data.mode = "media";
         let mediaArray = [];
         setMediaMode(true);
             mediaArray = Array.isArray(data.medias)
