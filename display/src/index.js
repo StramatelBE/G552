@@ -58,7 +58,7 @@ const App = () => {
         else if (data.Mode === 21) {
           console.log("mode is prematch:", data)
           setMode("prematch");
-          mediaArray = Array.isArray(data.medias)
+          const mediaArray = Array.isArray(data.medias)
               ? data.medias
               : [data.medias];
             console.log(mediaArray);
