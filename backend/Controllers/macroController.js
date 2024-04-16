@@ -91,8 +91,8 @@ if (mediaList.length > 1) {
         }
         medias.push({
             order: mediaInfo.media_pos_in_event,
-            path: media.path,
-            type: media.type,
+            path: "panel",
+            type: "panel",
             duration: mediaInfo.media_dur_in_event
         });
     }
@@ -112,8 +112,8 @@ if (mediaList.length > 1) {
     }
     medias.push({
         order: mediaList[0].media_pos_in_event,
-        path: media.path,
-        type: media.type,
+        path: "panel",
+        type: "panel",
         duration: mediaList[0].media_dur_in_event
     });
 }
