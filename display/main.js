@@ -3,6 +3,7 @@ const path = require("path");
 const config = require("./src/config.js");
 const net = require("net");
 const {saveData, readData} = require("./store");
+const { log } = require("console");
 
 const socketPath = "/tmp/_sysmes.sock";
 

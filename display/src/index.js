@@ -6,13 +6,12 @@ import config from "./config.js";
 import LogoMode from "./Components/LogoMode";
 import "./main.css"
 import Basketball from "./Components/Sports/Basketball/Basketball.js";
-import Handball from "./Components/Sports/Handball.js";
+import Handball from "./Components/Sports/Handball/Handball.js";
 import Volleyball from "./Components/Sports/Volleyball/Volleyball.js";
 import Tennis from "./Components/Sports/Tennis/Tennis.js";
 import TestPage from "./Components/TestPage.js";
 import modeService from "./service/modeService.js";
-
-/* const { ipcRenderer } = window.require("electron"); */
+const { ipcRenderer } = window.require("electron"); 
 
 const root = document.getElementById("root");
 const appRoot = ReactDOM.createRoot(root);
@@ -39,7 +38,7 @@ const App = () => {
 
 
 
-  /* useEffect(() => {
+   useEffect(() => {
     document.documentElement.style.setProperty(
       "--maxWidth",
       config.display.width
@@ -163,11 +162,10 @@ const App = () => {
     return () => {
       ipcRenderer.removeAllListeners("server-data");
     };
-  }, []); */
+  }, []); 
 
   return (
     <>
-      {mode}
       {test === "test" ? (
         <TestPage />
       ) : (

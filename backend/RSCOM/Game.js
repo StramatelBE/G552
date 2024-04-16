@@ -141,6 +141,7 @@ class Game {
         break;
       case 0x36:
         toInsert = Frames._0x36.build(_message);
+        console.log("gamejs toinsert:", toInsert);
         break;
       case 0x37:
         toInsert = Frames._0x37.build(_message);
@@ -194,10 +195,12 @@ class Game {
         console.log("Unknown Frame: " + _message[1]);
         break;
     }
+
     if (toInsert != null){
       this.updateState(toInsert);
+      this.Send();
     }
-       this.Send();
+       
   };
 
   static getState() {

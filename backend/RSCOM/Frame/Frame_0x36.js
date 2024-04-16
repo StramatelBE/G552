@@ -1,7 +1,7 @@
 const nBytesToNumber = require('../Utils/nBytesToNumber');
 const Tools = require('../Utils/Frame_Tools/Frame_Tools_index');
 const nBytesToTables = require("../Utils/nBytesToTables");
-const { eSport } = require("../Utils/Enums/eSport");
+const eSport = require("../Utils/Enums/eSport");
 
 /*
     * 0x36 : Volleyball

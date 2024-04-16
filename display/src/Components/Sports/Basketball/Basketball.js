@@ -2,39 +2,59 @@ import React, { useEffect, useState } from "react";
 import "./Basketball.css";
 
 function Basketball({ gameState: incomingGameState }) {
-  const [homeScore, setHomeScore] = useState(0);
-  const [guestScore, setGuestScore] = useState(0);
-  const [prevHomeScore, setPrevHomeScore] = useState(0);
-  const [prevGuestScore, setPrevGuestScore] = useState(0);
+  const [homeScore, setHomeScore] = useState(incomingGameState?.Home?.Points || 0);
+  const [guestScore, setGuestScore] = useState(incomingGameState?.Guest?.Points || 0);
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setHomeScore((prevScore) => prevScore + 1);
-      setGuestScore((prevScore) => prevScore + 1);
-    }, 1000);
-
-    return () => clearInterval(intervalId);
-  }, []);
+  const [homeScoreQueue, setHomeScoreQueue] = useState([]);
+  const [guestScoreQueue, setGuestScoreQueue] = useState([]);
+  const [prevHomeScore, setPrevHomeScore] = useState(incomingGameState?.Home?.Points || 0);
+  const [prevGuestScore, setPrevGuestScore] = useState(incomingGameState?.Guest?.Points || 0);
 
   const [homeScoreAnimating, setHomeScoreAnimating] = useState(false);
   const [guestScoreAnimating, setGuestScoreAnimating] = useState(false);
 
+  const gameState = incomingGameState || {};
+  const showHomeTimeout = gameState?.Home?.Timeout?.Time !== "0:00";
+  const showGuestTimeout = gameState?.Guest?.Timeout?.Time !== "0:00";
+
+
   useEffect(() => {
-    if (homeScore !== prevHomeScore) {
-      setHomeScoreAnimating(true);
-      setTimeout(() => {
-        setHomeScoreAnimating(false);
-        setPrevHomeScore(homeScore);
-      }, 480); // Durée de l'animation (à ajuster en fonction de votre CSS)
+    if (gameState?.Home?.Points !== homeScoreQueue[homeScoreQueue.length - 1] && homeScoreQueue) {
+      setHomeScoreQueue(prev => [...prev, gameState?.Home?.Points]);
     }
-    if (guestScore !== prevGuestScore) {
-      setGuestScoreAnimating(true);
-      setTimeout(() => {
-        setGuestScoreAnimating(false);
-        setPrevGuestScore(guestScore);
-      }, 480); // Durée de l'animation (à ajuster en fonction de votre CSS)
+    if (gameState?.Guest?.Points !== guestScoreQueue[guestScoreQueue.length - 1] && guestScoreQueue) {
+      setGuestScoreQueue(prev => [...prev, gameState?.Guest?.Points]);
     }
-  }, [homeScore, guestScore, prevHomeScore, prevGuestScore]);
+  }, [incomingGameState]);
+
+ useEffect(() => {
+  if (homeScoreQueue.length > 1 && !homeScoreAnimating) {
+    const newHomeScore = homeScoreQueue[1]; // Take the first element without removing it
+    setHomeScoreAnimating(true);
+    setHomeScore(newHomeScore)
+    setTimeout(() => {
+      setPrevHomeScore(newHomeScore);
+      setHomeScoreAnimating(false);
+      
+      setHomeScoreQueue(prev => prev.slice(1)); // Remove the first element after animation
+    }, 480);
+  }
+}, [homeScoreQueue]);
+
+useEffect(() => {
+  if (guestScoreQueue.length > 1 && !guestScoreAnimating) {
+    const newGuestScore = guestScoreQueue[1]; // Take the first element without removing it
+    setGuestScoreAnimating(true);
+    setGuestScore(newGuestScore)
+    setTimeout(() => {
+      
+      setPrevGuestScore(newGuestScore);
+      setGuestScoreAnimating(false);
+      setGuestScoreQueue(prev => prev.slice(1)); // Remove the first element after animation
+    }, 480);
+  }
+}, [guestScoreQueue]);
+
 
 
 
@@ -84,9 +104,6 @@ function Basketball({ gameState: incomingGameState }) {
     });
   }
 
-  const gameState = incomingGameState || {};
-  const showHomeTimeout = gameState?.Home?.Timeout?.Time !== "0:00";
-  const showGuestTimeout = gameState?.Guest?.Timeout?.Time !== "0:00";
 
   return (
     <div className="container">
