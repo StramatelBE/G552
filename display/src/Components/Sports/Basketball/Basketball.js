@@ -36,7 +36,7 @@ function Basketball({ gameState: incomingGameState }) {
     if (guestScoreQueue.length > 0) {
       const newGuestScore = guestScoreQueue.shift();
       setGuestScoreAnimating(true);
-      setGuestScore(newGuestScore);
+      setGuestScoreQueue(newGuestScore);
       setTimeout(() => {
         setGuestScoreAnimating(false);
         setPrevGuestScore(newGuestScore);
