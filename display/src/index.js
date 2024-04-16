@@ -58,11 +58,13 @@ const App = () => {
         else if (data.Mode === 21) {
           console.log("mode is prematch:", data)
           setMode("prematch");
+          console.log("medias:", data.medias)
           const mediaArray = Array.isArray(data.medias)
               ? data.medias
               : [data.medias];
             console.log(mediaArray);
             setGameState(data.gameState);
+          console.log("gameState:", data.gameState)
       
       } else if (data.Mode === 22) {
         setMode("logo");
