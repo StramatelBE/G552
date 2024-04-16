@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './Mode.css';
 import ScoringMode from './ScoringMode';
 
-const PrematchMode = ({mediaState, mediaMode, gameState}) => {
+const PrematchMode = ({mediaState, mediaMode, gameState, setSwitchToScore}) => {
     const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
 
     useEffect(() => {
@@ -39,7 +39,7 @@ const PrematchMode = ({mediaState, mediaMode, gameState}) => {
 
     return (
         <>  {mediaPath === "panel" ?
-            <ScoringMode gameState={gameState} />
+            setSwitchToScore == true
         :
             isVideo ? (
          
