@@ -79,7 +79,7 @@ if (mediaList.length > 1) {
     for (let mediaInfo of mediaList) {
         const media = await this.media.getById(mediaInfo.id);
         // Handle case where media type and path are null
-        if (!media.type && !media.path) {
+        if (!media?.type && !media?.path) {
             media.type = "panel";
             media.path = "panel";
         }
@@ -93,7 +93,7 @@ if (mediaList.length > 1) {
 } else {
     const media = await this.media.getById(mediaList[0].id);
     // Handle case where media type and path are null
-    if (!media.type && !media.path) {
+    if (!media?.type && !media?.path) {
         media.type = "panel";
         media.path = "panel";
     }
