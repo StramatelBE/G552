@@ -70,14 +70,10 @@ const handleScoring = async (scoring) => {
         
             if (mode === 21) {
                 macrosData = await macro.getMacrosByButton(15);
-                // console.log(gameState);/
-                let prematchData = {
-                    mode: mode,
-                    medias: macrosData[0].medias,
-                    gameState: gameState 
-                }
-               console.log("prematch");
-               unixSocketSetup.sendPrematchData(prematchData);
+                unixSocketSetup.sendMedia(macrosData[0]);
+                scoring.Mode = 21;
+                unixSocketSetup.sendData(scoring)                
+               
             } else {
                 macrosData = await macro.getMacrosByButton(mode);
             }
