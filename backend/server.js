@@ -14,8 +14,13 @@ const User = require('./Models/userModel');
 require("dotenv").config();
 
 app.use(cors());
-app.use(bodyParser.json({limit:'50mb'}));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser())
+app.use(bodyParser.json({limit:'800mb'}));
+app.use(bodyParser.urlencoded({
+    parameterLimit: 100000,
+    limit: '50mb',
+    extended: true
+  }));
 
 app.listen(config.portAPI, () => {
     console.log(`API Server started on ${config.ip}:${config.portAPI}`);
