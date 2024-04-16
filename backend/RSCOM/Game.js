@@ -151,6 +151,8 @@ class Game {
         break;
       case 0x39:
         toInsert = Frames._0x39.build(_message);
+        console.log("gamejs toinsert:", toInsert);
+
         break;
       case 0x62:
         if (
@@ -196,11 +198,11 @@ class Game {
         break;
     }
 
-    if (toInsert != null){
+    if (toInsert != null) {
       this.updateState(toInsert);
       this.Send();
     }
-       
+
   };
 
   static getState() {
@@ -209,7 +211,7 @@ class Game {
 
   static updateState(toInsert) {
     // Define the path for the JSON storage file
-    const storagePath = './storage.json'; 
+    const storagePath = './storage.json';
 
     // Function to read the current storage state
     const readStorage = () => {
@@ -262,7 +264,7 @@ class Game {
 
     recursiveUpdate(this.State, toInsert);
   }
-    
+
 
   static Send() {
     // console.log("Send method was called");

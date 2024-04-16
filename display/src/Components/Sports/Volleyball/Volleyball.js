@@ -3,14 +3,14 @@ import "./Volleyball.css";
 
 function Volleyball({ gameState: incomingGameState }) {
 
-  const [homeScore, setHomeScore] = useState(incomingGameState?.Home?.Points || 0);
-  const [guestScore, setGuestScore] = useState(incomingGameState?.Guest?.Points || 0);
+  const [homeScore, setHomeScore] = useState(incomingGameState?.Home?.TotalPoints || 0);
+  const [guestScore, setGuestScore] = useState(incomingGameState?.Guest?.TotalPoints || 0);
 
   const [homeScoreQueue, setHomeScoreQueue] = useState([]);
   const [guestScoreQueue, setGuestScoreQueue] = useState([]);
 
-  const [prevHomeScore, setPrevHomeScore] = useState(incomingGameState?.Home?.Points || 0);
-  const [prevGuestScore, setPrevGuestScore] = useState(incomingGameState?.Guest?.Points || 0);
+  const [prevHomeScore, setPrevHomeScore] = useState(incomingGameState?.Home?.TotalPoints || 0);
+  const [prevGuestScore, setPrevGuestScore] = useState(incomingGameState?.Guest?.TotalPoints || 0);
 
   const [homeScoreAnimating, setHomeScoreAnimating] = useState(false);
   const [guestScoreAnimating, setGuestScoreAnimating] = useState(false);
@@ -21,11 +21,12 @@ function Volleyball({ gameState: incomingGameState }) {
 
 
   useEffect(() => {
-    if (gameState?.Home?.Points !== homeScoreQueue[homeScoreQueue.length - 1] && homeScoreQueue) {
-      setHomeScoreQueue(prev => [...prev, gameState?.Home?.Points]);
+    console.log("gameState", gameState);
+    if (gameState?.Home?.TotalPoints !== homeScoreQueue[homeScoreQueue.length - 1] && homeScoreQueue) {
+      setHomeScoreQueue(prev => [...prev, gameState?.Home?.TotalPoints]);
     }
-    if (gameState?.Guest?.Points !== guestScoreQueue[guestScoreQueue.length - 1] && guestScoreQueue) {
-      setGuestScoreQueue(prev => [...prev, gameState?.Guest?.Points]);
+    if (gameState?.Guest?.TotalPoints !== guestScoreQueue[guestScoreQueue.length - 1] && guestScoreQueue) {
+      setGuestScoreQueue(prev => [...prev, gameState?.Guest?.TotalPoints]);
     }
   }, [incomingGameState]);
 
@@ -61,38 +62,40 @@ function Volleyball({ gameState: incomingGameState }) {
     <div className="container">
       <div className="home-container">
         <div className="home-text">{gameState?.Home?.TeamName || "HOME"}</div>
+        <div className="container-score-home">
+          {homeScoreAnimating && (
+            <>
+              <div className="home-number score-out">{prevHomeScore}</div>
+              <div className="home-number score-in">{homeScore}</div>
+            </>
+          )}
+          {!homeScoreAnimating && (
+            <div className="home-number" >{homeScore}</div>
+          )}
+        </div>
 
-        {guestScoreAnimating && (
-          <>
-            <div className="home-number score-out">{prevGuestScore}</div>
-            <div className="home-number score-in">{guestScore}</div>
-          </>
-        )}
-        {!guestScoreAnimating && (
-          <div className="home-number">{guestScore}</div>
-        )}
 
 
-
-        <div className="side-numbers">
+        {/*  <div className="side-numbers">
           <div className="side-number" style={{ top: 0 }}>{gameState?.Home?.PointsPerSets[0] === 0 || ""}</div>
           <div className="side-number" style={{ top: 64 }}>{gameState?.Home?.PointsPerSets[1] === 0 || ""}</div>
           <div className="side-number" style={{ top: 128 }}>{gameState?.Home?.PointsPerSets[2] === 0 || ""}</div>
           <div className="side-number" style={{ top: 192 }}>{gameState?.Home?.PointsPerSets[3] === 0 || ""}</div>
-        </div>
+        </div> */}
       </div>
       <div className="guest-container">
         <div className="guest-text">{gameState?.Guest?.TeamName || "GUEST"}</div>
-
-        {guestScoreAnimating && (
-          <>
-            <div className="guest-number score-out">{prevGuestScore}</div>
-            <div className="guest-number score-in">{guestScore}</div>
-          </>
-        )}
-        {!guestScoreAnimating && (
-          <div className="guest-number">{guestScore}</div>
-        )}
+        <div className="container-score-guest-volleyball">
+          {guestScoreAnimating && (
+            <>
+              <div className="guest-number score-out">{prevGuestScore}</div>
+              <div className="guest-number score-in">{guestScore}</div>
+            </>
+          )}
+          {!guestScoreAnimating && (
+            <div className="guest-number">{guestScore}</div>
+          )}
+        </div>
 
 
 
@@ -103,7 +106,7 @@ function Volleyball({ gameState: incomingGameState }) {
           <div className="side-number" style={{ top: 192 }}>{gameState?.Guest?.PointsPerSets[3] === 0 || ""}</div>
         </div>
       </div>
-      <div className="green-number">{gameState?.Period || "0"}</div>
+      {/* <div className="green-number">{gameState?.Period || "0"}</div> */}
       <div className="time">{gameState?.Timer?.Value || "00:00"}</div>
       <img className="image" src="LOGO_Stramatel.gif" />
     </div>
