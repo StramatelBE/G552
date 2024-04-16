@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import ScoringMode from "./Components/ScoringMode"; 
 import MediaMode from "./Components/MediaMode";
+import PrematchMode from "./Components/PrematchMode.js";
 import config from "./config.js";
 import LogoMode from "./Components/LogoMode";
 import "./main.css"
@@ -53,6 +54,16 @@ const App = () => {
       if (data.Mode === 9) {
         setMode("scoring");
         setGameState(data || {}); // Assuming the data for scoring mode contains a 'gameState' property
+      }
+        else if (data.Mode === 21) {
+          console.log("mode is prematch:", data)
+          setMode("prematch");
+          const mediaArray = Array.isArray(data.medias)
+              ? data.medias
+              : [data.medias];
+            console.log(mediaArray);
+            setGameState(data.gameState);
+      
       } else if (data.Mode === 22) {
         setMode("logo");
       } else if (data.Mode === 23) {
@@ -60,6 +71,10 @@ const App = () => {
       } else {
         let mediaArray = [];
         setMediaMode(true);
+            mediaArray = Array.isArray(data.medias)
+              ? data.medias
+              : [data.medias];
+            console.log(mediaArray);
         setMode("media");
         // if data.medias is not an array, wrap it in one
         switch (data.Mode) {
@@ -171,7 +186,8 @@ const App = () => {
       ) : (
         <>
           {mode === "scoring" && <ScoringMode gameState={gameState} />}
-          {mode === "media" && <MediaMode mediaState={mediaState} mediaMode={mediaMode} />}
+          {mode === "media" && <MediaMode mediaState={mediaState} mediaMode={mediaMode}/>}
+          {mode === "prematch" && <PrematchMode mediaState={mediaState} mediaMode={mediaMode} gameState={gameState}/> }
           {mode === "logo" && <LogoMode />}
           {mode === "sleep" && <></>}
           {mode === "" && <div>Waiting for data...</div>}
@@ -184,6 +200,5 @@ const App = () => {
       {/* <Tennis /> */}
     </>
   );
-
 };
 appRoot.render(<App />);

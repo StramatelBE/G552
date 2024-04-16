@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './Mode.css';
+import ScoringMode from './ScoringMode';
 
 const MediaMode = ({mediaState, mediaMode}) => {
     const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
@@ -36,8 +37,10 @@ const MediaMode = ({mediaState, mediaMode}) => {
     const shouldLoop = mediaState.length === 1 && isVideo;
 
     return (
-        <>
-            {isVideo ? (
+        <>  {mediaPath === null ?
+            <ScoringMode gameState={gameState} />
+        :
+            isVideo ? (
          
                     <video
                         src={"http://localhost:3000" + mediaPath}

@@ -55,6 +55,7 @@ function Handball({ gameState: incomingGameState }) {
     }
   }, [guestScoreQueue]);
 
+
   function formatTimer(timerString, showHomeTimeout, showGuestTimeout) {
     if (!timerString) {
       return [];
@@ -99,6 +100,7 @@ function Handball({ gameState: incomingGameState }) {
       );
     });
   }
+
   return (
     <div className="container">
       <div className="absolute-div home-div">

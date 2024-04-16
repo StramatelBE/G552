@@ -60,8 +60,8 @@ function Macro() {
     await macroService.update(macro);
   }
 
-  const MacrosIdsNotUse = [0, 1, 2, 9, 10, 11, 12, 13, 14];
-  const ignoreMacrosIds = [15];
+  const MacrosIdsNotUse = [9];
+  const ignoreMacrosIds = [10, 11, 12, 13, 14];
   return (
     <Grid item>
       <Paper className="mainPaperPage">

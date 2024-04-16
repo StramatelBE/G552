@@ -21,7 +21,7 @@ class MediaController {
         file.filename = fileName;
       },
     });
-    this.upload = multer({ storage: this.storage });
+    this.upload = multer({ storage: this.storage, limits: { fileSize: 1000 * 1024 * 1024 } });
     this.media = new Media();
     this.create = this.create.bind(this);
     this.update = this.update.bind(this);
