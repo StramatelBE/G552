@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './Mode.css';
 import ScoringMode from './ScoringMode';
 
-const MediaMode = ({mediaState, mediaMode}) => {
+const PrematchMode = ({mediaState, mediaMode, gameState}) => {
     const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
 
     useEffect(() => {
