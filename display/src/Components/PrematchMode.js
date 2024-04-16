@@ -64,4 +64,4 @@ const PrematchMode = ({mediaState, mediaMode, gameState}) => {
     );
 };
 
-export default MediaMode;
+export default PrematchMode;
