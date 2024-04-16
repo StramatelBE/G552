@@ -10,6 +10,11 @@ function Basketball({ gameState: incomingGameState }) {
   const [homeScoreAnimating, setHomeScoreAnimating] = useState(false);
   const [guestScoreAnimating, setGuestScoreAnimating] = useState(false);
 
+  const gameState = incomingGameState || {};
+  const showHomeTimeout = gameState?.Home?.Timeout?.Time !== "0:00";
+  const showGuestTimeout = gameState?.Guest?.Timeout?.Time !== "0:00";
+
+
   useEffect(() => {
     if (gameState?.Home?.Points !== prevHomeScore) {
       setHomeScoreQueue(prev => [...prev, gameState?.Home?.Points]);
@@ -93,9 +98,6 @@ function Basketball({ gameState: incomingGameState }) {
     });
   }
 
-  const gameState = incomingGameState || {};
-  const showHomeTimeout = gameState?.Home?.Timeout?.Time !== "0:00";
-  const showGuestTimeout = gameState?.Guest?.Timeout?.Time !== "0:00";
 
   return (
     <div className="container">
