@@ -73,7 +73,7 @@ const App = () => {
         setMode("logo");
       } else if (data.Mode === 23) {
         setMode("sleep")
-      } else {
+      } else if (data.mode === "media") {
         let mediaArray = [];
         setMediaMode(true);
             mediaArray = Array.isArray(data.medias)
