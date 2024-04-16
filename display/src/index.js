@@ -11,8 +11,7 @@ import Volleyball from "./Components/Sports/Volleyball/Volleyball.js";
 import Tennis from "./Components/Sports/Tennis/Tennis.js";
 import TestPage from "./Components/TestPage.js";
 import modeService from "./service/modeService.js";
-
-/* const { ipcRenderer } = window.require("electron"); */
+const { ipcRenderer } = window.require("electron"); 
 
 const root = document.getElementById("root");
 const appRoot = ReactDOM.createRoot(root);
