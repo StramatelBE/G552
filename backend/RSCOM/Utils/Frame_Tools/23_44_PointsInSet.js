@@ -13,11 +13,11 @@ function pointsInSet(startIndex, size, team, message) {
     let pointsBySet = new Array(size);
     let indexOffset = team === "L" ? 0 : 3; // Adjust index based on team (L or V)
 
-    for (let i = 0; i < size; i++) {
-        // Calculate the current index to read from, adjusting for the set number
-        let currentIndex = startIndex + indexOffset + (i * 5);
-        pointsBySet[i] = nBytesToNumber(message[currentIndex], message[currentIndex + 1]);
-    }
+    pointsBySet[0] = nBytesToNumber(message[startIndex + indexOffset], message[startIndex + indexOffset + 1]);
+    pointsBySet[1] = nBytesToNumber(message[startIndex + indexOffset + 4], message[startIndex + indexOffset + 5]);
+    pointsBySet[2] = nBytesToNumber(message[startIndex + indexOffset + 13], message[startIndex + indexOffset + 14]);
+    pointsBySet[3] = nBytesToNumber(message[startIndex + indexOffset + 16], message[startIndex + indexOffset + 17]);
+
 
     return pointsBySet;
 }
