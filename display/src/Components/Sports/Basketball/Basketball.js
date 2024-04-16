@@ -22,7 +22,7 @@ function Basketball({ gameState: incomingGameState }) {
     if (gameState?.Guest?.Points !== prevGuestScore) {
       setGuestScoreQueue(prev => [...prev, gameState?.Guest?.Points]);
     }
-  }, [incomingGameState]);
+  }, [prev, incomingGameState]);
 
   useEffect(() => {
     if (homeScoreQueue.length > 0) {
