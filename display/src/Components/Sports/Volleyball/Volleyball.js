@@ -33,6 +33,40 @@ function Volleyball({ gameState: incomingGameState }) {
     return homeSetsWon + guestSetsWon + 1 > 4 ? 4 : homeSetsWon + guestSetsWon + 1;
   }
 
+  function formatTimer(timerString) {
+    if (!timerString) {
+      return [];
+    }
+
+    timerString = timerString.toString();
+    const characters = timerString.slice(0, 5).split("");
+
+    while (characters.length < 5) {
+      characters.push("");
+    }
+    // Ajoute un espace insécable avant le timer de timeout s'il commence par "0:"
+    if (characters[0] === "0" && characters[1] === ":") {
+      characters.unshift("\u00A0");
+    }
+
+    return characters.map((char, index) => {
+      return (
+        <span
+          key={index}
+          style={{
+            fontFamily: "D-DIN-Bold",
+            display: "inline-block",
+            width: "45px",
+            textAlign: "center",
+            ...(index === 2 && { paddingBottom: "5px" })
+          }}
+        >
+          {char}
+        </span>
+      );
+    });
+  }
+
   useEffect(() => {
     setCurrentSet(calculateCurrentSet(gameState?.Home?.SetsWon, gameState?.Guest?.SetsWon));
   }, [incomingGameState]);
@@ -169,7 +203,9 @@ function getFontSize(name) {
         <div className={`home-fouls ${homeBlinkClass}`}>
           {gameState?.Home?.SetsWon} {/* team HOME fouls */}
         </div>
-      <div className="time">{gameState?.Timer?.Value || "00:00"}</div>
+      <div className="time">{formatTimer(
+            gameState?.Timer?.Value || "00:00",
+          )}</div>
       <div className={`guest-fouls ${guestBlinkClass}`}>
           {gameState?.Guest?.SetsWon} {/* team HOME fouls */}
         </div>
