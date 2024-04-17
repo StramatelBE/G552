@@ -123,9 +123,9 @@ function Basketball({ gameState: incomingGameState }) {
         <div className="home-name">
           {gameState?.Home?.TeamName || "HOME"} {/* team name HOME */}
         </div>
-        {gameState?.Home?.Timeout?.Team >= 0 && (
+        {gameState?.Home?.Timeout?.Count >= 0 && (
           <>
-            {[...Array(3 - gameState?.Home?.Timeout?.Team)].map((_, i) => (
+            {[...Array(3 - gameState?.Home?.Timeout?.Count)].map((_, i) => (
               <div
                 key={i}
                 className="home-timeout"
@@ -176,9 +176,9 @@ function Basketball({ gameState: incomingGameState }) {
 
 
         </div>
-        {gameState?.Guest?.Timeout?.Team >= 0 && (
+        {gameState?.Guest?.Timeout?.Count >= 0 && (
           <>
-            {[...Array(3 - gameState?.Guest?.Timeout?.Team)].map((_, i) => (
+            {[...Array(3 - gameState?.Guest?.Timeout?.Count)].map((_, i) => (
               <div
                 key={i}
                 className="guest-timeout"
