@@ -3,15 +3,15 @@ const nBytesToNumber = require('../Utils/nBytesToNumber');
 const eSport = require('../Utils/Enums/eSport');
 
 /*
-    * 0x94 : Futsall
+    * 0x94 : RINK HOCKEY
  */
 
 class Frame_0x94 {
     static build(_message) {
         return {
             Mode: nBytesToNumber(_message[2]),
-            insertType: 'DirectConsoleData',
-            Sport: eSport.Handball, //Futsall
+            insertType: 'RINK',
+            Sport: eSport.Handball, //RINK HOCKEY
 
             Period: nBytesToNumber(_message[14]),
 

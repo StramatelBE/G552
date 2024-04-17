@@ -21,6 +21,8 @@ function Handball({ gameState: incomingGameState }) {
   const showHomeTimeout = gameState?.Home?.Timeout?.Time !== "0:00";
   const showGuestTimeout = gameState?.Guest?.Timeout?.Time !== "0:00";
 
+  const isRink = gameState?.insertType === "RINK";
+
   useEffect(() => {
     if (gameState?.Home?.Points !== homeScoreQueue[homeScoreQueue.length - 1] && homeScoreQueue) {
       setHomeScoreQueue(prev => [...prev, gameState?.Home?.Points]);
@@ -175,6 +177,13 @@ function Handball({ gameState: incomingGameState }) {
 
           </div>
         )}
+        {// If the game is a rink, display the team fouls
+        isRink && (
+          <div className="home-fouls" >
+            {gameState?.Home?.Fouls?.Team || "0"}
+          </div>
+        )
+      }
         <div className="time-div" style={{ left: '25px', top: '211px' }}>{formatExclusionTimer(gameState?.Home?.Exclusion?.Timer[0]) || ""}</div>
         <div className="time-div" style={{ left: '25px', top: '175px' }}>{formatExclusionTimer(gameState?.Home?.Exclusion?.Timer[1]) || ""}</div>
         <div className="time-div" style={{ left: '25px', top: '139px' }}>{formatExclusionTimer(gameState?.Home?.Exclusion?.Timer[2]) || ""}</div>
@@ -210,6 +219,14 @@ function Handball({ gameState: incomingGameState }) {
 
           </div>
         )}
+        {// If the game is a rink, display the team fouls
+        isRink && (
+          <div className="guest-fouls">
+            {gameState?.Guest?.Fouls?.Team || "0"}
+          </div>
+        )
+
+        }
         <div className="time-div" style={{ left: '88px', top: '211px' }}>{formatExclusionTimer(gameState?.Guest?.Exclusion.Timer[0]) || ""}</div>
         <div className="time-div" style={{ left: '88px', top: '175px' }}>{formatExclusionTimer(gameState?.Guest?.Exclusion.Timer[1]) || ""}</div>
         <div className="time-div" style={{ left: '88px', top: '139px' }}>{formatExclusionTimer(gameState?.Guest?.Exclusion.Timer[2]) || ""}</div>
