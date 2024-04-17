@@ -70,11 +70,11 @@ function Handball({ gameState: incomingGameState }) {
     if (name.length <= 6) {
       return '45px'; // Taille normale
     } else if (name.length === 7) {
-      return '35px'; // Un peu plus petit
+      return '40px'; // Un peu plus petit
     } else if (name.length === 8) {
-      return '25px'; // Un peu plus petit
+      return '35px'; // Un peu plus petit
     } else if (name.length === 9) {
-      return '20px'; // Un peu plus petit
+      return '30px'; // Un peu plus petit
     } 
   }
 
