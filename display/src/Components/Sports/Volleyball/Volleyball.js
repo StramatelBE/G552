@@ -99,7 +99,7 @@ function getFontSize(name) {
 
   return (
     <div className="container">
-      <div className="home-container">
+      <div className="home">
         <div className="home-text" style={{fontSize: homeFontSize }}>{gameState?.Home?.TeamName || "HOME"}</div>
         <div className="container-score-home">
           {homeScoreAnimating && (
