@@ -141,11 +141,11 @@ class Game {
         break;
       case 0x35:
         toInsert = Frames._0x35.build(_message);
-        console.log("gamejs toinsert:", toInsert);
+        // console.log("gamejs toinsert:", toInsert);
         break;
       case 0x36:
         toInsert = Frames._0x36.build(_message);
-        console.log("gamejs toinsert:", toInsert);
+        // console.log("gamejs toinsert:", toInsert);
         break;
       case 0x37:
         toInsert = Frames._0x37.build(_message);
@@ -184,7 +184,7 @@ class Game {
         break;
       case 0x94:
         toInsert = Frames._0x94.build(_message);
-        console.log("gamejs toinsert:", toInsert);
+        // console.log("gamejs toinsert:", toInsert);
         break;
       case 0xa9:
         toInsert = Frames._0xA9.build(_message);
