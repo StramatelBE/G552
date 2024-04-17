@@ -73,8 +73,8 @@ function Handball({ gameState: incomingGameState }) {
       return '40px'; // Un peu plus petit
     } else if (name.length === 8) {
       return '35px'; // Encore un peu plus petit
-    } else if (name.length === 9) {
-      return '30px'; // Toujours un peu plus petit
+    } else if (name.length <= 9) {
+      return '35px'; // Toujours un peu plus petit
     } 
   }
 
