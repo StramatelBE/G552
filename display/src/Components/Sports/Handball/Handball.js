@@ -61,6 +61,26 @@ function Handball({ gameState: incomingGameState }) {
       return [];
     }
 
+    function formatExclusionTimer(timer) {
+      // Convertit le nombre en chaîne de caractères
+      const timerStr = timer.toString();
+      
+      // Assurez-vous que la chaîne est de longueur 3
+      if (timerStr.length === 3) {
+        // Extrait chaque chiffre
+        const firstDigit = timerStr[0];
+        const secondDigit = timerStr[1];
+        const thirdDigit = timerStr[2];
+        
+        // Formatte et renvoie la nouvelle chaîne
+        return `${firstDigit}:${secondDigit}${thirdDigit}`;
+      } else {
+        // Gérer les cas où le nombre n'est pas à trois chiffres
+        return 0; // Vous pourriez ajuster cette réponse selon les besoins de l'application
+      }
+    }
+    
+
     timerString = timerString.toString();
     const characters = timerString.slice(0, 5).split("");
 
@@ -128,9 +148,9 @@ function Handball({ gameState: incomingGameState }) {
 
           </div>
         )}
-        <div className="time-div" style={{ left: '25px', top: '211px' }}>{gameState?.Home?.Exclusion?.Timer[0] || ""}</div>
-        <div className="time-div" style={{ left: '25px', top: '175px' }}>{gameState?.Home?.Exclusion?.Timer[1] || ""}</div>
-        <div className="time-div" style={{ left: '25px', top: '139px' }}>{gameState?.Home?.Exclusion?.Timer[2] || ""}</div>
+        <div className="time-div" style={{ left: '25px', top: '211px' }}>{formatExclusionTimer(gameState?.Home?.Exclusion?.Timer[0]) || ""}</div>
+        <div className="time-div" style={{ left: '25px', top: '175px' }}>{formatExclusionTimer(gameState?.Home?.Exclusion?.Timer[1]) || ""}</div>
+        <div className="time-div" style={{ left: '25px', top: '139px' }}>{formatExclusionTimer(gameState?.Home?.Exclusion?.Timer[2]) || ""}</div>
       </div>
       <div className="container-score-guest">
         {guestScoreAnimating && (
@@ -160,9 +180,9 @@ function Handball({ gameState: incomingGameState }) {
 
           </div>
         )}
-        <div className="time-div" style={{ left: '88px', top: '211px' }}>{gameState?.Guest?.Exclusion.Timer[0] === 0 || ""}</div>
-        <div className="time-div" style={{ left: '88px', top: '175px' }}>{gameState?.Guest?.Exclusion.Timer[1] === 0 || ""}</div>
-        <div className="time-div" style={{ left: '88px', top: '139px' }}>{gameState?.Guest?.Exclusion.Timer[2] === 0 || ""}</div>
+        <div className="time-div" style={{ left: '88px', top: '211px' }}>{formatExclusionTimer(gameState?.Guest?.Exclusion.Timer[0]) || ""}</div>
+        <div className="time-div" style={{ left: '88px', top: '175px' }}>{formatExclusionTimer(gameState?.Guest?.Exclusion.Timer[1]) || ""}</div>
+        <div className="time-div" style={{ left: '88px', top: '139px' }}>{formatExclusionTimer(gameState?.Guest?.Exclusion.Timer[2]) || ""}</div>
       </div>
       <div className="countdown-container">
         <div className="countdown-text">{formatTimer(
