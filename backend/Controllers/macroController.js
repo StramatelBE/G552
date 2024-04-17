@@ -97,7 +97,7 @@ class MacroController {
                         path: media.path,
                         type: media.type,
                         duration: mediaList[0].media_dur_in_event
-                }
+                })
 
                
             }
