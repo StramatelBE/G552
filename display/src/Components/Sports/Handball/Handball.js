@@ -59,12 +59,10 @@ function Handball({ gameState: incomingGameState }) {
     if (name.length <= 7) {
       return '45px'; // Taille normale
     } else if (name.length <= 8) {
-      return '40px'; // Un peu plus petit
-    } else if (name.length <= 9) {
       return '35px'; // Un peu plus petit
-    } else if (name.length <= 10) {
-      return '30px'; // Un peu plus petit
-    }
+    } else if (name.length <= 9) {
+      return '25px'; // Un peu plus petit
+    } 
   }
 
   function formatExclusionTimer(timer) {
@@ -184,7 +182,7 @@ function Handball({ gameState: incomingGameState }) {
 
       </div>
       <div className="absolute-div guest-div">
-        <div className="team-name-div" style={{ left: "0px", top: " 85px", fontSize: getFontSize(gameState?.Guest?.TeamName) }} > {gameState?.Guest?.TeamName || "GUEST"}</div>
+        <div className="team-name-div" style={{ left: "0px", top: " 90px", fontSize: getFontSize(gameState?.Guest?.TeamName) }} > {gameState?.Guest?.TeamName || "GUEST"}</div>
         <div className="score-div"> {gameState?.Guest?.Points || "0"}</div>
         {gameState?.Home?.Timeout?.Counts >= 0 && (
           <div className="dots-div" style={{ left: "202px", top: '140px' }}>
