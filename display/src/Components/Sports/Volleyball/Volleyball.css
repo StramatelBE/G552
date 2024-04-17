@@ -52,10 +52,10 @@
 }
 
 .home-text {
-  width: 168px;
-  height: 64px;
-  left: 76px;
-  top: 96px;
+  width: 226px;
+  height: 100px;
+  left: 0px;
+  top: 90px;
   position: absolute;
   text-align: center;
   color: white;
@@ -66,15 +66,15 @@
 }
 
 .home-number {
-  width: 160px;
-  height: 96px;
-  left: 76px;
-  top: 0;
+  width: 226px;
+  height: 100px;
+  left: 0px;
+  top: 0px;
   position: absolute;
   text-align: center;
   color: #ff0000;
   font-size: 100px;
-  font-family: "D-DIN-Bold", sans-serif;
+  font-family: "D-DIN-Bold";
   font-weight: 700;
   word-wrap: break-word;
 }
@@ -109,10 +109,10 @@
 }
 
 .guest-text {
-  width: 167px;
-  height: 64px;
-  left: 47px;
-  top: 96px;
+  width: 226px;
+  height: 56px;
+  left: 286px;
+  top: 90px;
   position: absolute;
   text-align: center;
   color: white;
@@ -123,15 +123,15 @@
 }
 
 .guest-number {
-  width: 160px;
-  height: 96px;
-  left: 54px;
-  top: 0;
+  width: 226px;
+  height: 100px;
+  left: 0px;
+  top: 0px;
   position: absolute;
   text-align: center;
   color: #ff0000;
   font-size: 100px;
-  font-family: "D-DIN-Bold", sans-serif;
+  font-family: "D-DIN-Bold";
   font-weight: 700;
   word-wrap: break-word;
 }
