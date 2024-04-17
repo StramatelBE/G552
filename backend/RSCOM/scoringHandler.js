@@ -59,7 +59,7 @@ const handleScoring = async (scoring) => {
                 unixSocketSetup.sendMedia(macrosData[0]);
             } else {
                 console.log("No event for this macro, sending Mode", scoring.Mode);
-                scoring.Mode = scoreMode;
+                scoring.Mode = scoreMode[0];
                 unixSocketSetup.sendData(scoring);
             }
         };
@@ -100,6 +100,7 @@ const handleScoring = async (scoring) => {
         //console.log("Mode:", scoring.Mode);
 
         if (scoreMode.includes(scoring.Mode)){
+            console.log("score mode");
             unixSocketSetup.sendData(scoring);
             previousMacrosDataMode = scoring.Mode;
         } else if (stopModes.includes(scoring.Mode)) {
