@@ -7,6 +7,8 @@ function Tennis({ gameState: incomingGameState }) {
   const [homeFontSize, setHomeFontSize] = React.useState('45px');
   const [guestFontSize, setGuestFontSize] = React.useState('45px');
 
+  const [currentSet, setCurrentSet] = React.useState(1);
+
   // Handle special scoring when points reach 17
   if (gameState?.Home?.Points === 99 && gameState?.Guest?.Points === 98) {
     gameState.Home.Points = "A";
@@ -22,6 +24,13 @@ function Tennis({ gameState: incomingGameState }) {
     setGuestFontSize(getFontSize(gameState?.Guest?.TeamName));
 }, [incomingGameState]);
 
+function calculateCurrentSet(homeSetsWon, guestSetsWon) {
+  return homeSetsWon + guestSetsWon + 1 > 3 ? 3 : homeSetsWon + guestSetsWon + 1;
+}
+useEffect(() => {
+  setCurrentSet(calculateCurrentSet(gameState?.Home?.SetsWon, gameState?.Guest?.SetsWon));
+}, [incomingGameState]);
+
 function getFontSize(name) {
   //remove start and end spaces but not in the middle
   name = name.replace(/^\s+|\s+$/g, '');
@@ -34,13 +43,9 @@ function getFontSize(name) {
     return '26px'; // Toujours un peu plus petit
   } 
 
-  function calculateCurrentSet(homeSetsWon, guestSetsWon) {
-    return homeSetsWon + guestSetsWon + 1 > 3 ? 3 : homeSetsWon + guestSetsWon + 1;
-  }
+  
 
-  useEffect(() => {
-    setCurrentSet(calculateCurrentSet(gameState?.Home?.SetsWon, gameState?.Guest?.SetsWon));
-  }, [incomingGameState]);
+  
 
 }
   
@@ -81,7 +86,7 @@ function getFontSize(name) {
         <div className="set" style={{ left: "146px" }}>S2</div>
         <div className="set" style={{ left: "213px" }}>S3</div>
         <div className="points point">PTS</div>
-        <div className="points point">S{calculateCurrentSet(gameState?.Home?.Points, gameState?.Guest?.Points)}</div>
+        <div className="points point">S{currentSet}</div>
         <img className="image-handball" src="LOGO_Stramatel.gif" />{" "}
       </div>
       <div className="timer">{gameState?.Timer?.Value}</div>
