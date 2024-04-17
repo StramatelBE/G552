@@ -67,11 +67,11 @@ function Handball({ gameState: incomingGameState }) {
     //remove end spaces but not in the middle
     name = name.replace(/\s+$/, '');
     console.log(name);
-    if (i <= 7) {
+    if (name.length <= 7) {
       return '45px'; // Taille normale
-    } else if (i === 8) {
+    } else if (name.length === 8) {
       return '35px'; // Un peu plus petit
-    } else if (i === 9) {
+    } else if (name.length === 9) {
       return '25px'; // Un peu plus petit
     } 
   }
