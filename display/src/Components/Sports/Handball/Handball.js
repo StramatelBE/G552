@@ -116,9 +116,9 @@ function Handball({ gameState: incomingGameState }) {
             <div className="home-score">{homeScore}</div>
           )}
         </div>
-        {gameState?.Home?.Timeout?.Team >= 0 && (
+        {gameState?.Home?.Timeout?.Counts >= 0 && (
           <div className="dots-div" style={{ left: '10px', top: '140px' }}>
-            {[...Array(3 - gameState?.Guest?.Timeout?.Team)].map((_, i) => (
+            {[...Array(gameState?.Guest?.Timeout?.Counts)].map((_, i) => (
               <div
                 key={i}
                 className="dot-hand"
@@ -128,9 +128,9 @@ function Handball({ gameState: incomingGameState }) {
 
           </div>
         )}
-        <div className="time-div" style={{ left: '25px', top: '211px' }}>{gameState?.Home?.Exclusion.Timer[0] === 0 || ""}</div>
-        <div className="time-div" style={{ left: '25px', top: '175px' }}>{gameState?.Home?.Exclusion.Timer[1] === 0 || ""}</div>
-        <div className="time-div" style={{ left: '25px', top: '139px' }}>{gameState?.Home?.Exclusion.Timer[2] === 0 || ""}</div>
+        <div className="time-div" style={{ left: '25px', top: '211px' }}>{gameState?.Home?.Exclusion?.Timer[0] || ""}</div>
+        <div className="time-div" style={{ left: '25px', top: '175px' }}>{gameState?.Home?.Exclusion?.Timer[1] || ""}</div>
+        <div className="time-div" style={{ left: '25px', top: '139px' }}>{gameState?.Home?.Exclusion?.Timer[2] || ""}</div>
       </div>
       <div className="container-score-guest">
         {guestScoreAnimating && (
@@ -148,9 +148,9 @@ function Handball({ gameState: incomingGameState }) {
       <div className="absolute-div guest-div">
         <div className="team-name-div" style={{ left: "0px", top: " 85px" }} > {gameState?.Guest?.TeamName || "GUEST"}</div>
         <div className="score-div"> {gameState?.Guest?.Points || "0"}</div>
-        {gameState?.Home?.Timeout?.Team >= 0 && (
+        {gameState?.Home?.Timeout?.Counts >= 0 && (
           <div className="dots-div" style={{ left: "202px", top: '140px' }}>
-            {[...Array(3 - gameState?.Guest?.Timeout?.Team)].map((_, i) => (
+            {[...Array(gameState?.Guest?.Timeout?.Counts)].map((_, i) => (
               <div
                 key={i}
                 className="dot-hand"
