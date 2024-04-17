@@ -5,6 +5,9 @@ function Basketball({ gameState: incomingGameState }) {
   const [homeScore, setHomeScore] = useState(incomingGameState?.Home?.Points || 0);
   const [guestScore, setGuestScore] = useState(incomingGameState?.Guest?.Points || 0);
 
+  const [homeFontSize, setHomeFontSize] = useState('45px');
+  const [guestFontSize, setGuestFontSize] = useState('45px');
+
   const [homeScoreQueue, setHomeScoreQueue] = useState([]);
   const [guestScoreQueue, setGuestScoreQueue] = useState([]);
 
@@ -55,6 +58,25 @@ function Basketball({ gameState: incomingGameState }) {
       }, 480);
     }
   }, [guestScoreQueue]);
+
+  useEffect(() => {
+    setHomeFontSize(getFontSize(gameState?.Home?.TeamName));
+    setGuestFontSize(getFontSize(gameState?.Guest?.TeamName));
+}, [incomingGameState]);
+
+function getFontSize(name) {
+  //remove start and end spaces but not in the middle
+  name = name.replace(/^\s+|\s+$/g, '');
+
+  console.log(name);
+  if (name.length <= 7) {
+    return '45px'; // Taille normale
+  } 
+ else if (name.length <= 9) {
+    return '40px'; // Toujours un peu plus petit
+  } 
+}
+
 
 
 
@@ -120,7 +142,7 @@ function Basketball({ gameState: incomingGameState }) {
             <div className="home-score">{homeScore}</div>
           )}
         </div>
-        <div className="home-name">
+        <div className="home-name" style={{fontSize: homeFontSize }}>
           {gameState?.Home?.TeamName || "HOME"} {/* team name HOME */}
         </div>
         {gameState?.Home?.Timeout?.Count >= 0 && (
@@ -166,7 +188,7 @@ function Basketball({ gameState: incomingGameState }) {
       </div>
 
       <div className="guest">
-        <div className="guest-name">
+        <div className="guest-name" style={{fontSize: guestFontSize }}>
           {gameState?.Guest?.TeamName || "GUEST"} {/* team name GUEST */}
         </div>{" "}
 
