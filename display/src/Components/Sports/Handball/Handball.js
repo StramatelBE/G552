@@ -56,9 +56,11 @@ function Handball({ gameState: incomingGameState }) {
   }, [guestScoreQueue]);
 
   function formatExclusionTimer(timer) {
+    if (timer === 0) {
+      return 0;
+    }
     // Convertit le nombre en chaîne de caractères
     const timerStr = timer.toString();
-    
     // Assurez-vous que la chaîne est de longueur 3
     if (timerStr.length === 3) {
       // Extrait chaque chiffre
@@ -71,9 +73,8 @@ function Handball({ gameState: incomingGameState }) {
     }  else if (timerStr.length === 2) {
       return `0:${timerStr}`;
 
-    }else {
-      // Gérer les cas où le nombre n'est pas à trois chiffres
-      return 0; // Vous pourriez ajuster cette réponse selon les besoins de l'application
+    }else if (timerStr.length === 1) {
+      return `0:0${timerStr}`;
     }
   }
   
