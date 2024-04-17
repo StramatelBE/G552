@@ -3,7 +3,7 @@ const nBytesToNumber = require('../Utils/nBytesToNumber');
 const eSport = require('../Utils/Enums/eSport');
 
 /*
-    * 0x94 : Rink Hockey en mode faute équipe
+    * 0x94 : Futsall
  */
 
 class Frame_0x94 {
@@ -11,7 +11,7 @@ class Frame_0x94 {
         const GSI = {
             Mode: nBytesToNumber(_message[2]),
             insertType: 'DirectConsoleData',
-            Sport: eSport.Handball, //Hockey
+            Sport: eSport.Handball, //Futsall
 
             Period: nBytesToNumber(_message[14]),
 

@@ -184,6 +184,7 @@ class Game {
         break;
       case 0x94:
         toInsert = Frames._0x94.build(_message);
+        console.log("gamejs toinsert:", toInsert);
         break;
       case 0xa9:
         toInsert = Frames._0xA9.build(_message);
