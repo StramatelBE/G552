@@ -203,6 +203,7 @@ class Game {
     }
 
     if (toInsert != null) {
+      console.log("toInsert: ", toInsert);
       this.updateState(toInsert);
       
     }
