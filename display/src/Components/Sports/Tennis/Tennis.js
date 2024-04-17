@@ -20,7 +20,7 @@ function Tennis({ gameState: incomingGameState }) {
   return (
     <div className="scoreboard">
       <div className="player player-bottom">
-        <div className="set-score" style={{ left: "150px" }}>{gameState?.Home?.GameInSet}</div>
+        <div className="set-score" style={{ left: "180px" }}>{gameState?.Home?.GameInSet}</div>
         <div className="set-score point" style={{ left: "230px" }}>{gameState?.Home?.Points}</div>
         <div className="set-score" style={{ left: "318px" }}>{gameState?.Home?.PointsInSet[0]}</div>
         <div className="set-score" style={{ left: "385px" }}>{gameState?.Home?.PointsInSet[1]}</div>
@@ -29,7 +29,7 @@ function Tennis({ gameState: incomingGameState }) {
         <div className="player-name">{gameState?.Home?.TeamName}</div>
       </div>
       <div className="player player-top">
-        <div className="set-score" style={{ left: "150px" }}>{gameState?.Guest?.GameInSet}</div>
+        <div className="set-score" style={{ left: "180px" }}>{gameState?.Guest?.GameInSet}</div>
         <div className="set-score point" style={{ left: "230px" }}>{gameState?.Guest?.Points}</div>
         <div className="set-score" style={{ left: "318px" }}>{gameState?.Guest?.PointsInSet[0]}</div>
         <div className="set-score" style={{ left: "385px" }}>{gameState?.Guest?.PointsInSet[1]}</div>
@@ -42,7 +42,7 @@ function Tennis({ gameState: incomingGameState }) {
         <div className="set " style={{ left: "109px" }}>SET 1</div>
         <div className="set" style={{ left: "176px" }}>SET 2</div>
         <div className="set" style={{ left: "243px" }}>SET 3</div>
-        <div className="points point">POINTS</div>
+        <div className="points point" style={{ left: "243px" }}>POINTS</div>
       </div>
       <div className="timer">{gameState?.Timer?.Value}</div>
     </div>
