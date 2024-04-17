@@ -51,7 +51,7 @@ const App = () => {
     console.log("App mounted");
     ipcRenderer.on("server-data", (event, data) => {
       console.log('!Received gameState', data, event);
-      if (data.Mode === 9) {
+      if (data.Mode === 0) {
         setMode("scoring");
         setGameState(data || {}); // Assuming the data for scoring mode contains a 'gameState' property
       }

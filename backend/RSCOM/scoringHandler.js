@@ -22,9 +22,9 @@ const handleScoring = async (scoring) => {
     try {
         const macro = new MacroController();
 
-        const scoreMode = [9];
+        const scoreMode = [0];
         const immediateModes = [16, 17, 18, 19, 20];
-        const macroModes = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+        const macroModes = [1, 2, 3, 4, 5, 6, 7, 8, 9];
         const prematchMode = [21];
         const stopModes = [22, 23];
 
