@@ -40,6 +40,10 @@ function getFontSize(name) {
   const homeServiceDotColor = gameState?.Home?.Service === 1 ? "darkred" : "#006f3c";
   const guestServiceDotColor = gameState?.Guest?.Service === 1 ? "darkred" : "#006f3c";
 
+  // Conditionally apply blinking class
+  const homeBlinkClass = gameState?.Home?.Winner ? "blinking" : "";
+  const guestBlinkClass = gameState?.Guest?.Winner ? "blinking" : "";
+
   return (
     <div className="scoreboard">
       <div className="player player-bottom">
@@ -49,7 +53,7 @@ function getFontSize(name) {
         <div className="set-score" style={{ left: "385px" }}>{gameState?.Home?.PointsInSet[1]}</div>
         <div className="set-score" style={{ left: "452px" }}>{gameState?.Home?.PointsInSet[2]}</div>
         <div className="dot" style={{ backgroundColor: homeServiceDotColor }}></div>
-        <div className="player-name" style={{ fontSize: homeFontSize}} >{gameState?.Home?.TeamName}</div>
+        <div className={`player-name ${homeBlinkClass}`} style={{ fontSize: homeFontSize}} >{gameState?.Home?.TeamName}</div>
       </div>
       <div className="player player-top">
         <div className="set-score" style={{ left: "178px" }}>{gameState?.Guest?.GameInSet}</div>
@@ -58,7 +62,7 @@ function getFontSize(name) {
         <div className="set-score" style={{ left: "385px" }}>{gameState?.Guest?.PointsInSet[1]}</div>
         <div className="set-score" style={{ left: "452px" }}>{gameState?.Guest?.PointsInSet[2]}</div>
         <div className="dot" style={{ backgroundColor: guestServiceDotColor }}></div>
-        <div className="player-name" style={{ fontSize: guestFontSize}} >{gameState?.Guest?.TeamName}</div>
+        <div className={`player-name ${guestBlinkClass}`} style={{ fontSize: guestFontSize}} >{gameState?.Guest?.TeamName}</div>
       </div>
 
       <div className="sets">
