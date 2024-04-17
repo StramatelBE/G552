@@ -15,9 +15,10 @@ let mainWindow;
 
 function handleData(data) {
     if (mainWindow && !mainWindow.isDestroyed()) {
-        if (data.Mode === 9) {
+        if (data.Mode === 0) {
+            console.log('scoring data', data);
             mainWindow.webContents.send("server-data", data);
-        } else if (data.Mode === 0) {
+        } else if (data.Mode === 9) {
             mainWindow.webContents.send("server-data", data);
         } else if (data.Mode === 1) {
             mainWindow.webContents.send("server-data", data);
