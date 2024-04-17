@@ -33,6 +33,15 @@ function getFontSize(name) {
  else if (name.length <= 9) {
     return '26px'; // Toujours un peu plus petit
   } 
+
+  function calculateCurrentSet(homeSetsWon, guestSetsWon) {
+    return homeSetsWon + guestSetsWon + 1 > 3 ? 3 : homeSetsWon + guestSetsWon + 1;
+  }
+
+  useEffect(() => {
+    setCurrentSet(calculateCurrentSet(gameState?.Home?.SetsWon, gameState?.Guest?.SetsWon));
+  }, [incomingGameState]);
+
 }
   
 
@@ -43,6 +52,8 @@ function getFontSize(name) {
   // Conditionally apply blinking class
   const homeBlinkClass = gameState?.Home?.Winner ? "blinking" : "";
   const guestBlinkClass = gameState?.Guest?.Winner ? "blinking" : "";
+
+
 
   return (
     <div className="scoreboard">
@@ -66,10 +77,12 @@ function getFontSize(name) {
       </div>
 
       <div className="sets">
-        <div className="set " style={{ left: "79px" }}>SET 1</div>
-        <div className="set" style={{ left: "146px" }}>SET 2</div>
-        <div className="set" style={{ left: "213px" }}>SET 3</div>
-        <div className="points point">POINTS</div>
+        <div className="set " style={{ left: "79px" }}>S1</div>
+        <div className="set" style={{ left: "146px" }}>S2</div>
+        <div className="set" style={{ left: "213px" }}>S3</div>
+        <div className="points point">PTS</div>
+        <div className="points point">S{calculateCurrentSet(gameState?.Home?.Points, gameState?.Guest?.Points)}</div>
+        <img className="image-handball" src="LOGO_Stramatel.gif" />{" "}
       </div>
       <div className="timer">{gameState?.Timer?.Value}</div>
     </div>
