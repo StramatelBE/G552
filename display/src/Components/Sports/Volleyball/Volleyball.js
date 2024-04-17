@@ -83,16 +83,11 @@ function getFontSize(name) {
   name = name.replace(/^\s+|\s+$/g, '');
 
   console.log(name);
-  if (name.length <= 6) {
+  if (name.length <= 7) {
     return '45px'; // Taille normale
-  } else if (name.length == 7) {
-    return '35px'; // Un peu plus petit
-  }
-  else if (name.length == 8) {
-    return '30px'; // Encore un peu plus petit
-  }
- else if (name.length == 9) {
-    return '25px'; // Toujours un peu plus petit
+  } 
+ else if (name.length <= 9) {
+    return '40px'; // Toujours un peu plus petit
   } 
 }
 
