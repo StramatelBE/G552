@@ -202,7 +202,7 @@ class Game {
     }
 
     if (toInsert != null) {
-      // console.log("toInsert: ", toInsert);
+      console.log("toInsert: ", toInsert);
       // console.log("Home Exclusion Timer: ", toInsert?.Home?.Exclusion?.Timer);
       // console.log("Guest Exclusion Timer: ", toInsert?.Guest?.Exclusion?.Timer);
       this.updateState(toInsert);
