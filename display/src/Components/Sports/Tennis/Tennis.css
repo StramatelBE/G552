@@ -122,5 +122,5 @@
 }
 
 .blinking {
-  animation: blink 1s linear infinite;
+  animation: blink 50ms linear infinite;
 }
