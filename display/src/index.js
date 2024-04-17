@@ -25,12 +25,12 @@ const App = () => {
   const [test, setTest] = useState(false);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      modeService.getMode().then((data) => {
+    // const intervalId = setInterval(() => {
+    //   modeService.getMode().then((data) => {
 
-        setTest(data.mode);
-      });
-    }, 10000); // 10000 ms = 10 seconds
+    //     setTest(data.mode);
+    //   });
+    // }, 10000); // 10000 ms = 10 seconds
 
     // Clear the interval when the component is unmounted
     return () => clearInterval(intervalId);
