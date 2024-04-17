@@ -74,6 +74,15 @@
   top: 40px;
   position: absolute;
 }
+.home-timeout {
+  width: 15px;
+  height: 15px;
+  left: 100px;
+  top: 139px;
+  position: absolute;
+  background: #00a13b;
+  border-radius: 9999px;
+}
 
 .home-number {
   width: 226px;
@@ -130,6 +139,15 @@
   left: 223px;
   top: 0;
   position: absolute;
+}
+
+.guest-timeout {
+  width: 15px;
+  height: 15px;
+  left: 398px;
+  position: absolute;
+  background: #00a13b;
+  border-radius: 9999px;
 }
 
 .guest-text {

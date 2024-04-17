@@ -27,7 +27,7 @@ function Volleyball({ gameState: incomingGameState }) {
 
 
   function calculateCurrentSet(homeSetsWon, guestSetsWon) {
-    return homeSetsWon + guestSetsWon + 1 > 3 ? 3 : homeSetsWon + guestSetsWon + 1;
+    return homeSetsWon + guestSetsWon + 1 > 5 ? 5 : homeSetsWon + guestSetsWon + 1;
   }
 
   useEffect(() => {
@@ -145,12 +145,24 @@ function getFontSize(name) {
           <div className="side-number" style={{ top: 192 }}>{gameState?.Guest?.PointsBySet[3] === 0 || ""}</div>
         </div>
       </div>
+
       {gameState?.Home?.Service && (
           <div className="home-possession"></div>
         )}
       <div className="green-number">{currentSet || "0"}</div>
       {gameState?.Guest?.Service && (
           <div className="guest-possession"></div>
+        )}
+         {gameState?.Home?.Timeout?.Count >= 0 && (
+          <>
+            {[...Array(gameState?.Home?.Timeout?.Count)].map((_, i) => (
+              <div
+                key={i}
+                className="home-timeout"
+                style={{ top: `${139 + i * 20}px` }}
+              />
+            ))}
+          </>
         )}
 
         <div className="home-fouls">
@@ -160,6 +172,18 @@ function getFontSize(name) {
       <div className="guest-fouls">
           {gameState?.Guest?.SetsWon} {/* team HOME fouls */}
         </div>
+
+        {gameState?.Guest?.Timeout?.Count >= 0 && (
+          <>
+            {[...Array(gameState?.Guest?.Timeout?.Count)].map((_, i) => (
+              <div
+                key={i}
+                className="guest-timeout"
+                style={{ top: `${139 + i * 20}px` }}
+              />
+            ))}
+          </>
+        )}
       <img className="image" src="LOGO_Stramatel.gif" />
     </div>
   )
