@@ -243,5 +243,5 @@
 }
 
 .blinking {
-  animation: blink 800ms ease-in-out infinite;
+  animation: blink 800ms linear infinite;
 }
