@@ -145,11 +145,11 @@ function getFontSize(name) {
           <div className="side-number" style={{ top: 192 }}>{gameState?.Guest?.PointsBySet[3] === 0 || ""}</div>
         </div>
       </div>
-      {gameState?.Home?.Possession && (
+      {gameState?.Home?.Service && (
           <div className="home-possession"></div>
         )}
       <div className="green-number">{currentSet || "0"}</div>
-      {gameState?.Guest?.Possession && (
+      {gameState?.Guest?.Service && (
           <div className="guest-possession"></div>
         )}
       <div className="time">{gameState?.Timer?.Value || "00:00"}</div>
