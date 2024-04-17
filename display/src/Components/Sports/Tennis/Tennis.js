@@ -83,7 +83,7 @@ function getFontSize(name) {
 
       <div className="sets">
       <img className="setimage" style={{ left: "-216px" }} src="LOGO_Stramatel_wbg.gif" />
-      <div className="set" style={{ left: "-56px" }}>S{currentSet}</div>
+      <div className="set" style={{ left: "-56px" }}>{currentSet}</div>
       <div className="set">PTS</div>
         <div className="set " style={{ left: "81px" }}>S1</div>
         <div className="set" style={{ left: "148px" }}>S2</div>
