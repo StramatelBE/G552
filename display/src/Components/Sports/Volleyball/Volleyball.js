@@ -42,7 +42,7 @@ function Volleyball({ gameState: incomingGameState }) {
     console.log("gameState", gameState);
     if (gameState?.Home?.TotalPoints !== homeScoreQueue[homeScoreQueue.length - 1] && homeScoreQueue) {
       setHomeScoreQueue(prev => [...prev, gameState?.Home?.TotalPoints]);
-    }
+    } 
     if (gameState?.Guest?.TotalPoints !== guestScoreQueue[guestScoreQueue.length - 1] && guestScoreQueue) {
       setGuestScoreQueue(prev => [...prev, gameState?.Guest?.TotalPoints]);
     }
