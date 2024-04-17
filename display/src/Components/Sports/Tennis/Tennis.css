@@ -129,8 +129,8 @@
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  49%, 51% { opacity: 0; }
+  0% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 .blinking {
