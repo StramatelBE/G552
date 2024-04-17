@@ -238,10 +238,10 @@
 
 @keyframes blink {
   0% { opacity: 1; }
-  50% { opacity: 0; }
+  50% { opacity: 0.5; }
   100% { opacity: 0; }
 }
 
-.blinking {
+.blink {
   animation: blink 800ms linear infinite;
 }

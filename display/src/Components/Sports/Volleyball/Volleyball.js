@@ -81,8 +81,8 @@ function Volleyball({ gameState: incomingGameState }) {
     setGuestFontSize(getFontSize(gameState?.Guest?.TeamName));
 }, [incomingGameState]);
 
-  const homeBlinkClass = gameState?.Home?.Winner ? "blinking" : "";
-  const guestBlinkClass = gameState?.Guest?.Winner ? "blinking" : "";
+  const homeBlinkClass = gameState?.Home?.Winner ? "blink" : "";
+  const guestBlinkClass = gameState?.Guest?.Winner ? "blink" : "";
 
 function getFontSize(name) {
   //remove start and end spaces but not in the middle
