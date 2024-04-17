@@ -55,6 +55,12 @@ function Handball({ gameState: incomingGameState }) {
     }
   }, [guestScoreQueue]);
 
+  useEffect(() => {
+      const homeFontSize = getFontSize(gameState?.Home?.TeamName);
+      const guestFontSize = getFontSize(gameState?.Guest?.TeamName);
+
+  }, [gameState?.Home?.TeamName, gameState?.Guest?.TeamName]);
+
   function getFontSize(name) {
     if (name.length <= 7) {
       return '45px'; // Taille normale
@@ -140,7 +146,7 @@ function Handball({ gameState: incomingGameState }) {
   return (
     <div className="container">
       <div className="absolute-div home-div">
-        <div className="team-name-div" style={{ left: "0px", top: "90px", fontSize: getFontSize(gameState?.Home?.TeamName) }} >{gameState?.Home?.TeamName || "HOME"}</div>
+        <div className="team-name-div" style={{ left: "0px", top: "90px", fontSize: homeFontSize }} >{gameState?.Home?.TeamName || "HOME"}</div>
         <div className="container-score-home">
           {homeScoreAnimating && (
             <>
@@ -182,7 +188,7 @@ function Handball({ gameState: incomingGameState }) {
 
       </div>
       <div className="absolute-div guest-div">
-        <div className="team-name-div" style={{ left: "0px", top: " 90px", fontSize: getFontSize(gameState?.Guest?.TeamName) }} > {gameState?.Guest?.TeamName || "GUEST"}</div>
+        <div className="team-name-div" style={{ left: "0px", top: " 90px", fontSize: guestFontSize }} > {gameState?.Guest?.TeamName || "GUEST"}</div>
         <div className="score-div"> {gameState?.Guest?.Points || "0"}</div>
         {gameState?.Home?.Timeout?.Counts >= 0 && (
           <div className="dots-div" style={{ left: "202px", top: '140px' }}>
