@@ -134,16 +134,13 @@ function Basketball({ gameState: incomingGameState }) {
             ))}
           </>
         )}
-        {showHomeTimeout === "0:00" ?
+    
             
         <div className="home-fouls">
           {gameState?.Home?.Fouls?.Team} {/* team HOME fouls */}
         </div>
-        :
-        <div className="home-fouls">
-          {showHomeTimeout}
-          </div>
-        }
+        
+
 
         
             
@@ -161,7 +158,9 @@ function Basketball({ gameState: incomingGameState }) {
         )}
         <div className="timer-Basketball ">
           {formatTimer(
-            gameState?.Timer?.Value || "00:00"
+            gameState?.Timer?.Value || "00:00",
+            showHomeTimeout,
+            showGuestTimeout
           )}
         </div>
       </div>
