@@ -156,17 +156,16 @@
 }
 
 .green-number {
-  width: 26px;
-  height: 96px;
-  left: 244px;
-  top: 0;
-  position: absolute;
-  text-align: center;
-  color: #00a13b;
-  font-size: 60px;
-  font-family: "D-DIN-Bold", sans-serif;
-  font-weight: 700;
-  word-wrap: break-word;
+    width: 26px;
+    height: 64px;
+    left: 243px;
+    top: 18px;
+    position: absolute;
+    color: #00a13b;
+    font-size: 60px;
+    font-family: "D-DIN-Bold";
+    font-weight: 700;
+    word-wrap: break-word;
 }
 
 .time {
