@@ -81,7 +81,7 @@ function renderFoulCount(foulCount) {
   return foulCount === 8 ? (
     <div className="foul-square" style={{ width: '45px', height: '45px', backgroundColor: 'red' }} />
   ) : (
-    <div className="foul-number">{foulCount}</div>
+    <div className="foul-number" style={{ fontFamily: "D-DIN-Bold"}}>{foulCount}</div>
   );
 }
 
