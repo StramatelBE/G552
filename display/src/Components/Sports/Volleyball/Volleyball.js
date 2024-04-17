@@ -124,7 +124,7 @@ function getFontSize(name) {
       </div>
       <div className="guest">
         <div className="guest-text" style={{fontSize: guestFontSize }}>{gameState?.Guest?.TeamName || "GUEST"}</div>
-        <div className="container-score-guest-volleyball">
+        <div className="container-score-guest">
           {guestScoreAnimating && (
             <>
               <div className="guest-number score-out">{prevGuestScore}</div>
