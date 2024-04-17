@@ -65,6 +65,16 @@
   word-wrap: break-word;
 }
 
+.home-possession {
+  clip-path: polygon(100% 0%, 82.4% 49.5%, 100% 100%, 0% 50%);
+  background: #ff0000;
+  height: 20px;
+  width: 20px;
+  left: 203px;
+  top: 40px;
+  position: absolute;
+}
+
 .home-number {
   width: 226px;
   height: 100px;
@@ -120,6 +130,15 @@
   font-family: "LiberationMono-Bold";
   font-weight: 700;
   word-wrap: break-word;
+}
+.guest-possession {
+  clip-path: polygon(0% 0%, 100% 50%, 0% 100%, 25% 50%);
+  background: #ff0000;
+  height: 20px;
+  width: 20px;
+  left: 293px;
+  top: 40px;
+  position: absolute;
 }
 
 .guest-number {
