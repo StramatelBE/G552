@@ -79,43 +79,24 @@ class MacroController {
                 for (let mediaInfo of mediaList) {
                     const media = await this.media.getById(mediaInfo.id);
 
-                    if (!media) {
-                        console.log("no info")
-                        medias.push({
-                            order: mediaInfo.media_pos_in_event,
-                            path: 'panel',
-                            type: 'panel',
-                            duration: mediaInfo.media_dur_in_event
-                        });
-                    } else {
                         medias.push({
                             order: mediaInfo.media_pos_in_event,
                             path: media.path,
                             type: media.type,
                             duration: mediaInfo.media_dur_in_event
                         });
-                    }
 
                    
                 }
             } else {
                 const media = await this.media.getById(mediaList[0].id);
                 // console.log("media", media);
-                if (!media) {
-
-                    medias.push({
-                        order: mediaList[0].media_pos_in_event,
-                        path: "panel",
-                        type: "panel",
-                        duration: mediaList[0].media_dur_in_event
-                    });
-                } else {
+                
                     medias.push({
                         order: mediaList[0].media_pos_in_event,
                         path: media.path,
                         type: media.type,
                         duration: mediaList[0].media_dur_in_event
-                    });
                 }
 
                
