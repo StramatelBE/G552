@@ -64,10 +64,8 @@ function Handball({ gameState: incomingGameState }) {
   }, [incomingGameState]);
 
   function getFontSize(name) {
-    let i = 0;
-    while(name[i]){
-      i++;
-    }
+    //remove end spaces but not in the middle
+    name = name.replace(/\s+$/, '');
     console.log(name);
     if (i <= 7) {
       return '45px'; // Taille normale
