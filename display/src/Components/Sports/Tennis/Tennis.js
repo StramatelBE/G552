@@ -8,10 +8,10 @@ function Tennis({ gameState: incomingGameState }) {
   const [guestFontSize, setGuestFontSize] = React.useState('45px');
 
   // Handle special scoring when points reach 17
-  if (gameState?.Home?.Points === 17) {
+  if (gameState?.Home?.Points === 99 && gameState?.Guest?.Points === 98) {
     gameState.Home.Points = "A";
     gameState.Guest.Points = "-";
-  } else if (gameState?.Guest?.Points === 17) {
+  } else if (gameState?.Guest?.Points === 99 && gameState?.Home?.Points === 98) {
     gameState.Guest.Points = "A";
     gameState.Home.Points = "-";
   }
