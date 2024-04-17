@@ -129,12 +129,12 @@
 }
 
 @keyframes blink {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
 }
 
 .blinking {
-  animation: blink 1s steps(2, start) infinite;
+  animation: blink 1s steps(1, start) infinite;
 }
 
 
