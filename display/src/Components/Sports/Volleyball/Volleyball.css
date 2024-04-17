@@ -237,11 +237,10 @@
 }
 
 @keyframes blink {
-  0% { opacity: 1; }
-  50% { opacity: 0.5; }
-  100% { opacity: 0; }
+  0%, 50% { visibility: visible; }
+  51%, 100% { visibility: hidden; }
 }
 
 .blink {
-  animation: blink 800ms linear infinite;
+  animation: blink 1s steps(1, start) infinite;
 }

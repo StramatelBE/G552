@@ -180,15 +180,19 @@ function Handball({ gameState: incomingGameState }) {
         <div className="time-div" style={{ left: '25px', top: '139px' }}>{formatExclusionTimer(gameState?.Home?.Exclusion?.Timer[2]) || ""}</div>
       </div>
       <div className="container-score-guest">
-        {guestScoreAnimating ? 
-          <>
-            <div className="guest-score score-out">{prevGuestScore}</div>
-            <div className="guest-score score-in">{guestScore}</div>
-          </>
+  
+
+        {guestScoreAnimating && (
+            <>
+              <div className="guest-score score-out">{prevGuestScore}</div>
+              <div className="guest-score score-in">{guestScore}</div>
+            </>
+          )}
+          {!guestScoreAnimating && (
+            <div className="home-score">{guestScore}</div>
+          )}
+
         
-        :
-          <div className="guest-score">{guestScore}</div>
-        }
 
 
       </div>
