@@ -22,10 +22,8 @@ const App = () => {
   const [gameState, setGameState] = useState({});
   const [mediaState, setMediaState] = useState([]);
   const [mediaMode, setMediaMode] = useState(false);
-  const [prevMediaMode, setPrevMediaMode] = useState(0);
   const [test, setTest] = useState(false);
 
-  const mediaModes = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   useEffect(() => {
     // const intervalId = setInterval(() => {
     //   modeService.getMode().then((data) => {
@@ -53,13 +51,6 @@ const App = () => {
     console.log("App mounted");
     ipcRenderer.on("server-data", (event, data) => {
       // console.log('!Received gameState', data, event);
-      if (mediaMode.includes(data.Mode) && prevMediaMode !== data.Mode) {
-        setPrevMediaMode(data.Mode);
-        data.Mode = 0;
-      }        
-
-
-
       if (data.Mode === 0) {
         setMode("scoring");
         setGameState(data || {}); // Assuming the data for scoring mode contains a 'gameState' property
@@ -78,7 +69,6 @@ const App = () => {
       } else if (data.Mode === 23) {
         setMode("sleep")
       } else {
-
         let mediaArray = [];
         setMediaMode(true);
             mediaArray = Array.isArray(data.medias)
