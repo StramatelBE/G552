@@ -28,10 +28,10 @@ function getFontSize(name) {
 
   console.log(name);
   if (name.length <= 7) {
-    return '45px'; // Taille normale
+    return '30px'; // Taille normale
   } 
  else if (name.length <= 9) {
-    return '40px'; // Toujours un peu plus petit
+    return '28px'; // Toujours un peu plus petit
   } 
 }
   
