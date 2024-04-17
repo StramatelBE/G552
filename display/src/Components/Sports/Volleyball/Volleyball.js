@@ -81,7 +81,7 @@ function Volleyball({ gameState: incomingGameState }) {
     setGuestFontSize(getFontSize(gameState?.Guest?.TeamName));
 }, [incomingGameState]);
 
-const homeBlinkClass = gameState?.Home?.Winner ? "blinking" : "";
+  const homeBlinkClass = gameState?.Home?.Winner ? "blinking" : "";
   const guestBlinkClass = gameState?.Guest?.Winner ? "blinking" : "";
 
 function getFontSize(name) {
@@ -101,7 +101,7 @@ function getFontSize(name) {
   return (
     <div className="container">
       <div className="home">
-        <div className="home-text" style={{fontSize: homeFontSize }}>{gameState?.Home?.TeamName || "HOME"}</div>
+        <div className={`home-text ${homeBlinkClass}`} style={{fontSize: homeFontSize }}>{gameState?.Home?.TeamName || "HOME"}</div>
         <div className="container-score-home">
           {homeScoreAnimating && (
             <>
@@ -124,7 +124,7 @@ function getFontSize(name) {
         </div>
       </div>
       <div className="guest">
-        <div className="guest-text" style={{fontSize: guestFontSize }}>{gameState?.Guest?.TeamName || "GUEST"}</div>
+        <div className={`guest-text ${guestBlinkClass}`} style={{fontSize: guestFontSize }}>{gameState?.Guest?.TeamName || "GUEST"}</div>
         <div className="container-score-guest">
           {guestScoreAnimating && (
             <>
@@ -166,11 +166,11 @@ function getFontSize(name) {
           </>
         )}
 
-        <div className="home-fouls">
+        <div className={`home-fouls ${homeBlinkClass}`}>
           {gameState?.Home?.SetsWon} {/* team HOME fouls */}
         </div>
       <div className="time">{gameState?.Timer?.Value || "00:00"}</div>
-      <div className="guest-fouls">
+      <div className={`guest-fouls ${guestBlinkClass}`}>
           {gameState?.Guest?.SetsWon} {/* team HOME fouls */}
         </div>
 
