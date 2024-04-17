@@ -21,7 +21,7 @@ class MacroController {
 
     async getMacrosByButton(buttonId) {
         if (buttonId === undefined) throw new Error("No button id given");
-        else if (buttonId === 9) return console.log("Button id is :", buttonId, " Scoring Mode activated");
+        else if (buttonId === 0) return console.log("Button id is :", buttonId, " Scoring Mode activated");
 
         const TWO_HOURS = 2 * 60 * 60 * 1000; // 2 heures en millisecondes
 
