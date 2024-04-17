@@ -116,7 +116,7 @@ const handleScoring = async (scoring) => {
 
     } catch (error) {
         console.error("Error fetching macros:", error.message);
-        scoring.Mode = 9;
+        scoring.Mode = 0;
         unixSocketSetup.sendData(scoring);
     }
 };
