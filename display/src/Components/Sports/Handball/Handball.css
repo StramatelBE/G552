@@ -45,7 +45,8 @@ body {
   text-align: center;
   color: #ebff00;
   font-size: 48px;
-  font-family: "Arial Bold", Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: "Arial", sans-serif;
+  font-weight: bold;
   word-wrap: break-word;
 }
 
