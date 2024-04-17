@@ -53,6 +53,7 @@ const App = () => {
       console.log('!Received gameState', data, event);
       if (data.Mode === 0) {
         setMode("scoring");
+        console.log("mode is scoring:", data)
         setGameState(data || {}); // Assuming the data for scoring mode contains a 'gameState' property
       }
         else if (data.Mode === 21) {
