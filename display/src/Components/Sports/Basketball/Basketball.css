@@ -67,6 +67,20 @@
   word-wrap: break-word;
 }
 
+.home-square-fouls {
+  width: 35px;
+  height: 35px;
+  left: 31px;
+  top: 195px;
+  position: absolute;
+  text-align: center;
+  color: red;
+  font-size: 50px;
+  font-family: "D-DIN-Bold";
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
 .home-possession {
   clip-path: polygon(100% 0%, 82.4% 49.5%, 100% 100%, 0% 50%);
   background: #ff0000;
@@ -185,6 +199,20 @@
   position: absolute;
   text-align: center;
   color: #ebff00;
+  font-size: 50px;
+  font-family: "D-DIN-Bold";
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+.guest-square-fouls {
+  width: 35px;
+  height: 35px;
+  left: 456px;
+  top: 195px;
+  position: absolute;
+  text-align: center;
+  color: red;
   font-size: 50px;
   font-family: "D-DIN-Bold";
   font-weight: 700;

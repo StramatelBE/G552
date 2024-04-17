@@ -76,12 +76,21 @@ function getFontSize(name) {
     return '40px'; // Toujours un peu plus petit
   } 
 }
-function renderFoulCount(foulCount) {
+function renderHomeFoulCount(foulCount) {
   // If the foul count is 8, display a red square instead
   return foulCount === 8 ? (
-    <div className="foul-square" style={{ width: '30px', height: '30px', backgroundColor: 'red' }} />
+    <div className="home-square-fouls" style={{ width: '30px', height: '30px', backgroundColor: 'red' }} />
   ) : (
-    <div className="foul-number" style={{ fontFamily: "D-DIN-Bold"}}>{foulCount}</div>
+    <div className="home-fouls" style={{ fontFamily: "D-DIN-Bold"}}>{foulCount}</div>
+  );
+}
+
+function renderGuestFoulCount(foulCount) {
+  // If the foul count is 8, display a red square instead
+  return foulCount === 8 ? (
+    <div className="guest-square-fouls" style={{ width: '30px', height: '30px', backgroundColor: 'red' }} />
+  ) : (
+    <div className="guest-fouls" style={{ fontFamily: "D-DIN-Bold"}}>{foulCount}</div>
   );
 }
 
@@ -167,7 +176,7 @@ function renderFoulCount(foulCount) {
     
             
         <div className="home-fouls">
-        {renderFoulCount(gameState?.Home?.Fouls?.Team) || "0"}
+        {renderHomeFoulCount(gameState?.Home?.Fouls?.Team) || "0"}
         </div>
         
 
@@ -225,8 +234,8 @@ function renderFoulCount(foulCount) {
           </>
         )}
 
-        <div className="guest-fouls">
-        {renderFoulCount(gameState?.Guest?.Fouls?.Team) || "0"}
+        <div >
+        {renderGuestFoulCount(gameState?.Guest?.Fouls?.Team) || "0"}
         </div>
       </div>
 
