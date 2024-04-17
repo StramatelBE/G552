@@ -194,7 +194,7 @@ function Handball({ gameState: incomingGameState }) {
       </div>
       <div className="absolute-div guest-div">
         <div className="team-name-div" style={{ left: "0px", top: " 90px", fontSize: guestFontSize }} > {gameState?.Guest?.TeamName !== "" ? gameState?.Guest?.TeamName : "GUEST"}</div>
-        <div className="score-div"> {gameState?.Guest?.Points || "0"}</div>
+        {/* <div className="score-div"> {gameState?.Guest?.Points || "0"}</div> */}
         {gameState?.Home?.Timeout?.Counts >= 0 && (
           <div className="dots-div" style={{ left: "202px", top: '140px' }}>
             {[...Array(gameState?.Guest?.Timeout?.Counts)].map((_, i) => (
