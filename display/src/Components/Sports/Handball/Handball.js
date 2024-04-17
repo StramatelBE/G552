@@ -5,6 +5,9 @@ function Handball({ gameState: incomingGameState }) {
   const [homeScore, setHomeScore] = useState(incomingGameState?.Home?.Points || 0);
   const [guestScore, setGuestScore] = useState(incomingGameState?.Guest?.Points || 0);
 
+  const [homeFontSize, setHomeFontSize] = useState('45px');
+  const [guestFontSize, setGuestFontSize] = useState('45px');
+
   const [homeScoreQueue, setHomeScoreQueue] = useState([]);
   const [guestScoreQueue, setGuestScoreQueue] = useState([]);
 
@@ -56,8 +59,8 @@ function Handball({ gameState: incomingGameState }) {
   }, [guestScoreQueue]);
 
   useEffect(() => {
-      const homeFontSize = getFontSize(gameState?.Home?.TeamName);
-      const guestFontSize = getFontSize(gameState?.Guest?.TeamName);
+      setHomeFontSize(getFontSize(gameState?.Home?.TeamName));
+      setGuestFontSize(getFontSize(gameState?.Guest?.TeamName));
 
   }, [gameState?.Home?.TeamName, gameState?.Guest?.TeamName]);
 
