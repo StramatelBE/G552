@@ -68,7 +68,10 @@ function Handball({ gameState: incomingGameState }) {
       
       // Formatte et renvoie la nouvelle chaîne
       return `${firstDigit}:${secondDigit}${thirdDigit}`;
-    } else {
+    }  else if (timerStr.length === 2) {
+      return `0:${timerStr}`;
+
+    }else {
       // Gérer les cas où le nombre n'est pas à trois chiffres
       return 0; // Vous pourriez ajuster cette réponse selon les besoins de l'application
     }
