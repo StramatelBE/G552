@@ -152,7 +152,14 @@ function getFontSize(name) {
       {gameState?.Guest?.Service && (
           <div className="guest-possession"></div>
         )}
+
+        <div className="home-fouls">
+          {gameState?.Home?.SetsWon} {/* team HOME fouls */}
+        </div>
       <div className="time">{gameState?.Timer?.Value || "00:00"}</div>
+      <div className="guest-fouls">
+          {gameState?.Guest?.SetsWon} {/* team HOME fouls */}
+        </div>
       <img className="image" src="LOGO_Stramatel.gif" />
     </div>
   )
