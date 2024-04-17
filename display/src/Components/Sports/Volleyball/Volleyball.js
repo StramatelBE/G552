@@ -18,9 +18,22 @@ function Volleyball({ gameState: incomingGameState }) {
   const [homeScoreAnimating, setHomeScoreAnimating] = useState(false);
   const [guestScoreAnimating, setGuestScoreAnimating] = useState(false);
 
+  const [currentSet, setCurrentSet] = useState(1);
+
   const gameState = incomingGameState || {};
   const showHomeTimeout = gameState?.Home?.Timeout?.Time !== "0:00";
   const showGuestTimeout = gameState?.Guest?.Timeout?.Time !== "0:00";
+
+  const currentSet = calculateCurrentSet(gameState?.Home?.SetsWon, gameState?.Guest?.SetsWon);
+
+
+  function calculateCurrentSet(homeSetsWon, guestSetsWon) {
+    return homeSetsWon + guestSetsWon + 1 > 3 ? 3 : homeSetsWon + guestSetsWon + 1;
+  }
+
+  useEffect(() => {
+    setCurrentSet(calculateCurrentSet(gameState?.Home?.SetsWon, gameState?.Guest?.SetsWon));
+  }, [incomingGameState]);
 
 
   useEffect(() => {
@@ -128,7 +141,7 @@ function getFontSize(name) {
           <div className="side-number" style={{ top: 192 }}>{gameState?.Guest?.PointsBySet[3] === 0 || ""}</div>
         </div>
       </div>
-      {/* <div className="green-number">{gameState?.Period || "0"}</div> */}
+      <div className="green-number">{currentSet || "0"}</div>
       <div className="time">{gameState?.Timer?.Value || "00:00"}</div>
       <img className="image" src="LOGO_Stramatel.gif" />
     </div>
