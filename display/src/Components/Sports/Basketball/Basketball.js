@@ -175,7 +175,7 @@ function renderGuestFoulCount(foulCount) {
         )}
     
             
-        <div className="home-fouls">
+        <div className="">
         {renderHomeFoulCount(gameState?.Home?.Fouls?.Team) || "0"}
         </div>
         
