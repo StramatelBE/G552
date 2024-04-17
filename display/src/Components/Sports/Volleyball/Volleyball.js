@@ -24,7 +24,6 @@ function Volleyball({ gameState: incomingGameState }) {
   const showHomeTimeout = gameState?.Home?.Timeout?.Time !== "0:00";
   const showGuestTimeout = gameState?.Guest?.Timeout?.Time !== "0:00";
 
-  const currentSet = calculateCurrentSet(gameState?.Home?.SetsWon, gameState?.Guest?.SetsWon);
 
 
   function calculateCurrentSet(homeSetsWon, guestSetsWon) {
