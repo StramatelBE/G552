@@ -55,30 +55,32 @@ function Handball({ gameState: incomingGameState }) {
     }
   }, [guestScoreQueue]);
 
+  function formatExclusionTimer(timer) {
+    // Convertit le nombre en chaîne de caractères
+    const timerStr = timer.toString();
+    
+    // Assurez-vous que la chaîne est de longueur 3
+    if (timerStr.length === 3) {
+      // Extrait chaque chiffre
+      const firstDigit = timerStr[0];
+      const secondDigit = timerStr[1];
+      const thirdDigit = timerStr[2];
+      
+      // Formatte et renvoie la nouvelle chaîne
+      return `${firstDigit}:${secondDigit}${thirdDigit}`;
+    } else {
+      // Gérer les cas où le nombre n'est pas à trois chiffres
+      return 0; // Vous pourriez ajuster cette réponse selon les besoins de l'application
+    }
+  }
+  
+
 
   function formatTimer(timerString, showHomeTimeout, showGuestTimeout) {
     if (!timerString) {
       return [];
     }
 
-    function formatExclusionTimer(timer) {
-      // Convertit le nombre en chaîne de caractères
-      const timerStr = timer.toString();
-      
-      // Assurez-vous que la chaîne est de longueur 3
-      if (timerStr.length === 3) {
-        // Extrait chaque chiffre
-        const firstDigit = timerStr[0];
-        const secondDigit = timerStr[1];
-        const thirdDigit = timerStr[2];
-        
-        // Formatte et renvoie la nouvelle chaîne
-        return `${firstDigit}:${secondDigit}${thirdDigit}`;
-      } else {
-        // Gérer les cas où le nombre n'est pas à trois chiffres
-        return 0; // Vous pourriez ajuster cette réponse selon les besoins de l'application
-      }
-    }
     
 
     timerString = timerString.toString();
