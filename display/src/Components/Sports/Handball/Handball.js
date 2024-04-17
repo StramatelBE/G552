@@ -140,7 +140,7 @@ function Handball({ gameState: incomingGameState }) {
         </div>
         {gameState?.Home?.Timeout?.Counts >= 0 && (
           <div className="dots-div" style={{ left: '10px', top: '140px' }}>
-            {[...Array(gameState?.Guest?.Timeout?.Counts)].map((_, i) => (
+            {[...Array(gameState?.Home?.Timeout?.Counts)].map((_, i) => (
               <div
                 key={i}
                 className="dot-hand"
