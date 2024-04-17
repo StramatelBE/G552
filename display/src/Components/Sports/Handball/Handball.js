@@ -61,8 +61,7 @@ function Handball({ gameState: incomingGameState }) {
   useEffect(() => {
       setHomeFontSize(getFontSize(gameState?.Home?.TeamName));
       setGuestFontSize(getFontSize(gameState?.Guest?.TeamName));
-
-  }, [gameState?.Home?.TeamName, gameState?.Guest?.TeamName]);
+  }, [incomingGameState]);
 
   function getFontSize(name) {
     if (name.length <= 7) {
