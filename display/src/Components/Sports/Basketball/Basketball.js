@@ -76,6 +76,14 @@ function getFontSize(name) {
     return '40px'; // Toujours un peu plus petit
   } 
 }
+function renderFoulCount(foulCount) {
+  // If the foul count is 8, display a red square instead
+  return foulCount === 8 ? (
+    <div className="foul-square" style={{ width: '45px', height: '45px', backgroundColor: 'red' }} />
+  ) : (
+    <div className="foul-number">{foulCount}</div>
+  );
+}
 
 
 
@@ -159,7 +167,7 @@ function getFontSize(name) {
     
             
         <div className="home-fouls">
-          {gameState?.Home?.Fouls?.Team} {/* team HOME fouls */}
+        {renderFoulCount(gameState?.Home?.Fouls?.Team) || "0"}
         </div>
         
 
@@ -218,7 +226,7 @@ function getFontSize(name) {
         )}
 
         <div className="guest-fouls">
-          {gameState?.Guest?.Fouls?.Team} {/* team GUEST fouls */}
+        {renderFoulCount(gameState?.Guest?.Fouls?.Team) || "0"}
         </div>
       </div>
 
