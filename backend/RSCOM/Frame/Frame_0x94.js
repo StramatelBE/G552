@@ -33,8 +33,7 @@ class Frame_0x94 {
                     Count: nBytesToNumber(_message[17]),
                 },
                 Exclusion: {
-                    ShirtNumber: Tools.Exclusion(22, 5, 3, _message).ShirtNumber,
-                    Timer: Tools.Exclusion(22, 5, 3, _message).Timer,
+                    Timer: Tools.Exclusion(22, 3, _message),
                 }
             },
 
@@ -48,8 +47,7 @@ class Frame_0x94 {
                     Count: nBytesToNumber(_message[18]),
                 },
                 Exclusion: {
-                    ShirtNumber: Tools.Exclusion(37, 5, 3, _message).ShirtNumber,
-                    Timer: Tools.Exclusion(37, 5, 3, _message).Timer,
+                    Timer: Tools.Exclusion(35, 3, _message),
                 }
             }
         }
