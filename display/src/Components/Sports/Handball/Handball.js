@@ -178,7 +178,7 @@ function Handball({ gameState: incomingGameState }) {
           </div>
         )}
         {// If the game is a rink, display the team fouls
-        isRink && (
+          (
           <div className="home-fouls" >
             {gameState?.Home?.Fouls?.Team || "0"}
           </div>
@@ -220,7 +220,7 @@ function Handball({ gameState: incomingGameState }) {
           </div>
         )}
         {// If the game is a rink, display the team fouls
-        isRink && (
+         (
           <div className="guest-fouls">
             {gameState?.Guest?.Fouls?.Team || "0"}
           </div>
