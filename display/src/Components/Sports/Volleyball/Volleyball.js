@@ -27,7 +27,10 @@ function Volleyball({ gameState: incomingGameState }) {
 
 
   function calculateCurrentSet(homeSetsWon, guestSetsWon) {
-    return homeSetsWon + guestSetsWon + 1 > 5 ? 5 : homeSetsWon + guestSetsWon + 1;
+    if (homeSetsWon === 2 || guestSetsWon === 2) {
+      return 5;
+    }
+    return homeSetsWon + guestSetsWon + 1 > 4 ? 4 : homeSetsWon + guestSetsWon + 1;
   }
 
   useEffect(() => {
@@ -77,6 +80,9 @@ function Volleyball({ gameState: incomingGameState }) {
     setHomeFontSize(getFontSize(gameState?.Home?.TeamName));
     setGuestFontSize(getFontSize(gameState?.Guest?.TeamName));
 }, [incomingGameState]);
+
+const homeBlinkClass = gameState?.Home?.Winner ? "blinking" : "";
+  const guestBlinkClass = gameState?.Guest?.Winner ? "blinking" : "";
 
 function getFontSize(name) {
   //remove start and end spaces but not in the middle
