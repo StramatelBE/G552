@@ -11,6 +11,7 @@
 
 .guest-div {
   width: 226px;
+
   height: 256px;
   left: 286px;
   top: 0px;
@@ -54,7 +55,7 @@
   text-align: center;
   color: white;
   font-size: 45px;
-  font-family: "D-DIN-Bold";
+  font-family: "LiberationMono-Bold";
   font-weight: 700;
   word-wrap: break-word;
 }

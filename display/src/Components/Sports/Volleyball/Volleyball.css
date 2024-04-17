@@ -60,7 +60,7 @@
   text-align: center;
   color: white;
   font-size: 45px;
-  font-family: "D-DIN-Bold", sans-serif;
+  font-family: "LiberationMono-Bold";
   font-weight: 700;
   word-wrap: break-word;
 }
@@ -117,7 +117,7 @@
   text-align: center;
   color: white;
   font-size: 45px;
-  font-family: "D-DIN-Bold", sans-serif;
+  font-family: "D-DIN-Bold";
   font-weight: 700;
   word-wrap: break-word;
 }
@@ -131,7 +131,7 @@
   text-align: center;
   color: #ff0000;
   font-size: 100px;
-  font-family: "D-DIN-Bold", sans-serif;
+  font-family: "LiberationMono-Bold", sans-serif;
   font-weight: 700;
   word-wrap: break-word;
 }
