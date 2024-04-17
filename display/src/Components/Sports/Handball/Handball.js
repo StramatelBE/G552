@@ -64,6 +64,7 @@ function Handball({ gameState: incomingGameState }) {
   }, [incomingGameState]);
 
   function getFontSize(name) {
+    console.log(name.length);
     if (name.length <= 7) {
       return '45px'; // Taille normale
     } else if (name.length === 8) {
