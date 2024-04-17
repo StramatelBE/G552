@@ -82,12 +82,12 @@ function getFontSize(name) {
       </div>
 
       <div className="sets">
-      <img className="image-handball" style={{ left: "-146px" }} src="LOGO_Stramatel.gif" />
-      <div className="set" style={{ left: "-79px" }}>S{currentSet}</div>
+      <img className="ser" style={{ left: "-176px" }} src="LOGO_Stramatel.gif" />
+      <div className="set" style={{ left: "-56px" }}>S{currentSet}</div>
       <div className="set">PTS</div>
-        <div className="set " style={{ left: "79px" }}>S1</div>
-        <div className="set" style={{ left: "146px" }}>S2</div>
-        <div className="set" style={{ left: "213px" }}>S3</div>        
+        <div className="set " style={{ left: "781px" }}>S1</div>
+        <div className="set" style={{ left: "148px" }}>S2</div>
+        <div className="set" style={{ left: "215px" }}>S3</div>        
       </div>
       <div className="timer">{gameState?.Timer?.Value}</div>
     </div>
