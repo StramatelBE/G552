@@ -42,7 +42,7 @@ function Tennis({ gameState: incomingGameState }) {
         <div className="set " style={{ left: "109px" }}>SET 1</div>
         <div className="set" style={{ left: "176px" }}>SET 2</div>
         <div className="set" style={{ left: "243px" }}>SET 3</div>
-        <div className="points point" style={{ left: "243px" }}>POINTS</div>
+        <div className="points point">POINTS</div>
       </div>
       <div className="timer">{gameState?.Timer?.Value}</div>
     </div>
