@@ -76,12 +76,12 @@ function Volleyball({ gameState: incomingGameState }) {
 
 
 
-        {/*  <div className="side-numbers">
-          <div className="side-number" style={{ top: 0 }}>{gameState?.Home?.PointsPerSets[0] === 0 || ""}</div>
-          <div className="side-number" style={{ top: 64 }}>{gameState?.Home?.PointsPerSets[1] === 0 || ""}</div>
-          <div className="side-number" style={{ top: 128 }}>{gameState?.Home?.PointsPerSets[2] === 0 || ""}</div>
-          <div className="side-number" style={{ top: 192 }}>{gameState?.Home?.PointsPerSets[3] === 0 || ""}</div>
-        </div> */}
+         <div className="side-numbers">
+          <div className="side-number" style={{ top: 0 }}>{gameState?.Home?.PointsBySet[0] === 0 || ""}</div>
+          <div className="side-number" style={{ top: 64 }}>{gameState?.Home?.PointsBySet[1] === 0 || ""}</div>
+          <div className="side-number" style={{ top: 128 }}>{gameState?.Home?.PointsBySet[2] === 0 || ""}</div>
+          <div className="side-number" style={{ top: 192 }}>{gameState?.Home?.PointsBySet[3] === 0 || ""}</div>
+        </div>
       </div>
       <div className="guest-container">
         <div className="guest-text">{gameState?.Guest?.TeamName || "GUEST"}</div>
@@ -99,12 +99,12 @@ function Volleyball({ gameState: incomingGameState }) {
 
 
 
-        {/* <div className="side-numbers" style={{ left: 214 }}>
-          <div className="side-number" style={{ top: 0 }}>{gameState?.Guest?.PointsPerSets[0] === 0 || ""}</div>
-          <div className="side-number" style={{ top: 64 }}>{gameState?.Guest?.PointsPerSets[1] === 0 || ""}</div>
-          <div className="side-number" style={{ top: 128 }}>{gameState?.Guest?.PointsPerSets[2] === 0 || ""}</div>
-          <div className="side-number" style={{ top: 192 }}>{gameState?.Guest?.PointsPerSets[3] === 0 || ""}</div>
-        </div> */}
+        <div className="side-numbers" style={{ left: 214 }}>
+          <div className="side-number" style={{ top: 0 }}>{gameState?.Guest?.PointsBySet[0] === 0 || ""}</div>
+          <div className="side-number" style={{ top: 64 }}>{gameState?.Guest?.PointsBySet[1] === 0 || ""}</div>
+          <div className="side-number" style={{ top: 128 }}>{gameState?.Guest?.PointsBySet[2] === 0 || ""}</div>
+          <div className="side-number" style={{ top: 192 }}>{gameState?.Guest?.PointsBySet[3] === 0 || ""}</div>
+        </div>
       </div>
       {/* <div className="green-number">{gameState?.Period || "0"}</div> */}
       <div className="time">{gameState?.Timer?.Value || "00:00"}</div>
