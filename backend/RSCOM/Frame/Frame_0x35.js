@@ -46,7 +46,9 @@ class Frame_0x35 {
                     Team: nBytesToNumber(_message[11]),
                 },
                 PenaltiesInProgress: Tools.PenaltiesInProgress(_message[16]),
-                TimeoutsCounts: nBytesToNumber(_message[18]),
+                Timeout: {
+                   Counts: nBytesToNumber(_message[18]),
+                },
                 Exclusion: {
                     Timer: Tools.Exclusion(35, 3, _message),
                 }

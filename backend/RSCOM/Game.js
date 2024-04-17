@@ -141,7 +141,6 @@ class Game {
         break;
       case 0x35:
         toInsert = Frames._0x35.build(_message);
-        console.log("gamejs toinsert:", toInsert);
         break;
       case 0x36:
         toInsert = Frames._0x36.build(_message);
@@ -204,6 +203,8 @@ class Game {
 
     if (toInsert != null) {
       console.log("toInsert: ", toInsert);
+      console.log("Home Exclusion Timer: ", toInsert.Home.Exclusion.Timer);
+      console.log("Guest Exclusion Timer: ", toInsert.Guest.Exclusion.Timer);
       this.updateState(toInsert);
       
     }
