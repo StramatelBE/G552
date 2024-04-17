@@ -4,6 +4,9 @@ import "./Tennis.css";
 function Tennis({ gameState: incomingGameState }) {
   const gameState = incomingGameState || {};
 
+  const [homeFontSize, setHomeFontSize] = React.useState('45px');
+  const [guestFontSize, setGuestFontSize] = React.useState('45px');
+
   // Handle special scoring when points reach 17
   if (gameState?.Home?.Points === 17) {
     gameState.Home.Points = "A";
@@ -12,6 +15,26 @@ function Tennis({ gameState: incomingGameState }) {
     gameState.Guest.Points = "A";
     gameState.Home.Points = "-";
   }
+
+
+  useEffect(() => {
+    setHomeFontSize(getFontSize(gameState?.Home?.TeamName));
+    setGuestFontSize(getFontSize(gameState?.Guest?.TeamName));
+}, [incomingGameState]);
+
+function getFontSize(name) {
+  //remove start and end spaces but not in the middle
+  name = name.replace(/^\s+|\s+$/g, '');
+
+  console.log(name);
+  if (name.length <= 7) {
+    return '45px'; // Taille normale
+  } 
+ else if (name.length <= 9) {
+    return '40px'; // Toujours un peu plus petit
+  } 
+}
+  
 
   // Determine the color of the service dot for Home and Guest
   const homeServiceDotColor = gameState?.Home?.Service === 1 ? "darkred" : "#006f3c";
@@ -26,7 +49,7 @@ function Tennis({ gameState: incomingGameState }) {
         <div className="set-score" style={{ left: "385px" }}>{gameState?.Home?.PointsInSet[1]}</div>
         <div className="set-score" style={{ left: "452px" }}>{gameState?.Home?.PointsInSet[2]}</div>
         <div className="dot" style={{ backgroundColor: homeServiceDotColor }}></div>
-        <div className="player-name">{gameState?.Home?.TeamName}</div>
+        <div className="player-name" style={{ fontSize: homeFontSize}} >{gameState?.Home?.TeamName}</div>
       </div>
       <div className="player player-top">
         <div className="set-score" style={{ left: "178px" }}>{gameState?.Guest?.GameInSet}</div>
@@ -35,7 +58,7 @@ function Tennis({ gameState: incomingGameState }) {
         <div className="set-score" style={{ left: "385px" }}>{gameState?.Guest?.PointsInSet[1]}</div>
         <div className="set-score" style={{ left: "452px" }}>{gameState?.Guest?.PointsInSet[2]}</div>
         <div className="dot" style={{ backgroundColor: guestServiceDotColor }}></div>
-        <div className="player-name">{gameState?.Guest?.TeamName}</div>
+        <div className="player-name" style={{ fontSize: guestFontSize}} >{gameState?.Guest?.TeamName}</div>
       </div>
 
       <div className="sets">
