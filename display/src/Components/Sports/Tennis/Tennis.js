@@ -31,7 +31,7 @@ function getFontSize(name) {
     return '30px'; // Taille normale
   } 
  else if (name.length <= 9) {
-    return '27px'; // Toujours un peu plus petit
+    return '26px'; // Toujours un peu plus petit
   } 
 }
   
