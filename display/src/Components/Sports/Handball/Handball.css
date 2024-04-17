@@ -1,6 +1,6 @@
 @font-face {
   font-family: "LiberationMono-Bold";
-  src: url("../../../fonts/LiberationMono-Bold.ttf") format("truetype");
+  src: url("./fonts/LiberationMono-Bold.ttf") format("truetype");
 }
 
 body {
@@ -45,7 +45,7 @@ body {
   text-align: center;
   color: #ebff00;
   font-size: 48px;
-  font-family: "LiberationMono-Bold";
+  font-family: "";
   font-weight: 700;
   word-wrap: break-word;
 }
