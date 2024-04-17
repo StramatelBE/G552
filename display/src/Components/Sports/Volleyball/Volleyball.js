@@ -27,7 +27,7 @@ function Volleyball({ gameState: incomingGameState }) {
 
 
   function calculateCurrentSet(homeSetsWon, guestSetsWon) {
-    if (homeSetsWon === 2 || guestSetsWon === 2) {
+    if (homeSetsWon === 2 && guestSetsWon === 2) {
       return 5;
     }
     return homeSetsWon + guestSetsWon + 1 > 4 ? 4 : homeSetsWon + guestSetsWon + 1;
