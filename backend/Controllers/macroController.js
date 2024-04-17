@@ -137,7 +137,7 @@ class MacroController {
 
     catch(error) {
         console.error(error.message);  // This will log the error message.
-        return 9;
+        return 0;
     }
 
 
