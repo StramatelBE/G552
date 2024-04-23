@@ -1,0 +1,84 @@
+{
+  "Macro": {
+    "title": "Macro",
+    "number": "nombre",
+    "slideshow": "diaporama",
+    "none": "aucun",
+    "Explanation": {
+      "1": "Affiche le score",
+      "11": "lance l'animation 1 point",
+      "12": "lance l'animation 2 points",
+      "13": "lance l'animation 3 points",
+      "14": "lance l'animation temps mort",
+      "15": "lance l'animation faute"
+    }
+  },
+  "Profile": {
+    "title": "Paramètre",
+    "application": "Application",
+    "changePassword": "Modifier le mot de passe",
+    "darkMode": "Mode sombre",
+    "usedStorageSpace": "Espace de stockage utilisé",
+    "panelsTest": "Test des panneaux",
+    "language": "Langue",
+    "info": "Informations",
+    "account": "Compte",
+    "automaticStandby": "Mise en veille automatique",
+    "Dialog": {
+      "chooseTime": "Choisir le temps",
+      "pleaseSelectMinutesAndSeconds": "Veuillez sélectionner les minutes et les secondes"
+    }
+  },
+  "Diaporama": {
+    "title": "playlists",
+    "emptyListMessage": "Ajouter des playlists avec +",
+    "listTitle": "Liste des playlists",
+    "Dialog": {
+      "addNew": "Ajouter un nouveau playlists",
+      "name": "Nom",
+      "areYouSureToDelete": "Êtes-vous sûr de vouloir supprimer",
+      "areYouSureToDeleteMediaEvent": "Êtes-vous sûr de vouloir supprimer cet événement playlists ?"
+    }
+  },
+  "Login": {
+    "passwordMismatch": "Les mots de passe ne correspondent pas",
+    "passwordChange": "Changer le mot de passe",
+    "passwordChangeSuccess": "Mot de passe modifié avec succès",
+    "newPassword": "Nouveau mot de passe",
+    "confirmNewPassword": "Confirmer le nouveau mot de passe",
+    "errorMessage": "Nom d'utilisateur ou mot de passe incorrect",
+    "passwordAdmin": "Mot de passe administrateur",
+    "title": "Connexion",
+    "username": "Nom d'utilisateur",
+    "password": "Mot de passe",
+    "loginButton": "Connexion",
+    "lostPassword": "Mot de passe oublié",
+    "Dialog": {
+      "doYouReallyWantToLogout": "Voulez-vous vraiment vous déconnecter ?",
+      "userAlreadyConnected": "Un utilisateur est déjà connecté",
+      "doYouWantToDisconnect": "Voulez-vous le déconnecter ?"
+    }
+  },
+  "Media": {
+    "title": "Média",
+    "add": "Ajouter des Medias avec +",
+    "upload": "Télécharger",
+    "Dialog": {
+      "areYouSureToDelete": "Do you want to delete this media?"
+    }
+  },
+  "Dialog": {
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "delete": "Supprimer",
+    "close": "Fermer",
+    "save": "Enregistrer",
+    "confirmDeletion": "confirmer la suppression",
+    "yes": "Oui",
+    "no": "Non"
+  },
+  "Scoreboard": {
+    "Guest": "Visiteur",
+    "Home": "Locaux"
+  }
+}
