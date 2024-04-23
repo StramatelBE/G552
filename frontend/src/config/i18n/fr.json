@@ -76,5 +76,9 @@
     "confirmDeletion": "confirmer la suppression",
     "yes": "Oui",
     "no": "Non"
+  },
+  "Scoreboard": {
+    "Guest": "Visiteur",
+    "Home": "Locaux"
   }
 }

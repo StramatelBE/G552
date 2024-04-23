@@ -68,5 +68,9 @@
     "confirmDeletion": "Confirm Deletion",
     "yes": "Yes",
     "no": "No"
+  },
+  "Scoreboard": {
+    "Guest": "Guest",
+    "Home": "Home"
   }
 }

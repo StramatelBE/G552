@@ -21,7 +21,7 @@ function LanguageSelector() {
     try {
       console.log("Current user:", authService.getCurrentUser());
       console.log("Selected language:", selectedLanguage);
-      authService.updateLanguage(selectedLanguage, authService.getCurrentUser().userid);
+      authService.updateLanguage(selectedLanguage, authService.getCurrentUser().user.id);
     }
     catch (error) {
       console.error("Error during language change:", error);
