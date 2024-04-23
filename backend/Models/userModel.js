@@ -67,6 +67,13 @@ class User {
           "Sport libre",
           "Netball",
         ];
+        const mediaFolder = `${process.env.UPLOAD_PATH}`;
+        if (!fs.existsSync(mediaFolder)) {
+          console.log("Folder does not exist");
+          fs.mkdirSync(mediaFolder);
+          console.log("Folder created");
+        }
+
         sports.forEach((sport) => {
           const user = {
             username: sport,

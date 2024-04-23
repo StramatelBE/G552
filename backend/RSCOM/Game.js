@@ -6,6 +6,7 @@ const path = require('path');
 
 class Game {
   static State = {
+    Language: null,
     Mode: null,
 
     Sport: null,
