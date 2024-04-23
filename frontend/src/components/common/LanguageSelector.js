@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import authService from "../../services/authService";
 import { Box, FormControl, MenuItem, Select } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
@@ -17,6 +18,13 @@ function LanguageSelector() {
     setSelectedLanguage(selectedLanguage);
     i18n.changeLanguage(selectedLanguage);
     localStorage.setItem("i18nextLng", selectedLanguage);
+    try {
+      authService.getCurrentUser().userid &&
+        authService.changeLanguage(selectedLanguage, authService.getCurrentUser().userid);
+    }
+    catch (error) {
+      console.error("Error during language change:", error);
+    }
   };
 
   return (

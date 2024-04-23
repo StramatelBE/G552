@@ -26,6 +26,7 @@ class UserController {
         res.status(500).json({ message: err });
       });
   }
+  
 
   update = (req, res) => {
     this.user
