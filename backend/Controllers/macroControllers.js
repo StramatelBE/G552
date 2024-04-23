@@ -20,52 +20,54 @@ class MacroController {
     }
 
     async getMacrosByButton(buttonId, sport) {
-        if (buttonId === undefined) throw new Error("No button id given");
-        else if (buttonId === 0) return console.log("Button id is :", buttonId, " Scoring Mode activated");
-    
-        // Récupérer l'utilisateur par nom de sport
-        const user = await User.getByUsername(sport);
-        if (!user) throw new Error(`No user found for sport: ${sport}`);
-    
-        // Récupérer les macros pour l'utilisateur spécifique et le bouton donné
-        const macros = await this.macro.getByUserIdAndButtonId(user.id, buttonId);
-        if (!macros.length) throw new Error("No macros found for this user and button");
-    
-        let results = [];
-        for (let macro of macros) {
-            const event = await this.event.getById(macro.event_id);
-            if (!event) throw new Error("No event found for this macro");
-    
-            const mediaList = await this.eventmedia.getAllByEvent(event.id);
-            if (!mediaList.length) throw new Error("No media found for this event");
-    
-            let medias = [];
-            for (let mediaInfo of mediaList) {
-                const media = await this.media.getById(mediaInfo.id);
-                medias.push({
-                    order: mediaInfo.media_pos_in_event,
-                    path: media.path,
-                    type: media.type,
-                    duration: mediaInfo.media_dur_in_event
+        try{
+            if (buttonId === undefined) throw new Error("No button id given");
+            else if (buttonId === 0) return console.log("Button id is :", buttonId, " Scoring Mode activated");
+        
+            // Récupérer l'utilisateur par nom de sport
+            const user = await User.getByUsername(sport);
+            if (!user) throw new Error(`No user found for sport: ${sport}`);
+        
+            // Récupérer les macros pour l'utilisateur spécifique et le bouton donné
+            const macros = await this.macro.getByUserIdAndButtonId(user.id, buttonId);
+            if (!macros.length) throw new Error("No macros found for this user and button");
+        
+            let results = [];
+            for (let macro of macros) {
+                const event = await this.event.getById(macro.event_id);
+                if (!event) throw new Error("No event found for this macro");
+        
+                const mediaList = await this.eventmedia.getAllByEvent(event.id);
+                if (!mediaList.length) throw new Error("No media found for this event");
+        
+                let medias = [];
+                for (let mediaInfo of mediaList) {
+                    const media = await this.media.getById(mediaInfo.id);
+                    medias.push({
+                        order: mediaInfo.media_pos_in_event,
+                        path: media.path,
+                        type: media.type,
+                        duration: mediaInfo.media_dur_in_event
+                    });
+                }
+        
+                const mode = await this.mode.getAll(); // Supposons que cela récupère le mode correct
+        
+                results.push({
+                    event: event,
+                    medias: medias,
+                    mode: mode.mode // Assumer que 'mode' est un objet avec un attribut 'mode'
                 });
             }
-    
-            const mode = await this.mode.getAll(); // Supposons que cela récupère le mode correct
-    
-            results.push({
-                event: event,
-                medias: medias,
-                mode: mode.mode // Assumer que 'mode' est un objet avec un attribut 'mode'
-            });
+        
+            return results;
         }
-    
-        return results;
-    }
-    
+        
 
-    catch(error) {
-        console.error(error.message);  // This will log the error message.
-        return 0;
+        catch(error) {
+            console.error(error.message);  // This will log the error message.
+            return 0;
+        }
     }
 
 
