@@ -1,6 +1,7 @@
 const net = require('net');
 const fs = require('fs');
 const sharedEmitter = require("../Utils/SharedEmitter");
+const { log } = require('console');
 const socketPath = '/tmp/_sysmes.sock';
 
 
@@ -66,9 +67,9 @@ const server = net.createServer((client) => {
 
     function onDataReceived(data) {
 
-        const scoreModes = [9];
+        const scoreModes = [0];
         const immediateModes = [16, 17, 18, 19, 20];
-        const macroModes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 21];
+        const macroModes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 21];
         const stopModes = [22, 23];
         // console.log("Previous Data Mode", previousDataMode)
         // console.log("Data Mode", data?.Mode)
@@ -144,18 +145,18 @@ module.exports = {
         });
     },
     sendData: function (data) {
-        //console.log('DataMode sended:')
-        //console.log(data?.Mode)
+        console.log('DataMode sended:')
+        console.log(data?.Mode)
         sharedEmitter.emit('data-received', data);
     },
     sendPrematchData: function (data) {
-        //console.log('DataMode sended:')
-        //console.log(data?.Mode)
+        console.log('DataMode sended:')
+        console.log(data?.Mode)
         sharedEmitter.emit('data-received', data);
     },
     sendMedia: function (data) {
-        //console.log('MediaMode sended:')
-        //console.log(data?.Mode)
+        console.log('MediaMode sended:')
+        console.log(data?.Mode)
         sharedEmitter.emit('data-received', data);
     }
 }

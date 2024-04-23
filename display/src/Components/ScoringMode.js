@@ -32,7 +32,7 @@ const ScoringMode = ({ gameState }) => {
     SPORT_COMPONENT_MAP[sport] ||
     (() => (
       <div style={{ backgroundColor: "black", color: "white" }}>
-        Waiting for data...ScoringMode
+        {console.log("No sport component found for", sport)}
       </div>
     ));
 

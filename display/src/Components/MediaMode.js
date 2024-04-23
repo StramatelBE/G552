@@ -5,6 +5,7 @@ import ScoringMode from './ScoringMode';
 const MediaMode = ({mediaState, mediaMode}) => {
     const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
 
+
     useEffect(() => {
 
         if (!Array.isArray(mediaState) || mediaState.length === 0) {

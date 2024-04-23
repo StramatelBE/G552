@@ -3,15 +3,15 @@ const nBytesToNumber = require('../Utils/nBytesToNumber');
 const eSport = require('../Utils/Enums/eSport');
 
 /*
-    * 0x94 : Rink Hockey en mode faute équipe
+    * 0x94 : RINK HOCKEY
  */
 
 class Frame_0x94 {
     static build(_message) {
-        const GSI = {
+        return {
             Mode: nBytesToNumber(_message[2]),
-            insertType: 'DirectConsoleData',
-            Sport: eSport.Handball, //Hockey
+            insertType: 'RINK',
+            Sport: eSport.Handball, //RINK HOCKEY
 
             Period: nBytesToNumber(_message[14]),
 
@@ -33,8 +33,7 @@ class Frame_0x94 {
                     Count: nBytesToNumber(_message[17]),
                 },
                 Exclusion: {
-                    ShirtNumber: Tools.Exclusion(22, 5, 3, _message).ShirtNumber,
-                    Timer: Tools.Exclusion(22, 5, 3, _message).Timer,
+                    Timer: Tools.Exclusion(22, 3, _message),
                 }
             },
 
@@ -48,8 +47,7 @@ class Frame_0x94 {
                     Count: nBytesToNumber(_message[18]),
                 },
                 Exclusion: {
-                    ShirtNumber: Tools.Exclusion(37, 5, 3, _message).ShirtNumber,
-                    Timer: Tools.Exclusion(37, 5, 3, _message).Timer,
+                    Timer: Tools.Exclusion(35, 3, _message),
                 }
             }
         }

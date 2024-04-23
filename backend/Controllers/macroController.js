@@ -21,7 +21,7 @@ class MacroController {
 
     async getMacrosByButton(buttonId) {
         if (buttonId === undefined) throw new Error("No button id given");
-        else if (buttonId === 9) return console.log("Button id is :", buttonId, " Scoring Mode activated");
+        else if (buttonId === 0) return console.log("Button id is :", buttonId, " Scoring Mode activated");
 
         const TWO_HOURS = 2 * 60 * 60 * 1000; // 2 heures en millisecondes
 
@@ -79,44 +79,25 @@ class MacroController {
                 for (let mediaInfo of mediaList) {
                     const media = await this.media.getById(mediaInfo.id);
 
-                    if (!media) {
-                        console.log("no info")
-                        medias.push({
-                            order: mediaInfo.media_pos_in_event,
-                            path: 'panel',
-                            type: 'panel',
-                            duration: mediaInfo.media_dur_in_event
-                        });
-                    } else {
                         medias.push({
                             order: mediaInfo.media_pos_in_event,
                             path: media.path,
                             type: media.type,
                             duration: mediaInfo.media_dur_in_event
                         });
-                    }
 
                    
                 }
             } else {
                 const media = await this.media.getById(mediaList[0].id);
                 // console.log("media", media);
-                if (!media) {
-
-                    medias.push({
-                        order: mediaList[0].media_pos_in_event,
-                        path: "panel",
-                        type: "panel",
-                        duration: mediaList[0].media_dur_in_event
-                    });
-                } else {
+                
                     medias.push({
                         order: mediaList[0].media_pos_in_event,
                         path: media.path,
                         type: media.type,
                         duration: mediaList[0].media_dur_in_event
-                    });
-                }
+                })
 
                
             }
@@ -137,7 +118,7 @@ class MacroController {
 
     catch(error) {
         console.error(error.message);  // This will log the error message.
-        return 9;
+        return 0;
     }
 
 

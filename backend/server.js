@@ -42,7 +42,7 @@ cronJobs.startAllJobs();
 
 let previousScoring = 0;
 let previousMacrosDataMode = null;
-let mode = 9;
+let mode = 0;
 
 sharedEmitter.on("scoring", handleScoring);
 

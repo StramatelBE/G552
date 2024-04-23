@@ -52,29 +52,62 @@
 }
 
 .home-text {
-  width: 168px;
-  height: 64px;
-  left: 76px;
-  top: 96px;
+  width: 226px;
+  height: 100px;
+  left: 0px;
+  top: 90px;
   position: absolute;
   text-align: center;
   color: white;
   font-size: 45px;
-  font-family: "D-DIN-Bold", sans-serif;
+  font-family: "LiberationMono-Bold";
   font-weight: 700;
   word-wrap: break-word;
 }
 
+.home-possession {
+  clip-path: polygon(100% 0%, 82.4% 49.5%, 100% 100%, 0% 50%);
+  background: #ff0000;
+  height: 20px;
+  width: 20px;
+  left: 203px;
+  top: 40px;
+  position: absolute;
+}
+.home-timeout {
+  width: 15px;
+  height: 15px;
+  left: 100px;
+  top: 139px;
+  position: absolute;
+  background: #00a13b;
+  border-radius: 9999px;
+}
+
 .home-number {
-  width: 160px;
-  height: 96px;
-  left: 76px;
-  top: 0;
+  width: 226px;
+  height: 100px;
+  left: 0px;
+  top: 0px;
   position: absolute;
   text-align: center;
   color: #ff0000;
   font-size: 100px;
-  font-family: "D-DIN-Bold", sans-serif;
+  font-family: "D-DIN-Bold";
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+.home-fouls {
+  width: 25px;
+  height: 46px;
+  left: 31px;
+  top: 195px;
+  position: absolute;
+  text-align: center;
+  color: #ebff00;
+  font-size: 50px;
+  font-family: "D-DIN-Bold";
   font-weight: 700;
   word-wrap: break-word;
 }
@@ -108,44 +141,75 @@
   position: absolute;
 }
 
+.guest-timeout {
+  width: 15px;
+  height: 15px;
+  left: 398px;
+  position: absolute;
+  background: #00a13b;
+  border-radius: 9999px;
+}
+
 .guest-text {
-  width: 167px;
-  height: 64px;
-  left: 47px;
-  top: 96px;
+  width: 226px;
+  height: 56px;
+  left: 286px;
+  top: 90px;
   position: absolute;
   text-align: center;
   color: white;
   font-size: 45px;
-  font-family: "D-DIN-Bold", sans-serif;
+  font-family: "LiberationMono-Bold";
   font-weight: 700;
   word-wrap: break-word;
 }
+.guest-possession {
+  clip-path: polygon(0% 0%, 100% 50%, 0% 100%, 25% 50%);
+  background: #ff0000;
+  height: 20px;
+  width: 20px;
+  left: 293px;
+  top: 40px;
+  position: absolute;
+}
 
 .guest-number {
-  width: 160px;
-  height: 96px;
-  left: 54px;
-  top: 0;
+  width: 226px;
+  height: 100px;
+  left: 0px;
+  top: 0px;
   position: absolute;
   text-align: center;
   color: #ff0000;
   font-size: 100px;
-  font-family: "D-DIN-Bold", sans-serif;
+  font-family: "D-DIN-Bold";
   font-weight: 700;
   word-wrap: break-word;
 }
 
 .green-number {
-  width: 26px;
-  height: 96px;
-  left: 244px;
-  top: 0;
+    width: 26px;
+    height: 64px;
+    left: 243px;
+    top: 18px;
+    position: absolute;
+    color: #00a13b;
+    font-size: 60px;
+    font-family: "D-DIN-Bold";
+    font-weight: 700;
+    word-wrap: break-word;
+}
+
+.guest-fouls {
+  width: 25px;
+  height: 46px;
+  left: 456px;
+  top: 195px;
   position: absolute;
   text-align: center;
-  color: #00a13b;
-  font-size: 60px;
-  font-family: "D-DIN-Bold", sans-serif;
+  color: #ebff00;
+  font-size: 50px;
+  font-family: "D-DIN-Bold";
   font-weight: 700;
   word-wrap: break-word;
 }
@@ -159,8 +223,8 @@
   text-align: center;
   color: white;
   font-size: 96px;
-  font-family: "D-DIN-Bold", sans-serif;
-  font-weight: 700;
+  font-family: "Arial", sans-serif;
+  font-weight: bold;
   word-wrap: break-word;
 }
 
@@ -170,4 +234,13 @@
   left: 192px;
   top: 225px;
   position: absolute;
+}
+
+@keyframes blink {
+  0%, 50% { visibility: visible; }
+  51%, 100% { visibility: hidden; }
+}
+
+.blink {
+  animation: blink 1s steps(1, start) infinite;
 }

@@ -38,7 +38,7 @@
   text-align: center;
   color: white;
   font-size: 45px;
-  font-family: "D-DIN-Bold";
+  font-family: "LiberationMono-Bold";
   font-weight: 700;
   word-wrap: break-word;
 }
@@ -61,6 +61,20 @@
   position: absolute;
   text-align: center;
   color: #ebff00;
+  font-size: 50px;
+  font-family: "D-DIN-Bold";
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+.home-square-fouls {
+  width: 35px;
+  height: 35px;
+  left: 35px;
+  top: 205px;
+  position: absolute;
+  text-align: center;
+  color: red;
   font-size: 50px;
   font-family: "D-DIN-Bold";
   font-weight: 700;
@@ -132,7 +146,7 @@
   text-align: center;
   color: white;
   font-size: 45px;
-  font-family: "D-DIN-Bold";
+  font-family: "LiberationMono-Bold";
   font-weight: 700;
   word-wrap: break-word;
 }
@@ -185,6 +199,20 @@
   position: absolute;
   text-align: center;
   color: #ebff00;
+  font-size: 50px;
+  font-family: "D-DIN-Bold";
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+.guest-square-fouls {
+  width: 35px;
+  height: 35px;
+  left: 451px;
+  top: 205px;
+  position: absolute;
+  text-align: center;
+  color: red;
   font-size: 50px;
   font-family: "D-DIN-Bold";
   font-weight: 700;

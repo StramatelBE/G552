@@ -22,9 +22,9 @@ const handleScoring = async (scoring) => {
     try {
         const macro = new MacroController();
 
-        const scoreMode = [9];
+        const scoreMode = [0];
         const immediateModes = [16, 17, 18, 19, 20];
-        const macroModes = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+        const macroModes = [1, 2, 3, 4, 5, 6, 7, 8, 9];
         const prematchMode = [21];
         const stopModes = [22, 23];
 
@@ -36,7 +36,7 @@ const handleScoring = async (scoring) => {
             previousMacrosDataMode = mode;
         };
 
-        const handleMacroMode = async (mode) => {
+        const handleMacroMode = async (mode, gameState) => {
             console.log("macro mode");
             let macrosData = null;
         
@@ -59,7 +59,7 @@ const handleScoring = async (scoring) => {
                 unixSocketSetup.sendMedia(macrosData[0]);
             } else {
                 console.log("No event for this macro, sending Mode", scoring.Mode);
-                scoring.Mode = scoreMode;
+                scoring.Mode = scoreMode[0];
                 unixSocketSetup.sendData(scoring);
             }
         };
@@ -100,6 +100,7 @@ const handleScoring = async (scoring) => {
         //console.log("Mode:", scoring.Mode);
 
         if (scoreMode.includes(scoring.Mode)){
+            console.log("score mode");
             unixSocketSetup.sendData(scoring);
             previousMacrosDataMode = scoring.Mode;
         } else if (stopModes.includes(scoring.Mode)) {
@@ -109,14 +110,14 @@ const handleScoring = async (scoring) => {
         } else if (immediateModes.includes(scoring.Mode)) {
             handleImmediateMode(scoring.Mode);
         } else if (macroModes.includes(scoring.Mode)) {
-            await handleMacroMode(scoring.Mode);
+            await handleMacroMode(scoring.Mode, scoring);
         } else if (prematchMode.includes(scoring.Mode)) {
             await handlePrematchMode(scoring.Mode, scoring);
         }
 
     } catch (error) {
         console.error("Error fetching macros:", error.message);
-        scoring.Mode = 9;
+        scoring.Mode = 0;
         unixSocketSetup.sendData(scoring);
     }
 };
