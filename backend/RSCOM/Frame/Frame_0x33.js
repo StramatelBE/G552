@@ -34,6 +34,7 @@ class Frame_0x33 {
             Mode: nBytesToNumber(_message[2]),
             InsertType: "DirectConsoleData",
             Sport: eSport.Basketball,
+            Display: eSport.Basketball,
 
             Timer: {
                 Value: Tools.Chrono(_message[4], _message[5], _message[6], _message[7]),

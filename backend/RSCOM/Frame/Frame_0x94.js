@@ -11,7 +11,8 @@ class Frame_0x94 {
         return {
             Mode: nBytesToNumber(_message[2]),
             insertType: 'RINK',
-            Sport: eSport.Handball, //RINK HOCKEY
+            Sport: eSport.RinkHockey,
+            Display: eSport.Handball, //RINK HOCKEY
 
             Period: nBytesToNumber(_message[14]),
 

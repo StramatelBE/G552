@@ -8,6 +8,7 @@ const eSport = {
     TableTennis: "Table Tennis",
     Badminton: "Badminton",
     Hockey: "Hockey",
+    RinkHockey: "RinkHockey",
     Floorball: "FloorBall",
     Hand2: "Hand2",
     Netball: "NetBall",

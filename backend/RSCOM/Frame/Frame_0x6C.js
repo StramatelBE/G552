@@ -13,7 +13,8 @@ class Frame_0x6C {
         return {
             Mode: nBytesToNumber(_message[2]),
             insertType: 'DirectConsoleData',
-            Sport: eSport.Tennis, // Badminton displayed on Tennis Display
+            Sport: eSport.Badminton,
+            Display: eSport.Tennis,
 
             Chrono: {
                 Value: Tools.Chrono(_message[4], _message[5], _message[6], _message[7]),

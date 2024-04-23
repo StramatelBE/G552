@@ -17,7 +17,7 @@ class Frame_0x3A {
 
             InsertType: "DirectConsoleData",
             Display: eSport.Tennis,
-            Sport: eSport.Tennis, // TableTennis
+            Sport: eSport.TableTennis,
             Set: nBytesToNumber(_message[14]),
 
             Chrono: {

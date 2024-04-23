@@ -23,8 +23,8 @@ const ScoringMode = ({ gameState }) => {
   }, []);
   useEffect(() => {
 
-    if (gameState && gameState.Sport) {
-      setSport(gameState.Sport);
+    if (gameState && gameState.Display) {
+      setSport(gameState.Display);
     }
   }, [gameState]);
 
