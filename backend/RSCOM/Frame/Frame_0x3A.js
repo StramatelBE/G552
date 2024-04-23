@@ -4,6 +4,7 @@ const nBytesToTables = require("../Utils/nBytesToTables");
 const eSport  = require("../Utils/Enums/eSport");
 
 const Game = require("../Game");
+const e = require('cors');
 
 /*(
     * 0x3A : Table Tennis
@@ -15,6 +16,7 @@ class Frame_0x3A {
             Mode: nBytesToNumber(_message[2]),
 
             InsertType: "DirectConsoleData",
+            Display: eSport.Tennis,
             Sport: eSport.Tennis, // TableTennis
             Set: nBytesToNumber(_message[14]),
 

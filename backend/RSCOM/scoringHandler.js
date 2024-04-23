@@ -36,7 +36,7 @@ const handleScoring = async (scoring) => {
             previousMacrosDataMode = mode;
         };
 
-        const handleMacroMode = async (mode) => {
+        const handleMacroMode = async (mode, gameState) => {
             console.log("macro mode");
             let macrosData = null;
         
@@ -110,7 +110,7 @@ const handleScoring = async (scoring) => {
         } else if (immediateModes.includes(scoring.Mode)) {
             handleImmediateMode(scoring.Mode);
         } else if (macroModes.includes(scoring.Mode)) {
-            await handleMacroMode(scoring.Mode);
+            await handleMacroMode(scoring.Mode, scoring);
         } else if (prematchMode.includes(scoring.Mode)) {
             await handlePrematchMode(scoring.Mode, scoring);
         }
