@@ -29,7 +29,7 @@ class Frame_0x35 {
             Home: {
                 Points: nBytesToNumber(_message[9], _message[10]),
                 Fouls: {
-                    Team: nBytesToNumber(_message[8]),
+                    Team: Tools.TeamFouls(_message[8]),
                 },
                 PenaltiesInProgress: Tools.PenaltiesInProgress(_message[15]),
                 Timeout : {
@@ -46,7 +46,9 @@ class Frame_0x35 {
                     Team: nBytesToNumber(_message[11]),
                 },
                 PenaltiesInProgress: Tools.PenaltiesInProgress(_message[16]),
-                TimeoutsCounts: nBytesToNumber(_message[18]),
+                Timeout: {
+                   Counts: nBytesToNumber(_message[18]),
+                },
                 Exclusion: {
                     Timer: Tools.Exclusion(35, 3, _message),
                 }

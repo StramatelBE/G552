@@ -5,6 +5,9 @@ function Basketball({ gameState: incomingGameState }) {
   const [homeScore, setHomeScore] = useState(incomingGameState?.Home?.Points || 0);
   const [guestScore, setGuestScore] = useState(incomingGameState?.Guest?.Points || 0);
 
+  const [homeFontSize, setHomeFontSize] = useState('45px');
+  const [guestFontSize, setGuestFontSize] = useState('45px');
+
   const [homeScoreQueue, setHomeScoreQueue] = useState([]);
   const [guestScoreQueue, setGuestScoreQueue] = useState([]);
 
@@ -55,6 +58,42 @@ function Basketball({ gameState: incomingGameState }) {
       }, 480);
     }
   }, [guestScoreQueue]);
+
+  useEffect(() => {
+    setHomeFontSize(getFontSize(gameState?.Home?.TeamName));
+    setGuestFontSize(getFontSize(gameState?.Guest?.TeamName));
+}, [incomingGameState]);
+
+function getFontSize(name) {
+  //remove start and end spaces but not in the middle
+  name = name.replace(/^\s+|\s+$/g, '');
+
+  console.log(name);
+  if (name.length <= 7) {
+    return '45px'; // Taille normale
+  } 
+ else if (name.length <= 9) {
+    return '40px'; // Toujours un peu plus petit
+  } 
+}
+function renderHomeFoulCount(foulCount) {
+  // If the foul count is 8, display a red square instead
+  return foulCount === 8 ? (
+    <div className="home-square-fouls" style={{ width: '30px', height: '30px', backgroundColor: 'red' }} />
+  ) : (
+    <div className="home-fouls" style={{ fontFamily: "D-DIN-Bold"}}>{foulCount}</div>
+  );
+}
+
+function renderGuestFoulCount(foulCount) {
+  // If the foul count is 8, display a red square instead
+  return foulCount === 8 ? (
+    <div className="guest-square-fouls" style={{ width: '30px', height: '30px', backgroundColor: 'red' }} />
+  ) : (
+    <div className="guest-fouls" style={{ fontFamily: "D-DIN-Bold"}}>{foulCount}</div>
+  );
+}
+
 
 
 
@@ -120,12 +159,12 @@ function Basketball({ gameState: incomingGameState }) {
             <div className="home-score">{homeScore}</div>
           )}
         </div>
-        <div className="home-name">
+        <div className="home-name" style={{fontSize: homeFontSize }}>
           {gameState?.Home?.TeamName || "HOME"} {/* team name HOME */}
         </div>
-        {gameState?.Home?.Timeout?.Team >= 0 && (
+        {gameState?.Home?.Timeout?.Count >= 0 && (
           <>
-            {[...Array(3 - gameState?.Home?.Timeout?.Team)].map((_, i) => (
+            {[...Array(gameState?.Home?.Timeout?.Count)].map((_, i) => (
               <div
                 key={i}
                 className="home-timeout"
@@ -134,9 +173,16 @@ function Basketball({ gameState: incomingGameState }) {
             ))}
           </>
         )}
-        <div className="home-fouls">
-          {gameState?.Home?.Fouls?.Team} {/* team HOME fouls */}
+    
+            
+        <div className="">
+        {renderHomeFoulCount(gameState?.Home?.Fouls?.Team) || "0"}
         </div>
+        
+
+
+        
+            
         {gameState?.Home?.Possession && (
           <div className="home-possession"></div>
         )}
@@ -159,7 +205,7 @@ function Basketball({ gameState: incomingGameState }) {
       </div>
 
       <div className="guest">
-        <div className="guest-name">
+        <div className="guest-name" style={{fontSize: guestFontSize }}>
           {gameState?.Guest?.TeamName || "GUEST"} {/* team name GUEST */}
         </div>{" "}
 
@@ -176,9 +222,9 @@ function Basketball({ gameState: incomingGameState }) {
 
 
         </div>
-        {gameState?.Guest?.Timeout?.Team >= 0 && (
+        {gameState?.Guest?.Timeout?.Count >= 0 && (
           <>
-            {[...Array(3 - gameState?.Guest?.Timeout?.Team)].map((_, i) => (
+            {[...Array(gameState?.Guest?.Timeout?.Count)].map((_, i) => (
               <div
                 key={i}
                 className="guest-timeout"
@@ -187,8 +233,9 @@ function Basketball({ gameState: incomingGameState }) {
             ))}
           </>
         )}
-        <div className="guest-fouls">
-          {gameState?.Guest?.Fouls?.Team} {/* team GUEST fouls */}
+
+        <div >
+        {renderGuestFoulCount(gameState?.Guest?.Fouls?.Team) || "0"}
         </div>
       </div>
 

@@ -45,6 +45,7 @@ class Game {
       TeamName: null,
       Points: null,
       TotalPoints: null,
+      GameInSet: null,
       PointsInSets: null,
       SetsWon: null,
       Service: null,
@@ -74,6 +75,7 @@ class Game {
       TeamName: null,
       Points: null,
       TotalPoints: null,
+      GameInSet: null,
       PointsInSets: null,
       SetsWon: null,
       Service: null,
@@ -135,13 +137,15 @@ class Game {
         break;
       case 0x33:
         toInsert = Frames._0x33.build(_message);
+        // console.log("gamejs toinsert:", toInsert);
         break;
       case 0x35:
         toInsert = Frames._0x35.build(_message);
+        // console.log("gamejs toinsert:", toInsert);
         break;
       case 0x36:
         toInsert = Frames._0x36.build(_message);
-        console.log("gamejs toinsert:", toInsert);
+        // console.log("gamejs toinsert:", toInsert);
         break;
       case 0x37:
         toInsert = Frames._0x37.build(_message);
@@ -151,7 +155,7 @@ class Game {
         break;
       case 0x39:
         toInsert = Frames._0x39.build(_message);
-        console.log("gamejs toinsert:", toInsert);
+        // console.log("gamejs toinsert:", toInsert);
 
         break;
       case 0x62:
@@ -180,6 +184,7 @@ class Game {
         break;
       case 0x94:
         toInsert = Frames._0x94.build(_message);
+        // console.log("gamejs toinsert:", toInsert);
         break;
       case 0xa9:
         toInsert = Frames._0xA9.build(_message);
@@ -199,6 +204,10 @@ class Game {
     }
 
     if (toInsert != null) {
+      console.log("toInsert: ", toInsert);
+      // console.log("Home Exclusion Timer: ", toInsert?.Home?.Exclusion?.Timer);
+      // console.log("Guest Exclusion Timer: ", toInsert?.Guest?.Exclusion?.Timer);
+      console.log(_message[1] + " Frame");
       this.updateState(toInsert);
       
     }

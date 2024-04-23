@@ -5,6 +5,9 @@ function Handball({ gameState: incomingGameState }) {
   const [homeScore, setHomeScore] = useState(incomingGameState?.Home?.Points || 0);
   const [guestScore, setGuestScore] = useState(incomingGameState?.Guest?.Points || 0);
 
+  const [homeFontSize, setHomeFontSize] = useState('45px');
+  const [guestFontSize, setGuestFontSize] = useState('45px');
+
   const [homeScoreQueue, setHomeScoreQueue] = useState([]);
   const [guestScoreQueue, setGuestScoreQueue] = useState([]);
 
@@ -17,6 +20,8 @@ function Handball({ gameState: incomingGameState }) {
   const gameState = incomingGameState || {};
   const showHomeTimeout = gameState?.Home?.Timeout?.Time !== "0:00";
   const showGuestTimeout = gameState?.Guest?.Timeout?.Time !== "0:00";
+
+  const isRink = gameState?.insertType === "RINK";
 
   useEffect(() => {
     if (gameState?.Home?.Points !== homeScoreQueue[homeScoreQueue.length - 1] && homeScoreQueue) {
@@ -55,11 +60,55 @@ function Handball({ gameState: incomingGameState }) {
     }
   }, [guestScoreQueue]);
 
+  useEffect(() => {
+      setHomeFontSize(getFontSize(gameState?.Home?.TeamName));
+      setGuestFontSize(getFontSize(gameState?.Guest?.TeamName));
+  }, [incomingGameState]);
+
+  function getFontSize(name) {
+    //remove start and end spaces but not in the middle
+    name = name.replace(/^\s+|\s+$/g, '');
+
+    console.log(name);
+    if (name.length <= 7) {
+      return '45px'; // Taille normale
+    } 
+   else if (name.length <= 9) {
+      return '40px'; // Toujours un peu plus petit
+    } 
+  }
+
+  function formatExclusionTimer(timer) {
+    if (timer === 0) {
+      return 0;
+    }
+    // Convertit le nombre en chaîne de caractères
+    const timerStr = timer.toString();
+    // Assurez-vous que la chaîne est de longueur 3
+    if (timerStr.length === 3) {
+      // Extrait chaque chiffre
+      const firstDigit = timerStr[0];
+      const secondDigit = timerStr[1];
+      const thirdDigit = timerStr[2];
+      
+      // Formatte et renvoie la nouvelle chaîne
+      return `${firstDigit}:${secondDigit}${thirdDigit}`;
+    }  else if (timerStr.length === 2) {
+      return `0:${timerStr}`;
+
+    }else if (timerStr.length === 1) {
+      return `0:0${timerStr}`;
+    }
+  }
+  
+
 
   function formatTimer(timerString, showHomeTimeout, showGuestTimeout) {
     if (!timerString) {
       return [];
     }
+
+    
 
     timerString = timerString.toString();
     const characters = timerString.slice(0, 5).split("");
@@ -104,7 +153,7 @@ function Handball({ gameState: incomingGameState }) {
   return (
     <div className="container">
       <div className="absolute-div home-div">
-        <div className="team-name-div" style={{ left: "0px", top: " 85px" }} >{gameState?.Home?.TeamName || "HOME"}</div>
+        <div className="team-name-div" style={{ left: "0px", top: "90px", fontSize: homeFontSize }} >{gameState?.Home?.TeamName !== "" ? gameState?.Home?.TeamName : "HOME"}</div>
         <div className="container-score-home">
           {homeScoreAnimating && (
             <>
@@ -116,9 +165,9 @@ function Handball({ gameState: incomingGameState }) {
             <div className="home-score">{homeScore}</div>
           )}
         </div>
-        {gameState?.Home?.Timeout?.Team >= 0 && (
+        {gameState?.Home?.Timeout?.Counts >= 0 && (
           <div className="dots-div" style={{ left: '10px', top: '140px' }}>
-            {[...Array(3 - gameState?.Guest?.Timeout?.Team)].map((_, i) => (
+            {[...Array(gameState?.Home?.Timeout?.Counts)].map((_, i) => (
               <div
                 key={i}
                 className="dot-hand"
@@ -128,29 +177,39 @@ function Handball({ gameState: incomingGameState }) {
 
           </div>
         )}
-        <div className="time-div" style={{ left: '25px', top: '211px' }}>{gameState?.Home?.Exclusion.Timer[0] === 0 || ""}</div>
-        <div className="time-div" style={{ left: '25px', top: '175px' }}>{gameState?.Home?.Exclusion.Timer[1] === 0 || ""}</div>
-        <div className="time-div" style={{ left: '25px', top: '139px' }}>{gameState?.Home?.Exclusion.Timer[2] === 0 || ""}</div>
+        {// If the game is a rink, display the team fouls
+          (
+          <div className="home-fouls" >
+            {gameState?.Home?.Fouls?.Team || "0"}
+          </div>
+        )
+      }
+        <div className="time-div" style={{ left: '25px', top: '211px' }}>{formatExclusionTimer(gameState?.Home?.Exclusion?.Timer[0]) || ""}</div>
+        <div className="time-div" style={{ left: '25px', top: '175px' }}>{formatExclusionTimer(gameState?.Home?.Exclusion?.Timer[1]) || ""}</div>
+        <div className="time-div" style={{ left: '25px', top: '139px' }}>{formatExclusionTimer(gameState?.Home?.Exclusion?.Timer[2]) || ""}</div>
       </div>
       <div className="container-score-guest">
+  
+
         {guestScoreAnimating && (
-          <>
-            <div className="guest-score score-out">{prevGuestScore}</div>
-            <div className="guest-score score-in">{guestScore}</div>
-          </>
-        )}
-        {!guestScoreAnimating && (
-          <div className="guest-score">{guestScore}</div>
-        )}
+            <>
+              <div className="guest-score score-out">{prevGuestScore}</div>
+              <div className="guest-score score-in">{guestScore}</div>
+            </>
+          )}
+          {!guestScoreAnimating && (
+            <div className="home-score">{guestScore}</div>
+          )}
+
+        
 
 
       </div>
       <div className="absolute-div guest-div">
-        <div className="team-name-div" style={{ left: "0px", top: " 85px" }} > {gameState?.Guest?.TeamName || "GUEST"}</div>
-        <div className="score-div"> {gameState?.Guest?.Points || "0"}</div>
-        {gameState?.Home?.Timeout?.Team >= 0 && (
+        <div className="team-name-div" style={{ left: "0px", top: " 90px", fontSize: guestFontSize }} > {gameState?.Guest?.TeamName !== "" ? gameState?.Guest?.TeamName : "GUEST"}</div>
+        {gameState?.Home?.Timeout?.Counts >= 0 && (
           <div className="dots-div" style={{ left: "202px", top: '140px' }}>
-            {[...Array(3 - gameState?.Guest?.Timeout?.Team)].map((_, i) => (
+            {[...Array(gameState?.Guest?.Timeout?.Counts)].map((_, i) => (
               <div
                 key={i}
                 className="dot-hand"
@@ -160,9 +219,17 @@ function Handball({ gameState: incomingGameState }) {
 
           </div>
         )}
-        <div className="time-div" style={{ left: '88px', top: '211px' }}>{gameState?.Guest?.Exclusion.Timer[0] === 0 || ""}</div>
-        <div className="time-div" style={{ left: '88px', top: '175px' }}>{gameState?.Guest?.Exclusion.Timer[1] === 0 || ""}</div>
-        <div className="time-div" style={{ left: '88px', top: '139px' }}>{gameState?.Guest?.Exclusion.Timer[2] === 0 || ""}</div>
+        {// If the game is a rink, display the team fouls
+         (
+          <div className="guest-fouls">
+            {gameState?.Guest?.Fouls?.Team || "0"}
+          </div>
+        )
+
+        }
+        <div className="time-div" style={{ left: '88px', top: '211px' }}>{formatExclusionTimer(gameState?.Guest?.Exclusion.Timer[0]) || ""}</div>
+        <div className="time-div" style={{ left: '88px', top: '175px' }}>{formatExclusionTimer(gameState?.Guest?.Exclusion.Timer[1]) || ""}</div>
+        <div className="time-div" style={{ left: '88px', top: '139px' }}>{formatExclusionTimer(gameState?.Guest?.Exclusion.Timer[2]) || ""}</div>
       </div>
       <div className="countdown-container">
         <div className="countdown-text">{formatTimer(
