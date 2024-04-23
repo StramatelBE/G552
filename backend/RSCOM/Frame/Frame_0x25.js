@@ -1,7 +1,7 @@
 // FUTSAL
 
 const nBytesToNumber = require('../Utils/nBytesToNumber');
-const nBytesToTables = require('./Utils/nBytesToTables');
+const nBytesToTables = require('../Utils/nBytesToTables');
 const LED = require("../Utils/Enums/eLED");
 const Tools = require("../Utils/Frame_Tools/Frame_Tools_index");
 const eSport = require("../Utils/Enums/eSport");
