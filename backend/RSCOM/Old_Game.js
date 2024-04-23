@@ -1,5 +1,5 @@
 const { log } = require("console");
-const Frames = require("./Frame");
+const Frames = require("./Frame/Frame_index");
 const { sharedEmitter } = require("./SerialPorts/SerialPortConnection");
 const fs = require('fs');
 const path = require('path');
@@ -125,72 +125,84 @@ class Game {
     let toInsert = null;
 
     switch (_message[1]) {
-        case 0x10:
-            toInsert = Frames.Volleyball.build(_message);
-            break;
-        case 0x20:
-            toInsert = Frames.Handball.build(_message);
-            break;
-        case 0x21:
-            toInsert = Frames.Floorball.build(_message);
-            break;
-        case 0x22:
-            toInsert = Frames.IceHockey.build(_message);
-            break;
-        case 0x23:
-            toInsert = Frames.RinkHockey.build(_message);
-            break;
-        case 0x24:
-            toInsert = Frames.RollerInlineHockey.build(_message);
-            break;
-        case 0x25:
-            toInsert = Frames.Futsal.build(_message);
-            break;
-        case 0x26:
-            toInsert = Frames.Netball.build(_message);
-            break;
-        case 0x27:
-            toInsert = Frames.Boxe.build(_message);
-            break;
-        case 0x30:
-            toInsert = Frames.Basketball.build(_message);
-            break;
-        case 0x40:
-            toInsert = Frames.Tennis.build(_message);
-            break;
-        case 0x41:
-            toInsert = Frames.Badminton.build(_message);
-            break;
-        case 0x42:
-            toInsert = Frames.TableTennis.build(_message);
-            break;
-        case 0x50:
-            toInsert = Frames.Chrono.build(_message);
-            break;
-        case 0x51:
-            toInsert = Frames.Training.build(_message);
-            break;
-        case 0x52:
-            toInsert = Frames.FreeSport.build(_message);
-            break;
-        case 0x90:
-            toInsert = Frames.TeamNames.build(_message);
-            break;
-        case 0x91:
-            toInsert = Frames.ClearTeamNames.build(_message);
-            break;
-        case 0x92:
-            toInsert = Frames.FullClear.build(_message);
-            break;
-        case 0x93:
-            toInsert = Frames.Test.build(_message);
-            break;
-        case 0x99:
-            toInsert = Frames.ClockSetup.build(_message);
-            break;
-        default:
-            console.log("Unknown Frame: " + _message[1]);
-            break;
+      case 0x3a:
+        toInsert = Frames._0x3A.build(_message);
+        break;
+      case 0x3c:
+        toInsert = Frames._0x3C.build(_message);
+        break;
+      case 0x6c:
+        toInsert = Frames._0x6C.build(_message);
+        break;
+      case 0x9a:
+        toInsert = Frames._0x9A.build(_message);
+        break;
+      case 0x33:
+        toInsert = Frames._0x33.build(_message);
+        // console.log("gamejs toinsert:", toInsert);
+        break;
+      case 0x35:
+        toInsert = Frames._0x35.build(_message);
+        // console.log("gamejs toinsert:", toInsert);
+        break;
+      case 0x36:
+        toInsert = Frames._0x36.build(_message);
+        // console.log("gamejs toinsert:", toInsert);
+        break;
+      case 0x37:
+        toInsert = Frames._0x37.build(_message);
+        break;
+      case 0x38:
+        toInsert = Frames._0x38.build(_message);
+        break;
+      case 0x39:
+        toInsert = Frames._0x39.build(_message);
+        // console.log("gamejs toinsert:", toInsert);
+
+        break;
+      case 0x62:
+        if (
+          _message[3] === 0x20 &&
+          _message[4] === 0x20 &&
+          _message[5] === 0x20
+        )
+          toInsert = Frames._0x62_TeamNames.build(_message);
+        else toInsert = Frames._0x62_PlayerNames.build(_message);
+        break;
+      case 0x74:
+        toInsert = Frames._0x74.build(_message);
+        break;
+      case 0x77:
+        if (
+          _message[3] === 0x20 &&
+          _message[4] === 0x20 &&
+          _message[5] === 0x20
+        )
+          toInsert = Frames._0x77_TeamNames.build(_message);
+        else toInsert = Frames._0x77_PlayerNames.build(_message);
+        break;
+      case 0x93:
+        toInsert = Frames._0x93.build(_message);
+        break;
+      case 0x94:
+        toInsert = Frames._0x94.build(_message);
+        // console.log("gamejs toinsert:", toInsert);
+        break;
+      case 0xa9:
+        toInsert = Frames._0xA9.build(_message);
+        break;
+      case 0xac:
+        toInsert = Frames._0xAC.build(_message);
+        break;
+      case 0xcc:
+        toInsert = Frames._0xCC.build(_message);
+        // console.log(toInsert)
+        break;
+      case 0x9f:
+        break;
+      default:
+        console.log("Unknown Frame: " + _message[1]);
+        break;
     }
 
     if (toInsert != null) {
