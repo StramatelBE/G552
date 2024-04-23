@@ -10,6 +10,8 @@ class Game {
 
     Sport: null,
 
+    Display: null,
+
     Period: null,
 
     Set: null,
