@@ -45,7 +45,7 @@ function Profile() {
   const [user, setUser] = useState(null);
   const { darkMode, setDarkMode } = useDarkMode();
   const [mode, setMode] = useState({});
-  const [Widths, setWidths] = useState({});
+  const [Widths, setWidths] = useState([]);
 
 
   let currentWidth = 0;
