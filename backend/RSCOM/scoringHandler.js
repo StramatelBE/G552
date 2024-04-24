@@ -99,10 +99,11 @@ const handleScoring = async (scoring) => {
 
         //console.log("Mode:", scoring.Mode);
 
-        scoring.Language = getLanguage;
 
         if (scoreMode.includes(scoring.Mode)){
             console.log("score mode");
+            scoring.Language = getLanguage;
+
             unixSocketSetup.sendData(scoring);
             previousMacrosDataMode = scoring.Mode;
         } else if (stopModes.includes(scoring.Mode)) {

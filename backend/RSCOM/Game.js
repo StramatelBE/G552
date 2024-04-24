@@ -4,6 +4,7 @@ const { sharedEmitter } = require("./SerialPorts/SerialPortConnection");
 const fs = require('fs');
 const path = require('path');
 const nBytesToNumber = require('./Utils/nBytesToNumber');
+const TeamName = require("./Utils/Frame_Tools/6_48_TeamName");
 class Game {
   static State = {
     Language: '',
@@ -275,13 +276,12 @@ class Game {
         storage[teamPath] = toInsert[side].TeamName.trim();
         writeStorage(storage);
       } else {
-        storage[teamPath] = "";
-        writeStorage(storage);
         // Set default TeamName if not provided or empty
         if (!toInsert[side]) toInsert[side] = {};
         toInsert[side].TeamName = storage[teamPath] && storage[teamPath].trim() ? storage[teamPath] : side;
       }
     });
+    writeStorage(storage);
 
     // Set Language by finding USer By Username with the Sport then set the user language as the language
 
