@@ -287,7 +287,7 @@ class Game {
     const user = User.getInstance();
     const sport = user.getByUsername(toInsert.Sport);
 
-    console.log("Sport language: ", sport.language);
+    console.log("Sport : ", sport);
     
   
 
