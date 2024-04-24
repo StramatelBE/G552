@@ -6,37 +6,37 @@ const path = require('path');
 
 class Game {
   static State = {
-    Language: null,
-    Mode: null,
+    Language: '',
+    Mode: '',
 
-    Sport: null,
+    Sport: '',
 
-    Display: null,
+    Display: '',
 
-    Period: null,
+    Period: '',
 
-    Set: null,
+    Set: '',
 
-    TieBreak: null,
+    TieBreak: '',
 
     Timer: {
-      Value: null,
-      Display: null,
-      Status: null,
-      LED: null,
-      Horn: null,
+      Value: '',
+      Display: '',
+      Status: '',
+      LED: '',
+      Horn: '',
     },
 
     Timer24s: {
-      Value: null,
-      Display: null,
-      Status: null,
-      LED: null,
-      Horn24s: null,
+      Value: '',
+      Display: '',
+      Status: '',
+      LED: '',
+      Horn24s: '',
     },
 
     Clock: {
-      Display: null,
+      Display: '',
     },
 
     Guest: {
@@ -44,61 +44,61 @@ class Game {
         Name: new Array(16),
         Number: new Array(16),
       },
-      PlayersInPlay: null,
-      TeamName: null,
-      Points: null,
-      TotalPoints: null,
-      GameInSet: null,
-      PointsInSets: null,
-      SetsWon: null,
-      Service: null,
+      PlayersInPlay: '',
+      TeamName: '',
+      Points: '',
+      TotalPoints: '',
+      GameInSet: '',
+      PointsInSets: '',
+      SetsWon: '',
+      Service: '',
       Fouls: {
         Individual: new Array(16),
-        Team: null,
-        RS: null,
+        Team: '',
+        RS: '',
       },
       Timeout: {
-        Count: null,
-        Time: null,
+        Count: '',
+        Time: '',
       },
-      PenaltiesInProgress: null,
+      PenaltiesInProgress: '',
       Exclusion: {
-        Timer: null,
-        ShirtNumber: null,
+        Timer: new Array(16),
+        ShirtNumber: new Array(16),
       },
-      Possession: null,
-      Warnings: null,
+      Possession: '',
+      Warnings: '',
     },
     Home: {
       Player: {
         Name: new Array(16),
         Number: new Array(16),
       },
-      PlayersInPlay: null,
-      TeamName: null,
-      Points: null,
-      TotalPoints: null,
-      GameInSet: null,
-      PointsInSets: null,
-      SetsWon: null,
-      Service: null,
+      PlayersInPlay: '',
+      TeamName: '',
+      Points: '',
+      TotalPoints: '',
+      GameInSet: '',
+      PointsInSets: '',
+      SetsWon: '',
+      Service: '',
       Fouls: {
         Individual: new Array(16),
-        Team: null,
-        RS: null,
+        Team: '',
+        RS: '',
       },
       Timeout: {
-        Count: null,
-        Time: null,
+        Count: '',
+        Time: '',
       },
-      PenaltiesInProgress: null,
+      PenaltiesInProgress: '',
 
       Exclusion: {
-        Timer: null,
-        ShirtNumber: null,
+        Timer: new Array(16),
+        ShirtNumber: new Array(16),
       },
-      Possession: null,
-      Warnings: null,
+      Possession: '',
+      Warnings: '',
     },
   };
 
@@ -225,7 +225,7 @@ class Game {
             console.log("Exclusion Timer: ", toInsert.Home.Exclusion.Timer[i]);
         }
         }
-        
+
       console.log(_message[1] + " Frame");
       this.updateState(toInsert);
       
