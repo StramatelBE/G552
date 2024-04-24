@@ -290,7 +290,7 @@ class Game {
     console.log("Sport: ", sport);
     
 
-    toInsert.Language = sport.language;
+    this.State.Language = sport.language;
   
     // Now perform the recursive update
     const recursiveUpdate = (mainObject, updateObject) => {
