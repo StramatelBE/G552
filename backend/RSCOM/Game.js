@@ -280,6 +280,16 @@ class Game {
         toInsert[side].TeamName = storage[teamPath] && storage[teamPath].trim() ? storage[teamPath] : side;
       }
     });
+
+    // Set Language by finding USer By Username with the Sport then set the user language as the language
+
+    const userController = require('./Controllers/UserController');
+    const user = new userController();
+    const sport = user.getByUsername(toInsert.Sport);
+
+    console.log("Sport: ", sport);
+
+    toInsert.Language = sport.Language;
   
     // Now perform the recursive update
     const recursiveUpdate = (mainObject, updateObject) => {

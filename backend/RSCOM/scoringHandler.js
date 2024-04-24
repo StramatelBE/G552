@@ -1,4 +1,5 @@
 const MacroController = require("../Controllers/macroController");
+const UserController = require("../Controllers/userController");
 const unixSocketSetup = require("../Sockets/Unixsocket.js");
 
 let previousMacrosDataMode = null;
@@ -21,6 +22,7 @@ let previousMacrosDataMode = null;
 const handleScoring = async (scoring) => {
     try {
         const macro = new MacroController();
+        const user = new UserController();
 
         const scoreMode = [0];
         const immediateModes = [16, 17, 18, 19, 20];
@@ -42,7 +44,6 @@ const handleScoring = async (scoring) => {
             console.log("Mode", mode);
             console.log("Sport", gameState.Sport);
             let macrosData = await macro.getMacrosByButton(mode, gameState.Sport);
-
             console.log("MacrosData", macrosData);
             
             //console.log("macrosData", macrosData)
