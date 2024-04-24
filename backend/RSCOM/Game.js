@@ -286,8 +286,6 @@ class Game {
     // Set Language by finding USer By Username with the Sport then set the user language as the language
 
    
-
-    this.State.Language = 'en';
   
     // Now perform the recursive update
     const recursiveUpdate = (mainObject, updateObject) => {
