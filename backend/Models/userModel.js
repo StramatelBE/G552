@@ -261,6 +261,44 @@ class User {
     });
   }
 
+  getByUsername(username) {
+    return new Promise((resolve, reject) => {
+      db.get(
+        `SELECT * FROM users WHERE username = ?`,
+        [username],
+        (err, user) => {
+          console.log(err, user);
+          if (err) {
+            console.log(
+              `Error looking up user with username: ${username}`,
+              err
+            );
+            reject(err);
+          } else {
+            resolve(user);
+          }
+        }
+      );
+    });
+  }
+
+  getByUsernameDirect(username, callback) {
+    db.get(
+      `SELECT * FROM users WHERE username = ?`,
+      [username],
+      (err, user) => {
+        console.log(err, user);
+        if (err) {
+          console.log(`Error looking up user with username: ${username}`, err);
+          callback(err, null);
+        } else {
+          callback(null, user);
+        }
+      }
+    );
+  }
+  
+
   getAll() {
     return new Promise((resolve, reject) => {
       db.all(`SELECT * FROM users`, (err, users) => {

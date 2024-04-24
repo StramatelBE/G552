@@ -242,7 +242,7 @@ class Game {
     return this.State;
   }
 
-  async updateState(toInsert) {
+  static updateState(toInsert) {
     // Define the path for the JSON storage file
     const storagePath = './storage.json';
   
@@ -285,9 +285,16 @@ class Game {
 
     const User = require('../Models/userModel');
     const user = User.getInstance();
-    const sport = await user.getByUsername(toInsert.Sport);
+    const sport = user.getByUsernameDirect(toInsert.Sport, (err, user) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(user);
+      }
+    }
+    );
 
-    console.log("Sport : ", sport);
+    console.log("Sport language: ", sport.language);
     
   
 
