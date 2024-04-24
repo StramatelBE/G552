@@ -11,7 +11,7 @@ const { logPlugin } = require("@babel/preset-env/lib/debug");
 class MacroController {
     constructor() {
         this.activeSession = new ActiveSession();
-        /*     this.user = new User(); */
+        this.user = new User();
         this.event = new Event();
         this.eventmedia = new EventMedia();
         this.media = new Media();
@@ -25,7 +25,8 @@ class MacroController {
             else if (buttonId === 0) return console.log("Button id is :", buttonId, " Scoring Mode activated");
         
             // Récupérer l'utilisateur par nom de sport
-            const user = await User.getByUsername(sport);
+
+            const user = await this.user.getByUsername(sport);
             if (!user) throw new Error(`No user found for sport: ${sport}`);
         
             // Récupérer les macros pour l'utilisateur spécifique et le bouton donné
