@@ -245,7 +245,7 @@ class Game {
   static updateState(toInsert) {
     // Define the path for the JSON storage file
     const storagePath = './storage.json';
-
+  
     // Function to read the current storage state
     const readStorage = () => {
       try {
@@ -256,7 +256,7 @@ class Game {
         return {};
       }
     };
-
+  
     // Function to write to the storage
     const writeStorage = (data) => {
       try {
@@ -265,24 +265,22 @@ class Game {
         console.error('Error writing to storage:', err);
       }
     };
-
+  
     // Handle TeamName updates or retrievals before recursive update
     const storage = readStorage();
     ['Guest', 'Home'].forEach(side => {
       const teamPath = `${side}.TeamName`;
-      if (toInsert[side] && toInsert[side].TeamName) {
-        // If TeamName is provided, update storage
-        storage[teamPath] = toInsert[side].TeamName;
+      if (toInsert[side] && toInsert[side].TeamName && toInsert[side].TeamName.trim()) {
+        // If TeamName is provided and not just spaces, update storage
+        storage[teamPath] = toInsert[side].TeamName.trim();
         writeStorage(storage);
-      } else if (!toInsert[side] || !toInsert[side].TeamName) {
-        // If TeamName is not provided, try to retrieve it from storage
-        if (storage[teamPath]) {
-          if (!toInsert[side]) toInsert[side] = {}; // Ensure side object exists
-          toInsert[side].TeamName = storage[teamPath];
-        }
+      } else {
+        // Set default TeamName if not provided or empty
+        if (!toInsert[side]) toInsert[side] = {};
+        toInsert[side].TeamName = storage[teamPath] && storage[teamPath].trim() ? storage[teamPath] : side;
       }
     });
-
+  
     // Now perform the recursive update
     const recursiveUpdate = (mainObject, updateObject) => {
       for (let key in updateObject) {
@@ -294,9 +292,10 @@ class Game {
         }
       }
     };
-
+  
     recursiveUpdate(this.State, toInsert);
   }
+  
 
 
   static Send() {

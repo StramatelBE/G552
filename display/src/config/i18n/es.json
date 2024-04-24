@@ -70,7 +70,7 @@
     "no": "No"
   },
   "Scoreboard": {
-    "Guest": "Visitante",
-    "Home": "Local" 
+    "Guest": "VISITANTE",
+    "Home": "LOCAL" 
   }
 }

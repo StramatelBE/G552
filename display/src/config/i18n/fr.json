@@ -78,7 +78,7 @@
     "no": "Non"
   },
   "Scoreboard": {
-    "Guest": "Visiteur",
-    "Home": "Locaux"
+    "Guest": "VISITEUR",
+    "Home": "LOCAUX"
   }
 }
