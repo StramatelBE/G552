@@ -6,6 +6,9 @@ function Volleyball({ gameState: incomingGameState }) {
   const [homeScore, setHomeScore] = useState(incomingGameState?.Home?.TotalPoints || 0);
   const [guestScore, setGuestScore] = useState(incomingGameState?.Guest?.TotalPoints || 0);
 
+  const [homeFontSize, setHomeFontSize] = useState('50px');
+  const [guestFontSize, setGuestFontSize] = useState('50px');
+
   const [homeScoreQueue, setHomeScoreQueue] = useState([]);
   const [guestScoreQueue, setGuestScoreQueue] = useState([]);
 
@@ -21,7 +24,6 @@ function Volleyball({ gameState: incomingGameState }) {
 
 
   useEffect(() => {
-    console.log("gameState", gameState);
     if (gameState?.Home?.TotalPoints !== homeScoreQueue[homeScoreQueue.length - 1] && homeScoreQueue) {
       setHomeScoreQueue(prev => [...prev, gameState?.Home?.TotalPoints]);
     }
@@ -32,83 +34,126 @@ function Volleyball({ gameState: incomingGameState }) {
 
   useEffect(() => {
     if (homeScoreQueue.length > 1 && !homeScoreAnimating) {
-      const newHomeScore = homeScoreQueue[1]; // Take the first element without removing it
+      const newHomeScore = homeScoreQueue[1];
       setHomeScoreAnimating(true);
       setHomeScore(newHomeScore)
       setTimeout(() => {
         setPrevHomeScore(newHomeScore);
         setHomeScoreAnimating(false);
 
-        setHomeScoreQueue(prev => prev.slice(1)); // Remove the first element after animation
+        setHomeScoreQueue(prev => prev.slice(1));
       }, 480);
     }
   }, [homeScoreQueue]);
 
   useEffect(() => {
     if (guestScoreQueue.length > 1 && !guestScoreAnimating) {
-      const newGuestScore = guestScoreQueue[1]; // Take the first element without removing it
+      const newGuestScore = guestScoreQueue[1];
       setGuestScoreAnimating(true);
       setGuestScore(newGuestScore)
       setTimeout(() => {
 
         setPrevGuestScore(newGuestScore);
         setGuestScoreAnimating(false);
-        setGuestScoreQueue(prev => prev.slice(1)); // Remove the first element after animation
+        setGuestScoreQueue(prev => prev.slice(1));
       }, 480);
     }
   }, [guestScoreQueue]);
 
+  useEffect(() => {
+    if (gameState?.Home?.TeamName !== undefined || gameState?.Guest?.TeamName !== undefined) {
+      setHomeFontSize(getFontSize(gameState?.Home?.TeamName));
+      setGuestFontSize(getFontSize(gameState?.Guest?.TeamName));
+    }
+  }, [incomingGameState]);
+
+  function getFontSize(name) {
+
+    if (name.length <= 7 || name === undefined) {
+      return '50px';
+    }
+    else if (name.length <= 9) {
+      return '45px';
+    }
+  }
+
+  function formatTimer(timerString, showHomeTimeout, showGuestTimeout) {
+    if (!timerString) {
+      return [];
+    }
+    const homeTimeout = gameState?.Home?.Timeout.Time || "0:00";
+    const guestTimeout = gameState?.Guest?.Timeout.Time || "0:00";
+    if (showHomeTimeout && homeTimeout !== "0:00") {
+      return homeTimeout;
+    }
+    else if (showGuestTimeout && guestTimeout !== "0:00") {
+      return guestTimeout;
+    }
+    else {
+      return timerString;
+    }
+  }
   return (
-    <div className="container">
-      <div className="home-container">
-        <div className="home-text">{gameState?.Home?.TeamName || "HOME"}</div>
-        <div className="container-score-home">
-          {homeScoreAnimating && (
-            <>
-              <div className="home-number score-out">{prevHomeScore}</div>
-              <div className="home-number score-in">{homeScore}</div>
-            </>
-          )}
-          {!homeScoreAnimating && (
-            <div className="home-number" >{homeScore}</div>
-          )}
+    <div className="container-sport">
+      <div className="container-team-sport" style={{ left: "0px" }}>
+        {homeScoreAnimating && (
+          <>
+            <div className="score-sport score-out">{prevHomeScore}</div>
+            <div className="score-sport score-in">{homeScore}</div>
+          </>
+        )}
+        {!homeScoreAnimating && (
+          <div className="text score-sport">{homeScore}</div>
+        )}
+        <div className="text team-name-sport" style={{ fontSize: homeFontSize }} >
+          {gameState?.Home?.TeamName !== undefined ? gameState?.Home?.TeamName : "HOME"}
         </div>
-
-
-
-        {/*  <div className="side-numbers">
-          <div className="side-number" style={{ top: 0 }}>{gameState?.Home?.PointsPerSets[0] === 0 || ""}</div>
-          <div className="side-number" style={{ top: 64 }}>{gameState?.Home?.PointsPerSets[1] === 0 || ""}</div>
-          <div className="side-number" style={{ top: 128 }}>{gameState?.Home?.PointsPerSets[2] === 0 || ""}</div>
-          <div className="side-number" style={{ top: 192 }}>{gameState?.Home?.PointsPerSets[3] === 0 || ""}</div>
-        </div> */}
-      </div>
-      <div className="guest-container">
-        <div className="guest-text">{gameState?.Guest?.TeamName || "GUEST"}</div>
-        <div className="container-score-guest-volleyball">
-          {guestScoreAnimating && (
-            <>
-              <div className="guest-number score-out">{prevGuestScore}</div>
-              <div className="guest-number score-in">{guestScore}</div>
-            </>
-          )}
-          {!guestScoreAnimating && (
-            <div className="guest-number">{guestScore}</div>
-          )}
-        </div>
-
-
-
-        <div className="side-numbers" style={{ left: 214 }}>
-          <div className="side-number" style={{ top: 0 }}>{gameState?.Guest?.PointsPerSets[0] === 0 || ""}</div>
-          <div className="side-number" style={{ top: 64 }}>{gameState?.Guest?.PointsPerSets[1] === 0 || ""}</div>
-          <div className="side-number" style={{ top: 128 }}>{gameState?.Guest?.PointsPerSets[2] === 0 || ""}</div>
-          <div className="side-number" style={{ top: 192 }}>{gameState?.Guest?.PointsPerSets[3] === 0 || ""}</div>
+        <div className="side-numbers">
+          <div className=" text side-number" >{gameState?.Home?.PointsPerSets[0] === 0 || ""}</div>
+          <div className="text side-number">{gameState?.Home?.PointsPerSets[1] === 0 || ""}</div>
+          <div className="text side-number" >{gameState?.Home?.PointsPerSets[2] === 0 || ""}</div>
+          <div className="text side-number">{gameState?.Home?.PointsPerSets[3] === 0 || ""}</div>
         </div>
       </div>
-      {/* <div className="green-number">{gameState?.Period || "0"}</div> */}
-      <div className="time">{gameState?.Timer?.Value || "00:00"}</div>
-      <img className="image" src="LOGO_Stramatel.gif" />
+      <div className="container-team-sport" style={{ left: "286px" }}>
+        {guestScoreAnimating && (
+          <>
+            <div className="score-sport score-out">{prevGuestScore}</div>
+            <div className="score-sport score-in">{guestScore}</div>
+          </>
+        )}
+        {!guestScoreAnimating && (
+          <div className="text score-sport">{guestScore}</div>
+        )}
+        <div className="text team-name-sport" style={{ fontSize: guestFontSize }} >
+          {gameState?.Guest?.TeamName !== undefined ? gameState?.Guest?.TeamName : "GUEST"}
+        </div>
+        <div className="side-numbers" style={{ right: "0px" }}>
+          <div className=" text side-number" >{gameState?.Home?.PointsPerSets[0] === 0 || ""}</div>
+          <div className="text side-number">{gameState?.Home?.PointsPerSets[1] === 0 || ""}</div>
+          <div className="text side-number" >{gameState?.Home?.PointsPerSets[2] === 0 || ""}</div>
+          <div className="text side-number">{gameState?.Home?.PointsPerSets[3] === 0 || ""}</div>
+        </div>
+      </div>
+
+
+      <div className="text period-sport" style={{ left: "226px" }}>
+        {gameState?.Period || "0"}
+      </div>
+      {gameState?.Home?.Possession && (
+        <div className="home-possession"></div>
+      )}
+      {gameState?.Guest?.Possession && (
+        <div className="guest-possession"></div>
+      )}
+      <div className="text timer-sport">
+        {formatTimer(
+          gameState?.Timer?.Value || "00:00",
+          showHomeTimeout,
+          showGuestTimeout
+        )}
+        <img className="logo-stramatel " style={{ top: "90px" }} src="LOGO_Stramatel.gif" />
+      </div>
     </div>
   )
 }
