@@ -79,6 +79,7 @@ function Handball({ gameState: incomingGameState }) {
   }
 
   function formatExclusionTimer(timer) {
+    console.log(timer);
     if (timer === 0) {
       return 0;
     }
@@ -86,7 +87,7 @@ function Handball({ gameState: incomingGameState }) {
     if (timer) {
       const timerStr = timer.toString();
     } else {
-      return "";
+      const timerStr = "";
     }
     // Assurez-vous que la chaîne est de longueur 3
     if (timerStr.length === 3) {
