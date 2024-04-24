@@ -184,15 +184,15 @@ function Handball({ gameState: incomingGameState }) {
           </div>
         )
       }
-        <div className="time-div" style={{ left: '0px', top: '211px' }}>{formatExclusionTimer(gameState?.Home?.Exclusion?.Timer[0]) || ""}</div>
-        <div className="time-div" style={{ left: '25px', top: '211px' }}>{formatExclusionTimer(gameState?.Home?.Exclusion?.ShirtNumber[0]) || ""}</div>
+        <div className="time-div" style={{ left: '0px', top: '211px' }}>{formatExclusionTimer(gameState?.Home?.Exclusion?.Timer[2]) || ""}</div>
+        <div className="time-div" style={{ left: '30px', top: '211px' }}>{gameState?.Home?.Exclusion?.ShirtNumber[2] || ""}</div>
 
 
         <div className="time-div" style={{ left: '0px', top: '175px' }}>{formatExclusionTimer(gameState?.Home?.Exclusion?.Timer[1]) || ""}</div>
-        <div className="time-div" style={{ left: '25px', top: '175px' }}>{formatExclusionTimer(gameState?.Home?.Exclusion?.ShirtNumber[1]) || ""}</div>
+        <div className="time-div" style={{ left: '30px', top: '175px' }}>{gameState?.Home?.Exclusion?.ShirtNumber[1] || ""}</div>
 
-        <div className="time-div" style={{ left: '0px', top: '139px' }}>{formatExclusionTimer(gameState?.Home?.Exclusion?.Timer[2]) || ""}</div>
-        <div className="time-div" style={{ left: '25px', top: '139px' }}>{formatExclusionTimer(gameState?.Home?.Exclusion?.ShirtNumber[2]) || ""}</div>
+        <div className="time-div" style={{ left: '0px', top: '139px' }}>{formatExclusionTimer(gameState?.Home?.Exclusion?.Timer[0]) || ""}</div>
+        <div className="time-div" style={{ left: '30px', top: '139px' }}>{gameState?.Home?.Exclusion?.ShirtNumber[0] || ""}</div>
 
       </div>
       <div className="container-score-guest">
@@ -234,14 +234,14 @@ function Handball({ gameState: incomingGameState }) {
         )
 
         }
-        <div className="time-div" style={{ left: '113px', top: '211px' }}>{formatExclusionTimer(gameState?.Guest?.Exclusion.Timer[0]) || ""}</div>
-        <div className="time-div" style={{ left: '88px', top: '211px' }}>{formatExclusionTimer(gameState?.Guest?.Exclusion?.ShirtNumber[0]) || ""}</div>
+        <div className="time-div" style={{ left: '118px', top: '211px' }}>{formatExclusionTimer(gameState?.Guest?.Exclusion.Timer[2]) || ""}</div>
+        <div className="time-div" style={{ left: '88px', top: '211px' }}>{gameState?.Guest?.Exclusion?.ShirtNumber[2] || ""}</div>
 
-        <div className="time-div" style={{ left: '113px', top: '175px' }}>{formatExclusionTimer(gameState?.Guest?.Exclusion.Timer[1]) || ""}</div>
-        <div className="time-div" style={{ left: '88px', top: '175px' }}>{formatExclusionTimer(gameState?.Guest?.Exclusion?.ShirtNumber[1]) || ""}</div>
+        <div className="time-div" style={{ left: '118px', top: '175px' }}>{formatExclusionTimer(gameState?.Guest?.Exclusion.Timer[1]) || ""}</div>
+        <div className="time-div" style={{ left: '88px', top: '175px' }}>{gameState?.Guest?.Exclusion?.ShirtNumber[1] || ""}</div>
 
-        <div className="time-div" style={{ left: '113px', top: '139px' }}>{formatExclusionTimer(gameState?.Guest?.Exclusion.Timer[2]) || ""}</div>
-        <div className="time-div" style={{ left: '88px', top: '139px' }}>{formatExclusionTimer(gameState?.Guest?.Exclusion?.ShirtNumber[2]) || ""}</div>
+        <div className="time-div" style={{ left: '118px', top: '139px' }}>{formatExclusionTimer(gameState?.Guest?.Exclusion.Timer[0]) || ""}</div>
+        <div className="time-div" style={{ left: '88px', top: '139px' }}>{gameState?.Guest?.Exclusion?.ShirtNumber[0] || ""}</div>
 
       </div>
       <div className="countdown-container">
