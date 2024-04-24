@@ -6,6 +6,7 @@ const LED = require("../Utils/Enums/eLED");
 const Tools = require("../Utils/Frame_Tools/Frame_Tools_index");
 const eSport = require("../Utils/Enums/eSport");
 const { Home } = require('../Utils/Enums/eTeam');
+const ShirtNumber = require('../Utils/Frame_Tools/4_35_ShirtNumber');
 
 /*
     * 0x25 : FUTSAL
@@ -40,6 +41,7 @@ module.exports = class Frame_0x25 {
                 },
                 Exclusion: {
                     Timer: Tools.Exclusion_Handball(22, 3, _message, 'timer'),
+                    ShirtNumber: ['', '', ''],
                 }
             },
 
@@ -54,6 +56,7 @@ module.exports = class Frame_0x25 {
                 },
                 Exclusion: {
                     Timer: Tools.Exclusion_Handball(35, 2, _message, 'timer'),
+                    ShirtNumber: ['', '', ''],
                 }
             },
 
