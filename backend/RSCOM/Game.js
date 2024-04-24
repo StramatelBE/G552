@@ -271,11 +271,11 @@ class Game {
     const storage = readStorage();
     ['Guest', 'Home'].forEach(side => {
       const teamPath = `${side}.TeamName`;
-      if (toInsert[side].TeamName && toInsert[side].TeamName.trim() && toInsert[side].TeamName.trim().length > 0){
+      if (toInsert[side]?.TeamName && toInsert[side]?.TeamName.trim() && toInsert[side]?.TeamName.trim().length > 0){
         // If TeamName is provided and not just spaces, update storage
         storage[teamPath] = toInsert[side].TeamName.trim();
         writeStorage(storage);
-      } else if (toInsert[side].TeamName && toInsert[side].TeamName.trim().length === 0) {
+      } else if (toInsert[side]?.TeamName && toInsert[side]?.TeamName.trim().length === 0) {
         // Set default TeamName if not provided or empty
         toInsert[side].TeamName = side;
         storage[teamPath] = side;
