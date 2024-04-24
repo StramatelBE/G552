@@ -14,19 +14,6 @@ const SPORT_COMPONENT_MAP = {
   Volleyball: Volleyball,
 
 };
-const i18next = require('i18next');
-const back = require('i18next-node-fs-backend');
-const path = require('path');
-
-i18next
-  .use(back)
-  .init({
-    lng: 'en', // default language
-    fallbackLng: 'en', // fallback language if the specified language cannot be found
-    backend: {
-      loadPath: path.join(__dirname, '../config/i18n/{{lng}}.json'),
-    },
-  });
 
   async function updateTeamNames(gameState) {
     // Set the language for i18next based on gameState
