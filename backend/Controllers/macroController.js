@@ -34,7 +34,7 @@ class MacroController {
             const allMacros = await this.macro.getAll();
             console.log("allMacros", allMacros);
             console.log("user", user);
-            const macros = await this.macro.getByUserId(user.userId)
+            const macros = await this.macro.getByUserId(user.id)
             
 
             console.log("macros", macros);
