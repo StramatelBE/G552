@@ -283,7 +283,7 @@ class Game {
 
     // Set Language by finding USer By Username with the Sport then set the user language as the language
 
-    const userController = require('./Controllers/UserController');
+    const userController = require('../Controllers/userController');
     const user = new userController();
     const sport = user.getByUsername(toInsert.Sport);
 
