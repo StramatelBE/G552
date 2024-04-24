@@ -88,6 +88,7 @@ function Handball({ gameState: incomingGameState }) {
       return "";
     } else {
       if (timerStr.length === 3) {
+        const timerStr = timer.toString();
         // Extrait chaque chiffre
         const firstDigit = timerStr[0];
         const secondDigit = timerStr[1];
