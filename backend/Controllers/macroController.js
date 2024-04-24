@@ -30,6 +30,9 @@ class MacroController {
             if (!user) throw new Error(`No user found for sport: ${sport}`);
         
             // Récupérer les macros pour l'utilisateur spécifique et le bouton donné
+
+            const allMacros = await this.macro.getAll();
+            console.log("allMacros", allMacros);
             const macros = await this.macro.getByUserId(user.userId)
             if (!macros.length) throw new Error("No macros found for this user and button");
 
