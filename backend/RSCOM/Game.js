@@ -215,6 +215,17 @@ class Game {
 
     if (toInsert != null) {
       console.log("toInsert: ", toInsert);
+      if (toInsert?.Guest?.Exclusion?.Timer) {
+        for (let i = 0; i < toInsert.Guest.Exclusion.Timer.length; i++) {
+          console.log("Exclusion Timer: ", toInsert.Guest.Exclusion.Timer[i]);
+        }
+      }
+      if (toInsert?.Home?.Exclusion?.Timer) {
+        for (let i = 0; i < toInsert.Home.Exclusion.Timer.length; i++) {
+            console.log("Exclusion Timer: ", toInsert.Home.Exclusion.Timer[i]);
+        }
+        }
+        
       console.log(_message[1] + " Frame");
       this.updateState(toInsert);
       
