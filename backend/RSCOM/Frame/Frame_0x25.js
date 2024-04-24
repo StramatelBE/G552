@@ -39,7 +39,7 @@ module.exports = class Frame_0x25 {
                     Counts: nBytesToNumber(_message[17]),
                 },
                 Exclusion: {
-                    Timer: Tools.Exclusion(22, 3, _message),
+                    Timer: Tools.Exclusion_Handball(22, 3, _message, 'timer'),
                 }
             },
 
@@ -53,7 +53,7 @@ module.exports = class Frame_0x25 {
                    Counts: nBytesToNumber(_message[18]),
                 },
                 Exclusion: {
-                    Timer: Tools.Exclusion(35, 3, _message),
+                    Timer: Tools.Exclusion_Handball(35, 2, _message, 'timer'),
                 }
             },
 

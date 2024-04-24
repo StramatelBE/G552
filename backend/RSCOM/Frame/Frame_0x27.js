@@ -17,7 +17,7 @@ module.exports = class Frame_0x27 {
         return {
             Mode: nBytesToNumber(_message[2]),
             insertType: 'DirectConsoleData',
-            Sport: eSport.Handball,
+            Sport: eSport.Boxe,
             Display: eSport.Handball,
 
             Timer: {
