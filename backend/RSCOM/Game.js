@@ -220,14 +220,15 @@ class Game {
         console.log(toInsert.Sport);
 
       if (toInsert?.Guest?.Exclusion?.Timer) {
+        if (toInsert?.Home?.Exclusion?.Timer) {
+            for (let i = 0; i < toInsert.Home.Exclusion.Timer.length; i++) {
+                console.log(i, ".Home Exclusion Timer: ", toInsert.Home.Exclusion.Timer[i]);
+            }
         for (let i = 0; i < toInsert.Guest.Exclusion.Timer.length; i++) {
-          console.log("Exclusion Timer: ", toInsert.Guest.Exclusion.Timer[i]);
+          console.log(i, ".Guest Exclusion Timer: ", toInsert.Guest.Exclusion.Timer[i]);
         }
       }
-      if (toInsert?.Home?.Exclusion?.Timer) {
-        for (let i = 0; i < toInsert.Home.Exclusion.Timer.length; i++) {
-            console.log("Exclusion Timer: ", toInsert.Home.Exclusion.Timer[i]);
-        }
+     
         }
 
       console.log(nBytesToNumber(_message[1]) + " Frame");
