@@ -108,7 +108,7 @@ class MacroController {
                 results.push({
                     event: event,
                     medias: medias,
-                    mode: mode.mode
+                    mode: buttonId
                 });
 
             }
