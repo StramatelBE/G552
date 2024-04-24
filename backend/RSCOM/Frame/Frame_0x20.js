@@ -54,8 +54,8 @@ module.exports = class Frame_0x20 {
                     Counts: nBytesToNumber(_message[18]),
                 },
                 Exclusion: {
-                    Timer: Tools.Exclusion(35, 3, _message, 'timer'),
-                    ShirtNumber: Tools.Exclusion(35, 3, _message, 'shirtNumber'),
+                    Timer: Tools.Exclusion(37, 3, _message, 'timer'),
+                    ShirtNumber: Tools.Exclusion(37, 3, _message, 'shirtNumber'),
                 }
             },
             
