@@ -19,106 +19,55 @@ class MacroController {
         this.mode = new Mode();
     }
 
-    async getMacrosByButton(buttonId) {
-        if (buttonId === undefined) throw new Error("No button id given");
-        else if (buttonId === 0) return console.log("Button id is :", buttonId, " Scoring Mode activated");
-
-        const TWO_HOURS = 2 * 60 * 60 * 1000; // 2 heures en millisecondes
-
-
-        const allActiveSessions = await this.activeSession.getAll();
-
-        //console.log("allActiveSessions", allActiveSessions)
-
-        // 1. Vérifier la session active
-        const activeSession = await this.activeSession.getFirst();
-
-        if (!activeSession) throw new Error("No active session found");
-
-        const now = Date.now();
-        const lastActivity = activeSession.last_activity;
-
-        if (now - lastActivity > TWO_HOURS) throw new Error("No user currently connected");
-
-        const userId = activeSession.userId;
-
-        let events = await this.event.getByUserId(userId);
-
-
-        // 2. Récupérer les macros pour l'utilisateur actif et le bouton donné
-        let macro = new Macro();
-        //TODO: Créer toutes les macros pour les boutons
-        const macros = await macro.getByUserId(userId)
-
-        // console.log("macros", macros[0]);
-
-
-        const userMacrosForButton = macros.filter(macro => macro.button_id === buttonId)
-
-        // console.log("userMacrosForButton", userMacrosForButton);
-
-
-        let results = [];
-
-        for (let macro of userMacrosForButton) {
-            // 3. Récupérer l'event associé à la macro
-            // console.log("macro", macro)
-            const event = await this.event.getById(macro.event_id)
-            if (!event) throw new Error("No event found for this macro");
-            // console.log("events", event);
-
-
-            // 4. Récupérer les médias pour l'event
-            const mediaList = await this.eventmedia.getAllByEvent(event.id);
-            // console.log("mediaList", mediaList);
-            let medias = [];
-
-            if (!mediaList) throw new Error("No media found for this event");
-
-            if (mediaList.length > 1) {
+    async getMacrosByButton(buttonId, sport) {
+        try{
+            if (buttonId === undefined) throw new Error("No button id given");
+            else if (buttonId === 0) return console.log("Button id is :", buttonId, " Scoring Mode activated");
+        
+            // Récupérer l'utilisateur par nom de sport
+            const user = await User.getByUsername(sport);
+            if (!user) throw new Error(`No user found for sport: ${sport}`);
+        
+            // Récupérer les macros pour l'utilisateur spécifique et le bouton donné
+            const macros = await this.macro.getByUserIdAndButtonId(user.id, buttonId);
+            if (!macros.length) throw new Error("No macros found for this user and button");
+        
+            let results = [];
+            for (let macro of macros) {
+                const event = await this.event.getById(macro.event_id);
+                if (!event) throw new Error("No event found for this macro");
+        
+                const mediaList = await this.eventmedia.getAllByEvent(event.id);
+                if (!mediaList.length) throw new Error("No media found for this event");
+        
+                let medias = [];
                 for (let mediaInfo of mediaList) {
                     const media = await this.media.getById(mediaInfo.id);
-
-                        medias.push({
-                            order: mediaInfo.media_pos_in_event,
-                            path: media.path,
-                            type: media.type,
-                            duration: mediaInfo.media_dur_in_event
-                        });
-
-                   
-                }
-            } else {
-                const media = await this.media.getById(mediaList[0].id);
-                // console.log("media", media);
-                
                     medias.push({
-                        order: mediaList[0].media_pos_in_event,
+                        order: mediaInfo.media_pos_in_event,
                         path: media.path,
                         type: media.type,
-                        duration: mediaList[0].media_dur_in_event
-                })
-
-               
+                        duration: mediaInfo.media_dur_in_event
+                    });
+                }
+        
+                const mode = await this.mode.getAll(); // Supposons que cela récupère le mode correct
+        
+                results.push({
+                    event: event,
+                    medias: medias,
+                    mode: mode.mode // Assumer que 'mode' est un objet avec un attribut 'mode'
+                });
             }
-
-            const mode = await this.mode.getAll()
-            // 5. Ajouter au tableau final
-            results.push({
-                event: event,
-                medias: medias,
-                mode: mode.mode
-            });
-
+        
+            return results;
         }
-        // console.log("results", results)
+        
 
-        return results;
-    }
-
-    catch(error) {
-        console.error(error.message);  // This will log the error message.
-        return 0;
+        catch(error) {
+            console.error(error.message);  // This will log the error message.
+            return 0;
+        }
     }
 
 

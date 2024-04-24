@@ -6,6 +6,7 @@ import PrematchMode from "./Components/PrematchMode.js";
 import config from "./config.js";
 import LogoMode from "./Components/LogoMode";
 import "./main.css"
+import i18n from "./config/i18n/i18n.js";
 import Basketball from "./Components/Sports/Basketball/Basketball.js";
 import Handball from "./Components/Sports/Handball/Handball.js";
 import Volleyball from "./Components/Sports/Volleyball/Volleyball.js";
@@ -65,12 +66,14 @@ const App = () => {
 
   return (
     <>
+    <I18nextProvider i18n={i18n}>
       {mode === "scoring" && <ScoringMode gameState={gameState} />}
       {mode === "media" && <MediaMode key={mediaKey} mediaState={mediaState} mediaMode={mediaMode}/>}
       {mode === "prematch" && <PrematchMode mediaState={mediaState} mediaMode={mediaMode} gameState={gameState}/>}
       {mode === "logo" && <LogoMode />}
       {mode === "sleep" && <></>}
       {mode === "" && <div>Waiting for data...</div>}
+    </I18nextProvider>
     </>
   );
 };
