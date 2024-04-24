@@ -60,7 +60,7 @@ class MacroController {
                 results.push({
                     event: event,
                     medias: medias,
-                    mode: mode.mode // Assumer que 'mode' est un objet avec un attribut 'mode'
+                    mode: buttonId // Assumer que 'mode' est un objet avec un attribut 'mode'
                 });
             }
         
