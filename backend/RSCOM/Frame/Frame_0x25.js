@@ -1,12 +1,8 @@
 // FUTSAL
 
 const nBytesToNumber = require('../Utils/nBytesToNumber');
-const nBytesToTables = require('../Utils/nBytesToTables');
-const LED = require("../Utils/Enums/eLED");
 const Tools = require("../Utils/Frame_Tools/Frame_Tools_index");
 const eSport = require("../Utils/Enums/eSport");
-const { Home } = require('../Utils/Enums/eTeam');
-const ShirtNumber = require('../Utils/Frame_Tools/4_35_ShirtNumber');
 
 /*
     * 0x25 : FUTSAL

@@ -34,9 +34,10 @@ const ScoringMode = ({ gameState }) => {
   
   
   useEffect(() => {
+    console.log(gameState);
+
     updateTeamNames(gameState);
 
-    console.log(gameState);
   }, []);
   useEffect(() => {
 

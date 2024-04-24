@@ -1,5 +1,3 @@
-const Chrono = require("../Frame_Tools/4_7_Chrono");
-
 const eSport = {
     Basketball: "BasketBall",
     Handball: "HandBall",
