@@ -275,15 +275,15 @@ class Game {
         storage[teamPath] = toInsert[side].TeamName.trim();
         writeStorage(storage);
       } else {
-        // update storage
-        storage[teamPath] = toInsert[side]
         // Set default TeamName if not provided or empty
         if (!toInsert[side]) toInsert[side] = {};
-        toInsert[side].TeamName = storage[teamPath] ? storage[teamPath] : side;
+        toInsert[side].TeamName = storage[teamPath] && storage[teamPath].trim() ? storage[teamPath] : side;
       }
     });
 
     // Set Language by finding USer By Username with the Sport then set the user language as the language
+
+   
 
     this.State.Language = 'en';
   
