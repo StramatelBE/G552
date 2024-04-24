@@ -7,17 +7,13 @@ const eSport = require("../Utils/Enums/eSport");
 
 
 /*
-    * 0x91 : Full Clear
+    * 0x92 : Full Clear
  */
 
-const nBytesToNumber = require('../../Utils/nBytesToNumber');
-
-class Frame_0x92 {
+module.exports = class Frame_0x92 {
     static build(_message) {
         return {
-            Mode: 22,
+            Mode: nBytesToNumber(_message[2]),
         }
     }
 }
-
-module.exports = Frame_0x92;
