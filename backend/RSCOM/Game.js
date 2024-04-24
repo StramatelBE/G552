@@ -3,8 +3,7 @@ const Frames = require("./Frame");
 const { sharedEmitter } = require("./SerialPorts/SerialPortConnection");
 const fs = require('fs');
 const path = require('path');
-import { nBytesToNumber } from './Utils/nBytesToNumber';
-
+const nBytesToNumber = require('./Utils/nBytesToNumber');
 class Game {
   static State = {
     Language: '',
