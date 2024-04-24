@@ -7,7 +7,7 @@ const eSport = require("../Utils/Enums/eSport");
 
 
 /*
-    * 0x92 : Full Clear
+    * 0x91 : Full Clear
  */
 
 const nBytesToNumber = require('../../Utils/nBytesToNumber');

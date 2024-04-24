@@ -1,10 +1,10 @@
 // TEAM NAME CLEARS
 
 /*
-    * 0x91 : Clear all
+    * 0x90 : Clear all
  */
 
-module.exports = class Frame_0x91 {
+module.exports = class Frame_0x90 {
     static build() {
         return {
             insertType: "DirectConsoleData",
