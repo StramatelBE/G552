@@ -240,6 +240,23 @@ class User {
     });
   }
 
+  getLanguage(username) {
+    return new Promise((resolve, reject) => {
+      db.get(
+        `SELECT language FROM users WHERE username = ?`,
+        [username],
+        (err, user) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(user);
+          }
+        }
+      );
+    });
+  }
+        
+
   getByUsername(username) {
     return new Promise((resolve, reject) => {
       db.get(

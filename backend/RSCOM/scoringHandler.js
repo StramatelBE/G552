@@ -1,5 +1,5 @@
 const MacroController = require("../Controllers/macroController");
-const UserController = require("../Controllers/userController");
+const User = require("../Models/userModel");
 const unixSocketSetup = require("../Sockets/Unixsocket.js");
 
 let previousMacrosDataMode = null;
@@ -22,13 +22,15 @@ let previousMacrosDataMode = null;
 const handleScoring = async (scoring) => {
     try {
         const macro = new MacroController();
-        const user = new UserController();
+        const user = User.getInstance();
 
         const scoreMode = [0];
         const immediateModes = [16, 17, 18, 19, 20];
         const macroModes = [1, 2, 3, 4, 5, 6, 7, 8, 9];
         const prematchMode = [21];
         const stopModes = [22, 23];
+
+        const getLanguage = await user.getLanguage();
 
         // console.log("Handle Scoring:", scoring.Mode)
 
@@ -96,6 +98,8 @@ const handleScoring = async (scoring) => {
         };
 
         //console.log("Mode:", scoring.Mode);
+
+        scoring.Language = getLanguage;
 
         if (scoreMode.includes(scoring.Mode)){
             console.log("score mode");
