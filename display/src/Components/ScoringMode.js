@@ -20,10 +20,10 @@ const SPORT_COMPONENT_MAP = {
     // Set the language for i18next based on gameState
     await i18next.changeLanguage(gameState.Language);
   
-    if (gameState.Home.TeamName === "Home") {
+    if (gameState.Home.TeamName.trim() === "Home") {
       gameState.Home.TeamName = i18next.t('Scoreboard.Home');
     }
-    if (gameState.Guest.TeamName === "Guest") {
+    if (gameState.Guest.TeamName.trim() === "Guest") {
       gameState.Guest.TeamName = i18next.t('Scoreboard.Guest');
     }
   }
