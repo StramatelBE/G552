@@ -280,8 +280,9 @@ class Game {
         if (!toInsert[side]) toInsert[side] = {};
         toInsert[side].TeamName = storage[teamPath] && storage[teamPath].trim() ? storage[teamPath] : side;
       }
+      writeStorage(storage);
+
     });
-    writeStorage(storage);
 
     // Set Language by finding USer By Username with the Sport then set the user language as the language
 
