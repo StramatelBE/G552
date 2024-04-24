@@ -24,6 +24,7 @@ const ScoringMode = ({ gameState }) => {
   const [sport, setSport] = useState("none");
   const [homeTN, setHomeTN] = useState(gameState.Home.TeamName);
   const [guestTN, setGuestTN] = useState(gameState.Guest.TeamName);
+  const [liveGameState, setLiveGameState] = useState(gameState);
   
   function updateTeamNames(gameState) {
     // Set the language for i18next based on gameState
@@ -48,6 +49,9 @@ const ScoringMode = ({ gameState }) => {
 
     gameState.Home.TeamName = homeTN;
     gameState.Guest.TeamName = guestTN;
+    log(gameState.Home.TeamName);
+    log(gameState.Guest.TeamName);
+    setLiveGameState(gameState);
     setSport(gameState.Display);
     console.log(gameState);
 
@@ -65,7 +69,7 @@ const ScoringMode = ({ gameState }) => {
 
   return (
     <>
-      <CurrentSportComponent gameState={gameState} />
+      <CurrentSportComponent gameState={liveGameState} />
     </>
   );
 };
