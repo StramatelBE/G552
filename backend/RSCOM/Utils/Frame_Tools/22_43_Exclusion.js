@@ -1,20 +1,21 @@
 const nBytesToNumber = require("../nBytesToNumber");
-const ShirtNumber = require("./4_35_ShirtNumber");
 
-function Exclusion(startIndex, size, _message, type) {
-    let result = new Array(size); 
+function Exclusion(startIndex, size, _message) {
+    let Timer = new Array(size); // Use 'let' for proper scoping
 
     for (let i = 0; i < size; i++) {
-        if (type === 'timer') {
-            let offset = i * 5 + 2; // Ajustement pour sauter les 5 octets (3 pour le timer, 2 pour le numéro)
-            result[i] = nBytesToNumber(_message[startIndex + offset], _message[startIndex + offset + 1], _message[startIndex + offset + 2]);
-        } else if (type === 'shirtNumber') {
-            let offset = i * 5; // Ajustement pour accéder aux deux octets du numéro de maillot après les 3 octets de timer
-            result[i] = nBytesToNumber(_message[startIndex + offset], _message[startIndex + offset + 1]);
+        // Directly use i * 3 to move to the next timer's first byte
+        let offset = i * 3; // Adjusting as per the clarification that each timer is exactly 3 bytes
+        Timer[i] = nBytesToNumber(_message[startIndex + offset], _message[startIndex + offset + 1], _message[startIndex + offset + 2]);
+
+        // Assuming the condition to check for a default value remains the same
+        if (_message[startIndex + offset] === 0x30 && _message[startIndex + offset + 1] === 0x30 && _message[startIndex + offset + 2] === 0x30) {
+            Timer[i] = 1000; // Setting a default value if the timer is uninitialized
         }
     }
 
-    return result;
+
+    return Timer;
 }
 
 module.exports = Exclusion;
