@@ -313,6 +313,7 @@ class Game {
     // console.log("Send method was called");
     //TODO: save in db
     console.log('received mode:', this.State.Mode);
+    console.log('language:', this.State.Language);
     sharedEmitter.emit("scoring", this.State);
   }
 }
