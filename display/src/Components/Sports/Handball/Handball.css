@@ -44,7 +44,19 @@ body {
   position: absolute;
   text-align: center;
   color: #ebff00;
-  font-size: 48px;
+  font-size: 36px;
+  font-family: "Arial", sans-serif;
+  font-weight: bold;
+  word-wrap: break-word;
+}
+
+.shirt-div {
+  width: 113px;
+  height: 45px;
+  position: absolute;
+  text-align: center;
+  color: #ff0000;
+  font-size: 36px;
   font-family: "Arial", sans-serif;
   font-weight: bold;
   word-wrap: break-word;
