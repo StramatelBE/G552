@@ -294,7 +294,7 @@ class Game {
     }
     );
 
-    console.log("Sport language: ", sport.language);
+    console.log("Sport : ", sport);
     
   
 
