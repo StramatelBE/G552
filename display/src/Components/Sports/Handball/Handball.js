@@ -179,9 +179,9 @@ function Handball({ gameState: incomingGameState }) {
         )}
         {// If the game is a rink, display the team fouls
           (
-          //<div className="home-fouls" >
-           // {gameState?.Home?.Fouls?.Team || "0"}
-          //</div>
+          <div className="home-fouls" >
+           
+          </div>
         )
       }
         <div className="time-div" style={{ left: '0px', top: '211px' }}>{formatExclusionTimer(gameState?.Home?.Exclusion?.Timer[0]) || ""}</div>
