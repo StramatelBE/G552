@@ -22,8 +22,8 @@ const SPORT_COMPONENT_MAP = {
 
 const ScoringMode = ({ gameState }) => {
   const [sport, setSport] = useState("none");
-  const [homeTN, setHomeTN] = useState("HOME");
-  const [guestTN, setGuestTN] = useState("GUEST");
+  const [homeTN, setHomeTN] = useState(gameState.Home.TeamName);
+  const [guestTN, setGuestTN] = useState(gameState.Guest.TeamName);
   
   function updateTeamNames(gameState) {
     // Set the language for i18next based on gameState
