@@ -298,7 +298,7 @@ class Game {
     
   
 
-    this.State.Language = 'fr';
+    this.State.Language = 'en';
   
     // Now perform the recursive update
     const recursiveUpdate = (mainObject, updateObject) => {
