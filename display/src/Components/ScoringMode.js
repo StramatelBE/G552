@@ -35,17 +35,13 @@ const ScoringMode = ({ gameState }) => {
   
   
   useEffect(() => {
+    setSport(gameState.Display);
     console.log(gameState);
 
     updateTeamNames(gameState);
 
-  }, []);
-  useEffect(() => {
-
-    if (gameState && gameState.Display) {
-      setSport(gameState.Display);
-    }
   }, [gameState]);
+
 
   const CurrentSportComponent =
     SPORT_COMPONENT_MAP[sport] ||
