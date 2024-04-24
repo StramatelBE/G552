@@ -36,7 +36,7 @@ module.exports = class Frame_0x25 {
                     Counts: nBytesToNumber(_message[17]),
                 },
                 Exclusion: {
-                    Timer: Tools.Exclusion_Handball(22, 3, _message, 'timer'),
+                    Timer: Tools.Exclusion_Handball(22, 2, _message, 'timer'),
                     ShirtNumber: ['', '', ''],
                 }
             },
