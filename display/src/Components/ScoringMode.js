@@ -16,27 +16,36 @@ const SPORT_COMPONENT_MAP = {
 
 };
 
-  async function updateTeamNames(gameState) {
-    // Set the language for i18next based on gameState
-    await i18next.changeLanguage(gameState.Language);
-  
-    if (gameState.Home.TeamName.trim() === 'Home') {
-      gameState.Home.TeamName = i18next.t('Scoreboard.Home');
-      console.log(gameState.Home.TeamName);
-    }
-    if (gameState.Guest.TeamName.trim() === 'Guest') {
-      gameState.Guest.TeamName = i18next.t('Scoreboard.Guest');
-      console.log(gameState.Guest.TeamName);
-    }
-  }
+
   
 
 
 const ScoringMode = ({ gameState }) => {
   const [sport, setSport] = useState("none");
+  const [homeTN, setHomeTN] = useState("Home");
+  const [guestTN, setGuestTN] = useState("Guest");
   
+  function updateTeamNames(gameState) {
+    // Set the language for i18next based on gameState
+    i18next.changeLanguage(gameState.Language);
+  
+    if (gameState.Home.TeamName.trim() === 'Home') {
+      setHomeTN(i18next.t('Scoreboard.Home'));
+      console.log(gameState.Home.TeamName);
+    } else {
+      setHomeTN(gameState.Home.TeamName);
+    }
+    if (gameState.Guest.TeamName.trim() === 'Guest') {
+      setGuestTN(i18next.t('Scoreboard.Guest'));
+      console.log(gameState.Guest.TeamName);
+    } else {
+      setGuestTN(gameState.Guest.TeamName);
+    }
+  }
   
   useEffect(() => {
+    gameState.Home.TeamName = homeTN;
+    gameState.Guest.TeamName = guestTN;
     setSport(gameState.Display);
     console.log(gameState);
 
