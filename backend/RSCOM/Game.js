@@ -283,21 +283,6 @@ class Game {
 
     // Set Language by finding USer By Username with the Sport then set the user language as the language
 
-    const User = require('../Models/userModel');
-    const user = User.getInstance();
-    const sport = user.getByUsernameDirect(toInsert.Sport, (err, user) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log("user:",user);
-      }
-    }
-    );
-
-    console.log("Sport : ", sport);
-    
-  
-
     this.State.Language = 'en';
   
     // Now perform the recursive update
