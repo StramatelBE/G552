@@ -128,60 +128,79 @@ class Game {
     switch (_message[1]) {
         case 0x10:
             toInsert = Frames.Volleyball.build(_message);
+            console.log("toInsert: ", toInsert);
             break;
         case 0x20:
             toInsert = Frames.Handball.build(_message);
+            console.log("toInsert: ", toInsert);
             break;
         case 0x21:
             toInsert = Frames.Floorball.build(_message);
+            console.log("toInsert: ", toInsert);
             break;
         case 0x22:
             toInsert = Frames.IceHockey.build(_message);
+            console.log("toInsert: ", toInsert);
             break;
         case 0x23:
             toInsert = Frames.RinkHockey.build(_message);
+            console.log("toInsert: ", toInsert);
             break;
         case 0x24:
             toInsert = Frames.RollerInlineHockey.build(_message);
+            console.log("toInsert: ", toInsert);
             break;
         case 0x25:
             toInsert = Frames.Futsal.build(_message);
+            console.log("toInsert: ", toInsert);
             break;
         case 0x26:
             toInsert = Frames.Netball.build(_message);
+            console.log("toInsert: ", toInsert);
             break;
         case 0x27:
             toInsert = Frames.Boxe.build(_message);
+            console.log("toInsert: ", toInsert);
             break;
         case 0x30:
             toInsert = Frames.Basketball.build(_message);
+            console.log("toInsert: ", toInsert);
             break;
         case 0x40:
             toInsert = Frames.Tennis.build(_message);
+            console.log("toInsert: ", toInsert);
             break;
         case 0x41:
             toInsert = Frames.Badminton.build(_message);
+            console.log("toInsert: ", toInsert);
             break;
         case 0x42:
             toInsert = Frames.TableTennis.build(_message);
+            console.log("toInsert: ", toInsert);
             break;
         case 0x50:
             toInsert = Frames.Chrono.build(_message);
+            console.log("toInsert: ", toInsert);
             break;
         case 0x51:
             toInsert = Frames.Training.build(_message);
+            console.log("toInsert: ", toInsert);
             break;
         case 0x52:
             toInsert = Frames.FreeSport.build(_message);
+            console.log("toInsert: ", toInsert);
             break;
         case 0x90:
             toInsert = Frames.TeamNames.build(_message);
+            console.log("toInsert: ", toInsert);
             break;
         case 0x91:
             toInsert = Frames.ClearTeamNames.build(_message);
+            console.log("toInsert: ", toInsert);
             break;
         case 0x92:
             toInsert = Frames.FullClear.build(_message);
+            console.log("toInsert: ", toInsert);
             break;
         case 0x93:
             toInsert = Frames.Test.build(_message);
