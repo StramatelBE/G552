@@ -14,11 +14,41 @@ const SPORT_COMPONENT_MAP = {
   Volleyball: Volleyball,
 
 };
+const i18next = require('i18next');
+const back = require('i18next-node-fs-backend');
+const path = require('path');
+
+i18next
+  .use(back)
+  .init({
+    lng: 'en', // default language
+    fallbackLng: 'en', // fallback language if the specified language cannot be found
+    backend: {
+      loadPath: path.join(__dirname, '../config/i18n/{{lng}}.json'),
+    },
+  });
+
+  async function updateTeamNames(gameState) {
+    // Set the language for i18next based on gameState
+    await i18next.changeLanguage(gameState.Language);
+  
+    if (gameState.Home.TeamName.trim() === "") {
+      gameState.Home.TeamName = i18next.t('Scoreboard.Home');
+    }
+    if (gameState.Guest.TeamName.trim() === "") {
+      gameState.Guest.TeamName = i18next.t('Scoreboard.Guest');
+    }
+  }
+  
+
 
 const ScoringMode = ({ gameState }) => {
   const [sport, setSport] = useState("none");
-
+  
+  
   useEffect(() => {
+    updateTeamNames(gameState);
+
     console.log(gameState);
   }, []);
   useEffect(() => {
