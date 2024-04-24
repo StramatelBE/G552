@@ -15,6 +15,7 @@ module.exports = class Frame_0x10 {
             InsertType: 'DirectConsoleData',
             Sport: eSport.Volleyball,
             Display: eSport.Volleyball,
+            Set : nBytesToNumber(_message[14]),
 
             Timer: {
                 Value: Tools.Chrono(_message[4], _message[5], _message[6], _message[7]),
