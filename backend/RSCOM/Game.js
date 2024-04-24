@@ -275,6 +275,8 @@ class Game {
         storage[teamPath] = toInsert[side].TeamName.trim();
         writeStorage(storage);
       } else {
+        // update storage
+        storage[teamPath] = toInsert[side]
         // Set default TeamName if not provided or empty
         if (!toInsert[side]) toInsert[side] = {};
         toInsert[side].TeamName = storage[teamPath] && storage[teamPath].trim() ? storage[teamPath] : side;
