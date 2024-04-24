@@ -35,14 +35,15 @@ module.exports = class Frame_0x20 {
                     Team: Tools.TeamFouls(_message[8]),
                 },
                 PenaltiesInProgress: Tools.PenaltiesInProgress(_message[15]),
-                Timeout : {
+                Timeout: {
                     Counts: nBytesToNumber(_message[17]),
                 },
                 Exclusion: {
-                    Timer: Tools.Exclusion(22, 3, _message),
+                    Timer: Tools.Exclusion(22, 3, _message, 'timer'),
+                    ShirtNumber: Tools.Exclusion(22, 3, _message, 'shirtNumber'),
                 }
             },
-
+            
             Guest: {
                 Points: nBytesToNumber(_message[12], _message[13]),
                 Fouls: {
@@ -50,12 +51,14 @@ module.exports = class Frame_0x20 {
                 },
                 PenaltiesInProgress: Tools.PenaltiesInProgress(_message[16]),
                 Timeout: {
-                   Counts: nBytesToNumber(_message[18]),
+                    Counts: nBytesToNumber(_message[18]),
                 },
                 Exclusion: {
-                    Timer: Tools.Exclusion(35, 3, _message),
+                    Timer: Tools.Exclusion(35, 3, _message, 'timer'),
+                    ShirtNumber: Tools.Exclusion(35, 3, _message, 'shirtNumber'),
                 }
             },
+            
 
         };
     

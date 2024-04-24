@@ -4,6 +4,7 @@ const LED = require("../../Utils/Enums/eLED");
 const Tools = require("../../Utils/Frame_Tools/Frame_Tools_index");
 const eSport = require("../../Utils/Enums/eSport");
 const { Home } = require('../../Utils/Enums/eTeam');
+const ShirtNumber = require('../../Utils/Frame_Tools/4_35_ShirtNumber');
 
 /*
     * 0x35 : Handball / Soccer / Boxe
@@ -37,7 +38,9 @@ class Frame_0x35 {
                     Counts: nBytesToNumber(_message[17]),
                 },
                 Exclusion: {
+                    
                     Timer: Tools.Exclusion(22, 3, _message),
+                    ShirtNumber: Tools.Exclusion(22, 3, _message),
                 }
             },
 
@@ -52,6 +55,8 @@ class Frame_0x35 {
                 },
                 Exclusion: {
                     Timer: Tools.Exclusion(35, 3, _message),
+                    ShirtNumber: Tools.Exclusion(35, 3, _message),
+
                 }
             },
 
