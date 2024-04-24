@@ -49,8 +49,8 @@ const ScoringMode = ({ gameState }) => {
 
     gameState.Home.TeamName = homeTN;
     gameState.Guest.TeamName = guestTN;
-    log(gameState.Home.TeamName);
-    log(gameState.Guest.TeamName);
+    console.log(gameState.Home.TeamName);
+    console.log(gameState.Guest.TeamName);
     setLiveGameState(gameState);
     setSport(gameState.Display);
     console.log(gameState);
