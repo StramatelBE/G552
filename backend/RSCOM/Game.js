@@ -288,8 +288,9 @@ class Game {
     const sport = user.getByUsername(toInsert.Sport);
 
     console.log("Sport: ", sport);
+    
 
-    toInsert.Language = sport.Language;
+    toInsert.Language = sport.language;
   
     // Now perform the recursive update
     const recursiveUpdate = (mainObject, updateObject) => {
