@@ -33,10 +33,15 @@ class MacroController {
             const macros = await macro.getByUserId(userId)
             if (!macros.length) throw new Error("No macros found for this user and button");
 
+            console.log("macros", macros);
+
             const userMacrosForButton = macros.filter(macro => macro.button_id === buttonId)
+
+            console.log("userMacrosForButton", userMacrosForButton);
         
             let results = [];
             for (let macro of userMacrosForButton) {
+                console.log("macro", macro);
                 const event = await this.event.getById(macro.event_id);
                 if (!event) throw new Error("No event found for this macro");
         
