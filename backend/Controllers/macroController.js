@@ -30,11 +30,13 @@ class MacroController {
             if (!user) throw new Error(`No user found for sport: ${sport}`);
         
             // Récupérer les macros pour l'utilisateur spécifique et le bouton donné
-            const macros = await this.macro.getByUserIdAndButtonId(user.id, buttonId);
+            const macros = await macro.getByUserId(userId)
             if (!macros.length) throw new Error("No macros found for this user and button");
+
+            const userMacrosForButton = macros.filter(macro => macro.button_id === buttonId)
         
             let results = [];
-            for (let macro of macros) {
+            for (let macro of userMacrosForButton) {
                 const event = await this.event.getById(macro.event_id);
                 if (!event) throw new Error("No event found for this macro");
         
