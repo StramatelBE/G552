@@ -84,26 +84,26 @@ function Handball({ gameState: incomingGameState }) {
       return 0;
     }
     // Convertit le nombre en chaîne de caractères
-    if (timer) {
-      const timerStr = timer.toString();
+    if (!timer) {
+      return "";
     } else {
-      const timerStr = "";
+      if (timerStr.length === 3) {
+        // Extrait chaque chiffre
+        const firstDigit = timerStr[0];
+        const secondDigit = timerStr[1];
+        const thirdDigit = timerStr[2];
+        
+        // Formatte et renvoie la nouvelle chaîne
+        return `${firstDigit}:${secondDigit}${thirdDigit}`;
+      }  else if (timerStr.length === 2) {
+        return `0:${timerStr}`;
+  
+      }else if (timerStr.length === 1) {
+        return `0:0${timerStr}`;
+      }
     }
     // Assurez-vous que la chaîne est de longueur 3
-    if (timerStr.length === 3) {
-      // Extrait chaque chiffre
-      const firstDigit = timerStr[0];
-      const secondDigit = timerStr[1];
-      const thirdDigit = timerStr[2];
-      
-      // Formatte et renvoie la nouvelle chaîne
-      return `${firstDigit}:${secondDigit}${thirdDigit}`;
-    }  else if (timerStr.length === 2) {
-      return `0:${timerStr}`;
-
-    }else if (timerStr.length === 1) {
-      return `0:0${timerStr}`;
-    }
+    
   }
   
 
