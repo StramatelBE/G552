@@ -289,7 +289,7 @@ class Game {
       if (err) {
         console.log(err);
       } else {
-        console.log(user);
+        console.log("user:",user);
       }
     }
     );
