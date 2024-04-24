@@ -9,8 +9,8 @@ import i18next from "i18next";
 //TODO: DISPLAY TIMEOUT COUNTDOWN WHEN TIMEOUT IS CALLED
 
 const SPORT_COMPONENT_MAP = {
-  BasketBall: Basketball,
-  HandBall: Handball,
+  Basketball: Basketball,
+  Handball: Handball,
   Tennis: Tennis,
   Volleyball: Volleyball,
 
