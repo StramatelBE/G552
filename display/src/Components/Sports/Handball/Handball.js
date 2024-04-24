@@ -83,7 +83,11 @@ function Handball({ gameState: incomingGameState }) {
       return 0;
     }
     // Convertit le nombre en chaîne de caractères
-    const timerStr = timer.toString();
+    if (timer) {
+      const timerStr = timer.toString();
+    } else {
+      return "";
+    }
     // Assurez-vous que la chaîne est de longueur 3
     if (timerStr.length === 3) {
       // Extrait chaque chiffre

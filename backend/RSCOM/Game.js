@@ -63,8 +63,8 @@ class Game {
       },
       PenaltiesInProgress: '',
       Exclusion: {
-        Timer: new Array(16),
-        ShirtNumber: new Array(16),
+        Timer: new Array(3),
+        ShirtNumber: new Array(3),
       },
       Possession: '',
       Warnings: '',
@@ -94,8 +94,8 @@ class Game {
       PenaltiesInProgress: '',
 
       Exclusion: {
-        Timer: new Array(16),
-        ShirtNumber: new Array(16),
+        Timer: new Array(3),
+        ShirtNumber: new Array(3),
       },
       Possession: '',
       Warnings: '',
