@@ -4,6 +4,7 @@ const Macro = require("./macroModel");
 const Param = require("./paramModel");
 const Veille = require("./veilleModel");
 const fs = require("fs");
+const eSport = require("../RSCOM/Utils/Enums/eSport");
 
 class User {
   constructor() {
@@ -31,7 +32,7 @@ class User {
             active_token TEXT,
             language TEXT DEFAULT 'fr'
         )
-        `;
+        `
     db.run(createTable, (err) => {
       if (err) {
         console.error("Error creating activeSessions table:", err.message);
@@ -51,22 +52,25 @@ class User {
       } else if (row.count === 0) {
         // La table est vide, insérez une ligne initiale
         const sports = [
-          "Basketball",
-          "Handball",
-          "Volleyball",
-          "Tennis",
-          "Tennis de table",
-          "Badminton",
-          "Rink hockey",
-          "Futsal",
-          "Boxe",
-          "Roller hockey",
-          "Hockey sur glace",
-          "Floorball",
-          "Chronométré",
-          "Sport libre",
-          "Netball",
+          eSport.Basketball,
+          eSport.Handball,
+          eSport.Volleyball,
+          eSport.Tennis,
+          eSport.TableTennis,
+          eSport.Badminton,
+          eSport.Futsal,
+          eSport.Boxe,
+          eSport.Hockey,
+          eSport.RinkHockey,
+          eSport.Floorball,
+          eSport.IceHockey,
+          eSport.Netball,
+          eSport.Chrono,
+          eSport.Training,
+          eSport.FreeSport,
         ];
+       
+      module.exports = eSport;
         const mediaFolder = `${process.env.UPLOAD_PATH}`;
         if (!fs.existsSync(mediaFolder)) {
           console.log("Folder does not exist");

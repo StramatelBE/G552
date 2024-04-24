@@ -1,20 +1,20 @@
 const eSport = {
-    Basketball: "BasketBall",
-    Handball: "HandBall",
+    Basketball: "Basketball",
+    Handball: "Handball",
     Volleyball: "Volleyball",
     Tennis: "Tennis",
-    TableTennis: "Table Tennis",
+    TableTennis: "Tabletennis",
     Badminton: "Badminton",
     Futsal: "Futsal",
     Boxe: "Boxe",
     Hockey: "Hockey",
-    RinkHockey: "RinkHockey",
-    Floorball: "FloorBall",
-    IceHockey: "IceHockey",
-    Netball: "NetBall",
+    RinkHockey: "Rinkhockey",
+    Floorball: "Floorball",
+    IceHockey: "Icehockey",
+    Netball: "Netball",
     Chrono: "Chrono",
     Training: "Training",
-    FreeSport: "FreeSport"
+    FreeSport: "Freesport"
 }
 
 module.exports = eSport;
