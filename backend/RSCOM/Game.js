@@ -3,6 +3,7 @@ const Frames = require("./Frame");
 const { sharedEmitter } = require("./SerialPorts/SerialPortConnection");
 const fs = require('fs');
 const path = require('path');
+import { nBytesToNumber } from './Utils/nBytesToNumber';
 
 class Game {
   static State = {
@@ -209,7 +210,7 @@ class Game {
         }
         }
 
-      console.log(_message[1] + " Frame");
+      console.log(nBytesToNumber(_message[1]) + " Frame");
       this.updateState(toInsert);
       
     }
