@@ -33,6 +33,7 @@ class MacroController {
 
             const allMacros = await this.macro.getAll();
             console.log("allMacros", allMacros);
+            console.log("user", user);
             const macros = await this.macro.getByUserId(user.userId)
             if (!macros.length) throw new Error("No macros found for this user and button");
 
