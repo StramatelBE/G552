@@ -7,6 +7,7 @@ const nBytesToNumber = require('./Utils/nBytesToNumber');
 const TeamName = require("./Utils/Frame_Tools/6_48_TeamName");
 class Game {
   static State = {
+    Code : '',
     Language: '',
     Mode: '',
 
@@ -217,6 +218,7 @@ class Game {
     }
 
     if (toInsert != null) {
+      toInsert.Code = _message[1];
 
         console.log(toInsert.Sport);
 
@@ -244,7 +246,6 @@ class Game {
   }
 
   static updateState(toInsert) {
-    // Define the path for the JSON storage file
     const storagePath = './storage.json';
   
     // Function to read the current storage state
@@ -267,32 +268,30 @@ class Game {
       }
     };
   
-    // Handle TeamName updates or retrievals before recursive update
+    // Load existing storage to handle updates or retrievals
     const storage = readStorage();
+  
     ['Guest', 'Home'].forEach(side => {
       const teamPath = `${side}.TeamName`;
-      if (toInsert[side]?.TeamName && toInsert[side]?.TeamName.trim() && toInsert[side]?.TeamName.trim().length > 0){
-        // If TeamName is provided and not just spaces, update storage
-        storage[teamPath] = toInsert[side].TeamName.trim();
-        writeStorage(storage);
-      } else if (toInsert[side]?.TeamName && toInsert[side]?.TeamName.trim().length === 0) {
-        // Set default TeamName if not provided or empty
-        toInsert[side].TeamName = side;
-        storage[teamPath] = side;
-        writeStorage(storage);
-      } else {
-        // If TeamName is not provided, try to retrieve it from storage
+  
+      // Check the frame code to determine if we should store or retrieve the team name
+      if (toInsert.Code === 0x90) { // Store team name
+        if (toInsert[side]?.TeamName?.trim()) {
+          storage[teamPath] = toInsert[side].TeamName.trim();
+        }
+      } else { // Retrieve team name
         if (storage[teamPath]) {
           if (!toInsert[side]) toInsert[side] = {}; // Ensure side object exists
           toInsert[side].TeamName = storage[teamPath];
+        } else if (!toInsert[side]?.TeamName?.trim()) {
+          // Default to "Home" or "Guest" if the team name is not in storage and the current is empty
+          toInsert[side].TeamName = side === "Home" ? "Home" : "Guest";
+          storage[teamPath] = toInsert[side].TeamName;
         }
       }
-
     });
-
-    // Set Language by finding USer By Username with the Sport then set the user language as the language
-
-   
+  
+    writeStorage(storage);
   
     // Now perform the recursive update
     const recursiveUpdate = (mainObject, updateObject) => {
@@ -308,6 +307,7 @@ class Game {
   
     recursiveUpdate(this.State, toInsert);
   }
+  
   
 
 
