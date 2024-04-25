@@ -152,6 +152,7 @@ function Volleyball({ gameState: incomingGameState }) {
           showHomeTimeout,
           showGuestTimeout
         )}
+
         <img className="logo-stramatel " style={{ top: "90px" }} src="LOGO_Stramatel.gif" />
       </div>
     </div>
