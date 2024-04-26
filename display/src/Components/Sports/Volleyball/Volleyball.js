@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Volleyball.css";
+import "../globalSport.css";
 
 function Volleyball({ gameState: incomingGameState }) {
 
