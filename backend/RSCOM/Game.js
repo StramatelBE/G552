@@ -276,9 +276,9 @@ class Game {
   
       // Check the frame code to determine if we should store or retrieve the team name
       if (toInsert.Code === 0x90) { // Store team name
-        if (toInsert[side]?.TeamName?.trim()) {
+        
           storage[teamPath] = toInsert[side].TeamName.trim();
-        }
+        
       } else { // Retrieve team name
         if (storage[teamPath]) {
           if (!toInsert[side]) toInsert[side] = {}; // Ensure side object exists
