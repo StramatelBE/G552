@@ -40,6 +40,19 @@ class Macro {
         `;
         db.run(createTable);
     }
+    getAll() {
+        return new Promise((resolve, reject) => {
+            db.all("SELECT * FROM macro", (err, macros) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(macros);
+                }
+            });
+        }
+        );
+    }
+
     create(button_id, eventId, userId) {
         return new Promise((resolve, reject) => {
             db.run(

@@ -68,5 +68,9 @@
     "confirmDeletion": "Verwijdering bevestigen",
     "yes": "Ja",
     "no": "Nee"
+  },
+  "Scoreboard": {
+    "Guest": "Gast",
+    "Home": "Heim"
   }
 }

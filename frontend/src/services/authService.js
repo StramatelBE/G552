@@ -137,7 +137,22 @@ class AuthService {
       console.error("Error during firstLogin:", error);
     }
   }
+  async updateLanguage(language, id) {
+    try {
+      const response = await fetchWithAuth(`${URL_API}/users/updateLanguage/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ language }),
+      });
+  
+      return await response.json();
+    } catch (error) {
+      console.error("Error during language update:", error);
+    }
+  }
 }
+
+
 
 const authService = new AuthService();
 
