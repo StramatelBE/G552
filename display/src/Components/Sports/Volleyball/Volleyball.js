@@ -109,10 +109,10 @@ function Volleyball({ gameState: incomingGameState }) {
           {gameState?.Home?.TeamName !== undefined ? gameState?.Home?.TeamName : "HOME"}
         </div>
         <div className="side-numbers">
-          <div className=" text side-number" >{gameState?.Home?.PointsPerSets[0] === 0 || ""}</div>
-          <div className="text side-number">{gameState?.Home?.PointsPerSets[1] === 0 || ""}</div>
-          <div className="text side-number" >{gameState?.Home?.PointsPerSets[2] === 0 || ""}</div>
-          <div className="text side-number">{gameState?.Home?.PointsPerSets[3] === 0 || ""}</div>
+          <div className=" text side-number" >{gameState?.Home?.PointsInSets[0] || ""}</div>
+          <div className="text side-number">{gameState?.Home?.PointsInSets[1] || ""}</div>
+          <div className="text side-number" >{gameState?.Home?.PointsInSets[2]  || ""}</div>
+          <div className="text side-number">{gameState?.Home?.PointsInSets[3] || ""}</div>
         </div>
       </div>
       <div className="container-team-sport" style={{ left: "286px" }}>
@@ -129,10 +129,10 @@ function Volleyball({ gameState: incomingGameState }) {
           {gameState?.Guest?.TeamName !== undefined ? gameState?.Guest?.TeamName : "GUEST"}
         </div>
         <div className="side-numbers" style={{ right: "0px" }}>
-          <div className=" text side-number" >{gameState?.Home?.PointsPerSets[0] === 0 || ""}</div>
-          <div className="text side-number">{gameState?.Home?.PointsPerSets[1] === 0 || ""}</div>
-          <div className="text side-number" >{gameState?.Home?.PointsPerSets[2] === 0 || ""}</div>
-          <div className="text side-number">{gameState?.Home?.PointsPerSets[3] === 0 || ""}</div>
+          <div className=" text side-number" >{gameState?.Home?.PointsInSets[0] || ""}</div>
+          <div className="text side-number">{gameState?.Home?.PointsInSets[1] || ""}</div>
+          <div className="text side-number" >{gameState?.Home?.PointsInSets[2] || ""}</div>
+          <div className="text side-number">{gameState?.Home?.PointsInSets[3] || ""}</div>
         </div>
       </div>
 
