@@ -3,3 +3,4 @@ build/
 display/build
 frontend/build
 backend/build
+backend/storage.json
