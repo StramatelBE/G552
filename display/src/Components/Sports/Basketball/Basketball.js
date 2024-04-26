@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./Basketball.css";
+import "../globalSport.css";
 
 function Basketball({ gameState: incomingGameState }) {
   const [homeScore, setHomeScore] = useState(incomingGameState?.Home?.Points || 0);
   const [guestScore, setGuestScore] = useState(incomingGameState?.Guest?.Points || 0);
 
-  const [homeFontSize, setHomeFontSize] = useState('45px');
-  const [guestFontSize, setGuestFontSize] = useState('45px');
+  const [homeFontSize, setHomeFontSize] = useState('50px');
+  const [guestFontSize, setGuestFontSize] = useState('50px');
 
   const [homeScoreQueue, setHomeScoreQueue] = useState([]);
   const [guestScoreQueue, setGuestScoreQueue] = useState([]);
@@ -20,6 +21,12 @@ function Basketball({ gameState: incomingGameState }) {
   const gameState = incomingGameState || {};
   const showHomeTimeout = gameState?.Home?.Timeout?.Time !== "0:00";
   const showGuestTimeout = gameState?.Guest?.Timeout?.Time !== "0:00";
+  useEffect(() => {
+    if (gameState?.Home?.TeamName !== undefined || gameState?.Guest?.TeamName !== undefined) {
+      setHomeFontSize(getFontSize(gameState?.Home?.TeamName));
+      setGuestFontSize(getFontSize(gameState?.Guest?.TeamName));
+    }
+  }, [incomingGameState]);
 
 
   useEffect(() => {
@@ -57,191 +64,118 @@ function Basketball({ gameState: incomingGameState }) {
         setGuestScoreQueue(prev => prev.slice(1)); // Remove the first element after animation
       }, 480);
     }
+
   }, [guestScoreQueue]);
 
-  useEffect(() => {
-    setHomeFontSize(getFontSize(gameState?.Home?.TeamName));
-    setGuestFontSize(getFontSize(gameState?.Guest?.TeamName));
-}, [incomingGameState]);
 
-function getFontSize(name) {
-  //remove start and end spaces but not in the middle
-  name = name.replace(/^\s+|\s+$/g, '');
+  function getFontSize(name) {
 
-  console.log(name);
-  if (name.length <= 7) {
-    return '45px'; // Taille normale
-  } 
- else if (name.length <= 9) {
-    return '40px'; // Toujours un peu plus petit
-  } 
-}
-function renderHomeFoulCount(foulCount) {
-  // If the foul count is 8, display a red square instead
-  return foulCount === 9 ? (
-    <div className="home-square-fouls" style={{ width: '30px', height: '30px', backgroundColor: 'red' }} />
-  ) : (
-    <div className="home-fouls" style={{ fontFamily: "D-DIN-Bold"}}>{foulCount}</div>
-  );
-}
-
-function renderGuestFoulCount(foulCount) {
-  // If the foul count is 8, display a red square instead
-  return foulCount === 9 ? (
-    <div className="guest-square-fouls" style={{ width: '30px', height: '30px', backgroundColor: 'red' }} />
-  ) : (
-    <div className="guest-fouls" style={{ fontFamily: "D-DIN-Bold"}}>{foulCount}</div>
-  );
-}
-
-
-
-
-
+    if (name.length <= 7 || name === undefined) {
+      return '50px'; // Taille normale
+    }
+    else if (name.length <= 9) {
+      return '45px'; // Toujours un peu plus petit
+    }
+  }
 
   function formatTimer(timerString, showHomeTimeout, showGuestTimeout) {
     if (!timerString) {
       return [];
     }
-
-    timerString = timerString.toString();
-    const characters = timerString.slice(0, 5).split("");
-
-    while (characters.length < 5) {
-      characters.push("");
-    }
-    // Ajoute un espace insécable avant le timer de timeout s'il commence par "0:"
-    if (characters[0] === "0" && characters[1] === ":") {
-      characters.unshift("\u00A0");
-    }
-
     const homeTimeout = gameState?.Home?.Timeout.Time || "0:00";
     const guestTimeout = gameState?.Guest?.Timeout.Time || "0:00";
-
     if (showHomeTimeout && homeTimeout !== "0:00") {
-      return formatTimer(homeTimeout);
+      return homeTimeout;
     }
-
-    if (showGuestTimeout && guestTimeout !== "0:00") {
-      return formatTimer(guestTimeout);
+    else if (showGuestTimeout && guestTimeout !== "0:00") {
+      return guestTimeout;
     }
-
-    return characters.map((char, index) => {
-      return (
-        <span
-          key={index}
-          style={{
-            fontFamily: "D-DIN-Bold",
-            display: "inline-block",
-            width: "45px",
-            textAlign: "center",
-            ...(index === 2 && { paddingBottom: "5px" })
-          }}
-        >
-          {char}
-        </span>
-      );
-    });
+    else {
+      return timerString;
+    }
   }
 
-
   return (
-    <div className="container">
-      <div className="home">
-        <div className="container-score-home">
-          {homeScoreAnimating && (
-            <>
-              <div className="home-score score-out">{prevHomeScore}</div>
-              <div className="home-score score-in">{homeScore}</div>
-            </>
-          )}
-          {!homeScoreAnimating && (
-            <div className="home-score">{homeScore}</div>
-          )}
-        </div>
-        <div className="home-name" style={{fontSize: homeFontSize }}>
-          {gameState?.Home?.TeamName || "HOME"} {/* team name HOME */}
-        </div>
-        {gameState?.Home?.Timeout?.Count >= 0 && (
-          <>
-            {[...Array(gameState?.Home?.Timeout?.Count)].map((_, i) => (
+    <div className="container-sport">
+      {/* HOME */}
+      <div className="container-team-sport" style={{ left: "0px" }}>
+        <div className="text timeout-hand" style={{ left: '120px', top: "140px" }}>
+          {gameState?.Guest?.Timeout?.Team >= 0 && (
+            [...Array(3 - gameState?.Guest?.Timeout?.Team)].map((_, i) => (
               <div
                 key={i}
-                className="home-timeout"
-                style={{ top: `${139 + i * 20}px` }}
+                className="timeout-dot-sport"
+                style={{ top: `${20 + i * 20}px` }}
               />
-            ))}
+            ))
+          )}
+        </div>
+        {homeScoreAnimating && (
+          <>
+            <div className="score-sport score-out">{prevHomeScore}</div>
+            <div className="score-sport score-in">{homeScore}</div>
           </>
         )}
-    
-            
-        <div className="">
-        {renderHomeFoulCount(gameState?.Home?.Fouls?.Team) || "0"}
-        </div>
-        
-
-
-        
-            
-        {gameState?.Home?.Possession && (
-          <div className="home-possession"></div>
+        {!homeScoreAnimating && (
+          <div className="text score-sport">{homeScore}</div>
         )}
-      </div>
-
-      <div className="center">
-        <div className="period">
-          {gameState?.Period || "0"} {/* period */}
+        <div className="text team-name-sport" style={{ fontSize: homeFontSize }} >
+          {gameState?.Home?.TeamName !== undefined ? gameState?.Home?.TeamName : "HOME"}
         </div>
-        {gameState?.Guest?.Possession && (
-          <div className="guest-possession"></div>
-        )}
-        <div className="timer-Basketball ">
-          {formatTimer(
-            gameState?.Timer?.Value || "00:00",
-            showHomeTimeout,
-            showGuestTimeout
-          )}
+        <div className="fouls-basket" style={{ left: "70px", top: "195px" }}>
+          {gameState?.Home?.Fouls?.Team}
         </div>
       </div>
-
-      <div className="guest">
-        <div className="guest-name" style={{fontSize: guestFontSize }}>
-          {gameState?.Guest?.TeamName || "GUEST"} {/* team name GUEST */}
-        </div>{" "}
-
-        <div className="container-score-guest">
-          {guestScoreAnimating && (
-            <>
-              <div className="guest-score score-out">{prevGuestScore}</div>
-              <div className="guest-score score-in">{guestScore}</div>
-            </>
-          )}
-          {!guestScoreAnimating && (
-            <div className="guest-score">{guestScore}</div>
-          )}
-
-
-        </div>
-        {gameState?.Guest?.Timeout?.Count >= 0 && (
+      {/* GUEST */}
+      <div className="container-team-sport" style={{ left: "286px" }}>
+        {guestScoreAnimating && (
           <>
-            {[...Array(gameState?.Guest?.Timeout?.Count)].map((_, i) => (
+            <div className="score-sport score-out">{prevGuestScore}</div>
+            <div className="score-sport score-in">{guestScore}</div>
+          </>
+        )}
+        {!guestScoreAnimating && (
+          <div className="text score-sport">{guestScore}</div>
+        )}
+        <div className="text team-name-sport" style={{ fontSize: guestFontSize }} >
+          {gameState?.Guest?.TeamName !== undefined ? gameState?.Guest?.TeamName : "GUEST"}
+        </div>
+        <div className="text timeout-hand" style={{ right: '120px', top: "140px" }}>
+          {gameState?.Home?.Timeout?.Team >= 0 && (
+            [...Array(3 - gameState?.Home?.Timeout?.Team)].map((_, i) => (
               <div
                 key={i}
-                className="guest-timeout"
-                style={{ top: `${139 + i * 20}px` }}
+                className="timeout-dot-sport"
+                style={{ top: `${20 + i * 20}px` }}
               />
-            ))}
-          </>
-        )}
-
-        <div >
-        {renderGuestFoulCount(gameState?.Guest?.Fouls?.Team) || "0"}
+            ))
+          )}
+        </div>
+        <div className="fouls-basket" style={{ right: "70px", top: "195px" }}>
+          {gameState?.Guest?.Fouls?.Team}
         </div>
       </div>
+      {/* MIDDLE */}
+      <div className="text period-sport" style={{ left: "226px" }}>
+        {gameState?.Period || "0"}
+      </div>
+      {gameState?.Home?.Possession && (
+        <div className="home-possession"></div>
+      )}
+      {gameState?.Guest?.Possession && (
+        <div className="guest-possession"></div>
+      )}
+      <div className="text timer-sport">
+        {formatTimer(
+          gameState?.Timer?.Value || "00:00",
+          showHomeTimeout,
+          showGuestTimeout
+        )}
+        <img className="logo-fiba " style={{ left: "460px" }} src="fiba.png" />{" "}
+        <img className="logo-stramatel " style={{ top: "90px" }} src="LOGO_Stramatel.gif" />
+      </div>
 
-      <img className="image" src="LOGO_Stramatel.gif" />{" "}
-      <img className="fiba-image" src="fiba.png" />{" "}
-    </div>
+    </div >
   );
 
 }
