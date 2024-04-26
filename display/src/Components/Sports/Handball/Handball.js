@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import "./Handball.css";
+import "../globalSport.css";
+
 
 function Handball({ gameState: incomingGameState }) {
   const [homeScore, setHomeScore] = useState(incomingGameState?.Home?.Points || 0);
   const [guestScore, setGuestScore] = useState(incomingGameState?.Guest?.Points || 0);
 
-  const [homeFontSize, setHomeFontSize] = useState('45px');
-  const [guestFontSize, setGuestFontSize] = useState('45px');
+  const [homeFontSize, setHomeFontSize] = useState('50px');
+  const [guestFontSize, setGuestFontSize] = useState('50px');
 
   const [homeScoreQueue, setHomeScoreQueue] = useState([]);
   const [guestScoreQueue, setGuestScoreQueue] = useState([]);
@@ -61,53 +63,45 @@ function Handball({ gameState: incomingGameState }) {
   }, [guestScoreQueue]);
 
   useEffect(() => {
+    if (gameState?.Home?.TeamName !== undefined || gameState?.Guest?.TeamName !== undefined) {
       setHomeFontSize(getFontSize(gameState?.Home?.TeamName));
       setGuestFontSize(getFontSize(gameState?.Guest?.TeamName));
+    }
   }, [incomingGameState]);
 
   function getFontSize(name) {
-    //remove start and end spaces but not in the middle
-    name = name.replace(/^\s+|\s+$/g, '');
 
-    console.log(name);
-    if (name.length <= 7) {
-      return '45px'; // Taille normale
-    } 
-   else if (name.length <= 9) {
-      return '40px'; // Toujours un peu plus petit
-    } 
+    if (name.length <= 7 || name === undefined) {
+      return '50px'; // Taille normale
+    }
+    else if (name.length <= 9) {
+      return '45px'; // Toujours un peu plus petit
+    }
   }
 
   function formatExclusionTimer(timer) {
-    console.log(timer);
-    if (timer === 0) {
+    if (timer === 0 || timer === "0" || timer === "" || timer === undefined) {
       return 0;
     }
     // Convertit le nombre en chaîne de caractères
-    if (!timer) {
-      return "";
-    } else {
-      const timerStr = timer.toString();
-      if (timerStr.length === 3) {
-       
-        // Extrait chaque chiffre
-        const firstDigit = timerStr[0];
-        const secondDigit = timerStr[1];
-        const thirdDigit = timerStr[2];
-        
-        // Formatte et renvoie la nouvelle chaîne
-        return `${firstDigit}:${secondDigit}${thirdDigit}`;
-      }  else if (timerStr.length === 2) {
-        return `0:${timerStr}`;
-  
-      }else if (timerStr.length === 1) {
-        return `0:0${timerStr}`;
-      }
-    }
+    const timerStr = timer.toString();
     // Assurez-vous que la chaîne est de longueur 3
-    
+    if (timerStr.length === 3) {
+      // Extrait chaque chiffre
+      const firstDigit = timerStr[0];
+      const secondDigit = timerStr[1];
+      const thirdDigit = timerStr[2];
+
+      // Formatte et renvoie la nouvelle chaîne
+      return `${firstDigit}:${secondDigit}${thirdDigit}`;
+    } else if (timerStr.length === 2) {
+      return `0:${timerStr}`;
+
+    } else if (timerStr.length === 1) {
+      return `0:0${timerStr}`;
+    }
   }
-  
+
 
 
   function formatTimer(timerString, showHomeTimeout, showGuestTimeout) {
@@ -115,151 +109,98 @@ function Handball({ gameState: incomingGameState }) {
       return [];
     }
 
-    
-
-    timerString = timerString.toString();
-    const characters = timerString.slice(0, 5).split("");
-
-    while (characters.length < 5) {
-      characters.push("");
-    }
-    // Ajoute un espace insécable avant le timer de timeout s'il commence par "0:"
-    if (characters[0] === "0" && characters[1] === ":") {
-      characters.unshift("\u00A0");
-    }
-
     const homeTimeout = gameState?.Home?.Timeout.Time || "0:00";
     const guestTimeout = gameState?.Guest?.Timeout.Time || "0:00";
 
     if (showHomeTimeout && homeTimeout !== "0:00") {
-      return formatTimer(homeTimeout);
+      return homeTimeout;
     }
 
-    if (showGuestTimeout && guestTimeout !== "0:00") {
-      return formatTimer(guestTimeout);
+    else if (showGuestTimeout && guestTimeout !== "0:00") {
+      return guestTimeout;
+    }
+    else {
+      return timerString;
     }
 
-    return characters.map((char, index) => {
-      return (
-        <span
-          key={index}
-          style={{
-            fontFamily: "D-DIN-Bold",
-            display: "inline-block",
-            width: "45px",
-            textAlign: "center",
-            ...(index === 2 && { paddingBottom: "5px" })
-          }}
-        >
-          {char}
-        </span>
-      );
-    });
   }
 
   return (
-    <div className="container">
-      <div className="absolute-div home-div">
-        <div className="team-name-div" style={{ left: "0px", top: "90px", fontSize: homeFontSize }} >{gameState?.Home?.TeamName !== "" ? gameState?.Home?.TeamName : "HOME"}</div>
-        <div className="container-score-home">
-          {homeScoreAnimating && (
-            <>
-              <div className="home-score score-out">{prevHomeScore}</div>
-              <div className="home-score score-in">{homeScore}</div>
-            </>
-          )}
-          {!homeScoreAnimating && (
-            <div className="home-score">{homeScore}</div>
+    <div className="container-sport">
+      {/* HOME */}
+      <div className="container-team-sport" style={{ left: "0px" }}>
+
+        <div className="text timeout-hand" style={{ left: '10px' }}>
+          {gameState?.Home?.Timeout?.Counts >= 0 && (
+            [...Array(gameState?.Home?.Timeout?.Counts)].map((_, index) => (
+              <div
+                key={index}
+                className="timeout-dot-sport"
+                style={{ top: `${15 + index * 25}px`, }}
+              />
+            ))
           )}
         </div>
-        {gameState?.Home?.Timeout?.Counts >= 0 && (
-          <div className="dots-div" style={{ left: '10px', top: '140px' }}>
-            {[...Array(gameState?.Home?.Timeout?.Counts)].map((_, i) => (
-              <div
-                key={i}
-                className="dot-hand"
-                style={{ top: `${46 - i * 23}px`, }}
-              />
-            ))}
-
-          </div>
+        {homeScoreAnimating && (
+          <>
+            <div className="score-sport score-out">{prevHomeScore}</div>
+            <div className="score-sport score-in">{homeScore}</div>
+          </>
         )}
-        {// If the game is a rink, display the team fouls
-          (
-          <div className="home-fouls" >
-           
-          </div>
-        )
-      }
-        <div className="time-div" style={{ left: '60px', top: '211px' }}>{gameState?.Home?.Exclusion?.Timer[2] ? formatExclusionTimer(gameState?.Home?.Exclusion?.Timer[2]) : ""}</div>
-        <div className="shirt-div" style={{ left: '0px', top: '211px' }}>{gameState?.Home?.Exclusion?.ShirtNumber[2] || ""}</div>
+        {!homeScoreAnimating && (
+          <div className="text score-sport">{homeScore}</div>
+        )}
 
+        <div className="text team-name-sport" style={{ fontSize: homeFontSize }} >{gameState?.Home?.TeamName !== undefined ? gameState?.Home?.TeamName : "HOME"}</div>
 
-        <div className="time-div" style={{ left: '60px', top: '175px' }}>{gameState?.Home?.Exclusion?.Timer[1] ? formatExclusionTimer(gameState?.Home?.Exclusion?.Timer[1]) : ""}</div>
-        <div className="shirt-div" style={{ left: '0px', top: '175px' }}>{gameState?.Home?.Exclusion?.ShirtNumber[1] || ""}</div>
-
-        <div className="time-div" style={{ left: '60px', top: '139px' }}>{gameState?.Home?.Exclusion?.Timer[0] ? formatExclusionTimer(gameState?.Home?.Exclusion?.Timer[0]) : ""}</div>
-        <div className="shirt-div" style={{ left: '0px', top: '139px' }}>{gameState?.Home?.Exclusion?.ShirtNumber[0] || ""}</div>
+        {gameState?.Home?.Exclusion?.Timer?.map((timer, index) => (
+          <div className="time-exclusion-sport text" style={{ top: `${15 + index * 25}px`, }} key={index}>{timer || ""}</div>
+        ))}
 
       </div>
-      <div className="container-score-guest">
-  
+      {/* GUEST */}
+      <div className="container-team-sport" style={{ left: "286px" }}>
 
+        <div className="text timeout-hand" style={{ right: '10px' }}>
+          {gameState?.Guest?.Timeout?.Counts >= 0 && (
+            [...Array(gameState?.Guest?.Timeout?.Counts)].map((_, index) => (
+              <div
+                key={index}
+                className="timeout-dot-sport"
+                style={{ top: `${15 + index * 25}px`, }}
+              />
+            ))
+          )}
+        </div>
         {guestScoreAnimating && (
-            <>
-              <div className="guest-score score-out">{prevGuestScore}</div>
-              <div className="guest-score score-in">{guestScore}</div>
-            </>
-          )}
-          {!guestScoreAnimating && (
-            <div className="home-score">{guestScore}</div>
-          )}
-
-        
-
-
-      </div>
-      <div className="absolute-div guest-div">
-        <div className="team-name-div" style={{ left: "0px", top: " 90px", fontSize: guestFontSize }} > {gameState?.Guest?.TeamName !== "" ? gameState?.Guest?.TeamName : "GUEST"}</div>
-        {gameState?.Home?.Timeout?.Counts >= 0 && (
-          <div className="dots-div" style={{ left: "202px", top: '140px' }}>
-            {[...Array(gameState?.Guest?.Timeout?.Counts)].map((_, i) => (
-              <div
-                key={i}
-                className="dot-hand"
-                style={{ top: `${46 - i * 23}px`, }}
-              />
-            ))}
-
-          </div>
+          <>
+            <div className="score-sport score-out">{prevGuestScore}</div>
+            <div className="score-sport score-in">{guestScore}</div>
+          </>
         )}
-        {// If the game is a rink, display the team fouls
-         (
-          <div className="guest-fouls">
-            {gameState?.Guest?.Fouls?.Team || "0"}
-          </div>
-        )
+        {!guestScoreAnimating && (
+          <div className="text score-sport">{guestScore}</div>
+        )}
 
-        }
-        <div className="time-div" style={{ left: '118px', top: '211px' }}>{formatExclusionTimer(gameState?.Guest?.Exclusion?.Timer[2]) ||  ""}</div>
-        <div className="shirt-div" style={{ left: '59px', top: '211px' }}>{gameState?.Guest?.Exclusion?.ShirtNumber[2] || ""}</div>
+        <div className="text team-name-sport" style={{ fontSize: guestFontSize }} >{gameState?.Guest?.TeamName !== undefined ? gameState?.Guest?.TeamName : "GUEST"}</div>
 
-        <div className="time-div" style={{ left: '118px', top: '175px' }}>{formatExclusionTimer(gameState?.Guest?.Exclusion?.Timer[1]) || ""}</div>
-        <div className="shirt-div" style={{ left: '59px', top: '175px' }}>{gameState?.Guest?.Exclusion?.ShirtNumber[1] || ""}</div>
-
-        <div className="time-div" style={{ left: '118px', top: '139px' }}>{formatExclusionTimer(gameState?.Guest?.Exclusion?.Timer[0]) || ""}</div>
-        <div className="shirt-div" style={{ left: '59px', top: '139px' }}>{gameState?.Guest?.Exclusion?.ShirtNumber[0] || ""}</div>
+        {gameState?.Guest?.Exclusion?.Timer?.map((timer, index) => (
+          <div className="time-exclusion-sport text" style={{ top: `${15 + index * 25}px`, }} key={index}>{timer || ""}</div>
+        ))}
 
       </div>
-      <div className="countdown-container">
-        <div className="countdown-text">{formatTimer(
+
+      <div className="text period-sport" style={{ left: "226px" }}>
+        {gameState?.Period || "0"}
+      </div>
+      <div className="text timer-sport">
+        {formatTimer(
           gameState?.Timer?.Value || "00:00",
           showHomeTimeout,
           showGuestTimeout
-        )}</div>
-        <div className="round-number">{gameState?.Period || "1"}</div>
+        )}
+        <img className="logo-stramatel " style={{ top: "90px" }} src="LOGO_Stramatel.gif" />
       </div>
-      <img className="image-handball" src="LOGO_Stramatel.gif" />{" "}
     </div>
   );
 };
