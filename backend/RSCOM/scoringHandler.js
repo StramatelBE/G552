@@ -30,7 +30,7 @@ const handleScoring = async (scoring) => {
         const prematchMode = [21];
         const stopModes = [22, 23];
 
-        const getLanguage = await user.getLanguage(scoring.Sport).language;
+        const getLanguage = await user.getLanguage(scoring.Sport);
 
         // console.log("Handle Scoring:", scoring.Mode)
 
@@ -102,7 +102,7 @@ const handleScoring = async (scoring) => {
 
         if (scoreMode.includes(scoring.Mode)){
             console.log("score mode");
-            scoring.Language = getLanguage;
+            scoring.Language = getLanguage.language;
 
             unixSocketSetup.sendData(scoring);
             previousMacrosDataMode = scoring.Mode;
