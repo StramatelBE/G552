@@ -285,7 +285,7 @@ class Game {
       } else { // Retrieve team name
         if (storage[teamPath]) {
           if (!toInsert[side]) toInsert[side] = {}; // Ensure side object exists
-          toInsert[side]?.TeamName = storage[teamPath];
+          toInsert[side].TeamName = storage[teamPath];
         } else if (!toInsert[side]?.TeamName?.trim()) {
           // Default to "Home" or "Guest" if the team name is not in storage and the current is empty
           if (!toInsert[side]?.TeamName) toInsert[side].TeamName = ''; // Ensure side object exists
