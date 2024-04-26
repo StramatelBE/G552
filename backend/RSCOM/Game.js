@@ -273,6 +273,9 @@ class Game {
   
     ['Guest', 'Home'].forEach(side => {
       const teamPath = `${side}.TeamName`;
+      if (!toInsert[side]) {
+        toInsert[side] = {}; // Initialize the side object if it doesn't exist
+    }
   
       // Check the frame code to determine if we should store or retrieve the team name
       if (toInsert.Code === 0x90) { // Store team name
