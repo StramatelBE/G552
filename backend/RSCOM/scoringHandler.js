@@ -30,7 +30,7 @@ const handleScoring = async (scoring) => {
         const prematchMode = [21];
         const stopModes = [22, 23, 24, 25, 99];
 
-        const getLanguage = await user.getLanguage(scoring.Sport);
+        const getLanguage = await user.getLanguage(scoring.Sport).Language;
 
         // console.log("Handle Scoring:", scoring.Mode)
 
