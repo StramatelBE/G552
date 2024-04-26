@@ -1,0 +1,76 @@
+{
+  "Macro": {
+    "title": "Makro",
+    "number": "numer",
+    "slideshow": "pokaz slajdów",
+    "none": "brak"
+  },
+  "Profile": {
+    "title": "Ustawienia",
+    "application": "Aplikacja",
+    "changePassword": "Zmień hasło",
+    "darkMode": "Tryb ciemny",
+    "usedStorageSpace": "Używane miejsce na dysku",
+    "panelsTest": "Test paneli",
+    "language": "Język",
+    "info": "Informacje",
+    "account": "Konto",
+    "automaticStandby": "Automatyczne oczekiwanie",
+    "Dialog": {
+      "chooseTime": "Wybierz czas",
+      "pleaseSelectMinutesAndSeconds": "Proszę wybrać minuty i sekundy"
+    }
+  },
+  "Diaporama": {
+    "title": "Pokaz slajdów",
+    "emptyListMessage": "Upuść tutaj media",
+    "listTitle": "Lista pokazów slajdów",
+    "Dialog": {
+      "addNew": "Dodaj nowy pokaz slajdów",
+      "name": "Nazwa",
+      "areYouSureToDelete": "Czy na pewno chcesz usunąć",
+      "areYouSureToDeleteMediaEvent": "Czy na pewno chcesz usunąć to wydarzenie z pokazu slajdów?"
+    }
+  },
+  "Login": {
+    "passwordMismatch": "Hasła nie pasują do siebie",
+    "passwordChange": "Zmień hasło",
+    "passwordChangeSuccess": "Hasło zmienione pomyślnie",
+    "newPassword": "Nowe hasło",
+    "confirmNewPassword": "Potwierdź nowe hasło",
+    "errorMessage": "Nieprawidłowa nazwa użytkownika lub hasło",
+    "passwordAdmin": "Hasło administratora",
+    "title": "Logowanie",
+    "username": "Nazwa użytkownika",
+    "password": "Hasło",
+    "loginButton": "Zaloguj się",
+    "lostPassword": "Zapomniałeś hasła?",
+    "Dialog": {
+      "doYouReallyWantToLogout": "Czy na pewno chcesz się wylogować?",
+      "userAlreadyConnected": "Użytkownik jest już połączony",
+      "doYouWantToDisconnect": "Czy chcesz rozłączyć?"
+    }
+  },
+  "Media": {
+    "title": "Media",
+    "add": "Dodaj",
+    "upload": "Prześlij",
+    "Dialog": {
+      "areYouSureToDelete": "Czy na pewno chcesz usunąć te media?"
+    }
+  },
+  "Dialog": {
+    "cancel": "Anuluj",
+    "confirm": "Potwierdź",
+    "delete": "Usuń",
+    "close": "Zamknij",
+    "save": "Zapisz",
+    "confirmDeletion": "Potwierdź usunięcie",
+    "yes": "Tak",
+    "no": "Nie"
+  },
+  "Scoreboard": {
+    "Guest": "GOŚCIE",
+    "Home": "GOSPODARZE"
+  }
+}

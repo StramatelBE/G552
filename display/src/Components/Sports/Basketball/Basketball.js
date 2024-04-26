@@ -78,7 +78,7 @@ function getFontSize(name) {
 }
 function renderHomeFoulCount(foulCount) {
   // If the foul count is 8, display a red square instead
-  return foulCount === 8 ? (
+  return foulCount === 9 ? (
     <div className="home-square-fouls" style={{ width: '30px', height: '30px', backgroundColor: 'red' }} />
   ) : (
     <div className="home-fouls" style={{ fontFamily: "D-DIN-Bold"}}>{foulCount}</div>
@@ -87,7 +87,7 @@ function renderHomeFoulCount(foulCount) {
 
 function renderGuestFoulCount(foulCount) {
   // If the foul count is 8, display a red square instead
-  return foulCount === 8 ? (
+  return foulCount === 9 ? (
     <div className="guest-square-fouls" style={{ width: '30px', height: '30px', backgroundColor: 'red' }} />
   ) : (
     <div className="guest-fouls" style={{ fontFamily: "D-DIN-Bold"}}>{foulCount}</div>

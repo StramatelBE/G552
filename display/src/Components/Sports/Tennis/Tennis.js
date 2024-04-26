@@ -51,8 +51,8 @@ function getFontSize(name) {
   
 
   // Determine the color of the service dot for Home and Guest
-  const homeServiceDotColor = gameState?.Home?.Service === 1 ? "darkred" : "#006f3c";
-  const guestServiceDotColor = gameState?.Guest?.Service === 1 ? "darkred" : "#006f3c";
+  const homeServiceDotColor = gameState?.Home?.Service === 1 ? "darkred" : "#005239";
+  const guestServiceDotColor = gameState?.Guest?.Service === 1 ? "darkred" : "#005239";
 
   // Conditionally apply blinking class
   const homeBlinkClass = gameState?.Home?.Winner ? "blinking" : "";

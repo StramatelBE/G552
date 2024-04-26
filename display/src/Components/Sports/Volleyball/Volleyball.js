@@ -24,15 +24,6 @@ function Volleyball({ gameState: incomingGameState }) {
   const showHomeTimeout = gameState?.Home?.Timeout?.Time !== "0:00";
   const showGuestTimeout = gameState?.Guest?.Timeout?.Time !== "0:00";
 
-
-
-  function calculateCurrentSet(homeSetsWon, guestSetsWon) {
-    if (homeSetsWon === 2 && guestSetsWon === 2 || homeSetsWon === 3 && guestSetsWon === 2 || homeSetsWon === 2 && guestSetsWon === 3) {
-      return 5;
-    } 
-    return homeSetsWon + guestSetsWon + 1 > 4 ? 4 : homeSetsWon + guestSetsWon + 1;
-  }
-
   function formatTimer(timerString) {
     if (!timerString) {
       return [];
@@ -67,9 +58,6 @@ function Volleyball({ gameState: incomingGameState }) {
     });
   }
 
-  useEffect(() => {
-    setCurrentSet(calculateCurrentSet(gameState?.Home?.SetsWon, gameState?.Guest?.SetsWon));
-  }, [incomingGameState]);
 
 
   useEffect(() => {
@@ -184,7 +172,7 @@ function getFontSize(name) {
       {gameState?.Home?.Service && (
           <div className="home-possession"></div>
         )}
-      <div className="green-number">{currentSet || "0"}</div>
+      <div className="green-number">{gameState?.Set || "0"}</div>
       {gameState?.Guest?.Service && (
           <div className="guest-possession"></div>
         )}

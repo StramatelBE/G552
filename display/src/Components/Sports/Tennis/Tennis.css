@@ -2,7 +2,7 @@
   width: 512px !important;
   height: 256px !important;
   position: relative;
-  background: #006f3c !important;
+  background: #005239 !important;
 }
 
 .player {
@@ -26,7 +26,7 @@
   text-align: center;
   justify-content: center;
   align-items: center;
-  color: #e5f15a;
+  color: #c96d06;
   font-size: 54px;
   font-family: "Abhaya Libre", sans-serif;
   font-weight: 700;
@@ -56,7 +56,7 @@
   position: absolute;
   justify-content: center;
   align-items: center;
-  color: #e5f15a;
+  color: #c96d06;
   font-size: 30px;
   font-family: "LiberationMono-Bold";
   font-weight: 700;

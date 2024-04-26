@@ -68,5 +68,9 @@
     "confirmDeletion": "Confirmar eliminación",
     "yes": "Sí",
     "no": "No"
+  },
+  "Scoreboard": {
+    "Guest": "Visitante",
+    "Home": "Local" 
   }
 }

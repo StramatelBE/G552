@@ -68,5 +68,9 @@
     "confirmDeletion": "Potwierdź usunięcie",
     "yes": "Tak",
     "no": "Nie"
+  },
+  "Scoreboard": {
+    "Guest": "Goście",
+    "Home": "Gospodarze"
   }
 }
