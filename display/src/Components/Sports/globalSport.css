@@ -10,6 +10,13 @@
   height: 256px;
   position: absolute;
 }
+.container-score-sport {
+  width: 226px;
+  height: 93px;
+  position: absolute;
+  overflow: hidden;
+}
+
 .text {
   display: flex;
   align-items: center;
