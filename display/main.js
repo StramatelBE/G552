@@ -1,8 +1,8 @@
-const {app, BrowserWindow, ipcMain} = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const config = require("./src/config.js");
 const net = require("net");
-const {saveData, readData} = require("./store");
+const { saveData, readData } = require("./store");
 const { log } = require("console");
 
 const socketPath = "/tmp/_sysmes.sock";
@@ -61,15 +61,15 @@ function createWindows() {
         },
     });
     //TODO:TRUC DEV
-    //mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
     mainWindow.loadFile("dist/index.html");
-	mainWindow.loadURL('http://localhost:2001');
-	mainWindow.removeMenu();
+    mainWindow.loadURL('http://localhost:3001');
+    mainWindow.removeMenu();
     mainWindow.setMenu(null);
     mainWindow.setAlwaysOnTop(true, "screen-saver");
     mainWindow.webContents.on("did-finish-load", () => {
-	    const css = `body { overflow: hidden; }`;
-	    mainWindow.webContents.insertCSS(css);
+        const css = `body { overflow: hidden; }`;
+        mainWindow.webContents.insertCSS(css);
         console.log("Main window loaded");
         mainWindow.webContents.send("message", "Hello second window!");
     });
@@ -78,7 +78,7 @@ function createWindows() {
         let dataBuffer = "";
 
         try {
-            const client = net.createConnection({path: socketPath}, () => {
+            const client = net.createConnection({ path: socketPath }, () => {
                 console.log("Connected to server!");
                 client.write(
                     "Display is connected! You can send scoring and medias.\n"

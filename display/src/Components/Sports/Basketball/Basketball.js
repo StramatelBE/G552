@@ -110,16 +110,18 @@ function Basketball({ gameState: incomingGameState }) {
             ))
           )}
         </div>
-        {homeScoreAnimating && (
-          <>
-            <div className="score-sport score-out">{prevHomeScore}</div>
-            <div className="score-sport score-in">{homeScore}</div>
-          </>
-        )}
-        {!homeScoreAnimating && (
-          <div className="text score-sport">{homeScore}</div>
-        )}
-        <div className="text team-name-sport" style={{ fontSize: homeFontSize }} >
+        <div className="container-score" style={{ left: "0px", top: "0px" }} >
+          {homeScoreAnimating && (
+            <>
+              <div className=" text score-sport score-out">{prevHomeScore}</div>
+              <div className=" text score-sport score-in">{homeScore}</div>
+            </>
+          )}
+          {!homeScoreAnimating && (
+            <div className="text score-sport">{homeScore}</div>
+          )}
+        </div>
+        <div className="text team-name-sport" style={{ fontSize: homeFontSize, left: "0px", top: "90px" }} >
           {gameState?.Home?.TeamName !== undefined ? gameState?.Home?.TeamName : "HOME"}
         </div>
         <div className="fouls-basket" style={{ left: "70px", top: "195px" }}>
@@ -128,17 +130,19 @@ function Basketball({ gameState: incomingGameState }) {
       </div>
       {/* GUEST */}
       <div className="container-team-sport" style={{ left: "286px" }}>
-        {guestScoreAnimating && (
-          <>
-            <div className="score-sport score-out">{prevGuestScore}</div>
-            <div className="score-sport score-in">{guestScore}</div>
-          </>
-        )}
-        {!guestScoreAnimating && (
-          <div className="text score-sport">{guestScore}</div>
-        )}
-        <div className="text team-name-sport" style={{ fontSize: guestFontSize }} >
-          {gameState?.Guest?.TeamName !== undefined ? gameState?.Guest?.TeamName : "GUEST"}
+        <div className="container-score" style={{ right: "0px", top: "0px" }} >
+          {guestScoreAnimating && (
+            <>
+              <div className="score-sport score-out">{prevGuestScore}</div>
+              <div className="score-sport score-in">{guestScore}</div>
+            </>
+          )}
+          {!guestScoreAnimating && (
+            <div className="text score-sport">{guestScore}</div>
+          )}
+        </div>
+        <div className="text team-name-sport" style={{ fontSize: homeFontSize, left: "0px", top: "90px" }} >
+          {gameState?.Home?.TeamName !== undefined ? gameState?.Home?.TeamName : "HOME"}
         </div>
         <div className="text timeout-hand" style={{ right: '120px', top: "140px" }}>
           {gameState?.Home?.Timeout?.Team >= 0 && (

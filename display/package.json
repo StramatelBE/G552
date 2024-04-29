@@ -6,6 +6,7 @@
   "scripts": {
     "start": "concurrently \"PORT=2001 serve -s build\" \"npm run electron\"",
     "electron": "electron .",
+    "dev": "concurrently \"npm run electron\"",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
     "build": "react-scripts build",
