@@ -109,15 +109,17 @@ function Basketball({ gameState: incomingGameState }) {
             ))
           )}
         </div>
-        {homeScoreAnimating && (
-          <>
-            <div className="score-sport score-out">{prevHomeScore}</div>
-            <div className="score-sport score-in">{homeScore}</div>
-          </>
-        )}
-        {!homeScoreAnimating && (
-          <div className="text score-sport">{homeScore}</div>
-        )}
+        <div className="container-score">
+          {homeScoreAnimating && (
+            <>
+              <div className="score-sport score-out">{prevHomeScore}</div>
+              <div className="score-sport score-in">{homeScore}</div>
+            </>
+          )}
+          {!homeScoreAnimating && (
+            <div className="text score-sport">{homeScore}</div>
+          )}
+        </div>
         <div className="text team-name-sport" style={{ fontSize: homeFontSize }} >
           {gameState?.Home?.TeamName !== undefined ? gameState?.Home?.TeamName : "HOME"}
         </div>

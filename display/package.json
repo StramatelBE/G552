@@ -5,6 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "concurrently \"PORT=2001 serve -s build\" \"npm run electron\"",
+    "dev": "concurrently \"react-scripts start\" \"npm run electron\"",
     "electron": "electron .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
