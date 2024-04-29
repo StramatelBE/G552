@@ -45,7 +45,7 @@ function Profile() {
   const [user, setUser] = useState(null);
   const { darkMode, setDarkMode } = useDarkMode();
   const [mode, setMode] = useState({});
-  const [Widths, setWidths] = useState({});
+  const [Widths, setWidths] = useState([]);
 
 
   let currentWidth = 0;
@@ -458,7 +458,7 @@ function Profile() {
               <Box sx={{ flexGrow: 10 }}>
 
                 <Box sx={{ display: 'flex', height: '20px', outline: '1px solid #dbd2d2 !important' }}>
-                  {Widths.map((width, index) => (
+                  {Widths.length > 0 && Widths.map((width, index) => (
                     <Box
                       key={index}
                       sx={{
