@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import "./Handball.css";
 import "../globalSport.css";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 94862fa (Mise à jour du style CSS pour le composant Sports)
 
 function Handball({ gameState: incomingGameState }) {
   const [homeScore, setHomeScore] = useState(incomingGameState?.Home?.Points || 0);
@@ -141,18 +144,20 @@ function Handball({ gameState: incomingGameState }) {
             ))
           )}
         </div>
-        {homeScoreAnimating && (
-          <>
-            <div className="score-sport score-out">{prevHomeScore}</div>
-            <div className="score-sport score-in">{homeScore}</div>
-          </>
-        )}
-        {!homeScoreAnimating && (
-          <div className="text score-sport">{homeScore}</div>
-        )}
-
-        <div className="text team-name-sport" style={{ fontSize: homeFontSize }} >{gameState?.Home?.TeamName !== undefined ? gameState?.Home?.TeamName : "HOME"}</div>
-
+        <div className="container-score" style={{ left: "0px", top: "0px" }} >
+          {homeScoreAnimating && (
+            <>
+              <div className=" text score-sport score-out">{prevHomeScore}</div>
+              <div className=" text score-sport score-in">{homeScore}</div>
+            </>
+          )}
+          {!homeScoreAnimating && (
+            <div className="text score-sport">{homeScore}</div>
+          )}
+        </div>
+        <div className="text team-name-sport" style={{ fontSize: homeFontSize, left: "0px", top: "90px" }} >
+          {gameState?.Home?.TeamName !== undefined ? gameState?.Home?.TeamName : "HOME"}
+        </div>
         {gameState?.Home?.Exclusion?.Timer?.map((timer, index) => (
           <div className="time-exclusion-sport text" style={{ top: `${15 + index * 25}px`, }} key={index}>{timer || ""}</div>
         ))}
@@ -172,18 +177,20 @@ function Handball({ gameState: incomingGameState }) {
             ))
           )}
         </div>
-        {guestScoreAnimating && (
-          <>
-            <div className="score-sport score-out">{prevGuestScore}</div>
-            <div className="score-sport score-in">{guestScore}</div>
-          </>
-        )}
-        {!guestScoreAnimating && (
-          <div className="text score-sport">{guestScore}</div>
-        )}
-
-        <div className="text team-name-sport" style={{ fontSize: guestFontSize }} >{gameState?.Guest?.TeamName !== undefined ? gameState?.Guest?.TeamName : "GUEST"}</div>
-
+        <div className="container-score" style={{ right: "0px", top: "0px" }} >
+          {guestScoreAnimating && (
+            <>
+              <div className="score-sport score-out">{prevGuestScore}</div>
+              <div className="score-sport score-in">{guestScore}</div>
+            </>
+          )}
+          {!guestScoreAnimating && (
+            <div className="text score-sport">{guestScore}</div>
+          )}
+        </div>
+        <div className="text team-name-sport" style={{ fontSize: homeFontSize, left: "0px", top: "90px" }} >
+          {gameState?.Home?.TeamName !== undefined ? gameState?.Home?.TeamName : "HOME"}
+        </div>
         {gameState?.Guest?.Exclusion?.Timer?.map((timer, index) => (
           <div className="time-exclusion-sport text" style={{ top: `${15 + index * 25}px`, }} key={index}>{timer || ""}</div>
         ))}
