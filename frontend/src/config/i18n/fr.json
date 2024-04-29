@@ -80,5 +80,11 @@
   "Scoreboard": {
     "Guest": "Visiteur",
     "Home": "Locaux"
+  },
+  "Admin": {
+    "title": "Administration",
+    "serialNumber": "Numéro de série",
+    "canalNumber": "Numéro de canal",
+    "ipAddress": "Adresse IP"
   }
 }
