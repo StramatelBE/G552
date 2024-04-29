@@ -111,39 +111,42 @@ function Volleyball({ gameState: incomingGameState }) {
         <div className="text team-name-sport" style={{ fontSize: homeFontSize, left: "0px", top: "90px" }} >
           {gameState?.Home?.TeamName !== undefined ? gameState?.Home?.TeamName : "HOME"}
         </div>
-        <div className="side-numbers">
-          <div className=" text side-number" >{gameState?.Home?.PointsInSets[0] || ""}</div>
-          <div className="text side-number">{gameState?.Home?.PointsInSets[1] || ""}</div>
-          <div className="text side-number" >{gameState?.Home?.PointsInSets[2] || ""}</div>
-          <div className="text side-number">{gameState?.Home?.PointsInSets[3] || ""}</div>
+        <div className="side-numbers" style={{ left: "0px", top: "140px" }}>
+          {/*  <div className={`text side-number ${gameState?.Home?.PointsBySets[0] > gameState?.Guest?.PointsBySets[0]
+            ? "yellow"
+            : ""
+            }`} >{gameState?.Home?.PointsBySets[0] || ""}</div> */}
+          {/*           <div className="text side-number">{gameState?.Home?.PointsBySets[1] || ""}</div>
+          <div className="text side-number" >{gameState?.Home?.PointsBySets[2] || ""}</div>
+          <div className="text side-number">{gameState?.Home?.PointsBySets[3] || ""}</div> */}
         </div>
       </div>
       <div className="container-team-sport" style={{ left: "286px" }}>
         <div className="container-score" style={{ right: "0px", top: "0px" }} >
           {guestScoreAnimating && (
             <>
-              <div className="score-sport score-out">{prevGuestScore}</div>
-              <div className="score-sport score-in">{guestScore}</div>
+              <div className="text score-sport score-out">{prevGuestScore}</div>
+              <div className="text score-sport score-in">{guestScore}</div>
             </>
           )}
           {!guestScoreAnimating && (
             <div className="text score-sport">{guestScore}</div>
           )}
         </div>
-        <div className="text team-name-sport" style={{ fontSize: guestFontSize }} >
+        <div className="text team-name-sport" style={{ fontSize: homeFontSize, left: "0px", top: "90px" }} >
           {gameState?.Guest?.TeamName !== undefined ? gameState?.Guest?.TeamName : "GUEST"}
         </div>
-        <div className="side-numbers" style={{ right: "0px" }}>
-          <div className=" text side-number" >{gameState?.Home?.PointsInSets[0] || ""}</div>
-          <div className="text side-number">{gameState?.Home?.PointsInSets[1] || ""}</div>
-          <div className="text side-number" >{gameState?.Home?.PointsInSets[2] || ""}</div>
-          <div className="text side-number">{gameState?.Home?.PointsInSets[3] || ""}</div>
+        <div className="side-numbers" style={{ right: "0px", top: "140px" }}>
+          {/*           <div className=" text side-number" >{gameState?.Home?.PointsBySets[0] || ""}</div> */}
+          {/*           <div className="text side-number">{gameState?.Home?.PointsBySets[1] || ""}</div>
+          <div className="text side-number" >{gameState?.Home?.PointsBySets[2] || ""}</div>
+          <div className="text side-number">{gameState?.Home?.PointsBySets[3] || ""}</div> */}
         </div>
       </div>
 
 
       <div className="text period-sport" style={{ left: "226px" }}>
-        {gameState?.Period || "0"}
+        {gameState?.Set || "0"}
       </div>
       {gameState?.Home?.Possession && (
         <div className="home-possession"></div>

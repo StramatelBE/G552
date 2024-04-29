@@ -155,7 +155,7 @@ function Handball({ gameState: incomingGameState }) {
           {gameState?.Home?.TeamName !== undefined ? gameState?.Home?.TeamName : "HOME"}
         </div>
         {gameState?.Home?.Exclusion?.Timer?.map((timer, index) => (
-          <div className="time-exclusion-sport text" style={{ top: `${15 + index * 25}px`, }} key={index}>{timer || ""}</div>
+          <div className="time-exclusion-sport text" style={{ top: `${135 + index * 30}px`, left: "20px", }} key={index}>{timer || ""}</div>
         ))}
 
       </div>
@@ -176,8 +176,8 @@ function Handball({ gameState: incomingGameState }) {
         <div className="container-score" style={{ right: "0px", top: "0px" }} >
           {guestScoreAnimating && (
             <>
-              <div className="score-sport score-out">{prevGuestScore}</div>
-              <div className="score-sport score-in">{guestScore}</div>
+              <div className="text score-sport score-out">{prevGuestScore}</div>
+              <div className="text score-sport score-in">{guestScore}</div>
             </>
           )}
           {!guestScoreAnimating && (
@@ -188,7 +188,7 @@ function Handball({ gameState: incomingGameState }) {
           {gameState?.Home?.TeamName !== undefined ? gameState?.Home?.TeamName : "HOME"}
         </div>
         {gameState?.Guest?.Exclusion?.Timer?.map((timer, index) => (
-          <div className="time-exclusion-sport text" style={{ top: `${15 + index * 25}px`, }} key={index}>{timer || ""}</div>
+          <div className="time-exclusion-sport text" style={{ top: `${135 + index * 30}px`, right: "10px" }} key={index}>{timer || ""}</div>
         ))}
 
       </div>
