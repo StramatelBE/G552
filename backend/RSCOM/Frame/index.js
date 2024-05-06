@@ -38,6 +38,7 @@ const Frame_0x90 = require('./Frame_0x90'); // TeamNames
 const Frame_0x91 = require('./Frame_0x91'); // Clear TeamNames
 const Frame_0x92 = require('./Frame_0x92'); // Full Clear
 const Frame_0x93 = require('./Frame_0x93'); // Test Mode
+const Frame_0x94 = require('./Frame_0x94'); // QR Code
 const Frame_0x99 = require('./Frame_0x99'); // Reserved for Clock Setup
 const Chrono = require('../Utils/Frame_Tools/4_7_Chrono');
 const TeamName = require('../Utils/Frame_Tools/6_48_TeamName');
@@ -74,5 +75,6 @@ module.exports = Frames = {
     ClearTeamNames: Frame_0x91, // Clear TeamNames
     FullClear: Frame_0x92, // Full Clear
     Test: Frame_0x93, // Test Mode
+    QR: Frame_0x94, // QR Code
     ClockSetup: Frame_0x99, // Reserved for Clock Setup
 }
