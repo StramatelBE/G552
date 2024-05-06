@@ -34,7 +34,7 @@ module.exports = class Frame_0x10 {
                 Timeout: {
                     Count: nBytesToNumber(_message[17]),
                 },
-                PointsBySet: Tools.PointsBySet(22, 4, 4, _message),
+                PointsBySet: Tools.PointsBySet(24, 4, 4, _message),
                 PlayersInPlay: Tools.PlayersInPlay(_message).Home,
                 Service: Tools.Service(_message[50]).Home,
                 Winner: Tools.Winner(_message[51]).Home,
@@ -46,7 +46,7 @@ module.exports = class Frame_0x10 {
                 Timeout: {
                     Count: nBytesToNumber(_message[18]),
                 },
-                PointsBySet: Tools.PointsBySet(24, 4, 4, _message),
+                PointsBySet: Tools.PointsBySet(26, 4, 4, _message),
                 PlayersInPlay: Tools.PlayersInPlay(_message).Guest,
                 Service: Tools.Service(_message[50]).Guest,
                 Winner: Tools.Winner(_message[51]).Guest,
