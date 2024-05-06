@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import ScoringMode from "./Components/ScoringMode";
 import MediaMode from "./Components/MediaMode";
 import PrematchMode from "./Components/PrematchMode.js";
+import QRMode from "./Components/QRMode.js";
 import config from "./config.js";
 import LogoMode from "./Components/LogoMode";
 import "./main.css"
@@ -32,6 +33,7 @@ const App = () => {
     };
 
     ipcRenderer.on("server-data", (event, data) => {
+      console.log(data.Mode);
       switch (data.Mode) {
         case 0:
           setMode("scoring");
@@ -47,6 +49,12 @@ const App = () => {
           break;
         case 23:
           setMode("sleep");
+          break;
+        case 99:
+          setMode("test");
+          break;
+        case 25:
+          setMode("qr");
           break;
         default:
           if (data.Mode >= 1 && data.Mode <= 9) {
@@ -67,14 +75,16 @@ const App = () => {
 
   return (
     <>
-      <I18nextProvider i18n={i18n}>
-        {mode === "scoring" && <ScoringMode gameState={gameState} />}
-        {mode === "media" && <MediaMode key={mediaKey} mediaState={mediaState} mediaMode={mediaMode} />}
-        {mode === "prematch" && <PrematchMode mediaState={mediaState} mediaMode={mediaMode} gameState={gameState} />}
-        {mode === "logo" && <LogoMode />}
-        {mode === "sleep" && <></>}
-        {mode === "" && <div>Waiting for data...</div>}
-      </I18nextProvider>
+    <I18nextProvider i18n={i18n}>
+      {mode === "scoring" && <ScoringMode gameState={gameState} />}
+      {mode === "media" && <MediaMode key={mediaKey} mediaState={mediaState} mediaMode={mediaMode}/>}
+      {mode === "prematch" && <PrematchMode mediaState={mediaState} mediaMode={mediaMode} gameState={gameState}/>}
+      {mode === "logo" && <LogoMode />}
+      {mode === "test" && <TestPage />}
+      {mode === "qr" && <QRMode />}
+      {mode === "sleep" && <></>}
+      {mode === "" && <div>Waiting for data...</div>}
+    </I18nextProvider>
     </>
   );
 };

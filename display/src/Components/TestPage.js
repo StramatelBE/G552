@@ -17,8 +17,8 @@ function TestPage() {
   return (
     <div
       style={{
-        width: "288px",
-        height: "216px",
+        width: "512px",
+        height: "256px",
         backgroundColor: colors[colorIndex],
       }}
     />

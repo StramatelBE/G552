@@ -74,7 +74,12 @@ class User {
         const mediaFolder = `${process.env.UPLOAD_PATH}`;
         if (!fs.existsSync(mediaFolder)) {
           console.log("Folder does not exist");
-          fs.mkdirSync(mediaFolder);
+          try {
+            fs.mkdirSync(mediaFolder);
+          }
+          catch (err) {
+            console.error("Error creating media folder:", err.message, "Might be due to missing server on localhost:3000 or just path issue.");
+          }
           console.log("Folder created");
         }
 
@@ -88,9 +93,14 @@ class User {
           const folderName = `${process.env.UPLOAD_PATH}${user.username}`;
           if (!fs.existsSync(folderName)) {
             console.log("Folder does not exist");
-            fs.mkdirSync(folderName);
+            try {
+              fs.mkdirSync(folderName);
+            }
+            catch (err) {
+              console.error("Error creating user folder:", err.message, "Might be due to missing server on localhost:3000 or just path issue.");
             console.log("Folder created");
           }
+        }
 
           this.create(user);
         });
