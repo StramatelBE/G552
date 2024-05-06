@@ -202,6 +202,25 @@ function Basketball({ gameState: incomingGameState }) {
         <img className="logo-fiba " style={{ left: "460px" }} src="fiba.png" />{" "}
         <img className="logo-stramatel " style={{ top: "90px" }} src="LOGO_Stramatel.gif" />
       </div>
+      {/* MIDDLE */}
+      <div className="text period-sport" style={{ left: "226px" }}>
+        {gameState?.Period || "0"}
+      </div>
+      {gameState?.Home?.Possession && (
+        <div className="home-possession"></div>
+      )}
+      {gameState?.Guest?.Possession && (
+        <div className="guest-possession"></div>
+      )}
+      <div className="text timer-sport">
+        {formatTimer(
+          gameState?.Timer?.Value || "00:00",
+          showHomeTimeout,
+          showGuestTimeout
+        )}
+        <img className="logo-fiba " style={{ left: "460px" }} src="fiba.png" />{" "}
+        <img className="logo-stramatel " style={{ top: "90px" }} src="LOGO_Stramatel.gif" />
+      </div>
 
     </div >
   );
