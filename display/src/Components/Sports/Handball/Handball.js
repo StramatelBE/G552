@@ -135,7 +135,7 @@ function Handball({ gameState: incomingGameState }) {
               <div
                 key={index}
                 className="timeout-dot-sport"
-                style={{ top: `${15 + index * 25}px`, }}
+                style={{ top: `${200 - index * 25}px`, }}
               />
             ))
           )}
@@ -168,7 +168,7 @@ function Handball({ gameState: incomingGameState }) {
               <div
                 key={index}
                 className="timeout-dot-sport"
-                style={{ top: `${15 + index * 25}px`, }}
+                style={{ top: `${200 - index * 25}px`, }}
               />
             ))
           )}

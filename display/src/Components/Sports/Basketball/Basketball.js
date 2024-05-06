@@ -159,13 +159,14 @@ function Basketball({ gameState: incomingGameState }) {
         </div>
         {
           gameState?.Guest?.Fouls?.Team === 8 ?
-            (<div className="square-fouls-basket" style={{ right: "70px", top: "195px" }} />)
+            (<div className="text fouls-basket" style={{ right: "70px", top: "195px" }}>
+              <div className="square-fouls-basket" />
+            </div>)
             :
             (<div className="text fouls-basket" style={{ right: "70px", top: "195px" }}>
               {gameState?.Guest?.Fouls?.Team}
             </div>)
         }
-
       </div >
       {/* MIDDLE */}
       < div className="text period-sport" style={{ left: "226px" }}>

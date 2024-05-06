@@ -75,16 +75,16 @@ const App = () => {
 
   return (
     <>
-    <I18nextProvider i18n={i18n}>
-      {mode === "scoring" && <ScoringMode gameState={gameState} />}
-      {mode === "media" && <MediaMode key={mediaKey} mediaState={mediaState} mediaMode={mediaMode}/>}
-      {mode === "prematch" && <PrematchMode mediaState={mediaState} mediaMode={mediaMode} gameState={gameState}/>}
-      {mode === "logo" && <LogoMode />}
-      {mode === "test" && <TestPage />}
-      {mode === "qr" && <QRMode />}
-      {mode === "sleep" && <></>}
-      {mode === "" && <div>Waiting for data...</div>}
-    </I18nextProvider>
+      <I18nextProvider i18n={i18n}>
+        {mode === "scoring" && <ScoringMode gameState={gameState} />}
+        {mode === "media" && <MediaMode key={mediaKey} mediaState={mediaState} mediaMode={mediaMode} />}
+        {mode === "prematch" && <PrematchMode mediaState={mediaState} mediaMode={mediaMode} gameState={gameState} />}
+        {mode === "logo" && <LogoMode />}
+        {mode === "test" && <TestPage />}
+        {mode === "qr" && <QRMode />}
+        {mode === "sleep" && <></>}
+        {mode === "" && <div>Waiting for data...</div>}
+      </I18nextProvider>
     </>
   );
 };

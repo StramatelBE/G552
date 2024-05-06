@@ -1,14 +1,23 @@
 .scoreboard {
   width: 512px !important;
   height: 256px !important;
-  position: relative;
+  position: absolute;
   background: #005239 !important;
+}
+.container-tennis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 10px;
 }
 
 .player {
-  width: 502px;
-  height: 60px;
-  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 20px;
 }
 
 .player-top {
@@ -17,21 +26,31 @@
 .player-bottom {
   top: 85px;
 }
+.player-margin {
+  margin-left: 5px;
+  margin-right: 5px;
+}
 
 .set-score {
   width: 50px;
   height: 60px;
-  position: absolute;
   background: #242121;
   text-align: center;
   justify-content: center;
   align-items: center;
   color: #c96d06;
   font-size: 54px;
-  font-family: "Abhaya Libre", sans-serif;
   font-weight: 700;
 }
-
+.set-text {
+  width: 40px;
+  height: 20px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 500;
+}
 .score:last-child {
   width: 100px;
 }
@@ -40,25 +59,29 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 20px;
-  height: 20px;
-  top: 20px;
-  left: 155px;
-  position: absolute;
-  background:darkorange;
+  min-width: 20px;
+  min-height: 20px;
   border-radius: 9999px;
+}
+
+.set-player-name {
+  display: flex;
+  min-width: 165px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  color: #005239;
+  font-weight: 700;
 }
 
 .player-name {
   display: flex;
-  width: 165px;
+  min-width: 165px !important;
   height: 60px;
-  position: absolute;
   justify-content: center;
   align-items: center;
   color: #c96d06;
   font-size: 30px;
-  font-family: "LiberationMono-Bold";
   font-weight: 700;
 }
 
@@ -72,11 +95,10 @@
 }
 
 .sets {
-  width: 309px;
-  height: 41px;
-  position: absolute;
-  left: 225px;
-  top: 145px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
 }
 
 .set,
@@ -84,13 +106,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 66px;
+  width: 50px;
   height: 41px;
-  position: absolute;
   text-align: center;
   color: white;
-  font-size: 20px;
-  font-family: "Abhaya Libre", sans-serif;
+  font-size: 25px;
   font-weight: 700;
 }
 
@@ -98,17 +118,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
   text-align: center;
   color: white;
   top: 5px;
   font-size: 20px;
-  font-family: "Abhaya Libre", sans-serif;
   font-weight: 700;
 }
 
 .point {
-  width: 70px;
+  min-width: 70px !important;
 }
 
 .timer {
@@ -117,24 +135,24 @@
   align-items: center;
   width: 165px;
   height: 65px;
-  position: absolute;
-  left: 173px;
-  top: 10px;
   background: #242121;
   text-align: center;
   color: white;
   font-size: 54px;
-  font-family: "Abhaya Libre", sans-serif;
   font-weight: 700;
 }
 
 @keyframes blink {
-  0%, 50% { visibility: visible; }
-  51%, 100% { visibility: hidden; }
+  0%,
+  50% {
+    visibility: visible;
+  }
+  51%,
+  100% {
+    visibility: hidden;
+  }
 }
 
 .blinking {
   animation: blink 1s steps(1, start) infinite;
 }
-
-

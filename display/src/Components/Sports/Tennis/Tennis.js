@@ -20,35 +20,33 @@ function Tennis({ gameState: incomingGameState }) {
 
 
   useEffect(() => {
-    setHomeFontSize(getFontSize(gameState?.Home?.TeamName));
-    setGuestFontSize(getFontSize(gameState?.Guest?.TeamName));
-}, [incomingGameState]);
+    if (gameState?.Home?.TeamName !== undefined || gameState?.Guest?.TeamName !== undefined) {
+      setHomeFontSize(getFontSize(gameState?.Home?.TeamName));
+      setGuestFontSize(getFontSize(gameState?.Guest?.TeamName));
+    }
+  }, [incomingGameState]);
 
-function calculateCurrentSet(homeSetsWon, guestSetsWon) {
-  return homeSetsWon + guestSetsWon + 1 > 3 ? 3 : homeSetsWon + guestSetsWon + 1;
-}
-useEffect(() => {
-  setCurrentSet(calculateCurrentSet(gameState?.Home?.SetsWon, gameState?.Guest?.SetsWon));
-}, [incomingGameState]);
+  function calculateCurrentSet(homeSetsWon, guestSetsWon) {
+    return homeSetsWon + guestSetsWon + 1 > 3 ? 3 : homeSetsWon + guestSetsWon + 1;
+  }
+  useEffect(() => {
+    setCurrentSet(calculateCurrentSet(gameState?.Home?.SetsWon, gameState?.Guest?.SetsWon));
+  }, [incomingGameState]);
 
-function getFontSize(name) {
-  //remove start and end spaces but not in the middle
-  name = name.replace(/^\s+|\s+$/g, '');
+  function getFontSize(name) {
+    if (name.length <= 7) {
+      return '30px'; // Taille normale
+    }
+    else if (name.length <= 9) {
+      return '26px'; // Toujours un peu plus petit
+    }
 
-  console.log(name);
-  if (name.length <= 7) {
-    return '30px'; // Taille normale
-  } 
- else if (name.length <= 9) {
-    return '26px'; // Toujours un peu plus petit
-  } 
 
-  
 
-  
 
-}
-  
+
+  }
+
 
   // Determine the color of the service dot for Home and Guest
   const homeServiceDotColor = gameState?.Home?.Service === 1 ? "darkred" : "#005239";
@@ -62,34 +60,48 @@ function getFontSize(name) {
 
   return (
     <div className="scoreboard">
-      <div className="player player-bottom">
-        <div className="set-score" style={{ left: "178px" }}>{gameState?.Home?.GameInSet}</div>
-        <div className="set-score point" style={{ left: "230px" }}>{gameState?.Home?.Points}</div>
-        <div className="set-score" style={{ left: "318px" }}>{gameState?.Home?.PointsInSet[0]}</div>
-        <div className="set-score" style={{ left: "385px" }}>{gameState?.Home?.PointsInSet[1]}</div>
-        <div className="set-score" style={{ left: "452px" }}>{gameState?.Home?.PointsInSet[2]}</div>
-        <div className="dot" style={{ backgroundColor: homeServiceDotColor }}></div>
-        <div className={`player-name ${homeBlinkClass}`} style={{ fontSize: homeFontSize}} >{gameState?.Home?.TeamName}</div>
-      </div>
-      <div className="player player-top">
+      <div className="container-tennis">
+        <div className="timer">{gameState?.Timer?.Value}</div>
+        <div className="player">
+          <div className={` player-margin player-name ${guestBlinkClass}`} style={{ fontSize: guestFontSize }}   >{gameState?.Home?.TeamName}</div>
+          <div className="dot" style={{ backgroundColor: "red" }}></div>
+          <div className="player-margin set-score" >{gameState?.Home?.GameInSet}</div>
+          <div className="player-margin set-score point" >{gameState?.Home?.Points}</div>
+          {gameState?.Home?.PointsInSet[0] !== 0 && <div className="player-margin set-score" >{gameState?.Home?.PointsInSet[0]}</div>}
+          {gameState?.Home?.PointsInSet[1] !== 0 && <div className="player-margin set-score" >{gameState?.Home?.PointsInSet[1]}</div>}
+          {gameState?.Home?.PointsInSet[2] !== 0 && <div className="player-margin set-score" >{gameState?.Home?.PointsInSet[2]}</div>}
+          {gameState?.Home?.PointsInSet[3] !== 0 && <div className="player-margin set-score" >{gameState?.Home?.PointsInSet[3]}</div>}
+
+
+          {/* {gameState?.Guest?.PointsInSet[0] !== 0 && <div className="player-margin set-score" >{gameState?.Guest?.PointsInSet[0]}</div>}
+          {gameState?.Guest?.PointsInSet[1] !== 0 && <div className="player-margin set-score" >{gameState?.Guest?.PointsInSet[1]}</div>}
+          {gameState?.Guest?.PointsInSet[2] !== 0 && <div className="player-margin set-score" >{gameState?.Guest?.PointsInSet[2]}</div>}
+          {gameState?.Guest?.PointsInSet[3] !== 0 && <div className="player-margin set-score" >{gameState?.Guest?.PointsInSet[3]}</div>} */}
+        </div>
+        <div className="sets">
+          <div className={` player-margin set-player-name  ${guestBlinkClass}`} style={{ fontSize: guestFontSize }}   >{gameState?.Home?.TeamName}</div>
+          <div className="dot"></div>
+          <div className="player-margin set-text" >{currentSet}</div>
+          <div className="player-margin set-text point" >PTS</div>
+
+          {gameState?.Guest?.PointsInSet[0] !== 0 && <div className="player-margin set-text" >S1</div>}
+          {gameState?.Guest?.PointsInSet[1] !== 0 && <div className="player-margin set-text" >S2</div>}
+          {gameState?.Guest?.PointsInSet[2] !== 0 && <div className="player-margin set-text" >S3</div>}
+          {gameState?.Guest?.PointsInSet[3] !== 0 && <div className="player-margin set-text" >S4</div>}
+        </div>
+        {/*  <div className="player player-top">
         <div className="set-score" style={{ left: "178px" }}>{gameState?.Guest?.GameInSet}</div>
         <div className="set-score point" style={{ left: "230px" }}>{gameState?.Guest?.Points}</div>
-        <div className="set-score" style={{ left: "318px" }}>{gameState?.Guest?.PointsInSet[0]}</div>
+          <div className="set-score" style={{ left: "318px" }}>{gameState?.Guest?.PointsInSet[0]}</div>
         <div className="set-score" style={{ left: "385px" }}>{gameState?.Guest?.PointsInSet[1]}</div>
         <div className="set-score" style={{ left: "452px" }}>{gameState?.Guest?.PointsInSet[2]}</div>
         <div className="dot" style={{ backgroundColor: guestServiceDotColor }}></div>
-        <div className={`player-name ${guestBlinkClass}`} style={{ fontSize: guestFontSize}} >{gameState?.Guest?.TeamName}</div>
+        <div className={`player-name ${guestBlinkClass}`} style={{ fontSize: guestFontSize }} >{gameState?.Guest?.TeamName}</div>
+      </div> */}
+
+
       </div>
 
-      <div className="sets">
-      <img className="setimage" style={{ left: "-216px" }} src="LOGO_Stramatel_wbg.gif" />
-      <div className="set" style={{ left: "-56px" }}>{currentSet}</div>
-      <div className="set">PTS</div>
-        <div className="set " style={{ left: "81px" }}>S1</div>
-        <div className="set" style={{ left: "148px" }}>S2</div>
-        <div className="set" style={{ left: "215px" }}>S3</div>        
-      </div>
-      <div className="timer">{gameState?.Timer?.Value}</div>
     </div>
   );
 }
