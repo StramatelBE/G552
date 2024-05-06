@@ -27,8 +27,8 @@ app.listen(config.portAPI, () => {
 
 const webSocketSetup = require("./Sockets/Websocket.js");
 webSocketSetup(app);
-/* const unixSocketSetup = require("./Sockets/Unixsocket.js");
-unixSocketSetup.startServer();  */
+const unixSocketSetup = require("./Sockets/Unixsocket.js");
+unixSocketSetup.startServer();  
 
 const { SerialPortConnection, sharedEmitter } = require("./RSCOM/SerialPorts/SerialPortConnection");
 const sp = new SerialPortConnection();
