@@ -14,7 +14,7 @@ function pointsBySet(startIndex, size, step, message) {
 
 
     for (let i = 0; i < message.length; i += 2) {
-        pointsBySet[i] = nBytesToNumber(message[startIndex], message[startIndex + i * step + 1]);
+        pointsBySet[i] = nBytesToNumber(message[startIndex * i + step], message[startIndex + i * step + 1]);
     }
 
 
