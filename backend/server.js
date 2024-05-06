@@ -15,12 +15,12 @@ const User = require('./Models/userModel');
 require("dotenv").config();
 
 app.use(cors());
-app.use(bodyParser.json({limit:'800mb'}));
+app.use(bodyParser.json({ limit: '800mb' }));
 app.use(bodyParser.urlencoded({
     parameterLimit: 100000,
     limit: '50mb',
     extended: true
-  }));
+}));
 
 app.listen(config.portAPI, () => {
     console.log(`API Server started on ${config.ip}:${config.portAPI}`);
@@ -28,10 +28,10 @@ app.listen(config.portAPI, () => {
 
 const webSocketSetup = require("./Sockets/Websocket.js");
 webSocketSetup(app);
-const unixSocketSetup = require("./Sockets/Unixsocket.js");
-unixSocketSetup.startServer(); 
+/* const unixSocketSetup = require("./Sockets/Unixsocket.js");
+unixSocketSetup.startServer();  */
 
-const {SerialPortConnection, sharedEmitter} = require("./RSCOM/SerialPorts/SerialPortConnection");
+const { SerialPortConnection, sharedEmitter } = require("./RSCOM/SerialPorts/SerialPortConnection");
 const sp = new SerialPortConnection();
 
 sp.StartReading();
