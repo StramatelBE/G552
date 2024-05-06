@@ -297,6 +297,7 @@ static select = (_message) => {
   static Send() {
     // console.log("Send method was called");
     //TODO: save in db
+    console.log('chronometer:', this.State.Timer.Value);
     console.log('received mode:', this.State.Mode);
     console.log('language:', this.State.Language);
     sharedEmitter.emit("scoring", this.State);
