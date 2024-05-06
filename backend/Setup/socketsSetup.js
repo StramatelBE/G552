@@ -3,7 +3,13 @@ const unixSocketSetup = require("../Sockets/Unixsocket.js");
 
 const setupSockets = (app) => {
     webSocketSetup(app);
-    unixSocketSetup.startServer();
+
+    // Start unix socket server only if the environment is linux
+ 
+    const currentOS = process.platform;
+    if (currentOS === "linux") {
+        unixSocketSetup.startServer();
+    }
 };
 
 module.exports = setupSockets;
