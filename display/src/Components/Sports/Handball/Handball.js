@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "./Handball.css";
 import "../globalSport.css";
-<<<<<<< HEAD
-
-=======
->>>>>>> 94862fa (Mise à jour du style CSS pour le composant Sports)
 
 function Handball({ gameState: incomingGameState }) {
   const [homeScore, setHomeScore] = useState(incomingGameState?.Home?.Points || 0);
