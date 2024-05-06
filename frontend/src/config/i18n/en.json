@@ -3,60 +3,68 @@
     "title": "Macro",
     "number": "number",
     "slideshow": "slideshow",
-    "none": "none"
+    "none": "none",
+    "Explanation": {
+      "1": "Display the score",
+      "11": "Launch 1 point animation",
+      "12": "Launch 2 points animation",
+      "13": "Launch 3 points animation",
+      "14": "Launch timeout animation",
+      "15": "Launch foul animation"
+    }
   },
   "Profile": {
     "title": "Settings",
     "application": "Application",
-    "changePassword": "Change Password",
-    "darkMode": "Dark Mode",
-    "usedStorageSpace": "Used Storage Space",
-    "panelsTest": "Panels Test",
-    "language": "Language",
+    "changePassword": "Change password",
+    "darkMode": "Dark mode",
+    "usedStorageSpace": "Used storage space",
+    "panelsTest": "Panel test",
+    "languages": "Language",
     "info": "Information",
     "account": "Account",
-    "automaticStandby": "Automatic Standby",
+    "automaticStandby": "Automatic standby",
     "Dialog": {
-      "chooseTime": "Choose Time",
+      "chooseTime": "Choose time",
       "pleaseSelectMinutesAndSeconds": "Please select minutes and seconds"
     }
   },
-  "Slideshow": {
-    "title": "Slideshow",
-    "emptyListMessage": "Drop media here",
-    "listTitle": "Slideshow List",
+  "Diaporama": {
+    "title": "Playlists",
+    "emptyListMessage": "Add playlists with +",
+    "listTitle": "Playlists list",
     "Dialog": {
-      "addNew": "Add New Slideshow",
+      "addNew": "Add a new playlist",
       "name": "Name",
       "areYouSureToDelete": "Are you sure you want to delete",
-      "areYouSureToDeleteMediaEvent": "Are you sure you want to delete this slideshow event?"
+      "areYouSureToDeleteMediaEvent": "Are you sure you want to delete this playlist event?"
     }
   },
   "Login": {
     "passwordMismatch": "Passwords do not match",
-    "passwordChange": "Change Password",
-    "passwordChangeSuccess": "Password successfully changed",
-    "newPassword": "New Password",
-    "confirmNewPassword": "Confirm New Password",
-    "errorMessage": "Incorrect username or password",
-    "passwordAdmin": "Administrator Password",
+    "passwordChange": "Change password",
+    "passwordChangeSuccess": "Password changed successfully",
+    "newPassword": "New password",
+    "confirmNewPassword": "Confirm new password",
+    "errorMessage": "Username or password incorrect",
+    "passwordAdmin": "Administrator password",
     "title": "Login",
     "username": "Username",
     "password": "Password",
     "loginButton": "Login",
-    "lostPassword": "Forgot Password?",
+    "lostPassword": "Forgot password",
     "Dialog": {
-      "doYouReallyWantToLogout": "Do you really want to log out?",
+      "doYouReallyWantToLogout": "Do you really want to logout?",
       "userAlreadyConnected": "A user is already connected",
-      "doYouWantToDisconnect": "Do you want to disconnect them?"
+      "doYouWantToDisconnect": "Do you want to disconnect?"
     }
   },
   "Media": {
     "title": "Media",
-    "add": "Add",
+    "add": "Add media with +",
     "upload": "Upload",
     "Dialog": {
-      "areYouSureToDelete": "Are you sure you want to delete this media?"
+      "areYouSureToDelete": "Do you want to delete this media?"
     }
   },
   "Dialog": {
@@ -65,12 +73,18 @@
     "delete": "Delete",
     "close": "Close",
     "save": "Save",
-    "confirmDeletion": "Confirm Deletion",
+    "confirmDeletion": "Confirm deletion",
     "yes": "Yes",
     "no": "No"
   },
   "Scoreboard": {
     "Guest": "Guest",
     "Home": "Home"
+  },
+  "Admin": {
+    "title": "Administration",
+    "serialNumber": "Serial number",
+    "canalNumber": "Channel number",
+    "ipAddress": "IP address"
   }
 }

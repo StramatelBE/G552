@@ -3,60 +3,68 @@
     "title": "Macro",
     "number": "nummer",
     "slideshow": "diavoorstelling",
-    "none": "geen"
+    "none": "geen",
+    "Explanation": {
+      "1": "Toon de score",
+      "11": "start de animatie voor 1 punt",
+      "12": "start de animatie voor 2 punten",
+      "13": "start de animatie voor 3 punten",
+      "14": "start de animatie voor time-out",
+      "15": "start de animatie voor fout"
+    }
   },
   "Profile": {
-    "title": "Instellingen",
+    "title": "Profiel",
     "application": "Applicatie",
-    "changePassword": "Wachtwoord wijzigen",
+    "changePassword": "Wijzig wachtwoord",
     "darkMode": "Donkere modus",
     "usedStorageSpace": "Gebruikte opslagruimte",
-    "panelsTest": "Panelen Test",
-    "language": "Taal",
+    "panelsTest": "Paneeltest",
+    "languages": "Taal",
     "info": "Informatie",
     "account": "Account",
     "automaticStandby": "Automatische stand-by",
     "Dialog": {
-      "chooseTime": "Kies tijd",
-      "pleaseSelectMinutesAndSeconds": "Selecteer minuten en seconden"
+      "chooseTime": "Kies de tijd",
+      "pleaseSelectMinutesAndSeconds": "Selecteer a.u.b. minuten en seconden"
     }
   },
-  "Slideshow": {
-    "title": "Diavoorstelling",
-    "emptyListMessage": "Sleep media hier",
-    "listTitle": "Diavoorstelling lijst",
+  "Diaporama": {
+    "title": "mediapresentaties",
+    "emptyListMessage": "Voeg mediapresentaties toe met +",
+    "listTitle": "Lijst met mediapresentaties",
     "Dialog": {
-      "addNew": "Nieuwe diavoorstelling toevoegen",
+      "addNew": "Voeg een nieuwe mediapresentatie toe",
       "name": "Naam",
-      "areYouSureToDelete": "Weet u zeker dat u wilt verwijderen",
-      "areYouSureToDeleteMediaEvent": "Weet u zeker dat u deze diavoorstelling gebeurtenis wilt verwijderen?"
+      "areYouSureToDelete": "Weet je zeker dat je deze mediapresentatie wilt verwijderen?",
+      "areYouSureToDeleteMediaEvent": "Weet je zeker dat je dit mediapresentatie-evenement wilt verwijderen?"
     }
   },
   "Login": {
-    "passwordMismatch": "Wachtwoorden komen niet overeen",
+    "passwordMismatch": "De wachtwoorden komen niet overeen",
     "passwordChange": "Wachtwoord wijzigen",
     "passwordChangeSuccess": "Wachtwoord succesvol gewijzigd",
     "newPassword": "Nieuw wachtwoord",
     "confirmNewPassword": "Bevestig nieuw wachtwoord",
-    "errorMessage": "Onjuiste gebruikersnaam of wachtwoord",
+    "errorMessage": "Ongeldige gebruikersnaam of wachtwoord",
     "passwordAdmin": "Beheerderswachtwoord",
-    "title": "Inloggen",
+    "title": "Aanmelden",
     "username": "Gebruikersnaam",
     "password": "Wachtwoord",
-    "loginButton": "Inloggen",
-    "lostPassword": "Wachtwoord vergeten?",
+    "loginButton": "Aanmelden",
+    "lostPassword": "Wachtwoord vergeten",
     "Dialog": {
-      "doYouReallyWantToLogout": "Wilt u echt uitloggen?",
-      "userAlreadyConnected": "Een gebruiker is al verbonden",
-      "doYouWantToDisconnect": "Wilt u de verbinding verbreken?"
+      "doYouReallyWantToLogout": "Weet je zeker dat je wilt uitloggen?",
+      "userAlreadyConnected": "Er is al een gebruiker aangemeld",
+      "doYouWantToDisconnect": "Wilt u deze gebruiker afmelden?"
     }
   },
   "Media": {
     "title": "Media",
-    "add": "Toevoegen",
+    "add": "Voeg media toe met +",
     "upload": "Uploaden",
     "Dialog": {
-      "areYouSureToDelete": "Weet u zeker dat u deze media wilt verwijderen?"
+      "areYouSureToDelete": "Weet je zeker dat je dit medium wilt verwijderen?"
     }
   },
   "Dialog": {
@@ -65,12 +73,18 @@
     "delete": "Verwijderen",
     "close": "Sluiten",
     "save": "Opslaan",
-    "confirmDeletion": "Verwijdering bevestigen",
+    "confirmDeletion": "Bevestig verwijdering",
     "yes": "Ja",
     "no": "Nee"
   },
   "Scoreboard": {
     "Guest": "Gast",
-    "Home": "Heim"
+    "Home": "Thuis"
+  },
+  "Admin": {
+    "title": "Beheer",
+    "serialNumber": "Serienummer",
+    "canalNumber": "Kanaalnummer",
+    "ipAddress": "IP-adres"
   }
 }

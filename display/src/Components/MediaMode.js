@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './Mode.css';
 import ScoringMode from './ScoringMode';
 
+
 const MediaMode = ({mediaState, mediaMode}) => {
     const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
 

@@ -458,7 +458,7 @@ function Profile() {
               <Box sx={{ flexGrow: 10 }}>
 
                 <Box sx={{ display: 'flex', height: '20px', outline: '1px solid #dbd2d2 !important' }}>
-                  {Widths.map((width, index) => (
+                  {Widths.length > 0 && Widths.map((width, index) => (
                     <Box
                       key={index}
                       sx={{
