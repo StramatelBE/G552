@@ -128,56 +128,7 @@ function Basketball({ gameState: incomingGameState }) {
           {gameState?.Home?.Fouls?.Team}
         </div>
       </div>
-      {/* GUEST */}
-      <div className="container-team-sport" style={{ left: "286px" }}>
-        <div className="container-score" style={{ right: "0px", top: "0px" }} >
-          {guestScoreAnimating && (
-            <>
-              <div className="score-sport score-out">{prevGuestScore}</div>
-              <div className="score-sport score-in">{guestScore}</div>
-            </>
-          )}
-          {!guestScoreAnimating && (
-            <div className="text score-sport">{guestScore}</div>
-          )}
-        </div>
-        <div className="text team-name-sport" style={{ fontSize: homeFontSize, left: "0px", top: "90px" }} >
-          {gameState?.Home?.TeamName !== undefined ? gameState?.Home?.TeamName : "HOME"}
-        </div>
-        <div className="text timeout-hand" style={{ right: '120px', top: "140px" }}>
-          {gameState?.Home?.Timeout?.Team >= 0 && (
-            [...Array(3 - gameState?.Home?.Timeout?.Team)].map((_, i) => (
-              <div
-                key={i}
-                className="timeout-dot-sport"
-                style={{ top: `${20 + i * 20}px` }}
-              />
-            ))
-          )}
-        </div>
-        <div className="container-score">
-          {homeScoreAnimating && (
-            <>
-              <div className="score-sport score-out">{prevHomeScore}</div>
-              <div className="score-sport score-in">{homeScore}</div>
-            </>
-          )}
-          {!homeScoreAnimating && (
-            <div className="text score-sport">{homeScore}</div>
-          )}
-        </div>
-        <div className="text team-name-sport" style={{ fontSize: homeFontSize, left: "0px", top: "90px" }} >
-          {gameState?.Home?.TeamName !== undefined ? gameState?.Home?.TeamName : "HOME"}
-        </div>
 
-
-        {gameState?.Home?.Fouls?.Team === 8 ?
-          (<div className="square-fouls-basket" style={{ right: "70px", top: "195px" }} />)
-          :
-          (<div className="fouls-basket" style={{ left: "70px", top: "195px" }}>
-            {gameState?.Home?.Fouls?.Team}
-          </div>)}
-      </div>
       {/* GUEST */}
       <div className="container-team-sport" style={{ left: "286px" }}>
         <div className="container-score" style={{ right: "0px", top: "0px" }} >
@@ -212,6 +163,25 @@ function Basketball({ gameState: incomingGameState }) {
             {gameState?.Guest?.Fouls?.Team}
           </div>)}
 
+      </div>
+      {/* MIDDLE */}
+      <div className="text period-sport" style={{ left: "226px" }}>
+        {gameState?.Period || "0"}
+      </div>
+      {gameState?.Home?.Possession && (
+        <div className="home-possession"></div>
+      )}
+      {gameState?.Guest?.Possession && (
+        <div className="guest-possession"></div>
+      )}
+      <div className="text timer-sport">
+        {formatTimer(
+          gameState?.Timer?.Value || "00:00",
+          showHomeTimeout,
+          showGuestTimeout
+        )}
+        <img className="logo-fiba " style={{ left: "460px" }} src="fiba.png" />{" "}
+        <img className="logo-stramatel " style={{ top: "90px" }} src="LOGO_Stramatel.gif" />
       </div>
       {/* MIDDLE */}
       <div className="text period-sport" style={{ left: "226px" }}>

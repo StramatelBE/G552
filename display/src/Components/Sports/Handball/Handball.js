@@ -187,11 +187,13 @@ function Handball({ gameState: incomingGameState }) {
         <div className="text team-name-sport" style={{ fontSize: guestFontSize }} >
           {gameState?.Guest?.TeamName !== undefined ? gameState?.Guest?.TeamName : "GUEST"}
         </div>
-        {gameState?.Guest?.Exclusion?.Timer?.map((timer, index) => (
-          <div className="time-exclusion-sport text" style={{ top: `${15 + index * 25}px`, }} key={index}>{timer || ""}</div>
-        ))}
+        {
+          gameState?.Guest?.Exclusion?.Timer?.map((timer, index) => (
+            <div className="time-exclusion-sport text" style={{ top: `${15 + index * 25}px`, }} key={index}>{timer || ""}</div>
+          ))
+        }
 
-      </div>
+      </div >
 
       <div className="text period-sport" style={{ left: "226px" }}>
         {gameState?.Period || "0"}
@@ -204,7 +206,7 @@ function Handball({ gameState: incomingGameState }) {
         )}
         <img className="logo-stramatel " style={{ top: "90px" }} src="LOGO_Stramatel.gif" />
       </div>
-    </div>
+    </div >
   );
 };
 export default Handball;
