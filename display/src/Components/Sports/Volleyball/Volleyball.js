@@ -111,15 +111,14 @@ function Volleyball({ gameState: incomingGameState }) {
         <div className="text team-name-sport" style={{ fontSize: homeFontSize, left: "0px", top: "90px" }} >
           {gameState?.Home?.TeamName !== undefined ? gameState?.Home?.TeamName : "HOME"}
         </div>
-        <div className="side-numbers" style={{ left: "0px", top: "140px" }}>
-          {gameState && Object.values(gameState.Home.PointsBySet).map((point, index) => {
+        <div className="side-numbers" style={{ left: "0px", top: "135px" }}>
+          {gameState.Home.PointsBySet && Object.values(gameState.Home.PointsBySet).map((point, index) => {
             const isLosing = gameState.Guest.PointsBySet[index] < point;
             const divStyle = { color: isLosing ? "yellow" : "white" };
             if (point !== 0 || gameState.Guest.PointsBySet[index] !== 0) {
               return <div className="text side-number" style={divStyle} >{point}</div>;
             }
           })}
-
           {/* {
             for
           } */}
@@ -140,7 +139,7 @@ function Volleyball({ gameState: incomingGameState }) {
         <div className="text team-name-sport" style={{ fontSize: homeFontSize, left: "0px", top: "90px", fontSize: guestFontSize }} >
           {gameState?.Guest?.TeamName !== undefined ? gameState?.Guest?.TeamName : "GUEST"}
         </div>
-        <div className="side-numbers" style={{ right: "0px", top: "140px" }}>
+        <div className="side-numbers" style={{ right: "0px", top: "135px" }}>
           {gameState && Object.values(gameState.Guest.PointsBySet).map((point, index) => {
             const isLosing = gameState.Home.PointsBySet[index] < point;
             const divStyle = { color: isLosing ? "yellow" : "white" };
