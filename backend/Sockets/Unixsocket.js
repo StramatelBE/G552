@@ -70,7 +70,7 @@ const server = net.createServer((client) => {
         const scoreModes = [0];
         const immediateModes = [16, 17, 18, 19, 20];
         const macroModes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 21];
-        const stopModes = [22, 23];
+        const stopModes = [22, 23, 24, 25, 99];
         // console.log("Previous Data Mode", previousDataMode)
         // console.log("Data Mode", data?.Mode)
 
