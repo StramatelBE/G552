@@ -5,10 +5,9 @@
 
 .side-number {
   height: 29px;
-
   text-align: center;
   color: white;
-  font-size: 48px;
+  font-size: 32px;
   font-family: "D-DIN-Bold", sans-serif;
   font-weight: 700;
   word-wrap: break-word;
