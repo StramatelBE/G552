@@ -2,61 +2,69 @@
   "Macro": {
     "title": "Macro",
     "number": "número",
-    "slideshow": "diapositivas",
-    "none": "ninguno"
+    "slideshow": "presentación de diapositivas",
+    "none": "ninguno",
+    "Explanation": {
+      "1": "Muestra la puntuación",
+      "11": "lanzar animación de 1 punto",
+      "12": "lanzar animación de 2 puntos",
+      "13": "lanzar animación de 3 puntos",
+      "14": "lanzar animación de tiempo muerto",
+      "15": "lanzar animación de falta"
+    }
   },
   "Profile": {
-    "title": "Configuración",
+    "title": "Perfil",
     "application": "Aplicación",
     "changePassword": "Cambiar contraseña",
     "darkMode": "Modo oscuro",
     "usedStorageSpace": "Espacio de almacenamiento utilizado",
     "panelsTest": "Prueba de paneles",
-    "language": "Idioma",
+    "languages": "Idioma",
     "info": "Información",
     "account": "Cuenta",
-    "automaticStandby": "Espera automática",
+    "automaticStandby": "Apagado automático",
     "Dialog": {
-      "chooseTime": "Elegir tiempo",
-      "pleaseSelectMinutesAndSeconds": "Por favor seleccione minutos y segundos"
+      "chooseTime": "Elegir el tiempo",
+      "pleaseSelectMinutesAndSeconds": "Por favor, seleccione los minutos y los segundos"
     }
   },
   "Diaporama": {
-    "title": "Diaporama",
-    "emptyListMessage": "Suelta medios aquí",
-    "listTitle": "Lista de diaporamas",
+    "title": "listas de reproducción",
+    "emptyListMessage": "Agregar listas de reproducción con +",
+    "listTitle": "Lista de listas de reproducción",
     "Dialog": {
-      "addNew": "Agregar nuevo diaporama",
+      "addNew": "Agregar una nueva lista de reproducción",
       "name": "Nombre",
-      "areYouSureToDelete": "¿Estás seguro de que quieres eliminar",
-      "areYouSureToDeleteMediaEvent": "¿Estás seguro de que quieres eliminar este evento de diaporama?"
+      "areYouSureToDelete": "¿Está seguro de que desea eliminar",
+      "areYouSureToDeleteMediaEvent": "¿Está seguro de que desea eliminar este evento de lista de reproducción?"
     }
   },
   "Login": {
     "passwordMismatch": "Las contraseñas no coinciden",
-    "passwordChange": "Cambiar contraseña",
+    "passwordChange": "Cambiar la contraseña",
     "passwordChangeSuccess": "Contraseña cambiada con éxito",
     "newPassword": "Nueva contraseña",
     "confirmNewPassword": "Confirmar nueva contraseña",
-    "errorMessage": "Nombre de usuario o contraseña incorrecta",
+    "errorMessage": "Nombre de usuario o contraseña incorrectos",
     "passwordAdmin": "Contraseña de administrador",
     "title": "Iniciar sesión",
     "username": "Nombre de usuario",
     "password": "Contraseña",
     "loginButton": "Iniciar sesión",
-    "lostPassword": "¿Olvidaste tu contraseña?",
+    "lostPassword": "Contraseña olvidada",
     "Dialog": {
-      "doYouReallyWantToLogout": "¿Realmente quieres cerrar sesión?",
-      "userAlreadyConnected": "Un usuario ya está conectado",
+      "doYouReallyWantToLogout": "¿Realmente quieres cerrar la sesión?",
+      "userAlreadyConnected": "Ya hay un usuario conectado",
       "doYouWantToDisconnect": "¿Quieres desconectarlo?"
     }
   },
   "Media": {
     "title": "Medios",
-    "add": "Agregar",
+    "add": "Agregar Medios con +",
     "upload": "Subir",
     "Dialog": {
-      "areYouSureToDelete": "¿Estás seguro de que quieres eliminar este medio?"
+      "areYouSureToDelete": "¿Está seguro de que desea eliminar este medio?"
     }
   },
   "Dialog": {
@@ -65,12 +73,18 @@
     "delete": "Eliminar",
     "close": "Cerrar",
     "save": "Guardar",
-    "confirmDeletion": "Confirmar eliminación",
+    "confirmDeletion": "confirmar eliminación",
     "yes": "Sí",
     "no": "No"
   },
   "Scoreboard": {
     "Guest": "Visitante",
-    "Home": "Local" 
+    "Home": "Local"
+  },
+  "Admin": {
+    "title": "Administración",
+    "serialNumber": "Número de serie",
+    "canalNumber": "Número de canal",
+    "ipAddress": "Dirección IP"
   }
 }

@@ -7,7 +7,7 @@ const nBytesToNumber = require('./Utils/nBytesToNumber');
 const TeamName = require("./Utils/Frame_Tools/6_48_TeamName");
 class Game {
   static State = {
-    Code : '',
+    Code: '',
     Language: '',
     Mode: '',
 
@@ -225,25 +225,25 @@ class Game {
     if (toInsert != null) {
       toInsert.Code = _message[1];
 
-        console.log(toInsert.Sport);
+      console.log(toInsert.Sport);
 
       if (toInsert?.Guest?.Exclusion?.Timer) {
         if (toInsert?.Home?.Exclusion?.Timer) {
-            for (let i = 0; i < toInsert.Home.Exclusion.Timer.length; i++) {
-                console.log(i, ".Home Exclusion Timer: ", toInsert.Home.Exclusion.Timer[i]);
-            }
-        for (let i = 0; i < toInsert.Guest.Exclusion.Timer.length; i++) {
-          console.log(i, ".Guest Exclusion Timer: ", toInsert.Guest.Exclusion.Timer[i]);
+          for (let i = 0; i < toInsert.Home.Exclusion.Timer.length; i++) {
+            console.log(i, ".Home Exclusion Timer: ", toInsert.Home.Exclusion.Timer[i]);
+          }
+          for (let i = 0; i < toInsert.Guest.Exclusion.Timer.length; i++) {
+            console.log(i, ".Guest Exclusion Timer: ", toInsert.Guest.Exclusion.Timer[i]);
+          }
         }
+
       }
-     
-        }
 
       console.log(nBytesToNumber(_message[1]) + " Frame");
       this.updateState(toInsert);
-      
+
     }
-    this.Send();     
+    this.Send();
   };
 
   static getState() {
@@ -252,7 +252,7 @@ class Game {
 
   static updateState(toInsert) {
     const storagePath = './storage.json';
-  
+
     // Function to read the current storage state
     const readStorage = () => {
       try {
@@ -263,7 +263,7 @@ class Game {
         return {};
       }
     };
-  
+
     // Function to write to the storage
     const writeStorage = (data) => {
       try {
@@ -272,21 +272,21 @@ class Game {
         console.error('Error writing to storage:', err);
       }
     };
-  
+
     // Load existing storage to handle updates or retrievals
     const storage = readStorage();
-  
+
     ['Guest', 'Home'].forEach(side => {
       const teamPath = `${side}.TeamName`;
       if (!toInsert[side]) {
         toInsert[side] = {}; // Initialize the side object if it doesn't exist
-    }
-  
+      }
+
       // Check the frame code to determine if we should store or retrieve the team name
       if (toInsert.Code === 0x90) { // Store team name
-        
-          storage[teamPath] = toInsert[side].TeamName.trim();
-        
+
+        storage[teamPath] = toInsert[side].TeamName.trim();
+
       } else { // Retrieve team name
         if (storage[teamPath]) {
           if (!toInsert[side]) toInsert[side] = {}; // Ensure side object exists
@@ -294,15 +294,15 @@ class Game {
         } else if (!toInsert[side]?.TeamName?.trim()) {
           // Default to "Home" or "Guest" if the team name is not in storage and the current is empty
           if (!toInsert[side]?.TeamName) toInsert[side].TeamName = ''; // Ensure side object exists
-            
-          toInsert[side].TeamName = side === "Home" ? "Home" : "Guest";
+
+          toInsert[side]?.TeamName = side === "Home" ? "Home" : "Guest";
           storage[teamPath] = toInsert[side].TeamName;
         }
       }
     });
-  
+
     writeStorage(storage);
-  
+
     // Now perform the recursive update
     const recursiveUpdate = (mainObject, updateObject) => {
       for (let key in updateObject) {
@@ -314,11 +314,11 @@ class Game {
         }
       }
     };
-  
+
     recursiveUpdate(this.State, toInsert);
   }
-  
-  
+
+
 
 
   static Send() {

@@ -17,9 +17,6 @@ const SPORT_COMPONENT_MAP = {
 };
 
 
-  
-
-
 const ScoringMode = ({ gameState }) => {
   const [sport, setSport] = useState("none");
   const [homeTN, setHomeTN] = useState(gameState.Home.TeamName);

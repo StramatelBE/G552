@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import {
-  IconButton,
-  TextField,
-  Typography,
   Box,
   Grid,
+  IconButton,
   Paper,
   Stack,
+  TextField,
+  Typography,
 } from "@mui/material";
-import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import AdminService from "../../services/adminService";
 
 function AdminPage() {
   const { t } = useTranslation();
+
   const [admin, setAdmin] = useState({
     serialnumber: "",
     canal: "",
@@ -23,6 +24,9 @@ function AdminPage() {
   useEffect(() => {
     getAdmin();
   }, []);
+
+
+
 
   async function getAdmin() {
     try {
@@ -66,57 +70,60 @@ function AdminPage() {
   };
 
   return (
-    <Grid item xs={12}>
-      <Paper className="mainPaperPage" elevation={3}>
-        <Stack className="headerTitlePage" spacing={2}>
-          <Box className="headerLeft">
-            <IconButton>
-              <AdminPanelSettingsIcon sx={{ color: "primary.light" }} />
-            </IconButton>
-            <Typography variant="h6" className="headerTitle">
-              {t("Admin.title")}
-            </Typography>
-          </Box>
-        </Stack>
-
-        <Box className="containerPage" sx={{ padding: 3 }}>
-          <Stack direction="column" spacing={3} alignItems="flex-start">
-            <Stack direction="row" alignItems="center" spacing={2}>
-              <Typography variant="subtitle1">
-                {t("Admin.serialNumber")}:
+    <>
+      <Grid item xs={12}>
+        <Paper className="mainPaperPage" elevation={3}>
+          <Stack className="headerTitlePage" spacing={2}>
+            <Box className="headerLeft">
+              <IconButton>
+                <AdminPanelSettingsIcon sx={{ color: "primary.light" }} />
+              </IconButton>
+              <Typography variant="h6" className="headerTitle">
+                {t("Admin.title")}
               </Typography>
-              <TextField
-                name="serialnumber"
-                value={admin.serialnumber}
-                onChange={handleInputChange}
-              />
-            </Stack>
-
-            <Stack direction="row" alignItems="center" spacing={2}>
-              <Typography variant="subtitle1">
-                {t("Admin.canalNumber")}:
-              </Typography>
-              <TextField
-                name="canal"
-                value={admin.canal}
-                onChange={handleInputChange}
-              />
-            </Stack>
-
-            <Stack direction="row" alignItems="center" spacing={2}>
-              <Typography variant="subtitle1">
-                {t("Admin.ipAddress")}:
-              </Typography>
-              <TextField
-                name="ip"
-                value={admin.ip}
-                onChange={handleInputChange}
-              />
-            </Stack>
+            </Box>
           </Stack>
-        </Box>
-      </Paper>
-    </Grid>
+
+          <Box className="containerPage" sx={{ padding: 3 }}>
+            <Stack direction="column" spacing={3} alignItems="flex-start">
+              <Stack direction="row" alignItems="center" spacing={2}>
+                <Typography variant="subtitle1">
+                  {t("Admin.serialNumber")}:
+                </Typography>
+                <TextField
+                  name="serialnumber"
+                  value={admin.serialnumber}
+                  onChange={handleInputChange}
+                />
+              </Stack>
+
+              <Stack direction="row" alignItems="center" spacing={2}>
+                <Typography variant="subtitle1">
+                  {t("Admin.canalNumber")}:
+                </Typography>
+                <TextField
+                  name="canal"
+                  value={admin.canal}
+                  onChange={handleInputChange}
+                />
+              </Stack>
+
+              <Stack direction="row" alignItems="center" spacing={2}>
+                <Typography variant="subtitle1">
+                  {t("Admin.ipAddress")}:
+                </Typography>
+                <TextField
+                  name="ip"
+                  value={admin.ip}
+                  onChange={handleInputChange}
+                />
+              </Stack>
+            </Stack>
+          </Box>
+        </Paper>
+      </Grid>
+
+    </>
   );
 }
 

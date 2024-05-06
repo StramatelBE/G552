@@ -20,7 +20,7 @@
     "darkMode": "Mode sombre",
     "usedStorageSpace": "Espace de stockage utilisé",
     "panelsTest": "Test des panneaux",
-    "language": "Langue",
+    "languages": "Langue",
     "info": "Informations",
     "account": "Compte",
     "automaticStandby": "Mise en veille automatique",
@@ -85,6 +85,9 @@
     "title": "Administration",
     "serialNumber": "Numéro de série",
     "canalNumber": "Numéro de canal",
-    "ipAddress": "Adresse IP"
+    "ipAddress": "Adresse IP",
+    "Dialog": {
+      "password": "mot de passe"
+    }
   }
 }

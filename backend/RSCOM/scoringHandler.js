@@ -42,12 +42,12 @@ const handleScoring = async (scoring) => {
 
         const handleMacroMode = async (mode, gameState) => {
             console.log("macro mode");
-       
+
             console.log("Mode", mode);
             console.log("Sport", gameState.Sport);
             let macrosData = await macro.getMacrosByButton(mode, gameState.Sport);
             console.log("MacrosData", macrosData);
-            
+
             //console.log("macrosData", macrosData)
             if (scoreMode.includes(macrosData)) {
                 console.log("No event for this macro, sending Mode", scoring.Mode);
@@ -67,17 +67,17 @@ const handleScoring = async (scoring) => {
         const handlePrematchMode = async (mode, gameState) => {
             console.log("macro mode");
             let macrosData = null;
-        
+
             if (mode === 21) {
                 macrosData = await macro.getMacrosByButton(15, gameState.Sport);
                 // console.log(gameState);/
                 let prematchData = {
                     mode: mode,
                     medias: macrosData[0].medias,
-                    gameState: gameState 
+                    gameState: gameState
                 }
-               console.log("prematch");
-               unixSocketSetup.sendPrematchData(prematchData);
+                console.log("prematch");
+                unixSocketSetup.sendPrematchData(prematchData);
             } else {
                 macrosData = await macro.getMacrosByButton(mode, gameState.Sport);
             }
@@ -100,7 +100,7 @@ const handleScoring = async (scoring) => {
         //console.log("Mode:", scoring.Mode);
 
 
-        if (scoreMode.includes(scoring.Mode)){
+        if (scoreMode.includes(scoring.Mode)) {
             console.log("score mode");
             scoring.Language = getLanguage.language;
 

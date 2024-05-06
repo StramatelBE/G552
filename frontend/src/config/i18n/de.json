@@ -3,60 +3,68 @@
     "title": "Makro",
     "number": "Nummer",
     "slideshow": "Diashow",
-    "none": "keine"
+    "none": "keine",
+    "Explanation": {
+      "1": "Zeigt die Punktzahl an",
+      "11": "startet die Animation für 1 Punkt",
+      "12": "startet die Animation für 2 Punkte",
+      "13": "startet die Animation für 3 Punkte",
+      "14": "startet die Animation für die Auszeit",
+      "15": "startet die Animation für das Foul"
+    }
   },
   "Profile": {
-    "title": "Einstellungen",
+    "title": "Profil",
     "application": "Anwendung",
     "changePassword": "Passwort ändern",
-    "darkMode": "Dunkelmodus",
+    "darkMode": "Dunkler Modus",
     "usedStorageSpace": "Genutzter Speicherplatz",
-    "panelsTest": "Paneltest",
-    "language": "Sprache",
-    "info": "Informationen",
+    "panelsTest": "Panel-Test",
+    "languages": "Sprache",
+    "info": "Information",
     "account": "Konto",
-    "automaticStandby": "Automatische Standby",
+    "automaticStandby": "Automatischer Standby",
     "Dialog": {
-      "chooseTime": "Zeit wählen",
-      "pleaseSelectMinutesAndSeconds": "Bitte Minuten und Sekunden auswählen"
+      "chooseTime": "Zeit auswählen",
+      "pleaseSelectMinutesAndSeconds": "Bitte wählen Sie Minuten und Sekunden aus"
     }
   },
   "Diaporama": {
-    "title": "Diashow",
-    "emptyListMessage": "Medien hier ablegen",
-    "listTitle": "Diashow-Liste",
+    "title": "Wiedergabelisten",
+    "emptyListMessage": "Wiedergabelisten mit + hinzufügen",
+    "listTitle": "Liste der Wiedergabelisten",
     "Dialog": {
-      "addNew": "Neue Diashow hinzufügen",
+      "addNew": "Neue Wiedergabeliste hinzufügen",
       "name": "Name",
-      "areYouSureToDelete": "Sind Sie sicher, dass Sie löschen möchten",
-      "areYouSureToDeleteMediaEvent": "Sind Sie sicher, dass Sie dieses Diashow-Ereignis löschen möchten?"
+      "areYouSureToDelete": "Möchten Sie wirklich löschen",
+      "areYouSureToDeleteMediaEvent": "Möchten Sie dieses Medienereignis wirklich löschen?"
     }
   },
   "Login": {
-    "passwordMismatch": "Passwörter stimmen nicht überein",
+    "passwordMismatch": "Die Passwörter stimmen nicht überein",
     "passwordChange": "Passwort ändern",
     "passwordChangeSuccess": "Passwort erfolgreich geändert",
     "newPassword": "Neues Passwort",
     "confirmNewPassword": "Neues Passwort bestätigen",
-    "errorMessage": "Benutzername oder Passwort falsch",
-    "passwordAdmin": "Administratorpasswort",
-    "title": "Anmeldung",
+    "errorMessage": "Falscher Benutzername oder falsches Passwort",
+    "passwordAdmin": "Admin-Passwort",
+    "title": "Anmelden",
     "username": "Benutzername",
     "password": "Passwort",
     "loginButton": "Anmelden",
-    "lostPassword": "Passwort vergessen?",
+    "lostPassword": "Passwort vergessen",
     "Dialog": {
       "doYouReallyWantToLogout": "Möchten Sie sich wirklich abmelden?",
-      "userAlreadyConnected": "Ein Benutzer ist bereits verbunden",
-      "doYouWantToDisconnect": "Möchten Sie die Verbindung trennen?"
+      "userAlreadyConnected": "Ein Benutzer ist bereits angemeldet",
+      "doYouWantToDisconnect": "Möchten Sie ihn trennen?"
     }
   },
   "Media": {
     "title": "Medien",
-    "add": "Hinzufügen",
+    "add": "Medien mit + hinzufügen",
     "upload": "Hochladen",
     "Dialog": {
-      "areYouSureToDelete": "Sind Sie sicher, dass Sie diese Medien löschen möchten?"
+      "areYouSureToDelete": "Möchten Sie dieses Medium wirklich löschen?"
     }
   },
   "Dialog": {
@@ -72,5 +80,11 @@
   "Scoreboard": {
     "Guest": "Gast",
     "Home": "Heim"
+  },
+  "Admin": {
+    "title": "Administration",
+    "serialNumber": "Seriennummer",
+    "canalNumber": "Kanalnummer",
+    "ipAddress": "IP-Adresse"
   }
 }
