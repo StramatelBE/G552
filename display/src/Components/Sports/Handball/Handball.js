@@ -184,8 +184,8 @@ function Handball({ gameState: incomingGameState }) {
             <div className="text score-sport">{guestScore}</div>
           )}
         </div>
-        <div className="text team-name-sport" style={{ fontSize: homeFontSize, left: "0px", top: "90px" }} >
-          {gameState?.Home?.TeamName !== undefined ? gameState?.Home?.TeamName : "HOME"}
+        <div className="text team-name-sport" style={{ fontSize: guestFontSize }} >
+          {gameState?.Guest?.TeamName !== undefined ? gameState?.Guest?.TeamName : "GUEST"}
         </div>
         {gameState?.Guest?.Exclusion?.Timer?.map((timer, index) => (
           <div className="time-exclusion-sport text" style={{ top: `${15 + index * 25}px`, }} key={index}>{timer || ""}</div>

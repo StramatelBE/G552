@@ -112,10 +112,10 @@ function Volleyball({ gameState: incomingGameState }) {
           {gameState?.Home?.TeamName !== undefined ? gameState?.Home?.TeamName : "HOME"}
         </div>
         <div className="side-numbers">
-          <div className=" text side-number" >{gameState?.Home?.PointsInSets[0] || ""}</div>
-          <div className="text side-number">{gameState?.Home?.PointsInSets[1] || ""}</div>
-          <div className="text side-number" >{gameState?.Home?.PointsInSets[2] || ""}</div>
-          <div className="text side-number">{gameState?.Home?.PointsInSets[3] || ""}</div>
+          <div className=" text side-number" >{gameState?.Home?.PointsBySets[0] || ""}</div>
+          <div className="text side-number">{gameState?.Home?.PointsBySets[1] || ""}</div>
+          <div className="text side-number" >{gameState?.Home?.PointsBySets[2] || ""}</div>
+          <div className="text side-number">{gameState?.Home?.PointsBySets[3] || ""}</div>
         </div>
       </div>
       <div className="container-team-sport" style={{ left: "286px" }}>
@@ -134,10 +134,10 @@ function Volleyball({ gameState: incomingGameState }) {
           {gameState?.Guest?.TeamName !== undefined ? gameState?.Guest?.TeamName : "GUEST"}
         </div>
         <div className="side-numbers" style={{ right: "0px" }}>
-          <div className=" text side-number" >{gameState?.Home?.PointsInSets[0] || ""}</div>
-          <div className="text side-number">{gameState?.Home?.PointsInSets[1] || ""}</div>
-          <div className="text side-number" >{gameState?.Home?.PointsInSets[2] || ""}</div>
-          <div className="text side-number">{gameState?.Home?.PointsInSets[3] || ""}</div>
+          <div className=" text side-number" >{gameState?.Home?.PointsBySets[0] || ""}</div>
+          <div className="text side-number">{gameState?.Home?.PointsBySets[1] || ""}</div>
+          <div className="text side-number" >{gameState?.Home?.PointsBySets[2] || ""}</div>
+          <div className="text side-number">{gameState?.Home?.PointsBySets[3] || ""}</div>
         </div>
       </div>
 
