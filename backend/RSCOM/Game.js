@@ -1,10 +1,8 @@
-const { log } = require("console");
 const Frames = require("./Frame");
 const { sharedEmitter } = require("./SerialPorts/SerialPortConnection");
 const fs = require('fs');
-const path = require('path');
 const nBytesToNumber = require('./Utils/nBytesToNumber');
-const TeamName = require("./Utils/Frame_Tools/6_48_TeamName");
+
 class Game {
   static State = {
     Code : '',
@@ -106,14 +104,6 @@ class Game {
 
   static update = (_message) => {
     this.select(_message);
-    // TODO: Check if the frame is valid
-    // if (this.isValid(_message)) {
-    //     // console.log('Valid frame');
-    //
-    // } else
-    //     console.log(_message)
-    //     console.log('Invalid frame');
-    // return null;
   };
 
   static isValid(_message) {
@@ -123,7 +113,7 @@ class Game {
     return _message[0] === 248;
   }
 
-  static select = (_message) => {
+static select = (_message) => {
     //console.log("select method was called with _message: ", _message);
     let toInsert = null;
 
@@ -220,19 +210,7 @@ class Game {
     if (toInsert != null) {
       toInsert.Code = _message[1];
 
-        console.log(toInsert.Sport);
-
-      if (toInsert?.Guest?.Exclusion?.Timer) {
-        if (toInsert?.Home?.Exclusion?.Timer) {
-            for (let i = 0; i < toInsert.Home.Exclusion.Timer.length; i++) {
-                console.log(i, ".Home Exclusion Timer: ", toInsert.Home.Exclusion.Timer[i]);
-            }
-        for (let i = 0; i < toInsert.Guest.Exclusion.Timer.length; i++) {
-          console.log(i, ".Guest Exclusion Timer: ", toInsert.Guest.Exclusion.Timer[i]);
-        }
-      }
-     
-        }
+      console.log(toInsert.Sport);
 
       console.log(nBytesToNumber(_message[1]) + " Frame");
       this.updateState(toInsert);
