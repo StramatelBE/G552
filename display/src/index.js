@@ -15,7 +15,6 @@ import Tennis from "./Components/Sports/Tennis/Tennis.js";
 import TestPage from "./Components/TestPage.js";
 import modeService from "./service/modeService.js";
 import { I18nextProvider } from "react-i18next";
-import { set } from "../../backend/server.js";
 const { ipcRenderer } = window.require("electron"); 
 
 const root = document.getElementById("root");
