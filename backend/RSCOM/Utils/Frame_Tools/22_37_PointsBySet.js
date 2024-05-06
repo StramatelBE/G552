@@ -12,7 +12,7 @@ const nBytesToNumber = require('../nBytesToNumber');
 function pointsBySet(startIndex, size, step, message) {
     let pointsBySet = new Array(size);
     for (let i = 0; i < size; i++) {
-        pointsBySet[i] = nBytesToNumber(message[startIndex * i + step], message[startIndex + i * step + 1]);
+        pointsBySet[i] = nBytesToNumber(message[startIndex + step * i ], message[startIndex + i * step + 1]);
     }
     return pointsBySet;
 }
