@@ -208,6 +208,10 @@ class Game {
             toInsert = Frames.Test.build(_message);
             console.log("Test Frame");
             break;
+        case 0x94:
+            toInsert = Frames.QR.build(_message);
+            console.log("QRCode Frame");
+            break;
         case 0x99:
             toInsert = Frames.ClockSetup.build(_message);
             console.log("ClockSetup Frame");

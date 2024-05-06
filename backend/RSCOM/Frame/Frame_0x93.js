@@ -13,7 +13,7 @@ module.exports =  class Frame_0x93 {
 
         return {
             insertType: 'DirectConsoleData',
-            Mode: 99, // TEST MODE
+            Mode: nBytesToNumber(_message[2]), // TEST MODE
         };
     }
 }
