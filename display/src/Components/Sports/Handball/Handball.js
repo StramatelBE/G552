@@ -184,7 +184,7 @@ function Handball({ gameState: incomingGameState }) {
             <div className="text score-sport">{guestScore}</div>
           )}
         </div>
-        <div className="text team-name-sport" style={{ fontSize: guestFontSize }} >
+        <div className="text team-name-sport" style={{ fontSize: guestFontSize, left: "0px", top: "90px" }} >
           {gameState?.Guest?.TeamName !== undefined ? gameState?.Guest?.TeamName : "GUEST"}
         </div>
         {
