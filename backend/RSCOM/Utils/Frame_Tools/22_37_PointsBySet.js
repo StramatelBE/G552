@@ -9,7 +9,7 @@ const nBytesToNumber = require('../nBytesToNumber');
  * @param {Array} message - The byte array containing the points data.
  * @returns {Array} An array containing the points for each set.
  */
-function pointsInSet(startIndex, size, step, message) {
+function pointsBySet(startIndex, size, step, message) {
     let pointsBySet = new Array(size);
 
 
@@ -25,4 +25,4 @@ function pointsInSet(startIndex, size, step, message) {
     return pointsBySet;
 }
 
-module.exports = pointsInSet;
+module.exports = pointsBySet;
