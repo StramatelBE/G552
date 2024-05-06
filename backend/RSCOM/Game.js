@@ -208,6 +208,7 @@ static select = (_message) => {
             break;
         default:
             console.log("Unknown Frame: " + _message[1]);
+            console.log(_message);
             break;
     }
 
