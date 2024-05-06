@@ -13,14 +13,11 @@ function pointsBySet(startIndex, size, step, message) {
     let pointsBySet = new Array(size);
 
 
-    for (let i = 0; i < message.length; i+=2) {
-        console.log(i, nBytesToNumber(message[i], message[i + 1]));
+    for (let i = 0; i < message.length; i += 2) {
+        pointsBySet[i] = nBytesToNumber(message[startIndex], message[startIndex + i * step + 1]);
     }
 
-    pointsBySet[0] = nBytesToNumber(message[startIndex], message[startIndex + 1]);
-    pointsBySet[1] = nBytesToNumber(message[startIndex  + i * step], message[startIndex + 5]);
-    pointsBySet[2] = nBytesToNumber(message[startIndex + i * step], message[startIndex + 14]);
-    pointsBySet[3] = nBytesToNumber(message[startIndex + i * step], message[startIndex + 17]);
+
 
     return pointsBySet;
 }
