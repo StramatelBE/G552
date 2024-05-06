@@ -28,7 +28,7 @@ const handleScoring = async (scoring) => {
         const immediateModes = [16, 17, 18, 19, 20];
         const macroModes = [1, 2, 3, 4, 5, 6, 7, 8, 9];
         const prematchMode = [21];
-        const stopModes = [22, 23];
+        const stopModes = [22, 23, 24, 25, 99];
 
         const getLanguage = await user.getLanguage(scoring.Sport);
 
