@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import ScoringMode from "./Components/ScoringMode"; 
 import MediaMode from "./Components/MediaMode";
 import PrematchMode from "./Components/PrematchMode.js";
+import QRMode from "./Components/QRMode.js";
 import config from "./config.js";
 import LogoMode from "./Components/LogoMode";
 import "./main.css"
@@ -14,6 +15,7 @@ import Tennis from "./Components/Sports/Tennis/Tennis.js";
 import TestPage from "./Components/TestPage.js";
 import modeService from "./service/modeService.js";
 import { I18nextProvider } from "react-i18next";
+import { set } from "../../backend/server.js";
 const { ipcRenderer } = window.require("electron"); 
 
 const root = document.getElementById("root");
@@ -48,6 +50,12 @@ const App = () => {
         case 23:
           setMode("sleep");
           break;
+        case 99:
+          setMode("test");
+          break;
+          case 25:
+          setMode("qr");
+          break;
         default:
           if (data.Mode >= 1 && data.Mode <= 9) {
             if (lastMediaMode !== data.Mode) {
@@ -72,6 +80,8 @@ const App = () => {
       {mode === "media" && <MediaMode key={mediaKey} mediaState={mediaState} mediaMode={mediaMode}/>}
       {mode === "prematch" && <PrematchMode mediaState={mediaState} mediaMode={mediaMode} gameState={gameState}/>}
       {mode === "logo" && <LogoMode />}
+      {mode === "test" && <TestPage />}
+      {mode === "qr" && <QRMode />}
       {mode === "sleep" && <></>}
       {mode === "" && <div>Waiting for data...</div>}
     </I18nextProvider>
