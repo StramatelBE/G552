@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "./Handball.css";
 import "../globalSport.css";
-<<<<<<< HEAD
-
-=======
->>>>>>> guiDev
 
 function Handball({ gameState: incomingGameState }) {
   const [homeScore, setHomeScore] = useState(incomingGameState?.Home?.Points || 0);
