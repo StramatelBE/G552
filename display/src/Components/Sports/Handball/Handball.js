@@ -135,7 +135,7 @@ function Handball({ gameState: incomingGameState }) {
               <div
                 key={index}
                 className="timeout-dot-sport"
-                style={{ top: `${15 + index * 25}px`, }}
+                style={{ top: `${200 - index * 25}px`, }}
               />
             ))
           )}
@@ -168,7 +168,7 @@ function Handball({ gameState: incomingGameState }) {
               <div
                 key={index}
                 className="timeout-dot-sport"
-                style={{ top: `${15 + index * 25}px`, }}
+                style={{ top: `${200 - index * 25}px`, }}
               />
             ))
           )}
@@ -184,7 +184,7 @@ function Handball({ gameState: incomingGameState }) {
             <div className="text score-sport">{guestScore}</div>
           )}
         </div>
-        <div className="text team-name-sport" style={{ fontSize: guestFontSize }} >
+        <div className="text team-name-sport" style={{ fontSize: guestFontSize, left: "0px", top: "90px" }} >
           {gameState?.Guest?.TeamName !== undefined ? gameState?.Guest?.TeamName : "GUEST"}
         </div>
         {
