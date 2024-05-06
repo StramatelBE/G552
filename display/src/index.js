@@ -33,6 +33,7 @@ const App = () => {
     };
 
     ipcRenderer.on("server-data", (event, data) => {
+      console.log(data.Mode);
       switch (data.Mode) {
         case 0:
           setMode("scoring");
@@ -52,7 +53,7 @@ const App = () => {
         case 99:
           setMode("test");
           break;
-          case 25:
+        case 25:
           setMode("qr");
           break;
         default:
