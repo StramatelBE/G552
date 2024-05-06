@@ -154,7 +154,7 @@ function Basketball({ gameState: incomingGameState }) {
               />
             ))
           )}
-        </div>
+        </div >
         <div className="container-score">
           {homeScoreAnimating && (
             <>
@@ -171,15 +171,18 @@ function Basketball({ gameState: incomingGameState }) {
         </div>
 
 
-        {gameState?.Home?.Fouls?.Team === 8 ?
-          (<div className="square-fouls-basket" style={{ right: "70px", top: "195px" }} />)
-          :
-          (<div className="fouls-basket" style={{ left: "70px", top: "195px" }}>
-            {gameState?.Home?.Fouls?.Team}
-          </div>)}
-      </div>
+        {
+          gameState?.Home?.Fouls?.Team === 8 ?
+            (<div className="square-fouls-basket" style={{ right: "70px", top: "195px" }} />)
+            :
+            (<div className="fouls-basket" style={{ left: "70px", top: "195px" }}>
+              {gameState?.Home?.Fouls?.Team}
+            </div>)
+        }
+      </div >
       {/* GUEST */}
-      <div className="container-team-sport" style={{ left: "286px" }}>
+      < div className="container-team-sport" style={{ left: "286px" }
+      }>
         <div className="container-score" style={{ right: "0px", top: "0px" }} >
           {guestScoreAnimating && (
             <>
@@ -205,24 +208,51 @@ function Basketball({ gameState: incomingGameState }) {
             ))
           )}
         </div>
-        {gameState?.Guest?.Fouls?.Team === 8 ?
-          (<div className="square-fouls-basket" style={{ right: "70px", top: "195px" }} />)
-          :
-          (<div className="text fouls-basket" style={{ right: "70px", top: "195px" }}>
-            {gameState?.Guest?.Fouls?.Team}
-          </div>)}
+        {
+          gameState?.Guest?.Fouls?.Team === 8 ?
+            (<div className="square-fouls-basket" style={{ right: "70px", top: "195px" }} />)
+            :
+            (<div className="text fouls-basket" style={{ right: "70px", top: "195px" }}>
+              {gameState?.Guest?.Fouls?.Team}
+            </div>)
+        }
 
+      </div >
+      {/* MIDDLE */}
+      < div className="text period-sport" style={{ left: "226px" }}>
+        {gameState?.Period || "0"}
+      </div >
+      {gameState?.Home?.Possession && (
+        <div className="home-possession"></div>
+      )}
+      {
+        gameState?.Guest?.Possession && (
+          <div className="guest-possession"></div>
+        )
+      }
+      <div className="text timer-sport">
+        {formatTimer(
+          gameState?.Timer?.Value || "00:00",
+          showHomeTimeout,
+          showGuestTimeout
+        )}
+        <img className="logo-fiba " style={{ left: "460px" }} src="fiba.png" />{" "}
+        <img className="logo-stramatel " style={{ top: "90px" }} src="LOGO_Stramatel.gif" />
       </div>
       {/* MIDDLE */}
       <div className="text period-sport" style={{ left: "226px" }}>
         {gameState?.Period || "0"}
       </div>
-      {gameState?.Home?.Possession && (
-        <div className="home-possession"></div>
-      )}
-      {gameState?.Guest?.Possession && (
-        <div className="guest-possession"></div>
-      )}
+      {
+        gameState?.Home?.Possession && (
+          <div className="home-possession"></div>
+        )
+      }
+      {
+        gameState?.Guest?.Possession && (
+          <div className="guest-possession"></div>
+        )
+      }
       <div className="text timer-sport">
         {formatTimer(
           gameState?.Timer?.Value || "00:00",
