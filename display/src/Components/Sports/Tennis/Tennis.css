@@ -11,6 +11,16 @@
   justify-content: flex-start;
   margin: 10px;
 }
+.score-tennis {
+  margin-top: 12px;
+  width: 100%;
+  border-collapse: collapse;
+}
+tr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .player {
   width: 100%;
@@ -43,8 +53,7 @@
   font-weight: 700;
 }
 .set-text {
-  width: 40px;
-  height: 20px;
+  width: 50px;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -75,13 +84,7 @@
 }
 
 .player-name {
-  display: flex;
-  min-width: 165px !important;
-  height: 60px;
-  justify-content: center;
-  align-items: center;
   color: #c96d06;
-  font-size: 30px;
   font-weight: 700;
 }
 

@@ -4,8 +4,8 @@ import "./Tennis.css";
 function Tennis({ gameState: incomingGameState }) {
   const gameState = incomingGameState || {};
 
-  const [homeFontSize, setHomeFontSize] = React.useState('45px');
-  const [guestFontSize, setGuestFontSize] = React.useState('45px');
+  const [homeFontSize, setHomeFontSize] = React.useState('30px');
+  const [guestFontSize, setGuestFontSize] = React.useState('30px');
 
   const [currentSet, setCurrentSet] = React.useState(1);
 
@@ -61,47 +61,40 @@ function Tennis({ gameState: incomingGameState }) {
   return (
     <div className="scoreboard">
       <div className="container-tennis">
-        <div className="timer">{gameState?.Timer?.Value}</div>
-        <div className="player">
-          <div className={` player-margin player-name ${guestBlinkClass}`} style={{ fontSize: guestFontSize }}   >{gameState?.Home?.TeamName}</div>
-          <div className="dot" style={{ backgroundColor: "red" }}></div>
-          <div className="player-margin set-score" >{gameState?.Home?.GameInSet}</div>
-          <div className="player-margin set-score point" >{gameState?.Home?.Points}</div>
-          {gameState?.Home?.PointsInSet[0] !== 0 && <div className="player-margin set-score" >{gameState?.Home?.PointsInSet[0]}</div>}
-          {gameState?.Home?.PointsInSet[1] !== 0 && <div className="player-margin set-score" >{gameState?.Home?.PointsInSet[1]}</div>}
-          {gameState?.Home?.PointsInSet[2] !== 0 && <div className="player-margin set-score" >{gameState?.Home?.PointsInSet[2]}</div>}
-          {gameState?.Home?.PointsInSet[3] !== 0 && <div className="player-margin set-score" >{gameState?.Home?.PointsInSet[3]}</div>}
-
-
-          {/* {gameState?.Guest?.PointsInSet[0] !== 0 && <div className="player-margin set-score" >{gameState?.Guest?.PointsInSet[0]}</div>}
-          {gameState?.Guest?.PointsInSet[1] !== 0 && <div className="player-margin set-score" >{gameState?.Guest?.PointsInSet[1]}</div>}
-          {gameState?.Guest?.PointsInSet[2] !== 0 && <div className="player-margin set-score" >{gameState?.Guest?.PointsInSet[2]}</div>}
-          {gameState?.Guest?.PointsInSet[3] !== 0 && <div className="player-margin set-score" >{gameState?.Guest?.PointsInSet[3]}</div>} */}
-        </div>
-        <div className="sets">
-          <div className={` player-margin set-player-name  ${guestBlinkClass}`} style={{ fontSize: guestFontSize }}   >{gameState?.Home?.TeamName}</div>
-          <div className="dot"></div>
-          <div className="player-margin set-text" >{currentSet}</div>
-          <div className="player-margin set-text point" >PTS</div>
-
-          {gameState?.Guest?.PointsInSet[0] !== 0 && <div className="player-margin set-text" >S1</div>}
-          {gameState?.Guest?.PointsInSet[1] !== 0 && <div className="player-margin set-text" >S2</div>}
-          {gameState?.Guest?.PointsInSet[2] !== 0 && <div className="player-margin set-text" >S3</div>}
-          {gameState?.Guest?.PointsInSet[3] !== 0 && <div className="player-margin set-text" >S4</div>}
-        </div>
-        {/*  <div className="player player-top">
-        <div className="set-score" style={{ left: "178px" }}>{gameState?.Guest?.GameInSet}</div>
-        <div className="set-score point" style={{ left: "230px" }}>{gameState?.Guest?.Points}</div>
-          <div className="set-score" style={{ left: "318px" }}>{gameState?.Guest?.PointsInSet[0]}</div>
-        <div className="set-score" style={{ left: "385px" }}>{gameState?.Guest?.PointsInSet[1]}</div>
-        <div className="set-score" style={{ left: "452px" }}>{gameState?.Guest?.PointsInSet[2]}</div>
-        <div className="dot" style={{ backgroundColor: guestServiceDotColor }}></div>
-        <div className={`player-name ${guestBlinkClass}`} style={{ fontSize: guestFontSize }} >{gameState?.Guest?.TeamName}</div>
-      </div> */}
-
-
+        <div className="timer">{gameState?.Timer?.Value || "00:00"}</div>
+        <table className="score-tennis">
+          <tr>
+            <td><div className={`player-name ${guestBlinkClass}`} style={{ fontSize: guestFontSize }}>{gameState?.Home?.TeamName || "player1"}</div></td>
+            <td><div className="dot" style={{ backgroundColor: "red" }}></div></td>
+            <td><div className="set-score">{gameState?.Home?.GameInSet || "0"}</div></td>
+            <td><div className="set-score point">{gameState?.Home?.Points || "0"}</div></td>
+            <td>{gameState?.Home?.PointsInSet[0] !== 0 && <div className="set-score">{gameState?.Home?.PointsInSet[0]}</div>}</td>
+            <td>{gameState?.Home?.PointsInSet[1] !== 0 && <div className="set-score">{gameState?.Home?.PointsInSet[1]}</div>}</td>
+            <td>{gameState?.Home?.PointsInSet[2] !== 0 && <div className="set-score">{gameState?.Home?.PointsInSet[2]}</div>}</td>
+            <td>{gameState?.Home?.PointsInSet[3] !== 0 && <div className="set-score">{gameState?.Home?.PointsInSet[3]}</div>}</td>
+          </tr>
+          <tr>
+            <td><div className={`player-name ${guestBlinkClass}`} style={{ fontSize: guestFontSize, visibility: "hidden" }}>{gameState?.Home?.TeamName || "player1"}</div> </td>
+            <td><div className="dot" ></div></td>
+            <td><div className=" set-text" >{currentSet || "1"}</div></td>
+            <td><div className=" set-text point" >PTS</div></td>
+            <td>{gameState?.Guest?.PointsInSet[0] !== 0 && <div className=" set-text" >S1</div>}</td>
+            <td>{gameState?.Guest?.PointsInSet[1] !== 0 && <div className=" set-text" >S2</div>}</td>
+            <td>{gameState?.Guest?.PointsInSet[2] !== 0 && <div className=" set-text" >S3</div>}</td>
+            <td>{gameState?.Guest?.PointsInSet[3] !== 0 && <div className=" set-text" >S4</div>}</td>
+          </tr>
+          <tr>
+            <td><div className={`player-name ${guestBlinkClass}`} style={{ fontSize: guestFontSize }}>{gameState?.Guest?.TeamName || "player2"}</div></td>
+            <td><div className="dot" style={{ backgroundColor: "red" }}></div></td>
+            <td><div className="set-score">{gameState?.Guest?.GameInSet || "0"}</div></td>
+            <td><div className="set-score point">{gameState?.Guest?.Points || "0"}</div></td>
+            <td>{gameState?.Guest?.PointsInSet[0] !== 0 && <div className="set-score">{gameState?.Guest?.PointsInSet[0]}</div>}</td>
+            <td>{gameState?.Guest?.PointsInSet[1] !== 0 && <div className="set-score">{gameState?.Guest?.PointsInSet[1]}</div>}</td>
+            <td>{gameState?.Guest?.PointsInSet[2] !== 0 && <div className="set-score">{gameState?.Guest?.PointsInSet[2]}</div>}</td>
+            <td>{gameState?.Guest?.PointsInSet[3] !== 0 && <div className="set-score">{gameState?.Guest?.PointsInSet[3]}</div>}</td>
+          </tr>
+        </table>
       </div>
-
     </div>
   );
 }
