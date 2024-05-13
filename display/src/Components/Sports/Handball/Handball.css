@@ -23,3 +23,14 @@
 .guest-score.old-score {
   transform: translateY(100%);
 }
+.texte-exclution {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+.faute-exclution {
+  position: absolute;
+  font-size: 2em;
+  color: #ebff00;
+}

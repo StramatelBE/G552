@@ -59,12 +59,12 @@
   border-radius: 9999px;
 }
 .time-exclusion-sport {
-  width: 100px;
-  height: 40px;
+  display: flex;
+  width: 120px;
   position: absolute;
   color: #ebff00;
   font-size: 48px;
-  font-weight: 700;
+  font-weight: 300;
 }
 
 .logo-stramatel {
