@@ -132,16 +132,13 @@
     flex-direction: column;
     align-items: center; /* Centre horizontalement les enfants dans le conteneur */
     justify-content: center; /* Centre verticalement les enfants dans le conteneur */
-    height: 100vh; /* Donne au conteneur une hauteur de 100% du viewport, ajustez selon vos besoins */
-    width: 100%; /* Assure que le conteneur prend toute la largeur disponible */
+  
 }
 
 .logo-iframe {
     border: none;
     overflow: hidden;
     display: block;
-    width: 300px; /* Spécifiez une largeur fixe ou adaptative selon les besoins */
-    height: 300px; /* Spécifiez une hauteur fixe ou adaptative selon les besoins */
     margin-bottom: 20px; /* Ajoute un espace entre le QR Code et le logo */
 }
 
