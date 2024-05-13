@@ -119,8 +119,8 @@ app.get("/qrcode", async (req, res) => {
         const qrImage = await QRCode.toDataURL(qrCode);
 
         res.send(`
-            <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-                <img src="${qrImage}" alt="QR Code" style="margin: auto;" />
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <img src="${qrImage}" alt="QR Code" />
             </div>
         `);
     }
