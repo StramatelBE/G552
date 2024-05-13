@@ -63,7 +63,7 @@ function createWindows() {
     //TODO:TRUC DEV
     mainWindow.webContents.openDevTools();
     //mainWindow.loadFile("dist/index.html");
-    mainWindow.loadURL('http://localhost:3001');
+    mainWindow.loadURL('http://localhost:3000');
     mainWindow.removeMenu();
     mainWindow.setMenu(null);
     mainWindow.setAlwaysOnTop(true, "screen-saver");

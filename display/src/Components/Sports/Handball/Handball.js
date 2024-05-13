@@ -128,8 +128,8 @@ function Handball({ gameState: incomingGameState }) {
 
     <div className="container-sport">
       {/* HOME */}
-      {gameState.sport === "rinkhockey" && (<div className="faute-exclution " style={{ fontSize: "40px", left: "0px", top: "5px" }} >
-        {gameState.Home.Exclusion.Counts}
+      {gameState.Sport === "Rinkhockey" && (<div className="faute-exclution " style={{ fontSize: "40px", left: "5px", top: "5px" }} >
+        {gameState.Home.Fouls.Team}
       </div>)}
       <div className="container-team-sport" style={{ left: "0px" }}>
         <div className="text timeout-hand" style={{ left: '10px' }}>
@@ -161,8 +161,8 @@ function Handball({ gameState: incomingGameState }) {
         {gameState?.Home?.Exclusion?.Timer?.map((timer, index) => {
           if (timer > 0) {
             return (
-              <div className="time-exclusion-sport" style={{ top: `${140 + index * 35}px`, left: '10px', fontSize: '35px' }} key={index}>
-                <div style={{ color: "#ff0000" }}> {`${gameState?.Home?.Exclusion?.ShirtNumber[index]}`}
+              <div className="time-exclusion-sport" style={{ top: `${140 + index * 35}px`, left: '5px', fontSize: '35px' }} key={index}>
+                <div style={{ color: "#ff0000", width: "25px" }}>{gameState?.Home?.Exclusion?.ShirtNumber[index] !== null ? (`${gameState?.Home?.Exclusion?.ShirtNumber[index]}`) : (" ")}
 
                 </div>
                 <span>&nbsp;</span>
@@ -176,8 +176,8 @@ function Handball({ gameState: incomingGameState }) {
         })}
       </div>
       {/* GUEST */}
-      {gameState.sport === "rinkhockey" && (<div className="faute-exclution " style={{ fontSize: "40px", right: "0px", top: "5px" }} >
-        {gameState.Guest.Exclusion.Counts}
+      {gameState.Sport === "Rinkhockey" && (<div className="faute-exclution " style={{ fontSize: "40px", right: "5px", top: "5px" }} >
+        {gameState.Guest.Fouls.Team}
       </div>)}
 
       <div className="container-team-sport" style={{ left: "286px" }}>
@@ -210,8 +210,8 @@ function Handball({ gameState: incomingGameState }) {
         {gameState?.Guest?.Exclusion?.Timer?.map((timer, index) => {
           if (timer > 0) {
             return (
-              <div className="time-exclusion-sport" style={{ top: `${140 + index * 35}px`, right: '10px', fontSize: '35px' }} key={index}>
-                <div style={{ color: "#ff0000" }}>{`${gameState?.Guest?.Exclusion?.ShirtNumber[index]}` + " "}
+              <div className="time-exclusion-sport" style={{ top: `${140 + index * 35}px`, right: '5px', fontSize: '35px' }} key={index}>
+                <div style={{ color: "#ff0000", width: "25px" }}>{gameState?.Guest?.Exclusion?.ShirtNumber[index] !== null ? (`${gameState?.Guest?.Exclusion?.ShirtNumber[index]}`) : (" ")}
                 </div>
                 <span>&nbsp;</span>
                 <div style={{ color: "#ebff00" }}>{formatExclusionTimer(timer) || ""}
