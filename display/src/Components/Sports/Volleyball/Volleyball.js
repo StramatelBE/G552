@@ -111,25 +111,32 @@ function Volleyball({ gameState: incomingGameState }) {
         <div className="text team-name-sport" style={{ fontSize: homeFontSize, left: "0px", top: "90px" }} >
           {gameState?.Home?.TeamName !== undefined ? gameState?.Home?.TeamName : "HOME"}
         </div>
-        <div className="side-numbers" style={{ left: "0px", top: "135px" }}>
-          {gameState.Home.PointsBySet && Object.values(gameState.Home.PointsBySet).map((point, index) => {
+        <div className="side-numbers" style={{ left: "0px", top: "140px" }}>
+          {gameState && Object.values(gameState.Home.PointsBySet).map((point, index) => {
             const isLosing = gameState.Guest.PointsBySet[index] < point;
-            const divStyle = { color: isLosing ? "yellow" : "white" };
-            if (point !== 0 || gameState.Guest.PointsBySet[index] !== 0) {
-              return <div className="text side-number" style={divStyle} >{point}</div>;
+            if (isLosing && (point !== 0 || gameState.Guest.PointsBySet[index] !== 0)) {
+              return <div className="text side-number" ><div style={{ color: "#00a13b" }}>{index + 1}</div><span>&nbsp;</span>{point}:{gameState.Guest.PointsBySet[index]}</div>;
             }
           })}
-          {/* {
-            for
-          } */}
+
+          {gameState?.Home?.Timeout?.Count >= 0 && (
+            [...Array(gameState?.Home?.Timeout?.Count)].map((_, index) => (
+              <div
+                key={index}
+                className="timeout-dot-sport"
+                style={{ left: "110px", top: `${20 + index * 25}px` }}
+              />
+            ))
+          )}
+
         </div>
       </div>
       <div className="container-team-sport" style={{ left: "286px" }}>
         <div className="container-score" style={{ right: "0px", top: "0px" }} >
           {guestScoreAnimating && (
             <>
-              <div className="score-sport score-out">{prevGuestScore}</div>
-              <div className="score-sport score-in">{guestScore}</div>
+              <div className="text score-sport score-out">{prevGuestScore}</div>
+              <div className="text score-sport score-in">{guestScore}</div>
             </>
           )}
           {!guestScoreAnimating && (
@@ -139,14 +146,24 @@ function Volleyball({ gameState: incomingGameState }) {
         <div className="text team-name-sport" style={{ fontSize: homeFontSize, left: "0px", top: "90px", fontSize: guestFontSize }} >
           {gameState?.Guest?.TeamName !== undefined ? gameState?.Guest?.TeamName : "GUEST"}
         </div>
-        <div className="side-numbers" style={{ right: "0px", top: "135px" }}>
+        <div className="side-numbers" style={{ right: "0px", top: "140px" }}>
           {gameState && Object.values(gameState.Guest.PointsBySet).map((point, index) => {
             const isLosing = gameState.Home.PointsBySet[index] < point;
-            const divStyle = { color: isLosing ? "yellow" : "white" };
-            if (point !== 0 || gameState.Home.PointsBySet[index] !== 0) {
-              return <div className="text side-number" style={divStyle} >{point}</div>;
+            if (isLosing && (point !== 0 || gameState.Home.PointsBySet[index] !== 0)) {
+              return <div className="text side-number" ><div style={{ color: "#00a13b" }}>{index + 1}</div><span>&nbsp;</span>{point}:{gameState.Home.PointsBySet[index]}</div>;
             }
+            { isLosing }
           })}
+
+          {gameState?.Guest?.Timeout?.Count >= 0 && (
+            [...Array(gameState?.Guest?.Timeout?.Count)].map((_, index) => (
+              <div
+                key={index}
+                className="timeout-dot-sport"
+                style={{ right: "110px", top: `${20 + index * 25}px` }}
+              />
+            ))
+          )}
         </div>
       </div>
 
