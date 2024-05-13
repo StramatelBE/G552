@@ -49,7 +49,7 @@ module.exports = class Frame_0x10 {
                 PointsBySet: Tools.PointsBySet(26, 4, 4, _message),
                 PlayersInPlay: Tools.PlayersInPlay(_message).Guest,
                 Service: Tools.Service(_message[50]).Guest,
-                Winner: Tools.Win789ner(_message[51]).Guest,
+                Winner: Tools.Winner(_message[51]).Guest,
             }
         };
     }
