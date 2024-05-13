@@ -132,13 +132,13 @@ function Handball({ gameState: incomingGameState }) {
         {gameState.Home.Fouls.Team}
       </div>)}
       <div className="container-team-sport" style={{ left: "0px" }}>
-        <div className="text timeout-hand" style={{ left: '10px' }}>
-          {gameState?.Home?.Timeout?.Counts >= 0 && (
-            [...Array(gameState?.Home?.Timeout?.Counts)].map((_, index) => (
+        <div className="text timeout-hand" style={{ left: '120px' }}>
+          {gameState?.Home?.Timeout?.Count >= 0 && (
+            [...Array(gameState?.Home?.Timeout?.Count)].map((_, index) => (
               <div
                 key={index}
                 className="timeout-dot-sport"
-                style={{ top: `${200 - index * 25}px`, }}
+                style={{ top: `${150 + index * 25}px`, }}
               />
             ))
           )}
@@ -161,7 +161,7 @@ function Handball({ gameState: incomingGameState }) {
         {gameState?.Home?.Exclusion?.Timer?.map((timer, index) => {
           if (timer > 0) {
             return (
-              <div className="time-exclusion-sport" style={{ top: `${140 + index * 35}px`, left: '5px', fontSize: '35px' }} key={index}>
+              <div className="time-exclusion-sport" style={{ top: `${140 + index * 35}px`, left: '2px', fontSize: '35px', justifyContent: 'left' }} key={index}>
                 <div style={{ color: "#ff0000", width: "25px" }}>{gameState?.Home?.Exclusion?.ShirtNumber[index] !== null ? (`${gameState?.Home?.Exclusion?.ShirtNumber[index]}`) : (" ")}
 
                 </div>
@@ -176,19 +176,19 @@ function Handball({ gameState: incomingGameState }) {
         })}
       </div>
       {/* GUEST */}
-      {gameState.Sport === "Rinkhockey" && (<div className="faute-exclution " style={{ fontSize: "40px", right: "5px", top: "5px" }} >
+      {gameState.Sport === "Rinkhockey" && (<div className="faute-exclution " style={{ fontSize: "35px", right: "0px", top: "5px" }} >
         {gameState.Guest.Fouls.Team}
       </div>)}
 
       <div className="container-team-sport" style={{ left: "286px" }}>
 
-        <div className="text timeout-hand" style={{ right: '10px' }}>
-          {gameState?.Guest?.Timeout?.Counts >= 0 && (
-            [...Array(gameState?.Guest?.Timeout?.Counts)].map((_, index) => (
+        <div className="text timeout-hand" style={{ right: '120px' }}>
+          {gameState?.Guest?.Timeout?.Count >= 0 && (
+            [...Array(gameState?.Guest?.Timeout?.Count)].map((_, index) => (
               <div
                 key={index}
                 className="timeout-dot-sport"
-                style={{ top: `${200 - index * 25}px`, }}
+                style={{ top: `${150 + index * 25}px`, }}
               />
             ))
           )}
@@ -196,8 +196,8 @@ function Handball({ gameState: incomingGameState }) {
         <div className="container-score" style={{ right: "0px", top: "0px" }} >
           {guestScoreAnimating && (
             <>
-              <div className="score-sport score-out">{prevGuestScore}</div>
-              <div className="score-sport score-in">{guestScore}</div>
+              <div className=" text score-sport score-out">{prevGuestScore}</div>
+              <div className=" text score-sport score-in">{guestScore}</div>
             </>
           )}
           {!guestScoreAnimating && (
@@ -210,7 +210,7 @@ function Handball({ gameState: incomingGameState }) {
         {gameState?.Guest?.Exclusion?.Timer?.map((timer, index) => {
           if (timer > 0) {
             return (
-              <div className="time-exclusion-sport" style={{ top: `${140 + index * 35}px`, right: '5px', fontSize: '35px' }} key={index}>
+              <div className="time-exclusion-sport" style={{ top: `${140 + index * 35}px`, right: '2px', fontSize: '35px', justifyContent: 'right' }} key={index}>
                 <div style={{ color: "#ff0000", width: "25px" }}>{gameState?.Guest?.Exclusion?.ShirtNumber[index] !== null ? (`${gameState?.Guest?.Exclusion?.ShirtNumber[index]}`) : (" ")}
                 </div>
                 <span>&nbsp;</span>

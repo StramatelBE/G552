@@ -1,8 +1,8 @@
 const config = {
-    front: { },
-    back: { },
+    front: {},
+    back: {},
     display: { width: 1000, height: 256 },
-    database: { },
+    database: {},
 }
 
 module.exports = config;
