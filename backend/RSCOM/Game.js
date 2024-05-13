@@ -271,7 +271,7 @@ static select = (_message) => {
         toInsert = Frames.RinkHockey.build(_message);
         break;
       case 0xcc:
-        toInsert = Frames.ClockSetup.build(_message);s
+        toInsert = Frames.ClockSetup.build(_message);
         // console.log(toInsert)
         break;
       default:
