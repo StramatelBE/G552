@@ -3,6 +3,8 @@
 const { StringDecoder } = require('string_decoder');
 const Encode = require('../Utils/Encode');
 const Tools = require('../Utils/Frame_Tools/Frame_Tools_index');
+const nBytesToNumber = require('../Utils/nBytesToNumber');
+
 /*
     * 0x94 : QR Mode
  */
