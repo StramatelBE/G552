@@ -61,11 +61,11 @@ body {
   text-align: center;
 }
 
-.team-name-display-right{
+.team-name-display-right {
   padding-right: 10px;
 }
 
-.team-name-display-left{
+.team-name-display-left {
   padding-left: 10px;
 }
 
@@ -76,8 +76,6 @@ body {
 /*.team-score-right {*/
 /*  direction: ltr;*/
 /*}*/
-
-
 
 .team-score-display {
   font-family: "D-DIN-Bold", sans-serif;
@@ -121,29 +119,27 @@ body {
   margin-top: 10px;
 }
 
-.character-different{
+.character-different {
   padding-bottom: 5px;
 }
 
 .logo {
   width: 180px;
 }
-.characterTimeoutsTimerDifferent{
-  font-family: "D-DIN-Bold"
-  
-  ;
+.characterTimeoutsTimerDifferent {
+  font-family: "D-DIN-Bold";
   color: #f9e930;
   display: inline-block;
   width: 25px;
-  text-align: center
+  text-align: center;
 }
 
-.characterTimeoutsTimer{
-    font-family: "D-DIN-Bold", sans-serif;
+.characterTimeoutsTimer {
+  font-family: "D-DIN-Bold", sans-serif;
   color: #f9e930;
   display: inline-block;
   width: 15px;
-  text-align: center
+  text-align: center;
 }
 
 .period-number {
@@ -160,7 +156,8 @@ body {
   justify-content: center;
   font-size: 90px;
   width: 250px;
-  align-items: center;}
+  align-items: center;
+}
 
 .time-logo {
   margin-top: 35px;
@@ -219,11 +216,4 @@ body {
 .team-fouls-right {
   margin-right: 25px;
   align-items: flex-end;
-}
-
-.logo-fiba {
-  margin-top: 15px;
-  margin-left: 15px;
-  width: 30px;
-  height: 100%;
 }

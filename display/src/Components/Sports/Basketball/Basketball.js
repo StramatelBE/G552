@@ -100,8 +100,8 @@ function Basketball({ gameState: incomingGameState }) {
       {/* HOME */}
       <div className="container-team-sport" style={{ left: "0px" }}>
         <div className="text timeout-hand" style={{ left: '120px', top: "140px" }}>
-          {gameState?.Guest?.Timeout?.Team >= 0 && (
-            [...Array(3 - gameState?.Guest?.Timeout?.Team)].map((_, i) => (
+          {gameState?.Guest?.Timeout?.Count >= 0 && (
+            [...Array(3 - gameState?.Guest?.Timeout?.Count)].map((_, i) => (
               <div
                 key={i}
                 className="timeout-dot-sport"
@@ -124,9 +124,16 @@ function Basketball({ gameState: incomingGameState }) {
         <div className="text team-name-sport" style={{ fontSize: homeFontSize, left: "0px", top: "90px" }} >
           {gameState?.Home?.TeamName !== undefined ? gameState?.Home?.TeamName : "HOME"}
         </div>
-        <div className="fouls-basket" style={{ left: "70px", top: "195px" }}>
-          {gameState?.Home?.Fouls?.Team}
-        </div>
+        {
+          gameState?.Home?.Fouls?.Team === 9 ?
+            (<div className="text fouls-basket" style={{ left: "70px", top: "210px" }}>
+              <div className="square-fouls-basket" />
+            </div>)
+            :
+            (<div className="text fouls-basket" style={{ left: "70px", top: "210px" }}>
+              {gameState?.Home?.Fouls?.Team}
+            </div>)
+        }
       </div>
 
       {/* GUEST */}
@@ -135,8 +142,8 @@ function Basketball({ gameState: incomingGameState }) {
         <div className="container-score" style={{ right: "0px", top: "0px" }} >
           {guestScoreAnimating && (
             <>
-              <div className="score-sport score-out">{prevGuestScore}</div>
-              <div className="score-sport score-in">{guestScore}</div>
+              <div className="text score-sport score-out">{prevGuestScore}</div>
+              <div className=" text score-sport score-in">{guestScore}</div>
             </>
           )}
           {!guestScoreAnimating && (
@@ -147,8 +154,8 @@ function Basketball({ gameState: incomingGameState }) {
           {gameState?.Guest?.TeamName !== undefined ? gameState?.Guest?.TeamName : "HOME"}
         </div>
         <div className="text timeout-hand" style={{ right: '120px', top: "140px" }}>
-          {gameState?.Guest?.Timeout?.Team >= 0 && (
-            [...Array(3 - gameState?.Guest?.Timeout?.Team)].map((_, i) => (
+          {gameState?.Guest?.Timeout?.Count >= 0 && (
+            [...Array(3 - gameState?.Guest?.Timeout?.Count)].map((_, i) => (
               <div
                 key={i}
                 className="timeout-dot-sport"
@@ -158,60 +165,19 @@ function Basketball({ gameState: incomingGameState }) {
           )}
         </div>
         {
-          gameState?.Guest?.Fouls?.Team === 8 ?
-            (<div className="text fouls-basket" style={{ right: "70px", top: "195px" }}>
+          gameState?.Guest?.Fouls?.Team === 9 ?
+            (<div className="text fouls-basket" style={{ right: "70px", top: "210px" }}>
               <div className="square-fouls-basket" />
             </div>)
             :
-            (<div className="text fouls-basket" style={{ right: "70px", top: "195px" }}>
+            (<div className="text fouls-basket" style={{ right: "70px", top: "210px" }}>
               {gameState?.Guest?.Fouls?.Team}
             </div>)
         }
       </div >
-      {/* MIDDLE */}
-      < div className="text period-sport" style={{ left: "226px" }}>
-        {gameState?.Period || "0"}
-      </div >
-      {gameState?.Home?.Possession && (
-        <div className="home-possession"></div>
-      )}
-      {
-        gameState?.Guest?.Possession && (
-          <div className="guest-possession"></div>
-        )
-      }
-      <div className="text timer-sport">
-        {formatTimer(
-          gameState?.Timer?.Value || "00:00",
-          showHomeTimeout,
-          showGuestTimeout
-        )}
-        <img className="logo-fiba " style={{ left: "460px" }} src="fiba.png" />{" "}
-        <img className="logo-stramatel " style={{ top: "90px" }} src="LOGO_Stramatel.gif" />
-      </div>
-      {/* MIDDLE */}
-      <div className="text period-sport" style={{ left: "226px" }}>
-        {gameState?.Period || "0"}
-      </div>
-      {
-        gameState?.Home?.Possession && (
-          <div className="home-possession"></div>
-        )
-      }
-      {
-        gameState?.Guest?.Possession && (
-          <div className="guest-possession"></div>
-        )
-      }
-      <div className="text timer-sport">
-        {formatTimer(
-          gameState?.Timer?.Value || "00:00",
-          showHomeTimeout,
-          showGuestTimeout
-        )}
-        <img className="logo-fiba " style={{ left: "460px" }} src="fiba.png" />{" "}
-        <img className="logo-stramatel " style={{ top: "90px" }} src="LOGO_Stramatel.gif" />
-      </div>
+
+
+
       {/* MIDDLE */}
       <div className="text period-sport" style={{ left: "226px" }}>
         {gameState?.Period || "0"}
@@ -228,26 +194,7 @@ function Basketball({ gameState: incomingGameState }) {
           showHomeTimeout,
           showGuestTimeout
         )}
-        <img className="logo-fiba " style={{ left: "460px" }} src="fiba.png" />{" "}
-        <img className="logo-stramatel " style={{ top: "90px" }} src="LOGO_Stramatel.gif" />
-      </div>
-      {/* MIDDLE */}
-      <div className="text period-sport" style={{ left: "226px" }}>
-        {gameState?.Period || "0"}
-      </div>
-      {gameState?.Home?.Possession && (
-        <div className="home-possession"></div>
-      )}
-      {gameState?.Guest?.Possession && (
-        <div className="guest-possession"></div>
-      )}
-      <div className="text timer-sport">
-        {formatTimer(
-          gameState?.Timer?.Value || "00:00",
-          showHomeTimeout,
-          showGuestTimeout
-        )}
-        <img className="logo-fiba " style={{ left: "460px" }} src="fiba.png" />{" "}
+        <img className="logo-fiba" style={{ right: "66px" }} src="fiba.png" />{" "}
         <img className="logo-stramatel " style={{ top: "90px" }} src="LOGO_Stramatel.gif" />
       </div>
 

@@ -15,7 +15,7 @@ import Tennis from "./Components/Sports/Tennis/Tennis.js";
 import TestPage from "./Components/TestPage.js";
 import modeService from "./service/modeService.js";
 import { I18nextProvider } from "react-i18next";
-/* const { ipcRenderer } = window.require("electron"); */
+const { ipcRenderer } = window.require("electron");
 
 const root = document.getElementById("root");
 const appRoot = ReactDOM.createRoot(root);
@@ -77,18 +77,16 @@ const App = () => {
 
   return (
     <>
-      {/* <I18nextProvider i18n={i18n}> */}
-      {/* {mode === "scoring" && <ScoringMode gameState={gameState} />}
+      <I18nextProvider i18n={i18n}>
+        {mode === "scoring" && <ScoringMode gameState={gameState} />}
         {mode === "media" && <MediaMode key={mediaKey} mediaState={mediaState} mediaMode={mediaMode} />}
         {mode === "prematch" && <PrematchMode mediaState={mediaState} mediaMode={mediaMode} gameState={gameState} />}
         {mode === "logo" && <LogoMode />}
         {mode === "test" && <TestPage />}
         {mode === "qr" && <QRMode />}
         {mode === "sleep" && <></>}
-        {mode === "" && <div>Waiting for data...</div>} */}
-      <Tennis />
-
-      {/*  </I18nextProvider> */}
+        {mode === "" && <div>Waiting for data...</div>}
+      </I18nextProvider>
     </>
   );
 };
