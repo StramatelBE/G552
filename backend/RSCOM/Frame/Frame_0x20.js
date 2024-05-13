@@ -36,7 +36,7 @@ module.exports = class Frame_0x20 {
                 },
                 PenaltiesInProgress: Tools.PenaltiesInProgress(_message[15]),
                 Timeout: {
-                    Counts: nBytesToNumber(_message[17]),
+                    Count: nBytesToNumber(_message[17]),
                 },
                 Exclusion: {
                     Timer: Tools.Exclusion_Handball(22, 3, _message, 'timer'),
@@ -51,7 +51,7 @@ module.exports = class Frame_0x20 {
                 },
                 PenaltiesInProgress: Tools.PenaltiesInProgress(_message[16]),
                 Timeout: {
-                    Counts: nBytesToNumber(_message[18]),
+                    Count: nBytesToNumber(_message[18]),
                 },
                 Exclusion: {
                     Timer: Tools.Exclusion_Handball(37, 3, _message, 'timer'),
