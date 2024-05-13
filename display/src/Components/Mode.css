@@ -132,4 +132,24 @@
     height: auto; /* To maintain the image aspect ratio */
     display: block; /* Images are inline by default, setting it to block */
 }
+.container {
+    display: flex;
+    flex-direction: column; /* Empile les enfants verticalement */
+    align-items: center; /* Centre les enfants horizontalement */
+    justify-content: center; /* Centre les enfants verticalement, si nécessaire */
+}
 
+.logo-iframe {
+    border: none;
+    overflow: hidden;
+    display: block;
+    width: 300px; /* Spécifiez une largeur fixe ou adaptative selon les besoins */
+    height: 300px; /* Spécifiez une hauteur fixe ou adaptative selon les besoins */
+    margin-bottom: 20px; /* Ajoute un espace entre le QR Code et le logo */
+}
+
+img {
+    display: block;
+    max-width: 100%; /* Assurez-vous que l'image ne dépasse pas la largeur du conteneur */
+    height: auto; /* Maintient le ratio d'aspect de l'image */
+}
