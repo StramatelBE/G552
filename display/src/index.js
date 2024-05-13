@@ -50,10 +50,10 @@ const App = () => {
         case 23:
           setMode("sleep");
           break;
-        case 99:
+        case 25:
           setMode("test");
           break;
-        case 25:
+        case 24:
           setMode("qr");
           break;
         default:
