@@ -20,6 +20,10 @@ const Frame_0x27 = require('./Frame_0x27'); // Boxe
 // Using Basketball display
 const Frame_0x30 = require('./Frame_0x30'); // Basketball
 
+const Frame_0x37 = require('./Frame_0x37'); // Basketball Individual Guest Points
+const Frame_0x38 = require('./Frame_0x38'); // Basketball Individual Home Points
+
+
 // 0x4x frames
 // Using Tennis display
 const Frame_0x40 = require('./Frame_0x40'); // Tennis
@@ -59,6 +63,8 @@ module.exports = Frames = {
 
     // 0x3x frames
     Basketball: Frame_0x30, // Basketball
+    _0x37: Frame_0x37, // Basketball Individual Guest Points
+    _0x38: Frame_0x38, // Basketball Individual Home Points
 
     // 0x4x frames
     Tennis: Frame_0x40, // Tennis
