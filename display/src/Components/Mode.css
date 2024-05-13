@@ -126,6 +126,7 @@
     max-width: 100%; /* To ensure it doesn't overflow its container */
     height: auto; /* To maintain the image aspect ratio */
     display: block; /* Images are inline by default, setting it to block */
+    height: 180px;
 }
 .container {
     display: flex;
