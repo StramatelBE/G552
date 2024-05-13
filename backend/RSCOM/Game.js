@@ -234,6 +234,12 @@ static select = (_message) => {
         toInsert = Frames.Volleyball.build(_message);
         console.log("gamejs toinsert:", toInsert);
         break;
+      case 0x37:
+        toInsert = Frames._0x37.build(_message);
+        break;
+      case 0x38:
+        toInsert = Frames._0x38.build(_message);
+        break;
       case 0x39:
         toInsert = Frames.Tennis.build(_message);
         break;
