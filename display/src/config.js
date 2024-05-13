@@ -1,7 +1,7 @@
 const config = {
     front: { },
     back: { },
-    display: { width: 512, height: 256 },
+    display: { width: 1000, height: 256 },
     database: { },
 }
 
