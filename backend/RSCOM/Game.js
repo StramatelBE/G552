@@ -158,10 +158,10 @@ static select = (_message) => {
             toInsert = Frames.Basketball.build(_message);
             console.log("Basketball Frame");
             break;
-        case 0x37:
+        case 0x31:
             toInsert = Frames._0x37.build(_message);
             break;
-        case 0x38:
+        case 0x32:
             toInsert = Frames._0x38.build(_message);
             break;
         case 0x40:
