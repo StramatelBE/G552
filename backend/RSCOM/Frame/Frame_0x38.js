@@ -1,7 +1,7 @@
-const nBytesToNumber = require('../../Utils/nBytesToNumber');
-const LED = require("../../Utils/Enums/eLED");
-const Tools = require("../../Utils/Frame_Tools/Frame_Tools_index");
-const eSport = require("../../Utils/Enums/eSport");
+const nBytesToNumber = require('../Utils/nBytesToNumber');
+const LED = require("../Utils/Enums/eLED");
+const Tools = require("../Utils/Frame_Tools/Frame_Tools_index");
+const eSport = require("../Utils/Enums/eSport");
 
 /*
     * 0x38 : Basketball Home Individual Points
