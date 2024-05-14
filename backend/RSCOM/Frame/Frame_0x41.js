@@ -26,7 +26,7 @@ module.exports =  class Frame_0x41 {
             Home: {
                 Points: nBytesToNumber(_message[9], _message[10]),
                 SetsWon: nBytesToNumber(_message[15]),
-                PointsBySet: nBytesToTables(24, 4, 3, _message),
+                PointsInSet: nBytesToTables(24, 4, 3, _message),
                 Service: Tools.Service(_message[50]).Home,
                 Winner: Tools.Winner(_message[51]).Home,
             },
@@ -34,7 +34,7 @@ module.exports =  class Frame_0x41 {
             Guest: {
                 Points: nBytesToNumber(_message[12], _message[13]),
                 SetsWon: nBytesToNumber(_message[16]),
-                PointsBySet: nBytesToTables(26, 4, 3, _message),
+                PointsInSet: nBytesToTables(26, 4, 3, _message),
                 Service: Tools.Service(_message[50]).Guest,
                 Winner: Tools.Winner(_message[51]).Guest,
             },
