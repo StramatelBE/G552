@@ -10,8 +10,8 @@ const eSport = require("../Utils/Enums/eSport");
     * 0x41 : Badminton
  */
 
-module.exports =  class Frame_0x41 {
-    static build(_message){
+module.exports = class Frame_0x41 {
+    static build(_message) {
         return {
             Mode: nBytesToNumber(_message[2]),
             insertType: 'DirectConsoleData',

@@ -1,14 +1,7 @@
-<<<<<<< HEAD
 const nBytesToNumber = require('../Utils/nBytesToNumber');
 const LED = require("../Utils/Enums/eLED");
 const Tools = require("../Utils/Frame_Tools/Frame_Tools_index");
 const eSport = require("../Utils/Enums/eSport");
-=======
-const nBytesToNumber = require('../../Utils/nBytesToNumber');
-const LED = require("../../Utils/Enums/eLED");
-const Tools = require("../../Utils/Frame_Tools/Frame_Tools_index");
-const eSport = require("../../Utils/Enums/eSport");
->>>>>>> 0c2f1dc (individual points)
 
 /*
     * 0x37 : Basketball Guest Individual Points
