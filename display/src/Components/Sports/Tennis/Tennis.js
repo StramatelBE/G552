@@ -40,13 +40,14 @@ function Tennis({ gameState: incomingGameState }) {
     else if (name.length <= 9) {
       return '26px'; // Toujours un peu plus petit
     }
-
-
-
-
-
   }
 
+  function getFontSizeScore(point) {
+    if (point >= 10) {
+      return '38px';
+    }
+    return '54px';
+  }
 
   // Determine the color of the service dot for Home and Guest
   const homeServiceDotColor = gameState?.Home?.Service === 1 ? "darkred" : "#005239";
@@ -68,10 +69,10 @@ function Tennis({ gameState: incomingGameState }) {
             <td><div className="dot" style={{ backgroundColor: `${homeServiceDotColor}` }}></div></td>
             <td><div className="set-score">{gameState?.Home?.GameInSet || "0"}</div></td>
             <td><div className="set-score point">{gameState?.Home?.Points || "0"}</div></td>
-            {(gameState?.Home?.PointsInSet[0] !== 0 || gameState?.Guest?.PointsInSet[0] !== 0) && <td> <div className="set-score">{gameState?.Home?.PointsInSet[0]}</div></td>}
-            {(gameState?.Home?.PointsInSet[1] !== 0 || gameState?.Guest?.PointsInSet[1] !== 0) && <td><div className="set-score">{gameState?.Home?.PointsInSet[1]}</div></td>}
-            {(gameState?.Home?.PointsInSet[2] !== 0 || gameState?.Guest?.PointsInSet[2] !== 0) && <td><div className="set-score">{gameState?.Home?.PointsInSet[2]}</div></td>}
-            {(gameState?.Home?.PointsInSet[3] !== 0 || gameState?.Guest?.PointsInSet[3] !== 0) && <td><div className="set-score">{gameState?.Home?.PointsInSet[3]}</div></td>}
+            {(gameState?.Guest?.PointsInSet[0] !== 0 || gameState?.Home?.PointsInSet[0] !== 0) && <td><div style={{ fontSize: getFontSizeScore(gameState?.Home?.PointsInSet[0]) }} className="set-score">{gameState?.Home?.PointsInSet[0]}</div></td>}
+            {(gameState?.Guest?.PointsInSet[1] !== 0 || gameState?.Home?.PointsInSet[1] !== 0) && <td><div style={{ fontSize: getFontSizeScore(gameState?.Home?.PointsInSet[1]) }} className="set-score">{gameState?.Home?.PointsInSet[1]}</div></td>}
+            {(gameState?.Guest?.PointsInSet[2] !== 0 || gameState?.Home?.PointsInSet[2] !== 0) && <td><div style={{ fontSize: getFontSizeScore(gameState?.Home?.PointsInSet[2]) }} className="set-score">{gameState?.Home?.PointsInSet[2]}</div></td>}
+            {(gameState?.Guest?.PointsInSet[3] !== 0 || gameState?.Home?.PointsInSet[3] !== 0) && <td><div style={{ fontSize: getFontSizeScore(gameState?.Home?.PointsInSet[3]) }} className="set-score">{gameState?.Home?.PointsInSet[3]}</div></td>}
           </tr>
           <tr>
             <td><div className={`player-name `} style={{ fontSize: guestFontSize, visibility: "hidden" }}>{gameState?.Home?.TeamName || "player1"}</div> </td>
@@ -88,10 +89,10 @@ function Tennis({ gameState: incomingGameState }) {
             <td><div className="dot" style={{ backgroundColor: `${guestServiceDotColor}` }}></div></td>
             <td><div className="set-score">{gameState?.Guest?.GameInSet || "0"}</div></td>
             <td><div className="set-score point">{gameState?.Guest?.Points || "0"}</div></td>
-            {(gameState?.Guest?.PointsInSet[0] !== 0 || gameState?.Home?.PointsInSet[0] !== 0) && <td><div className="set-score">{gameState?.Guest?.PointsInSet[0]}</div></td>}
-            {(gameState?.Guest?.PointsInSet[1] !== 0 || gameState?.Home?.PointsInSet[1] !== 0) && <td><div className="set-score">{gameState?.Guest?.PointsInSet[1]}</div></td>}
-            {(gameState?.Guest?.PointsInSet[2] !== 0 || gameState?.Home?.PointsInSet[2] !== 0) && <td><div className="set-score">{gameState?.Guest?.PointsInSet[2]}</div></td>}
-            {(gameState?.Guest?.PointsInSet[3] !== 0 || gameState?.Home?.PointsInSet[3] !== 0) && <td><div className="set-score">{gameState?.Guest?.PointsInSet[3]}</div></td>}
+            {(gameState?.Guest?.PointsInSet[0] !== 0 || gameState?.Home?.PointsInSet[0] !== 0) && <td><div style={{ fontSize: getFontSizeScore(gameState?.Guest?.PointsInSet[0]) }} className="set-score">{gameState?.Guest?.PointsInSet[0]}</div></td>}
+            {(gameState?.Guest?.PointsInSet[1] !== 0 || gameState?.Home?.PointsInSet[1] !== 0) && <td><div style={{ fontSize: getFontSizeScore(gameState?.Guest?.PointsInSet[1]) }} className="set-score">{gameState?.Guest?.PointsInSet[1]}</div></td>}
+            {(gameState?.Guest?.PointsInSet[2] !== 0 || gameState?.Home?.PointsInSet[2] !== 0) && <td><div style={{ fontSize: getFontSizeScore(gameState?.Guest?.PointsInSet[2]) }} className="set-score">{gameState?.Guest?.PointsInSet[2]}</div></td>}
+            {(gameState?.Guest?.PointsInSet[3] !== 0 || gameState?.Home?.PointsInSet[3] !== 0) && <td><div style={{ fontSize: getFontSizeScore(gameState?.Guest?.PointsInSet[3]) }} className="set-score">{gameState?.Guest?.PointsInSet[3]}</div></td>}
           </tr>
         </table>
       </div>
