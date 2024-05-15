@@ -149,7 +149,7 @@ function Tennis({ gameState: incomingGameState }) {
             </tr>
             <tr className="tr-text">
               <td className="logo">
-                <img src="LOGO_Stramatel.gif"/>
+                <img src="LOGO_Stramatel_wbg.gif"/>
               </td>
               <td>
                 <div className="dot"></div>
