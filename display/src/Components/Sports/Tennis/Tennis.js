@@ -125,11 +125,7 @@ function Tennis({ gameState: incomingGameState }) {
         <table className="score-tennis">
           <tbody>
             <tr>
-              <td className="player-back">
-                <div className={`player-name ${homeBlinkClass}`} style={{ fontSize: homeFontSize }}>
-                  {gameState?.Home?.TeamName || "player1"}
-                </div>
-              </td>
+              
               <td>
                 <div className="dot" style={{ backgroundColor: `${homeServiceDotColor}` }}></div>
               </td>
@@ -140,6 +136,11 @@ function Tennis({ gameState: incomingGameState }) {
               }
               <td>
                 <div className="set-score point score">{gameState?.Home?.Points || "0"}</div>
+              </td>
+              <td className="player-back">
+                <div className={`player-name ${homeBlinkClass}`} style={{ fontSize: homeFontSize }}>
+                  {gameState?.Home?.TeamName || "player1"}
+                </div>
               </td>
               {gameState?.Sport === "Tennis" ?
               renderSetScores(gameState?.Home?.PointsInSet, gameState?.Home?.GameInSet)
@@ -173,11 +174,7 @@ function Tennis({ gameState: incomingGameState }) {
               {renderSetHeaders()}
             </tr>
             <tr>
-              <td className="player-back">
-                <div className={`player-name ${guestBlinkClass}`} style={{ fontSize: guestFontSize }}>
-                  {gameState?.Guest?.TeamName || "player2"}
-                </div>
-              </td>
+              
               <td>
                 <div className="dot" style={{ backgroundColor: `${guestServiceDotColor}` }}></div>
               </td>
@@ -188,6 +185,11 @@ function Tennis({ gameState: incomingGameState }) {
               }
               <td>
                 <div className="set-score point score">{gameState?.Guest?.Points || "0"}</div>
+              </td>
+              <td className="player-back">
+                <div className={`player-name ${guestBlinkClass}`} style={{ fontSize: guestFontSize }}>
+                  {gameState?.Guest?.TeamName || "player2"}
+                </div>
               </td>
               {gameState?.Sport === "Tennis" ?
               renderSetScores(gameState?.Guest?.PointsInSet, gameState?.Guest?.GameInSet)
