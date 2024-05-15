@@ -32,9 +32,9 @@ function pointsInSet(startIndex, size, message) {
         
     }
     pointsBySet[0] = nBytesToNumber(message[startIndex], message[startIndex + 1]);
-    pointsBySet[1] = nBytesToNumber(message[startIndex  + 2], message[startIndex + 3]);
-    pointsBySet[2] = nBytesToNumber(message[startIndex + 11], message[startIndex + 12]);
-    pointsBySet[3] = nBytesToNumber(message[startIndex + 15], message[startIndex + 16]);
+    pointsBySet[1] = nBytesToNumber(message[startIndex  + 4], message[startIndex + 5]);
+    pointsBySet[2] = nBytesToNumber(message[startIndex + 13], message[startIndex + 14]);
+    pointsBySet[3] = nBytesToNumber(message[startIndex + 17], message[startIndex + 18]);
 
     return pointsBySet;
 }
