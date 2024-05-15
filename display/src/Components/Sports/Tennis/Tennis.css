@@ -20,6 +20,8 @@
   table-layout: fixed;
   width: 100%;
   text-align: center;
+  background: black;
+  opacity: 0.05;
 }
 
 .score-tennis td:first-child {
