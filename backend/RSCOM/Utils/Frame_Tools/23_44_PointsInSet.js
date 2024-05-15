@@ -18,7 +18,6 @@ function pointsInSet(startIndex, size, message) {
      
         
     }
-
     console.log("Points In Set, Odd points list")
 
     for (let i = 0; i < message.length; i+=2) {
@@ -26,9 +25,7 @@ function pointsInSet(startIndex, size, message) {
         console.log(i + 1, nBytesToNumber(message[i + 1], message[i + 2]));
         
     }
-
     console.log("Points In Set, Message value list")
-
     for (let i = 0; i < message.length; i++) {
         console.log(i, message[i]);
    
@@ -36,8 +33,8 @@ function pointsInSet(startIndex, size, message) {
     }
     pointsBySet[0] = nBytesToNumber(message[startIndex], message[startIndex + 1]);
     pointsBySet[1] = nBytesToNumber(message[startIndex  + 4], message[startIndex + 5]);
-    pointsBySet[2] = nBytesToNumber(message[startIndex + 9], message[startIndex + 10]);
-    pointsBySet[3] = nBytesToNumber(message[startIndex + 13], message[startIndex + 14]);
+    pointsBySet[2] = nBytesToNumber(message[startIndex + 11], message[startIndex + 12]);
+    pointsBySet[3] = nBytesToNumber(message[startIndex + 15], message[startIndex + 16]);
 
     return pointsBySet;
 }
