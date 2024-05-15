@@ -44,7 +44,6 @@ function Tennis({ gameState: incomingGameState }) {
       setHomePointsSet5(gameState?.Home?.Points);
       setGuestPointsSet5(gameState?.Guest?.Points);
     }
-  
   }, [gameState]);
 
   function getFontSize(name) {
