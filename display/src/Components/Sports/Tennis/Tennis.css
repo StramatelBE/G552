@@ -80,7 +80,7 @@ tr {
   display: flex;
   align-items: center;
   height: 58px;
-  width: auto; /* S'assurer que la largeur s'ajuste automatiquement */
+  width: 120px; /* S'assurer que la largeur s'ajuste automatiquement */
   border-radius: 5px;
   background: black;
 }
