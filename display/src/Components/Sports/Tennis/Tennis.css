@@ -90,8 +90,8 @@ tr {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 20px;
-  min-height: 20px;
+  min-width: 10px;
+  min-height: 10px;
   border-radius: 9999px;
   margin-left: 10px; /* Décalage vers la droite */
 }
