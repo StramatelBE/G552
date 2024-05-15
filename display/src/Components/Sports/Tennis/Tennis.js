@@ -125,6 +125,9 @@ function Tennis({ gameState: incomingGameState }) {
         <table className="score-tennis">
           <tbody>
             <tr>
+              <td>
+              <div className="set-score">{gameState?.Home?.SetsWon || "0"}</div>
+              </td>
               {gameState?.Sport === "Tennis" &&
               <td>
                  <div className="set-score">{gameState?.Home?.GameInSet || "0"}</div>
@@ -148,11 +151,14 @@ function Tennis({ gameState: incomingGameState }) {
             }
             </tr>
             <tr className="tr-text">
-              
+            <td>
+              <div className="set-text">Sets</div>
+            </td>
               
               {gameState?.Sport === "Tennis" &&
+          
               <td>
-                <div className="set-text">{currentSet || "1"}</div>
+                <div className="set-text">S{currentSet || "1"}</div>
               </td>
               }
               {gameState?.Sport === "Tennis" ?
@@ -174,6 +180,9 @@ function Tennis({ gameState: incomingGameState }) {
               {renderSetHeaders()}
             </tr>
             <tr>
+            <td>
+              <div className="set-score">{gameState?.Guest?.SetsWon || "0"}</div>
+              </td>
               {gameState?.Sport === "Tennis" &&
               <td>
                 <div className="set-score">{gameState?.Guest?.GameInSet || "0"}</div>
