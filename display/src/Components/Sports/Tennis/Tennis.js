@@ -69,15 +69,12 @@ function Tennis({ gameState: incomingGameState }) {
   const renderSetScores = (pointsInSet, pointsSet5) => {
     const sets = [0, 1, 2].map((set, index) => (
       <td key={index}>
-        <div
-          style={{ fontSize: getFontSizeScore(pointsInSet[set] || 0) }}
-          className="set-score"
-        >
+        <div style={{ fontSize: getFontSizeScore(pointsInSet[set] || 0) }} className="set-score">
           {pointsInSet[set] !== undefined ? pointsInSet[set] : "0"}
         </div>
       </td>
     ));
-    if (pointsInSet[3] !== undefined || pointsInSet[4] !== undefined) {
+    if (currentSet > 2) {
       sets.push(
         <td key={3}>
           <div style={{ fontSize: getFontSizeScore(pointsInSet[3] || 0) }} className="set-score">
@@ -86,7 +83,7 @@ function Tennis({ gameState: incomingGameState }) {
         </td>
       );
     }
-    if (currentSet >= 5) {
+    if (currentSet > 3) {
       sets.push(
         <td key={4}>
           <div style={{ fontSize: getFontSizeScore(pointsSet5) }} className="set-score">
@@ -104,14 +101,14 @@ function Tennis({ gameState: incomingGameState }) {
         <div className="set-text">{set}</div>
       </td>
     ));
-    if (gameState?.Home?.PointsInSet[3] !== undefined || gameState?.Guest?.PointsInSet[3] !== undefined) {
+    if (currentSet > 3) {
       headers.push(
         <td key={3}>
           <div className="set-text">S4</div>
         </td>
       );
     }
-    if (currentSet >= 5) {
+    if (currentSet > 4) {
       headers.push(
         <td key={4}>
           <div className="set-text">S5</div>
@@ -126,57 +123,59 @@ function Tennis({ gameState: incomingGameState }) {
       <div className="container-tennis">
         <div className="timer">{gameState?.Timer?.Value || "00:00"}</div>
         <table className="score-tennis">
-          <tr>
-            <td>
-              <div className={`player-name ${homeBlinkClass}`} style={{ fontSize: homeFontSize }}>
-                {gameState?.Home?.TeamName || "player1"}
-              </div>
-            </td>
-            <td>
-              <div className="dot" style={{ backgroundColor: `${homeServiceDotColor}`, marginLeft: "10px" }}></div>
-            </td>
-            <td>
-              <div className="set-score">{gameState?.Home?.GameInSet || "0"}</div>
-            </td>
-            <td>
-              <div className="set-score point score">{gameState?.Home?.Points || "0"}</div>
-            </td>
-            {renderSetScores(gameState?.Home?.PointsInSet, homePointsSet5)}
-          </tr>
-          <tr>
-            <td>
-              <div className={`player-name `} style={{ fontSize: guestFontSize, visibility: "hidden" }}>
-                {gameState?.Home?.TeamName || "player1"}
-              </div>
-            </td>
-            <td>
-              <div className="dot"></div>
-            </td>
-            <td>
-              <div className="set-text">{currentSet || "1"}</div>
-            </td>
-            <td>
-              <div className="set-text point">PTS</div>
-            </td>
-            {renderSetHeaders()}
-          </tr>
-          <tr>
-            <td>
-              <div className={`player-name ${guestBlinkClass}`} style={{ fontSize: guestFontSize }}>
-                {gameState?.Guest?.TeamName || "player2"}
-              </div>
-            </td>
-            <td>
-              <div className="dot" style={{ backgroundColor: `${guestServiceDotColor}`, marginLeft: "10px" }}></div>
-            </td>
-            <td>
-              <div className="set-score">{gameState?.Guest?.GameInSet || "0"}</div>
-            </td>
-            <td>
-              <div className="set-score point score">{gameState?.Guest?.Points || "0"}</div>
-            </td>
-            {renderSetScores(gameState?.Guest?.PointsInSet, guestPointsSet5)}
-          </tr>
+          <tbody>
+            <tr>
+              <td>
+                <div className={`player-name ${homeBlinkClass}`} style={{ fontSize: homeFontSize }}>
+                  {gameState?.Home?.TeamName || "player1"}
+                </div>
+              </td>
+              <td>
+                <div className="dot" style={{ backgroundColor: `${homeServiceDotColor}`, marginLeft: "10px" }}></div>
+              </td>
+              <td>
+                <div className="set-score">{gameState?.Home?.GameInSet || "0"}</div>
+              </td>
+              <td>
+                <div className="set-score point score">{gameState?.Home?.Points || "0"}</div>
+              </td>
+              {renderSetScores(gameState?.Home?.PointsInSet, homePointsSet5)}
+            </tr>
+            <tr>
+              <td>
+                <div className={`player-name `} style={{ fontSize: guestFontSize, visibility: "hidden" }}>
+                  {gameState?.Home?.TeamName || "player1"}
+                </div>
+              </td>
+              <td>
+                <div className="dot"></div>
+              </td>
+              <td>
+                <div className="set-text">{currentSet || "1"}</div>
+              </td>
+              <td>
+                <div className="set-text point">PTS</div>
+              </td>
+              {renderSetHeaders()}
+            </tr>
+            <tr>
+              <td>
+                <div className={`player-name ${guestBlinkClass}`} style={{ fontSize: guestFontSize }}>
+                  {gameState?.Guest?.TeamName || "player2"}
+                </div>
+              </td>
+              <td>
+                <div className="dot" style={{ backgroundColor: `${guestServiceDotColor}`, marginLeft: "10px" }}></div>
+              </td>
+              <td>
+                <div className="set-score">{gameState?.Guest?.GameInSet || "0"}</div>
+              </td>
+              <td>
+                <div className="set-score point score">{gameState?.Guest?.Points || "0"}</div>
+              </td>
+              {renderSetScores(gameState?.Guest?.PointsInSet, guestPointsSet5)}
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
