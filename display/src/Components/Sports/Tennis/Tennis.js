@@ -101,14 +101,14 @@ function Tennis({ gameState: incomingGameState }) {
         <div className="set-text">{set}</div>
       </td>
     ));
-    if (currentSet > 3) {
+    if (currentSet > 2) {
       headers.push(
         <td key={3}>
           <div className="set-text">S4</div>
         </td>
       );
     }
-    if (currentSet > 4) {
+    if (currentSet > 3) {
       headers.push(
         <td key={4}>
           <div className="set-text">S5</div>
@@ -142,13 +142,10 @@ function Tennis({ gameState: incomingGameState }) {
               {renderSetScores(gameState?.Home?.PointsInSet, homePointsSet5)}
             </tr>
             <tr>
-              <td>
+              <td colSpan="2">
                 <div className={`player-name `} style={{ fontSize: guestFontSize, visibility: "hidden" }}>
                   {gameState?.Home?.TeamName || "player1"}
                 </div>
-              </td>
-              <td>
-                <div className="dot"></div>
               </td>
               <td>
                 <div className="set-text">{currentSet || "1"}</div>

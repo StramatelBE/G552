@@ -59,7 +59,9 @@ tr {
   font-weight: 700;
 }
 .set-text {
+  display: flex;
   width: 50px;
+  height: 60px;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -138,7 +140,6 @@ tr {
 
 .point {
   min-width: 70px !important;
-  
 }
 
 .score {
