@@ -79,7 +79,6 @@ tr {
   width: auto; /* S'assurer que la largeur s'ajuste automatiquement */
   border-radius: 5px;
   background: black;
-  padding: 5px; /* Optionnel: ajouter du padding pour un meilleur espacement */
 }
 
 .player-name {
