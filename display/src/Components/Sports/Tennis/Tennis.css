@@ -77,7 +77,8 @@ tr {
 }
 
 .player-back {
- 
+  display: flex;
+  align-items: center;
   height: 60px;
   display: inline-block; /* Changer de block à inline-block */
   width: auto; /* S'assurer que la largeur s'ajuste automatiquement */
@@ -86,8 +87,7 @@ tr {
 }
 
 .player-name {
-  display: flex;
-  align-items: center;
+  
   /* display: inline-block; */
   color: #c96d06;
   font-weight: 700;
