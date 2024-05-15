@@ -63,7 +63,7 @@ tr {
 
 .logo {
   display: inline-block; /* Changer de block à inline-block */
-  width: auto; /* S'assurer que la largeur s'ajuste automatiquement */
+  width: 127px; /* S'assurer que la largeur s'ajuste automatiquement */
   text-align: center;
   justify-content: center;
   align-items: center;
