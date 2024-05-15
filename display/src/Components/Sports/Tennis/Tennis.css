@@ -125,9 +125,9 @@ tr {
   color: white;
 }
 
-.score:last-child {
+/* .score:last-child {
   width: 100px;
-}
+} */
 
 .dot {
   display: flex;
