@@ -13,8 +13,8 @@
   align-items: center;
   justify-content: flex-start;
   border: 5px solid #005239;
-  width: inherit;
-  height: inherit;
+  width: inherit - 5;
+  height: inherit - 5;
 }
 
 .score-tennis {
@@ -26,9 +26,7 @@
  
 }
 
-.score-tennis td:first-child {
-  width: 25%;
-}
+
 
 
 tr {
