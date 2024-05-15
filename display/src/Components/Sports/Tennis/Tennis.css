@@ -207,6 +207,7 @@ tr {
   border-radius: 5px;
   width: auto;
   height: 65px;
+  padding: 2px;
   /* background: #242121; */
   background: black;
   text-align: center;
