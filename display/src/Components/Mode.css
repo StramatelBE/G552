@@ -151,6 +151,7 @@
 .container {
   display: flex;
   flex-direction: column;
+  height: 100vh;
   align-items: center; /* Centre horizontalement les enfants dans le conteneur */
   justify-content: center; /* Centre verticalement les enfants dans le conteneur */
 }
