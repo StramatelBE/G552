@@ -91,7 +91,7 @@ tr {
   align-items: center;
   align-content: center;
   text-align: center;
-  color: #c96d06;
+  color: #ecd60a;
   font-weight: 700;
   white-space: nowrap; /* Empêche la rupture de ligne pour le nom du joueur */
 }
@@ -103,11 +103,12 @@ tr {
   width: 40px;
   height: 60px;
   /* background: #242121; */
+  color: #ecd60a;
   background: black;
   text-align: center;
   justify-content: center;
   align-items: center;
-  color: #c96d06;
+  /* color: #c96d06; */
   font-size: 35px;
   font-weight: 700;
 }
