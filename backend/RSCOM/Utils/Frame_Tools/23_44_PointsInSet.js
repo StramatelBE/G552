@@ -15,6 +15,7 @@ function pointsInSet(startIndex, size, message) {
 
     for (let i = 0; i < message.length; i+=2) {
         console.log(i, nBytesToNumber(message[i], message[i + 1]));
+        console.log(i, nBytesToNumber(message[i + 1], message[i + 2]));
     }
 
     pointsBySet[0] = nBytesToNumber(message[startIndex], message[startIndex + 1]);
