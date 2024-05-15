@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./Tennis.css";
 
-function Tennis({ gameState: incomingGameState }) {
+function Tennis({ gameState: incomingGameState, sport }) {
   const gameState = incomingGameState || {};
 
   const [homeFontSize, setHomeFontSize] = React.useState("30px");
@@ -74,7 +74,7 @@ function Tennis({ gameState: incomingGameState }) {
         </div>
       </td>
     ));
-    if (currentSet > 4 || currentSet > 3 && (!gameState?.Home?.Winner || !gameState?.Guest?.Winner)) {
+    if (currentSet > 4 || currentSet > 3 && (!gameState?.Home?.Winner || !gameState?.Guest?.Winner)) {
       sets.push(
         <td key={3} className="set-cell">
           <div style={{ fontSize: getFontSizeScore(pointsInSet[3] || 0) }} className="set-score">
@@ -83,7 +83,7 @@ function Tennis({ gameState: incomingGameState }) {
         </td>
       );
     }
-    if (currentSet === 5 && (gameState?.Home?.Winner || gameState?.Guest?.Winner)) {
+    if (currentSet === 5 && (gameState?.Home?.Winner || gameState?.Guest?.Winner)) {
       sets.push(
         <td key={4} className="set-cell">
           <div style={{ fontSize: getFontSizeScore(pointsSet5) }} className="set-score">
@@ -101,14 +101,14 @@ function Tennis({ gameState: incomingGameState }) {
         <div className="set-text">{set}</div>
       </td>
     ));
-    if (currentSet > 4 || currentSet > 3 && (!gameState?.Home?.Winner || !gameState?.Guest?.Winner)) {
+    if (currentSet > 4 || currentSet > 3 && (!gameState?.Home?.Winner || !gameState?.Guest?.Winner)) {
       headers.push(
         <td key={3} className="set-cell">
           <div className="set-text">S4</div>
         </td>
       );
     }
-    if (currentSet === 5 && (gameState?.Home?.Winner || gameState?.Guest?.Winner)) {
+    if (currentSet === 5 && (gameState?.Home?.Winner || gameState?.Guest?.Winner)) {
       headers.push(
         <td key={4} className="set-cell">
           <div className="set-text">S5</div>
@@ -116,6 +116,24 @@ function Tennis({ gameState: incomingGameState }) {
       );
     }
     return headers;
+  };
+
+  const renderGameOrSet = (points, games, currentSet) => {
+    if (sport === "Tennis") {
+      return (
+        <>
+          <div className="set-score">{games || "0"}</div>
+          <div className="set-score point score">{points || "0"}</div>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <div className="set-text">{currentSet || "1"}</div>
+          <div className="set-score point score">{points || "0"}</div>
+        </>
+      );
+    }
   };
 
   return (
@@ -134,10 +152,7 @@ function Tennis({ gameState: incomingGameState }) {
                 <div className="dot" style={{ backgroundColor: `${homeServiceDotColor}`, marginLeft: "10px" }}></div>
               </td>
               <td>
-                <div className="set-score">{gameState?.Home?.GameInSet || "0"}</div>
-              </td>
-              <td>
-                <div className="set-score point score">{gameState?.Home?.Points || "0"}</div>
+                {renderGameOrSet(gameState?.Home?.Points, gameState?.Home?.GameInSet, currentSet)}
               </td>
               {renderSetScores(gameState?.Home?.PointsInSet, gameState?.Home?.GameInSet)}
             </tr>
@@ -154,7 +169,7 @@ function Tennis({ gameState: incomingGameState }) {
                 <div className="set-text">{currentSet || "1"}</div>
               </td>
               <td>
-                <div className="set-text point">PTS</div>
+                <div className="set-text point">{sport === "Tennis" ? "PTS" : "Set"}</div>
               </td>
               {renderSetHeaders()}
             </tr>
@@ -168,10 +183,7 @@ function Tennis({ gameState: incomingGameState }) {
                 <div className="dot" style={{ backgroundColor: `${guestServiceDotColor}`, marginLeft: "10px" }}></div>
               </td>
               <td>
-                <div className="set-score">{gameState?.Guest?.GameInSet || "0"}</div>
-              </td>
-              <td>
-                <div className="set-score point score">{gameState?.Guest?.Points || "0"}</div>
+                {renderGameOrSet(gameState?.Guest?.Points, gameState?.Guest?.GameInSet, currentSet)}
               </td>
               {renderSetScores(gameState?.Guest?.PointsInSet, gameState?.Guest?.GameInSet)}
             </tr>
