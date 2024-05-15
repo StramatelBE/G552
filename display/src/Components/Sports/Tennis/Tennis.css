@@ -13,6 +13,8 @@
   align-items: center;
   justify-content: flex-start;
   border: 5px solid #005239;
+  width: inherit;
+  height: inherit;
 }
 
 .score-tennis {
@@ -209,13 +211,12 @@ tr {
   align-items: center;
   border-radius: 5px;
   width: auto;
-  height: 65px;
   padding: 2px;
   /* background: #242121; */
   background: black;
   text-align: center;
   color: white;
-  font-size: 70px;
+  font-size: 35px;
   font-weight: 700;
 }
 
