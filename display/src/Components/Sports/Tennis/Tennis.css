@@ -26,6 +26,10 @@
   width: 25%;
 }
 
+.score-tennis td:second-child {
+  background: #003d2b !important;
+}
+
 tr {
   display: flex;
   justify-content: space-between;
