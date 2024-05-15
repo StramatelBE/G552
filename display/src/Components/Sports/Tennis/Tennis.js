@@ -148,14 +148,8 @@ function Tennis({ gameState: incomingGameState }) {
             }
             </tr>
             <tr className="tr-text">
-              <td className="player-back logo">
-                <tr>
-                <img src="LOGO_Stramatel.gif"/>
-                </tr>
-              </td>
-              <td>
-                <div className="dot"></div>
-              </td>
+              
+              
               {gameState?.Sport === "Tennis" &&
               <td>
                 <div className="set-text">{currentSet || "1"}</div>
@@ -169,7 +163,16 @@ function Tennis({ gameState: incomingGameState }) {
               <td>
                 <div className="set-text point">{currentSet || "1"}</div>
               </td>
+              
               }
+              <td>
+                <div className="dot"></div>
+              </td>
+              <td className="player-back logo">
+                <tr>
+                <img src="LOGO_Stramatel.gif"/>
+                </tr>
+              </td>
               {renderSetHeaders()}
             </tr>
             <tr>
