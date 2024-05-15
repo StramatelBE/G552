@@ -72,6 +72,11 @@ tr {
   background: #000000;
 }
 
+.player-back {
+  border-radius: 5px;
+  background: black;
+}
+
 .set-score {
   display: flex;
   border-radius: 5px;
