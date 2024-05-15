@@ -21,15 +21,11 @@ module.exports = class Frame_0x42 {
             Sport: eSport.TableTennis,
             Set: nBytesToNumber(_message[14]),
 
-            Chrono: {
-                Value: Tools.Chrono(_message[4], _message[5], _message[6], _message[7]),
-                Display: Tools.ClockTimerDisplay(_message[21]).Chrono,
-            },
-
             Timer: {
                 Status: Tools.TimerStartStop(_message[20]).Status,
                 Display: Tools.ClockTimerDisplay(_message[21]).Timer,
                 LED: Tools.TimerStartStop(_message[20]).LED,
+                Value: Tools.Chrono(_message[4], _message[5], _message[6], _message[7]),
             },
 
             Clock: {
@@ -37,7 +33,7 @@ module.exports = class Frame_0x42 {
             },
 
             Home: {
-                TotalPoints: nBytesToNumber(_message[9], _message[10]),
+                Points: nBytesToNumber(_message[9], _message[10]),
                 SetsWon: nBytesToNumber(_message[15]),
                 PointsInSet: nBytesToTables(24, 4, 4, _message),
                 Service: Tools.Service(_message[50]).Home,
@@ -45,7 +41,7 @@ module.exports = class Frame_0x42 {
             },
 
             Guest: {
-                TotalPoints: nBytesToNumber(_message[12], _message[13]),
+                Points: nBytesToNumber(_message[12], _message[13]),
                 SetsWon: nBytesToNumber(_message[16]),
                 PointsInSet: nBytesToTables(26, 4, 4, _message),
                 Service: Tools.Service(_message[50]).Guest,
