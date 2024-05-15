@@ -138,6 +138,7 @@ tr {
 
 .point {
   min-width: 70px !important;
+  font-size: 54px;
 }
 
 .timer {

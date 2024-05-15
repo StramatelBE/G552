@@ -27,7 +27,7 @@ function Tennis({ gameState: incomingGameState }) {
 
   function calculateCurrentSet(homeSetsWon, guestSetsWon) {
     const totalSets = homeSetsWon + guestSetsWon + 1;
-    return (gameState?.Home?.Winner || gameState?.Guest?.Winner) ? -1 : totalSets > 3 ? 3 : totalSets;
+    return (gameState?.Home?.Winner || gameState?.Guest?.Winner) ? totalSets - 1 : totalSets > 3 ? 3 : totalSets;
   }
 
   useEffect(() => {
