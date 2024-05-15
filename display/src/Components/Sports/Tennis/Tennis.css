@@ -204,7 +204,7 @@ tr {
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  width: 165px;
+  width: auto;
   height: 65px;
   /* background: #242121; */
   background: black;
