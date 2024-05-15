@@ -60,6 +60,7 @@ tr {
 
 .set-score {
   display: flex;
+  border-radius: 25px;
   width: 40px;
   height: 60px;
   background: #242121;
