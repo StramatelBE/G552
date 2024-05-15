@@ -73,11 +73,20 @@ tr {
 }
 
 .player-back {
-  display: block;
-  width: auto;
+  display: inline-block; /* Changer de block à inline-block */
+  width: auto; /* S'assurer que la largeur s'ajuste automatiquement */
   border-radius: 5px;
   background: black;
+  padding: 5px; /* Optionnel: ajouter du padding pour un meilleur espacement */
 }
+
+.player-name {
+  display: inline-block;
+  color: #c96d06;
+  font-weight: 700;
+  white-space: nowrap; /* Empêche la rupture de ligne pour le nom du joueur */
+}
+
 
 .set-score {
   display: flex;
@@ -131,12 +140,12 @@ tr {
   font-weight: 700;
 }
 
-.player-name {
+/* .player-name {
   display: block;
   width: auto;
   color: #c96d06;
   font-weight: 700;
-}
+} */
 
 .score-background {
   width: 50px;
