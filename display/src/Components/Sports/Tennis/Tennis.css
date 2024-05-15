@@ -73,7 +73,8 @@ tr {
 }
 
 .player-back {
-  display: flex;
+  display: block;
+  width: auto;
   border-radius: 5px;
   background: black;
 }
