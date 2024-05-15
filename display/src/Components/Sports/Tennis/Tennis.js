@@ -40,11 +40,12 @@ function Tennis({ gameState: incomingGameState }) {
   }, [incomingGameState]);
 
   useEffect(() => {
-    if (currentSet === 4) {
+    if (gameState?.Home?.Points === 6 || gameState?.Guest?.Points === 6){
       setHomePointsSet5(gameState?.Home?.Points);
       setGuestPointsSet5(gameState?.Guest?.Points);
     }
-  }, [currentSet, gameState]);
+  
+  }, [gameState]);
 
   function getFontSize(name) {
     if (name.length <= 7) {
@@ -74,7 +75,7 @@ function Tennis({ gameState: incomingGameState }) {
         </div>
       </td>
     ));
-    if (currentSet > 3 || currentSet > 2 && (!gameState?.Home?.Winner || !gameState?.Guest?.Winner)) {
+    if (currentSet > 4 || currentSet > 3 && (!gameState?.Home?.Winner || !gameState?.Guest?.Winner)) {
       sets.push(
         <td key={3} className="set-cell">
           <div style={{ fontSize: getFontSizeScore(pointsInSet[3] || 0) }} className="set-score">
@@ -83,7 +84,7 @@ function Tennis({ gameState: incomingGameState }) {
         </td>
       );
     }
-    if (currentSet > 4) {
+    if (currentSet > 5) {
       sets.push(
         <td key={4} className="set-cell">
           <div style={{ fontSize: getFontSizeScore(pointsSet5) }} className="set-score">
@@ -101,14 +102,14 @@ function Tennis({ gameState: incomingGameState }) {
         <div className="set-text">{set}</div>
       </td>
     ));
-    if (currentSet > 2) {
+    if (currentSet > 4 || currentSet > 3 && (!gameState?.Home?.Winner || !gameState?.Guest?.Winner)) {
       headers.push(
         <td key={3} className="set-cell">
           <div className="set-text">S4</div>
         </td>
       );
     }
-    if (currentSet > 3) {
+    if (currentSet > 5) {
       headers.push(
         <td key={4} className="set-cell">
           <div className="set-text">S5</div>
