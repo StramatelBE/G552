@@ -68,7 +68,7 @@ function Tennis({ gameState: incomingGameState }) {
 
   const renderSetScores = (pointsInSet, pointsSet5) => {
     const sets = [0, 1, 2].map((set, index) => (
-      <td key={index}>
+      <td key={index} className="set-cell">
         <div style={{ fontSize: getFontSizeScore(pointsInSet[set] || 0) }} className="set-score">
           {pointsInSet[set] !== undefined ? pointsInSet[set] : "0"}
         </div>
@@ -76,7 +76,7 @@ function Tennis({ gameState: incomingGameState }) {
     ));
     if (currentSet > 2) {
       sets.push(
-        <td key={3}>
+        <td key={3} className="set-cell">
           <div style={{ fontSize: getFontSizeScore(pointsInSet[3] || 0) }} className="set-score">
             {pointsInSet[3] !== undefined ? pointsInSet[3] : "0"}
           </div>
@@ -85,7 +85,7 @@ function Tennis({ gameState: incomingGameState }) {
     }
     if (currentSet > 3) {
       sets.push(
-        <td key={4}>
+        <td key={4} className="set-cell">
           <div style={{ fontSize: getFontSizeScore(pointsSet5) }} className="set-score">
             {pointsSet5}
           </div>
@@ -97,20 +97,20 @@ function Tennis({ gameState: incomingGameState }) {
 
   const renderSetHeaders = () => {
     const headers = ["S1", "S2", "S3"].map((set, index) => (
-      <td key={index}>
+      <td key={index} className="set-cell">
         <div className="set-text">{set}</div>
       </td>
     ));
     if (currentSet > 2) {
       headers.push(
-        <td key={3}>
+        <td key={3} className="set-cell">
           <div className="set-text">S4</div>
         </td>
       );
     }
     if (currentSet > 3) {
       headers.push(
-        <td key={4}>
+        <td key={4} className="set-cell">
           <div className="set-text">S5</div>
         </td>
       );

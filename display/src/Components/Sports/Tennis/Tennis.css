@@ -4,6 +4,7 @@
   position: absolute;
   background: #005239 !important;
 }
+
 .container-tennis {
   display: flex;
   flex-direction: column;
@@ -11,21 +12,28 @@
   justify-content: flex-start;
   margin: 5px;
 }
+
 .score-tennis {
   margin-top: 12px;
   table-layout: fixed;
   width: 100%;
-  border-collapse: collapse; /* Ajouté pour centrer les cellules */
+  text-align: center;
 }
 
-.score-tennis td, .score-tennis th { /* Centrer le contenu des cellules */
-  text-align: center;
-  vertical-align: middle;
+.score-tennis td:first-child {
+  width: 20%;
 }
 
 tr {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.set-cell {
+  width: 40px;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
@@ -37,9 +45,22 @@ tr {
   margin-top: 20px;
 }
 
+.player-top {
+  top: 186px;
+}
+
+.player-bottom {
+  top: 85px;
+}
+
+.player-margin {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 .set-score {
   display: flex;
-  width: 50px; /* Uniformiser la largeur */
+  width: 40px;
   height: 60px;
   background: #242121;
   text-align: center;
@@ -49,9 +70,9 @@ tr {
   font-size: 38px;
   font-weight: 700;
 }
+
 .set-text {
-  display: flex;
-  width: 50px; /* Uniformiser la largeur */
+  width: 40px;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -59,6 +80,7 @@ tr {
   font-weight: 500;
   color: white;
 }
+
 .score:last-child {
   width: 100px;
 }
@@ -73,9 +95,67 @@ tr {
   margin-left: 10px; /* Décalage vers la droite */
 }
 
+.set-player-name {
+  display: flex;
+  min-width: 165px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  color: #005239;
+  font-weight: 700;
+}
+
 .player-name {
   color: #c96d06;
   font-weight: 700;
+}
+
+.score-background {
+  width: 50px;
+  height: 60px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  background: #242121;
+}
+
+.sets {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.set,
+.points {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 41px;
+  text-align: center;
+  color: white;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.setimage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  top: 5px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.point {
+  min-width: 70px !important;
+}
+
+.score {
+  font-size: 54px;
 }
 
 .timer {
@@ -92,10 +172,12 @@ tr {
 }
 
 @keyframes blink {
-  0%, 50% {
+  0%,
+  50% {
     visibility: visible;
   }
-  51%, 100% {
+  51%,
+  100% {
     visibility: hidden;
   }
 }
