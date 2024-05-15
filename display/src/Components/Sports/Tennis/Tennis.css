@@ -63,7 +63,7 @@ tr {
   margin-right: 5px;
 }
 
-.logo {
+.logo-tennis {
   display: inline-block; /* Changer de block à inline-block */
   width: 127px; /* S'assurer que la largeur s'ajuste automatiquement */
   text-align: center;

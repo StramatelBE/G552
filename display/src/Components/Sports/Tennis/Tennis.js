@@ -168,7 +168,7 @@ function Tennis({ gameState: incomingGameState }) {
               <td>
                 <div className="dot"></div>
               </td>
-              <td className="player-back logo">
+              <td className="player-back logo-tennis">
                 <img src="LOGO_Stramatel.gif"/>
               </td>
               {renderSetHeaders()}
