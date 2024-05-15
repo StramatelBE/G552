@@ -152,13 +152,13 @@ function Tennis({ gameState: incomingGameState }) {
             </tr>
             <tr className="tr-text">
             <td>
-              <div className="set-text">Sets</div>
+              <div className="set-text">S</div>
             </td>
               
               {gameState?.Sport === "Tennis" &&
           
               <td>
-                <div className="set-text">S{currentSet || "1"}</div>
+                <div className="set-text">G</div>
               </td>
               }
               {gameState?.Sport === "Tennis" ?
