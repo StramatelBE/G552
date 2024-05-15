@@ -100,8 +100,8 @@ function Basketball({ gameState: incomingGameState }) {
       {/* HOME */}
       <div className="container-team-sport" style={{ left: "0px" }}>
         <div className="text timeout-hand" style={{ left: '120px', top: "140px" }}>
-          {gameState?.Guest?.Timeout?.Count >= 0 && (
-            [...Array(3 - gameState?.Guest?.Timeout?.Count)].map((_, i) => (
+          {gameState?.Home?.Timeout?.Count >= 0 && (
+            [...Array(gameState?.Home?.Timeout?.Count)].map((_, i) => (
               <div
                 key={i}
                 className="timeout-dot-sport"
@@ -155,7 +155,7 @@ function Basketball({ gameState: incomingGameState }) {
         </div>
         <div className="text timeout-hand" style={{ right: '120px', top: "140px" }}>
           {gameState?.Guest?.Timeout?.Count >= 0 && (
-            [...Array(3 - gameState?.Guest?.Timeout?.Count)].map((_, i) => (
+            [...Array(gameState?.Guest?.Timeout?.Count)].map((_, i) => (
               <div
                 key={i}
                 className="timeout-dot-sport"
