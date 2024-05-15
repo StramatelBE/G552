@@ -23,7 +23,7 @@
 }
 
 .score-tennis td:first-child {
-  max-width: 30%;
+  width: 30%;
 }
 
 tr {
