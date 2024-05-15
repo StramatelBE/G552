@@ -131,7 +131,7 @@ tr {
 }
 
 .player-name {
-  display: flex;
+  display: block;
   width: auto;
   color: #c96d06;
   font-weight: 700;
