@@ -133,9 +133,11 @@ function Tennis({ gameState: incomingGameState }) {
               <td>
                 <div className="dot" style={{ backgroundColor: `${homeServiceDotColor}`, marginLeft: "10px" }}></div>
               </td>
+              {gameState?.Sport === "Tennis" &&
               <td>
-                <div className="set-score">{gameState?.Home?.GameInSet || "0"}</div>
+                 <div className="set-score">{gameState?.Home?.GameInSet || "0"}</div>
               </td>
+              }
               <td>
                 <div className="set-score point score">{gameState?.Home?.Points || "0"}</div>
               </td>
@@ -150,12 +152,20 @@ function Tennis({ gameState: incomingGameState }) {
               <td>
                 <div className="dot"></div>
               </td>
+              {gameState?.Sport === "Tennis" &&
               <td>
                 <div className="set-text">{currentSet || "1"}</div>
               </td>
+              }
+              {gameState?.Sport === "Tennis" ?
               <td>
                 <div className="set-text point">PTS</div>
               </td>
+              :
+              <td>
+                <div className="set-text point">{currentSet || "1"}</div>
+              </td>
+              }
               {renderSetHeaders()}
             </tr>
             <tr>
