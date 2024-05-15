@@ -30,7 +30,7 @@ module.exports = class Frame_0x23 {
             Home: {
                 Points: nBytesToNumber(_message[9], _message[10]),
                 Fouls:{
-                    Team: Tools.TeamFouls(_message[2], _message[8]),
+                    Team: Tools.TeamFouls(_message[52], _message[8]),
                 },
                 PenaltiesInProgress: Tools.PenaltiesInProgress(_message[15]),
                 Timeout: {

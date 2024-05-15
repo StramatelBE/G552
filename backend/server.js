@@ -118,7 +118,11 @@ app.get("/qrcode", async (req, res) => {
         const qrCode = `WIFI:T:${authType};S:${ssid};P:${password};;`;
         const qrImage = await QRCode.toDataURL(qrCode);
 
-        res.send(`<img src="${qrImage}" alt="QR Code" />`);
+        res.send(`
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <img src="${qrImage}" alt="QR Code" />
+            </div>
+        `);
     }
     catch (error) {
         console.error("Error while generating QR Code:", error.message);

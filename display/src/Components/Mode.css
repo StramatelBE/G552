@@ -141,6 +141,7 @@
   animation: blink 1s infinite;
 }
 
+
 .logo {
   width: 75%;
   max-width: 100%; /* To ensure it doesn't overflow its container */
@@ -167,3 +168,4 @@ img {
   max-width: 100%; /* Assurez-vous que l'image ne dépasse pas la largeur du conteneur */
   height: auto; /* Maintient le ratio d'aspect de l'image */
 }
+
