@@ -58,9 +58,16 @@ tr {
   margin-right: 5px;
 }
 
+.logo {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
 .tr-text {
   border-radius: 5px;
   background: #242121;
+  opacity: 0.9;
 }
 
 .set-score {
