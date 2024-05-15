@@ -149,9 +149,7 @@ function Tennis({ gameState: incomingGameState }) {
             </tr>
             <tr className="tr-text">
               <td>
-                <div className={`player-name `} style={{ fontSize: guestFontSize, visibility: "hidden" }}>
-                  {gameState?.Home?.TeamName || "player1"}
-                </div>
+                <img src="LOGO_Stramatel.gif"/>
               </td>
               <td>
                 <div className="dot"></div>
