@@ -125,10 +125,6 @@ function Tennis({ gameState: incomingGameState }) {
         <table className="score-tennis">
           <tbody>
             <tr>
-              
-              <td>
-                <div className="dot" style={{ backgroundColor: `${homeServiceDotColor}` }}></div>
-              </td>
               {gameState?.Sport === "Tennis" &&
               <td>
                  <div className="set-score">{gameState?.Home?.GameInSet || "0"}</div>
@@ -136,6 +132,9 @@ function Tennis({ gameState: incomingGameState }) {
               }
               <td>
                 <div className="set-score point score">{gameState?.Home?.Points || "0"}</div>
+              </td>
+              <td>
+                <div className="dot" style={{ backgroundColor: `${homeServiceDotColor}` }}></div>
               </td>
               <td className="player-back">
                 <div className={`player-name ${homeBlinkClass}`} style={{ fontSize: homeFontSize }}>
@@ -174,10 +173,6 @@ function Tennis({ gameState: incomingGameState }) {
               {renderSetHeaders()}
             </tr>
             <tr>
-              
-              <td>
-                <div className="dot" style={{ backgroundColor: `${guestServiceDotColor}` }}></div>
-              </td>
               {gameState?.Sport === "Tennis" &&
               <td>
                 <div className="set-score">{gameState?.Guest?.GameInSet || "0"}</div>
@@ -185,6 +180,9 @@ function Tennis({ gameState: incomingGameState }) {
               }
               <td>
                 <div className="set-score point score">{gameState?.Guest?.Points || "0"}</div>
+              </td>
+              <td>
+                <div className="dot" style={{ backgroundColor: `${guestServiceDotColor}` }}></div>
               </td>
               <td className="player-back">
                 <div className={`player-name ${guestBlinkClass}`} style={{ fontSize: guestFontSize }}>
