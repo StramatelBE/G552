@@ -79,6 +79,8 @@ tr {
 .player-back {
   display: flex;
   align-items: center;
+  align-content: center;
+  text-align: center;
   height: 58px;
   width: 120px; /* S'assurer que la largeur s'ajuste automatiquement */
   border-radius: 5px;
