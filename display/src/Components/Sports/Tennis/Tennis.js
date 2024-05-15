@@ -59,8 +59,8 @@ function Tennis({ gameState: incomingGameState }) {
   }
 
   // Determine the color of the service dot for Home and Guest
-  const homeServiceDotColor = gameState?.Home?.Service === 1 ? "darkred" : "#005239";
-  const guestServiceDotColor = gameState?.Guest?.Service === 1 ? "darkred" : "#005239";
+  const homeServiceDotColor = gameState?.Home?.Service === 1 ? "red" : "#005239";
+  const guestServiceDotColor = gameState?.Guest?.Service === 1 ? "red" : "#005239";
 
   // Conditionally apply blinking class
   const homeBlinkClass = gameState?.Home?.Winner ? "blinking" : "";
