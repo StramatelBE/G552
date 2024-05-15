@@ -152,7 +152,7 @@ tr {
 }
 
 .point {
-  min-width: 70px !important;
+  min-width: 100px !important;
 }
 
 .score {
