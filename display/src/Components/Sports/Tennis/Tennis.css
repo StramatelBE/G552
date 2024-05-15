@@ -26,12 +26,12 @@
 
 tr {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
 .set-cell {
-  width: 50px;
+  width: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,7 +60,7 @@ tr {
 
 .set-score {
   display: flex;
-  width: 50px;
+  width: 40px;
   height: 60px;
   background: #242121;
   text-align: center;
@@ -72,9 +72,7 @@ tr {
 }
 
 .set-text {
-  display: flex;
-  width: 50px;
-  height: 60px;
+  width: 40px;
   text-align: center;
   justify-content: center;
   align-items: center;
