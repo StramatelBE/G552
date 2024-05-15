@@ -131,7 +131,6 @@ tr {
   min-width: 10px;
   min-height: 10px;
   border-radius: 9999px;
-  margin-left: 10px; /* Décalage vers la droite */
 }
 
 .set-player-name {
