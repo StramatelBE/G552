@@ -12,7 +12,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  margin: 5px;
+  border: 5px solid #005239;
 }
 
 .score-tennis {
@@ -20,7 +20,7 @@
   table-layout: fixed;
   width: 100%;
   text-align: center;
-  background: #002b1e;
+  background: #001a12;
   border-radius: 5px;
  
 }
