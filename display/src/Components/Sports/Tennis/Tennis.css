@@ -4,6 +4,7 @@
   position: absolute;
   background: #005239 !important;
 }
+
 .container-tennis {
   display: flex;
   flex-direction: column;
@@ -11,10 +12,12 @@
   justify-content: flex-start;
   margin: 5px;
 }
+
 .score-tennis {
   margin-top: 12px;
   table-layout: fixed;
   width: 100%;
+  text-align: center;
 }
 
 .score-tennis td:first-child {
@@ -24,6 +27,13 @@
 tr {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.set-cell {
+  width: 40px;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
@@ -38,9 +48,11 @@ tr {
 .player-top {
   top: 186px;
 }
+
 .player-bottom {
   top: 85px;
 }
+
 .player-margin {
   margin-left: 5px;
   margin-right: 5px;
@@ -58,10 +70,9 @@ tr {
   font-size: 38px;
   font-weight: 700;
 }
+
 .set-text {
-  display: flex;
-  width: 50px;
-  height: 60px;
+  width: 40px;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -69,6 +80,7 @@ tr {
   font-weight: 500;
   color: white;
 }
+
 .score:last-child {
   width: 100px;
 }
