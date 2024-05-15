@@ -75,7 +75,8 @@ tr {
   border-radius: 5px;
   width: 40px;
   height: 60px;
-  background: #242121;
+  /* background: #242121; */
+  background: black;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -179,9 +180,11 @@ tr {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 5px;
   width: 165px;
   height: 65px;
-  background: #242121;
+  /* background: #242121; */
+  background: black;
   text-align: center;
   color: white;
   font-size: 54px;
