@@ -101,7 +101,7 @@ function Tennis({ gameState: incomingGameState }) {
         <div className="set-text">{set}</div>
       </td>
     ));
-    if (currentSet > 4 || (gameState?.Home?.Winner || gameState?.Guest?.Winner)) {
+    if (currentSet > 4 || (currentSet === 4 && (gameState?.Home?.Winner || gameState?.Guest?.Winner))) {
       headers.push(
         <td key={3} className="set-cell">
           <div className="set-text">S4</div>
@@ -160,7 +160,7 @@ function Tennis({ gameState: incomingGameState }) {
               </td>
               :
               <td>
-                <div className="set-text point">{currentSet || "1"}</div>
+                <div className="set-text point">S{currentSet || "1"}</div>
               </td>
               
               }
