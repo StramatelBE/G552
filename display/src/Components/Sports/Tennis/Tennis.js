@@ -139,7 +139,7 @@ function Tennis({ gameState: incomingGameState }) {
               <td>
                 <div className="set-score point score">{gameState?.Home?.Points || "0"}</div>
               </td>
-              {renderSetScores(gameState?.Home?.PointsInSet, homePointsSet5)}
+              {renderSetScores(gameState?.Home?.PointsInSet, gameState?.Home?.Points)}
             </tr>
             <tr>
               <td>
@@ -173,7 +173,7 @@ function Tennis({ gameState: incomingGameState }) {
               <td>
                 <div className="set-score point score">{gameState?.Guest?.Points || "0"}</div>
               </td>
-              {renderSetScores(gameState?.Guest?.PointsInSet, guestPointsSet5)}
+              {renderSetScores(gameState?.Guest?.PointsInSet, gameState?.Guest?.Points)}
             </tr>
           </tbody>
         </table>
