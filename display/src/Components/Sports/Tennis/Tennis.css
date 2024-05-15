@@ -138,6 +138,10 @@ tr {
 
 .point {
   min-width: 70px !important;
+  
+}
+
+.score {
   font-size: 54px;
 }
 
