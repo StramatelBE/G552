@@ -55,7 +55,7 @@ function Tennis({ gameState: incomingGameState }) {
   }
 
   function getFontSizeScore(point) {
-    return "38px";
+    return "35px";
   }
 
   // Determine the color of the service dot for Home and Guest
