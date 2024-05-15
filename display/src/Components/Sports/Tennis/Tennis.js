@@ -147,10 +147,13 @@ function Tennis({ gameState: incomingGameState }) {
               renderSetScores(gameState?.Home?.PointsInSet, gameState?.Home?.Points)
             }
             </tr>
-            <tr className="tr-text">
+            <tr >
               <td className="logo">
-                <img src="LOGO_Stramatel.gif"/>
+                <tr className="tr-text">
+                  <img src="LOGO_Stramatel.gif"/>
+                </tr>
               </td>
+              <tr className="tr-text">
               <td>
                 <div className="dot"></div>
               </td>
@@ -170,6 +173,8 @@ function Tennis({ gameState: incomingGameState }) {
               }
               {renderSetHeaders()}
             </tr>
+                </tr>              
+               
             <tr>
               <td>
                 <div className={`player-name ${guestBlinkClass}`} style={{ fontSize: guestFontSize }}>
