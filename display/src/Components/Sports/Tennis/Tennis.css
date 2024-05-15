@@ -26,9 +26,6 @@
   width: 25%;
 }
 
-.score-tennis td:second-child {
-  background: #003d2b !important;
-}
 
 tr {
   display: flex;
@@ -65,7 +62,8 @@ tr {
 }
 
 .logo {
-  display: flex;
+  display: inline-block; /* Changer de block à inline-block */
+  width: auto; /* S'assurer que la largeur s'ajuste automatiquement */
   text-align: center;
   justify-content: center;
   align-items: center;
