@@ -94,6 +94,14 @@ function Volleyball({ gameState: incomingGameState }) {
       return timerString;
     }
   }
+
+  function formatSideScore(point) {
+    console.log("test", point);
+    if (point < 10) {
+      return "0" + point;
+    }
+    return point;
+  }
   return (
     <div className="container-sport">
       <div className="container-team-sport" style={{ left: "0px" }}>
@@ -111,25 +119,33 @@ function Volleyball({ gameState: incomingGameState }) {
         <div className="text team-name-sport" style={{ fontSize: homeFontSize, left: "0px", top: "90px" }} >
           {gameState?.Home?.TeamName !== undefined ? gameState?.Home?.TeamName : "HOME"}
         </div>
-        <div className="side-numbers" style={{ left: "0px", top: "135px" }}>
-          {gameState.Home.PointsBySet && Object.values(gameState.Home.PointsBySet).map((point, index) => {
+        <div className="side-numbers" style={{ left: "1px", top: "140px" }}>
+          {gameState && Object.values(gameState.Home.PointsBySet).map((point, index) => {
             const isLosing = gameState.Guest.PointsBySet[index] < point;
-            const divStyle = { color: isLosing ? "yellow" : "white" };
-            if (point !== 0 || gameState.Guest.PointsBySet[index] !== 0) {
-              return <div className="text side-number" style={divStyle} >{point}</div>;
+            if (isLosing && (point !== 0 || gameState.Guest.PointsBySet[index] !== 0)) {
+              return <div className="text side-number" ><div style={{ color: "#00a13b" }}>{index + 1}</div><span>&nbsp;</span>{formatSideScore(point)}|{formatSideScore(gameState.Guest.PointsBySet[index])}</div>;
             }
           })}
-          {/* {
-            for
-          } */}
+
+
+
         </div>
+        {gameState?.Home?.Timeout?.Count >= 0 && (
+          [...Array(gameState?.Home?.Timeout?.Count)].map((_, index) => (
+            <div
+              key={index}
+              className="timeout-dot-sport"
+              style={{ left: "121px", top: `${150 + index * 25}px` }}
+            />
+          ))
+        )}
       </div>
       <div className="container-team-sport" style={{ left: "286px" }}>
         <div className="container-score" style={{ right: "0px", top: "0px" }} >
           {guestScoreAnimating && (
             <>
-              <div className="score-sport score-out">{prevGuestScore}</div>
-              <div className="score-sport score-in">{guestScore}</div>
+              <div className="text score-sport score-out">{prevGuestScore}</div>
+              <div className="text score-sport score-in">{guestScore}</div>
             </>
           )}
           {!guestScoreAnimating && (
@@ -139,15 +155,26 @@ function Volleyball({ gameState: incomingGameState }) {
         <div className="text team-name-sport" style={{ fontSize: homeFontSize, left: "0px", top: "90px", fontSize: guestFontSize }} >
           {gameState?.Guest?.TeamName !== undefined ? gameState?.Guest?.TeamName : "GUEST"}
         </div>
-        <div className="side-numbers" style={{ right: "0px", top: "135px" }}>
+        <div className="side-numbers" style={{ right: "1px", top: "140px" }}>
           {gameState && Object.values(gameState.Guest.PointsBySet).map((point, index) => {
             const isLosing = gameState.Home.PointsBySet[index] < point;
-            const divStyle = { color: isLosing ? "yellow" : "white" };
-            if (point !== 0 || gameState.Home.PointsBySet[index] !== 0) {
-              return <div className="text side-number" style={divStyle} >{point}</div>;
+            if (isLosing && (point !== 0 || gameState.Home.PointsBySet[index] !== 0)) {
+              return <div className="text side-number" ><div style={{ color: "#00a13b", right: "10px" }}>{index + 1}</div><span>&nbsp;</span>{formatSideScore(gameState.Home.PointsBySet[index])}|{formatSideScore(point)}</div>;
             }
+            { isLosing }
           })}
+
+
         </div>
+        {gameState?.Guest?.Timeout?.Count >= 0 && (
+          [...Array(gameState?.Guest?.Timeout?.Count)].map((_, index) => (
+            <div
+              key={index}
+              className="timeout-dot-sport"
+              style={{ right: "119px", top: `${150 + index * 25}px` }}
+            />
+          ))
+        )}
       </div>
 
 

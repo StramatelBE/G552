@@ -27,6 +27,7 @@ const App = () => {
   const [mediaKey, setMediaKey] = useState(0); // Key to force re-render of MediaMode
   const [lastMediaMode, setLastMediaMode] = useState(null); // Track last media mode
 
+
   useEffect(() => {
     const removeListeners = () => {
       ipcRenderer.removeAllListeners("server-data");
@@ -72,6 +73,7 @@ const App = () => {
 
     return removeListeners;
   }, [lastMediaMode]); // Include lastMediaMode in the dependencies array
+
 
   return (
     <>
