@@ -131,6 +131,7 @@ tr {
   min-width: 10px;
   min-height: 10px;
   border-radius: 9999px;
+  padding: auto;
 }
 
 .set-player-name {

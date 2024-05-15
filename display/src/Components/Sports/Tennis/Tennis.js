@@ -179,7 +179,7 @@ function Tennis({ gameState: incomingGameState }) {
                 </div>
               </td>
               <td>
-                <div className="dot" style={{ backgroundColor: `${guestServiceDotColor}`, marginLeft: "10px" }}></div>
+                <div className="dot" style={{ backgroundColor: `${guestServiceDotColor}` }}></div>
               </td>
               {gameState?.Sport === "Tennis" &&
               <td>
