@@ -74,7 +74,7 @@ function Tennis({ gameState: incomingGameState }) {
         </div>
       </td>
     ));
-    if (currentSet > 2) {
+    if (currentSet > 3 || currentSet > 2 && (!gameState?.Home?.Winner || !gameState?.Guest?.Winner)) {
       sets.push(
         <td key={3} className="set-cell">
           <div style={{ fontSize: getFontSizeScore(pointsInSet[3] || 0) }} className="set-score">
@@ -83,7 +83,7 @@ function Tennis({ gameState: incomingGameState }) {
         </td>
       );
     }
-    if (currentSet > 3) {
+    if (currentSet > 4 || currentSet > 3 && (!gameState?.Home?.Winner || !gameState?.Guest?.Winner)) {
       sets.push(
         <td key={4} className="set-cell">
           <div style={{ fontSize: getFontSizeScore(pointsSet5) }} className="set-score">
