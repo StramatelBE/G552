@@ -72,11 +72,12 @@ tr {
 }
 
 .set-text {
+  display: flex;
   width: 40px;
   text-align: center;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
+  font-size: 38px;
   font-weight: 700;
   color: white;
 }
