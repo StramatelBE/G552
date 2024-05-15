@@ -88,7 +88,9 @@ tr {
 }
 
 .player-name {
-  
+  align-items: center;
+  align-content: center;
+  text-align: center;
   color: #c96d06;
   font-weight: 700;
   white-space: nowrap; /* Empêche la rupture de ligne pour le nom du joueur */
