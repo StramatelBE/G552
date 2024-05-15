@@ -77,6 +77,7 @@ tr {
 }
 
 .player-back {
+  display: flex;
   height: 60px;
   display: inline-block; /* Changer de block à inline-block */
   width: auto; /* S'assurer que la largeur s'ajuste automatiquement */
