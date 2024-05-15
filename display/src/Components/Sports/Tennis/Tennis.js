@@ -101,7 +101,7 @@ function Tennis({ gameState: incomingGameState }) {
         <div className="set-text">{set}</div>
       </td>
     ));
-    if (currentSet > 4 || currentSet > 3 && (!gameState?.Home?.Winner || !gameState?.Guest?.Winner)) {
+    if (currentSet > 4) {
       headers.push(
         <td key={3} className="set-cell">
           <div className="set-text">S4</div>
@@ -141,7 +141,11 @@ function Tennis({ gameState: incomingGameState }) {
               <td>
                 <div className="set-score point score">{gameState?.Home?.Points || "0"}</div>
               </td>
-              {renderSetScores(gameState?.Home?.PointsInSet, gameState?.Home?.GameInSet)}
+              {gameState?.Sport === "Tennis" ?
+              renderSetScores(gameState?.Home?.PointsInSet, gameState?.Home?.GameInSet)
+              :
+              renderSetScores(gameState?.Home?.PointsInSet, gameState?.Home?.Points)
+            }
             </tr>
             <tr>
               <td>
@@ -177,13 +181,19 @@ function Tennis({ gameState: incomingGameState }) {
               <td>
                 <div className="dot" style={{ backgroundColor: `${guestServiceDotColor}`, marginLeft: "10px" }}></div>
               </td>
+              {gameState?.Sport === "Tennis" &&
               <td>
                 <div className="set-score">{gameState?.Guest?.GameInSet || "0"}</div>
               </td>
+              }
               <td>
                 <div className="set-score point score">{gameState?.Guest?.Points || "0"}</div>
               </td>
-              {renderSetScores(gameState?.Guest?.PointsInSet, gameState?.Guest?.GameInSet)}
+              {gameState?.Sport === "Tennis" ?
+              renderSetScores(gameState?.Guest?.PointsInSet, gameState?.Guest?.GameInSet)
+              :
+              renderSetScores(gameState?.Guest?.PointsInSet, gameState?.Guest?.Points)
+            }
             </tr>
           </tbody>
         </table>
