@@ -29,15 +29,15 @@ function pointsInSet(startIndex, size, message) {
 
     console.log("Points In Set, Message value list")
 
-    for (let i = 0; i < message.length; i+=2) {
+    for (let i = 0; i < message.length; i++) {
         console.log(i, message[i]);
    
         
     }
     pointsBySet[0] = nBytesToNumber(message[startIndex], message[startIndex + 1]);
     pointsBySet[1] = nBytesToNumber(message[startIndex  + 4], message[startIndex + 5]);
-    pointsBySet[2] = nBytesToNumber(message[startIndex + 11], message[startIndex + 12]);
-    pointsBySet[3] = nBytesToNumber(message[startIndex + 14], message[startIndex + 15]);
+    pointsBySet[2] = nBytesToNumber(message[startIndex + 9], message[startIndex + 10]);
+    pointsBySet[3] = nBytesToNumber(message[startIndex + 13], message[startIndex + 14]);
 
     return pointsBySet;
 }
