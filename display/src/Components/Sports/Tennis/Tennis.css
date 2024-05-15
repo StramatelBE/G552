@@ -58,6 +58,11 @@ tr {
   margin-right: 5px;
 }
 
+.tr-text {
+  border-radius: 5px;
+  background: #3a3939;
+}
+
 .set-score {
   display: flex;
   border-radius: 5px;
@@ -71,6 +76,7 @@ tr {
   font-size: 38px;
   font-weight: 700;
 }
+
 
 .set-text {
   display: flex;
@@ -140,6 +146,8 @@ tr {
   font-size: 25px;
   font-weight: 700;
 }
+
+
 
 .setimage {
   display: flex;
