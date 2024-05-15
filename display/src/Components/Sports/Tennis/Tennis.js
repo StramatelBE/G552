@@ -147,8 +147,8 @@ function Tennis({ gameState: incomingGameState }) {
               renderSetScores(gameState?.Home?.PointsInSet, gameState?.Home?.Points)
             }
             </tr>
-            <tr className="player-back">
-              <td className="logo">
+            <tr className="tr-text">
+              <td className="player-back logo">
                 <tr>
                 <img src="LOGO_Stramatel.gif"/>
                 </tr>
