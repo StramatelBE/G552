@@ -147,7 +147,7 @@ function Tennis({ gameState: incomingGameState }) {
               renderSetScores(gameState?.Home?.PointsInSet, gameState?.Home?.Points)
             }
             </tr>
-            <tr>
+            <tr className="tr-text">
               <td>
                 <div className={`player-name `} style={{ fontSize: guestFontSize, visibility: "hidden" }}>
                   {gameState?.Home?.TeamName || "player1"}
