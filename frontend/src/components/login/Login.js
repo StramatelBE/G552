@@ -35,7 +35,11 @@ function Login() {
 
   async function getUsers() {
     const result = await userService.getAll();
-    if (result) setUsers(result);
+    if (result) {
+      // Sort users in alphabetical order by their name
+      const sortedUsers = result.sort((a, b) => a.username.localeCompare(b.username));
+      setUsers(sortedUsers);
+    }
   }
 
   function deleteUserConected() {
@@ -59,16 +63,19 @@ function Login() {
   async function handleSubmit(e) {
     if (e) e.preventDefault();
     try {
-      await authService.login(user, password).then((response) => {
-        if (response.status === 409 && response.isConnected) {
-          UserConnectedDialogOpen();
-        }
-      });
+      const response = await authService.login(user, password);
+      if (response.status === 401) {
+        // Throw an error manually to get inside the catch block
+        throw new Error("error mot de passe");
+      }
+      if (response.status === 409 && response.isConnected) {
+        UserConnectedDialogOpen();
+      }
     } catch (error) {
+      console.log(error.message);
       setError(t("Login.errorMessage"));
     }
   }
-
   return (
     <Grid item>
       <Paper>
@@ -119,6 +126,17 @@ function Login() {
               <Typography
                 variant="body2"
                 sx={{
+                  color: error ? "error.main" : "transparent",
+                  textAlign: "center",
+                  height: "1.5em",
+                }}
+              >
+                {error || " "}
+              </Typography>
+
+              <Typography
+                variant="body2"
+                sx={{
                   textAlign: "center",
                   height: "1.5em",
                   color: "secondary.main",
@@ -127,16 +145,6 @@ function Login() {
                 onClick={lostPassword}
               >
                 {t("Login.lostPassword")}
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  color: error ? "error.main" : "transparent",
-                  textAlign: "center",
-                  height: "1.5em",
-                }}
-              >
-                {error || " "}
               </Typography>
 
               <Button type="submit" sx={{ color: "secondary.main" }}>

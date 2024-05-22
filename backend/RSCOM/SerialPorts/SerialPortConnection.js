@@ -119,38 +119,38 @@ class SerialPortConnection {
 
                 device.SerialPort = new SerialPort(options, (err) => {
                     if (err) {
-                        console.log(`Error opening port: ${err.message}`);
+                        /* console.log(`Error opening port: ${err.message}`); */
                         device.Started = false;
                     } else {
                         console.log(`${device.DevicePortName} open`);
                         device.SerialPort.on('data', data => {
-                             // Append new data to device buffer
-                             device.buffer = Buffer.concat([device.buffer, data]);
+                            // Append new data to device buffer
+                            device.buffer = Buffer.concat([device.buffer, data]);
 
-                             // While there's enough data in the buffer to process
-                             while (device.buffer.length >= 54) {
-                                 // Check if buffer starts with 0xf8
-                                 //TODO: Check if this is the correct way to check for 0xf8
-                                 if (device.buffer[0] === 0xf8) {
-                                     // Extract the 54-byte frame from the buffer
-                                     const frame = device.buffer.slice(0, 54);
+                            // While there's enough data in the buffer to process
+                            while (device.buffer.length >= 54) {
+                                // Check if buffer starts with 0xf8
+                                //TODO: Check if this is the correct way to check for 0xf8
+                                if (device.buffer[0] === 0xf8) {
+                                    // Extract the 54-byte frame from the buffer
+                                    const frame = device.buffer.slice(0, 54);
 
-                                     // Emit an event with the complete data frame
-                                     sharedEmitter.emit('data', frame);
+                                    // Emit an event with the complete data frame
+                                    sharedEmitter.emit('data', frame);
 
-                                     // Update the buffer to remove the used data
-                                     device.buffer = device.buffer.slice(54);
-                                 } else {
-                                     // If buffer doesn't start with 0xf8, find the next occurrence of 0xf8
-                                     let nextIndex = device.buffer.indexOf(0xf8);
+                                    // Update the buffer to remove the used data
+                                    device.buffer = device.buffer.slice(54);
+                                } else {
+                                    // If buffer doesn't start with 0xf8, find the next occurrence of 0xf8
+                                    let nextIndex = device.buffer.indexOf(0xf8);
 
-                                     // If 0xf8 is found, trim the buffer up to that point
-                                     // If not found, clear the buffer
-                                     device.buffer = nextIndex !== -1 ? device.buffer.slice(nextIndex) : Buffer.alloc(0);
-                                 }
-                             }
+                                    // If 0xf8 is found, trim the buffer up to that point
+                                    // If not found, clear the buffer
+                                    device.buffer = nextIndex !== -1 ? device.buffer.slice(nextIndex) : Buffer.alloc(0);
+                                }
+                            }
 
-                             device.LastReadTime = new Date();
+                            device.LastReadTime = new Date();
                             try {
                                 // // Append new data to device buffer
                                 // device.buffer = Buffer.concat([device.buffer, data]);

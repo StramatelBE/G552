@@ -41,13 +41,33 @@ class EventService {
       throw error;
     }
   }
-    static async getById(id) {
+  static async getById(id) {
     try {
       const response = await fetchWithAuth(`${URL_API}/events/${id}`);
       if (response.ok) {
         return response.json();
       } else {
         console.error('Event not found or error in response', response.statusText);
+        return null;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+  static async update(event) {
+    console.log(event);
+    try {
+      const response = await fetchWithAuth(`${URL_API}/events/${event.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...event }),
+      });
+      if (response.ok) {
+        return true;
+      } else {
+        console.error('Error updating event', response.statusText);
         return null;
       }
     } catch (error) {
@@ -61,7 +81,7 @@ class EventService {
         method: 'DELETE',
       });
       if (response.ok) {
-        return true; 
+        return true;
       } else {
         console.error('Error deleting event', response.statusText);
         return null;

@@ -109,14 +109,16 @@ function CropsModal(props) {
                 {props.mediaType === "image" && (
                   <Cropper
                     image={props.imageToCrop}
-                    crop={crop}
                     zoom={zoom}
                     aspect={2 / 1}
-                    onCropChange={setCrop}
                     onCropComplete={onCropComplete}
-                    onZoomChange={setZoom}
                     minZoom={0.4}
-                    restrictPosition={false}
+                    zoomSpeed={0.1}
+                    crop={crop}
+                    /* restrictPosition={false} */
+                    objectFit="vertical-cover"
+                    onCropChange={setCrop}
+                    onZoomChange={setZoom}
                   />
                 )}
               </Box>

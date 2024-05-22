@@ -1,24 +1,25 @@
+import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PermMediaIcon from "@mui/icons-material/PermMedia";
 import SlideshowIcon from "@mui/icons-material/Slideshow";
-import AddIcon from "@mui/icons-material/Add";
 import {
   Box,
   IconButton,
+  Menu,
+  MenuItem,
   Paper,
   Stack,
   Table,
   TableBody,
   TableContainer,
-  Typography,
-  MenuItem,
-  Menu
+  Typography
 } from "@mui/material";
+import EditIcon from '@mui/icons-material/Edit';
 import React, { useEffect, useState } from "react";
 import { Droppable } from "react-beautiful-dnd";
 import { useTranslation } from "react-i18next";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import eventMediaService from "../../../services/eventMediaService";
 import eventService from "../../../services/eventService";
 import {
@@ -29,12 +30,14 @@ import DeleteEventDialog from "../../dialogs/DeleteEventDialog";
 import DeleteMediaEventDialog from "../../dialogs/DeleteMediaEventDialog";
 import DiaporamaModal from "../../dialogs/DiaporamaModal";
 import DiaporamaMedia from "../media/DiaporamaMedia";
+import UpdateNameDialogOpen from "../../dialogs/UpdateNameDialogOpen";
 
 function DiaporamaConfig(props) {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
   const [event, setEvent] = useState({});
+  const [updateNameDialogOpen, setUpdateNameDialogOpen] = useState(false);
   const [deleteMediaDialogOpen, setDeleteMediaDialogOpen] = useState(false);
   const [deleteEventDialogOpen, setDeleteEventDialogOpen] = useState(false);
   const [isPlayModalOpen, setIsPlayModalOpen] = useState(false);
@@ -117,6 +120,9 @@ function DiaporamaConfig(props) {
     }
   }
 
+  function updateNameEvent() {
+    console.log("updateNameEvent");
+  }
   function toggleAutoPlay() {
     setIsAutoPlayEnabled((prevState) => !prevState);
   }
@@ -124,7 +130,11 @@ function DiaporamaConfig(props) {
   function handleRowHover(rowId) {
     setHoveredRow(rowId);
   }
-
+  function openUpdateNameDialog() {
+    setUpdateNameDialogOpen(!updateNameDialogOpen);
+    props.getEvents();
+    getMediasByID();
+  }
   function openDeleteEventDialog() {
     setDeleteEventDialogOpen(true);
   }
@@ -244,6 +254,12 @@ function DiaporamaConfig(props) {
           </Box>
           <Box className="headerRight">
             <IconButton
+              className="headerButton"
+              onClick={openUpdateNameDialog}
+            >
+              <EditIcon sx={{ color: "secondary.main" }} />
+            </IconButton>
+            <IconButton
               aria-controls={open ? "basic-menu" : undefined}
               aria-haspopup="true"
               aria-expanded={open ? "true" : undefined}
@@ -341,6 +357,12 @@ function DiaporamaConfig(props) {
         open={deleteMediaDialogOpen}
         onClose={closeDeleteDialog}
         onDelete={deleteEventMedia}
+      />
+
+      <UpdateNameDialogOpen
+        open={updateNameDialogOpen}
+        onClose={openUpdateNameDialog}
+        event={event}
       />
     </Box>
   );

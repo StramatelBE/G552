@@ -38,6 +38,10 @@
       "name": "Nom",
       "areYouSureToDelete": "Êtes-vous sûr de vouloir supprimer",
       "areYouSureToDeleteMediaEvent": "Êtes-vous sûr de vouloir supprimer cet événement playlists ?"
+    },
+    "DialogUpdate": {
+      "newName": "Nouveau nom de la playlists",
+      "updateName": "Mettre a jour le nom de la playlists"
     }
   },
   "Login": {

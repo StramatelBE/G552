@@ -31,8 +31,8 @@ function Tennis({ gameState: incomingGameState }) {
     return gameState?.Home?.Winner || gameState?.Guest?.Winner
       ? totalSets - 1
       : totalSets > 5
-      ? 5
-      : totalSets;
+        ? 5
+        : totalSets;
   }
 
   useEffect(() => {
@@ -40,7 +40,7 @@ function Tennis({ gameState: incomingGameState }) {
   }, [incomingGameState]);
 
   useEffect(() => {
-    if (gameState?.Home?.Points === 6 || gameState?.Guest?.Points === 6){
+    if (gameState?.Home?.Points === 6 || gameState?.Guest?.Points === 6) {
       setHomePointsSet5(gameState?.Home?.Points);
       setGuestPointsSet5(gameState?.Guest?.Points);
     }
@@ -74,7 +74,7 @@ function Tennis({ gameState: incomingGameState }) {
         </div>
       </td>
     ));
-    if (currentSet > 4 || (currentSet === 4 && (gameState?.Home?.Winner || gameState?.Guest?.Winner))) {
+    if (currentSet > 4 || (currentSet === 4 && (gameState?.Home?.Winner || gameState?.Guest?.Winner))) {
       sets.push(
         <td key={3} className="set-cell">
           <div style={{ fontSize: getFontSizeScore(pointsInSet[3] || 0) }} className="set-score">
@@ -83,7 +83,7 @@ function Tennis({ gameState: incomingGameState }) {
         </td>
       );
     }
-    if (currentSet === 5 && (gameState?.Home?.Winner || gameState?.Guest?.Winner)) {
+    if (currentSet === 5 && (gameState?.Home?.Winner || gameState?.Guest?.Winner)) {
       sets.push(
         <td key={4} className="set-cell">
           <div style={{ fontSize: getFontSizeScore(pointsSet5) }} className="set-score">
@@ -101,14 +101,14 @@ function Tennis({ gameState: incomingGameState }) {
         <div className="set-text">{set}</div>
       </td>
     ));
-    if (currentSet > 4 || (currentSet === 4 && (gameState?.Home?.Winner || gameState?.Guest?.Winner))) {
+    if (currentSet > 4 || (currentSet === 4 && (gameState?.Home?.Winner || gameState?.Guest?.Winner))) {
       headers.push(
         <td key={3} className="set-cell">
           <div className="set-text">S4</div>
         </td>
       );
     }
-    if (currentSet === 5 && (gameState?.Home?.Winner || gameState?.Guest?.Winner)) {
+    if (currentSet === 5 && (gameState?.Home?.Winner || gameState?.Guest?.Winner)) {
       headers.push(
         <td key={4} className="set-cell">
           <div className="set-text">S5</div>
@@ -126,9 +126,9 @@ function Tennis({ gameState: incomingGameState }) {
           <tbody>
             <tr>
               {gameState?.Sport === "Tennis" &&
-              <td>
-                 <div className="set-score">{gameState?.Home?.GameInSet || "0"}</div>
-              </td>
+                <td>
+                  <div className="set-score">{gameState?.Home?.GameInSet || "0"}</div>
+                </td>
               }
               <td>
                 <div className="set-score point score">{gameState?.Home?.Points || "0"}</div>
@@ -142,41 +142,41 @@ function Tennis({ gameState: incomingGameState }) {
                 </div>
               </td>
               {gameState?.Sport === "Tennis" ?
-              renderSetScores(gameState?.Home?.PointsInSet, gameState?.Home?.GameInSet)
-              :
-              renderSetScores(gameState?.Home?.PointsInSet, gameState?.Home?.Points)
-            }
+                renderSetScores(gameState?.Home?.PointsInSet, gameState?.Home?.GameInSet)
+                :
+                renderSetScores(gameState?.Home?.PointsInSet, gameState?.Home?.Points)
+              }
             </tr>
-            <tr className="tr-text">    
+            <tr className="tr-text">
               {gameState?.Sport === "Tennis" &&
-          
-              <td>
-                <div className="set-text">S{currentSet || "1"}</div>
-              </td>
+
+                <td>
+                  <div className="set-text">S{currentSet || "1"}</div>
+                </td>
               }
               {gameState?.Sport === "Tennis" ?
-              <td>
-                <div className="set-text point">PTS</div>
-              </td>
-              :
-              <td>
-                <div className="set-text point">S{currentSet || "1"}</div>
-              </td>
-              
+                <td>
+                  <div className="set-text point">PTS</div>
+                </td>
+                :
+                <td>
+                  <div className="set-text point">S{currentSet || "1"}</div>
+                </td>
+
               }
               <td>
                 <div className="dot"></div>
               </td>
               <td className="player-back logo-tennis">
-                <img src="LOGO_Stramatel.gif"/>
+                <img src="LOGO_Stramatel.gif" />
               </td>
               {renderSetHeaders()}
             </tr>
             <tr>
               {gameState?.Sport === "Tennis" &&
-              <td>
-                <div className="set-score">{gameState?.Guest?.GameInSet || "0"}</div>
-              </td>
+                <td>
+                  <div className="set-score">{gameState?.Guest?.GameInSet || "0"}</div>
+                </td>
               }
               <td>
                 <div className="set-score point score">{gameState?.Guest?.Points || "0"}</div>
@@ -190,10 +190,11 @@ function Tennis({ gameState: incomingGameState }) {
                 </div>
               </td>
               {gameState?.Sport === "Tennis" ?
-              renderSetScores(gameState?.Guest?.PointsInSet, gameState?.Guest?.GameInSet)
-              :
-              renderSetScores(gameState?.Guest?.PointsInSet, gameState?.Guest?.Points)
-            }
+                renderSetScores(gameState?.Guest?.PointsInSet, gameState?.Guest?.GameInSet)
+                :
+                renderSetScores(gameState?.Guest?.PointsInSet, gameState?.Guest?.Points)
+              }
+
             </tr>
           </tbody>
         </table>

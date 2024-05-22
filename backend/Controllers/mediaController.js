@@ -12,6 +12,7 @@ class MediaController {
         const username = req.params.user;
         const userFolder = `${process.env.UPLOAD_PATH}${username}`;
         cb(null, userFolder);
+        console.log("userFolder", userFolder);
       },
       filename: (req, file, cb) => {
         const hash = crypto.createHash("sha256");
@@ -35,7 +36,7 @@ class MediaController {
     const username = req.params.user;
     this.upload.single("file")(req, res, (err) => {
       if (err) {
-        console.log(err);
+        console.log(err, "test");
         res.status(500).json({ message: err });
       } else {
         sharedEmitter.emit("created", req.file.filename);
@@ -44,8 +45,9 @@ class MediaController {
 
         this.media
           .create(req.file, id, username)
-          .then((media) => {})
+          .then((media) => { })
           .catch((err) => {
+
             res.status(500).json({ message: err });
           });
       }
@@ -110,6 +112,7 @@ class MediaController {
       .getById(req.params.id)
       .then((file) => {
         const filePath = file.path;
+
         fs.unlink(process.env.UPLOAD_PATH + filePath, (err) => {
           if (err) {
             {
