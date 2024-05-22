@@ -46,6 +46,7 @@ function Profile() {
   const { darkMode, setDarkMode } = useDarkMode();
   const [mode, setMode] = useState({});
   const [Widths, setWidths] = useState([]);
+  const [sportsData, setSportsData] = useState([]);
 
 
   let currentWidth = 0;
@@ -54,40 +55,41 @@ function Profile() {
     modeServiceInstance.getMode().then((data) => {
       setMode(data.mode);
     });
+    function getRandomColor() {
+      const letters = '012233445566778899AABBCCCDEEFF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
     spaceService.getSpace().then((data) => {
       const widths = [];
+      const sportsData = [];
+      let currentWidth = 0;
       Object.entries(data).forEach(([sport, size]) => {
         if (sport !== 'Total') {
           const width = (size / data.Total) * 100;
           widths.push(width);
           currentWidth += width;
+          sportsData.push({
+            name: sport,
+            color: getRandomColor(),
+            width: width,
+          });
         }
       });
+      console.log("sportsData", sportsData);
+      setWidths(widths);
       console.log("widths", widths);
-      setWidths(widths); // vous devez stocker les largeurs dans l'état pour les utiliser dans le rendu
+      setSportsData(sportsData);
     });
     const currentUser = authService.getCurrentUser();
     setUser(currentUser);
   }, []);
 
-  const widths = [
-    10,
-    0.000001623275432180851,
-    30,
-    0.000001623275432180851,
-    0.000001623275432180851,
-    0.000001623275432180851,
-    0.000001623275432180851,
-    50,
-    0.000001623275432180851,
-    0.000001623275432180851,
-    0.000001623275432180851,
-    0.000001623275432180851,
-    0.000001623275432180851,
-    0.000001623275432180851,
-    0.000001623275432180851,
-    1.3617021276595747,
-  ];
+
   function setModeTest(mode) {
     const datamode = { event_id: null, mode: mode };
     modeServiceInstance.setMode(datamode).then((data) => {
@@ -164,24 +166,7 @@ function Profile() {
     return isNaN(percentage) ? 0 : percentage;
   };
 
-  const colors = [
-    'red', // pour Basketball
-    'blue', // pour Handball
-    'green', // pour Volleyball
-    'yellow', // pour Tennis
-    'purple', // pour Badminton
-    'orange', // pour Boxe
-    'pink', // pour Roller hockey
-    'brown', // pour Rink hockey
-    'gray', // pour Floorball
-    'teal', // pour Tennis de table
-    'indigo', // pour Hockey sur glace
-    'lime', // pour Futsal
-    'cyan', // pour Sport libre
-    'magenta', // pour Netball
-    'black', // pour Chronométré
-    'gray', // pour Autres
-  ];
+
 
 
   return (
@@ -441,7 +426,6 @@ function Profile() {
               </Grid>
             </Grid>
             <Stack
-              onClick={toggleModal}
               direction="row"
               alignItems="center"
               spacing={1}
@@ -456,20 +440,30 @@ function Profile() {
                 </Typography>
               </Box>
               <Box sx={{ flexGrow: 10 }}>
-
                 <Box sx={{ display: 'flex', height: '20px', outline: '1px solid #dbd2d2 !important' }}>
-                  {Widths.length > 0 && Widths.map((width, index) => (
+                  {sportsData.length > 0 && sportsData.filter(sport => sport.width >= 1).map((sport, index) => (
                     <Box
                       key={index}
                       sx={{
-                        width: `${width}%`,
-                        backgroundColor: colors[index],
+                        width: `${sport.width}%`,
+                        backgroundColor: sport.color,
                       }}
                     />
                   ))}
                 </Box>
+
               </Box>
             </Stack>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', mt: 1 }}>
+              {sportsData.length > 0 && sportsData.filter(sport => sport.width >= 1).map((sport, index) => (
+                <Box key={index} sx={{ display: 'flex', alignItems: 'center', mr: 1, mb: 1 }}>
+                  <Box sx={{ width: 10, height: 10, bgcolor: sport.color }} />
+                  <Typography variant="body2" sx={{ ml: 1 }}>
+                    {sport.name}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
           </Box>
         </Paper>
       </Grid>

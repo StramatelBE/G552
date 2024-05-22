@@ -61,7 +61,7 @@ function Macro() {
   }
 
   const MacrosIdsNotUse = [0];
-  const ignoreMacrosIds = [10, 11, 12, 13, 14];
+  const ignoreMacrosIds = [10, 11, 12, 13, 14, 15];
   return (
     <Grid item>
       <Paper className="mainPaperPage">

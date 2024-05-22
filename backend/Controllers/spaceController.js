@@ -21,7 +21,7 @@ class SpaceController {
     try {
       const newUser = User.getInstance();
       const users = await newUser.getAll();
-      const dirs = users.map(user => `/home/stramatel/G552/frontend/public/medias/${user.username}`);
+      const dirs = users.map(user => `../../server/frontend/public/medias/${user.username}`);
 
       let totalUsedSpace = 0;
       const spaceUsedByDirs = {};
