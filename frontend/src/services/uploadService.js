@@ -1,6 +1,6 @@
-import fetchWithAuth from "../utils/fetchWithAuth";
 import authService from "./authService";
 import { useSnackbar } from "../contexts/SnackbarContext";
+import fetchWithAuth from "../utils/fetchWithAuth";
 
 const URL_API = process.env.REACT_APP_API_URL;
 
@@ -40,7 +40,7 @@ function useUploadService() {
     }
   }
 
-  async function upload(setLoading, file, setprogress) {
+  async function upload(setLoading, file, setProgress) {
     if (file.size >= 1073741824) {
       // 1 GB
       openSnackbar("The file is too large (1 GB max)", "error");
@@ -54,33 +54,51 @@ function useUploadService() {
     try {
       const username = authService.getCurrentUser().user.username;
       const userId = authService.getCurrentUser().user.id;
-      const response = await fetchWithAuth(
-        `${URL_API}/medias/${username}/${userId}`,
-        {
-          method: "POST",
-          body: formData,
-          onUploadProgress: (progressEvent) => {
+      const accessToken = authService.getCurrentUser().accessToken;
+      const url = `${URL_API}/medias/${username}/${userId}`;
+
+      return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+
+        xhr.upload.onprogress = (progressEvent) => {
+          if (progressEvent.lengthComputable) {
             const percentCompleted = Math.round(
               (progressEvent.loaded * 100) / progressEvent.total
             );
-            setprogress(percentCompleted);
-          },
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Error uploading file");
-      }
-      openSnackbar("File uploaded successfully", "success");
-      return {
-        data: await response.json(),
-        status: response.status,
-      };
+            console.log("percentCompleted", percentCompleted);
+            setProgress(percentCompleted);
+          }
+        };
+
+        xhr.onload = () => {
+          setLoading(false);
+          if (xhr.status >= 200 && xhr.status < 300) {
+            openSnackbar("File uploaded successfully", "success");
+            resolve({
+              data: JSON.parse(xhr.responseText),
+              status: xhr.status,
+            });
+          } else {
+            openSnackbar("Error uploading file", "error");
+            reject(new Error("Error uploading file"));
+          }
+        };
+
+        xhr.onerror = () => {
+          setLoading(false);
+          openSnackbar("An error occurred during file upload", "error");
+          reject(new Error("An error occurred during file upload"));
+        };
+
+        xhr.setRequestHeader("Authorization", `Bearer ${accessToken}`);
+        xhr.send(formData);
+      });
     } catch (error) {
+      setLoading(false);
       console.error(error);
       openSnackbar("An error occurred during file upload", "error");
       throw error;
-    } finally {
-      setLoading(false);
     }
   }
 

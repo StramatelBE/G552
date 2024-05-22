@@ -130,7 +130,6 @@ function Medias(props) {
   }
 
   function displayDialogUpload() {
-    console.log("displayDialogUpload");
     setDialogUpload(!dialogUpload);
     setImageToCrop(null);
   }
@@ -225,7 +224,6 @@ function Medias(props) {
               onClick={() => {
                 //remove the file input
                 document.getElementById("inputFile").click();
-                console.log("inputFile", document.getElementById("inputFile"));
               }}
             >
               <AddIcon sx={{ color: "secondary.main" }} />
