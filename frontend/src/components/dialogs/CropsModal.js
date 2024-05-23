@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Box,
   IconButton,
@@ -15,10 +15,11 @@ import CloseIcon from "@mui/icons-material/Close";
 import UploadIcon from "@mui/icons-material/Upload";
 
 function CropsModal(props) {
-  const { t } = useTranslation(); // Utilisation de useTranslation
+  const { t } = useTranslation();
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+  const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
 
   const onCropComplete = useCallback((_, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -64,82 +65,120 @@ function CropsModal(props) {
       if (!props.imageToCrop || !croppedAreaPixels) return;
       const croppedImage = await getCroppedImage();
       props.uploadMediaCropped([croppedImage]);
+      setCrop({ x: 0, y: 0 })
     } else if (props.mediaType === "video") {
       props.uploadMediaCropped([props.imageToCrop], croppedAreaPixels);
     }
   };
 
-  return (
-    <Modal open={props.open} onClose={props.onClose}>
-      <Box>
-        <Paper
-          sx={{
-            height: { xs: "110vh", md: "100vh" },
-            width: "100%",
-            position: "absolute",
-            top: 0,
-            left: 0,
-          }}
-        >
-          <Stack className="herderTitlePage">
-            <Box className="headerLeft">
-              <IconButton disabled className="headerButton">
-                <UploadIcon sx={{ color: "primary.light" }} />
-              </IconButton>
-              <Typography variant="h6" className="headerTitle">
-                {t("Media.upload")}
-              </Typography>
-            </Box>
-            <Box className="headerRight">
-              <IconButton className="headerButton" onClick={props.onClose}>
-                <CloseIcon sx={{ color: "secondary.main" }} />
-              </IconButton>
-            </Box>
-          </Stack>
-          {props.imageToCrop ? (
-            <Box>
-              <Box
-                sx={{
-                  position: "relative",
-                  width: "100%",
-                  height: "400px",
-                  background: "#333",
-                }}
-              >
-                {props.mediaType === "image" && (
-                  <Cropper
-                    image={props.imageToCrop}
-                    zoom={zoom}
-                    aspect={2 / 1}
-                    onCropComplete={onCropComplete}
-                    minZoom={0.4}
-                    zoomSpeed={0.1}
-                    crop={crop}
-                    /* restrictPosition={false} */
-                    objectFit="vertical-cover"
-                    onCropChange={setCrop}
-                    onZoomChange={setZoom}
-                  />
-                )}
-              </Box>
+  const snapToEdge = (crop, cropArea, imageSize, zoom) => {
+    console.log(croppedAreaPixels);
+    const baseSnapThreshold = 10;
+    const snapThreshold = baseSnapThreshold / zoom;  // Ajuster le seuil en fonction du zoom
 
-              <Box
-                sx={{
-                  marginTop: "16px",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              >
-                <Button sx={{ color: "secondary.main" }} onClick={handleUpload}>
-                  {t("Dialog.save")}
-                </Button>
-              </Box>
+    const snappedCrop = { ...crop };
+    const cropsTailleWidth = 240
+
+
+
+
+    return snappedCrop;
+  };
+  const onCropAreaChange = useCallback((croppedArea, croppedAreaPixels) => {
+
+
+    console.log(croppedAreaPixels, croppedArea);
+  }, []);
+
+  const onCropChange = useCallback((newCrop) => {
+    const cropArea = {
+      width: imageSize.width * zoom,
+      height: imageSize.height * zoom, // Adjust aspect ratio if needed
+    };
+    const snappedCrop = snapToEdge(newCrop, cropArea, imageSize, zoom);
+    setCrop(snappedCrop);
+  }, [imageSize, zoom]);
+
+  useEffect(() => {
+    const loadImage = async () => {
+      const image = await createImage(props.imageToCrop);
+      setImageSize({ width: image.width, height: image.height });
+    };
+
+    if (props.imageToCrop) {
+      loadImage();
+    }
+  }, [props.imageToCrop]);
+  return (<Modal open={props.open} onClose={props.onClose}>
+    <Box>
+      <Paper
+        sx={{
+          height: { xs: "110vh", md: "100vh" },
+          width: "100%",
+          position: "absolute",
+          top: 0,
+          left: 0,
+        }}
+      >
+        <Stack className="herderTitlePage">
+          <Box className="headerLeft">
+            <IconButton disabled className="headerButton">
+              <UploadIcon sx={{ color: "primary.light" }} />
+            </IconButton>
+            <Typography variant="h6" className="headerTitle">
+              {t("Media.upload")}
+            </Typography>
+          </Box>
+          <Box className="headerRight">
+            <IconButton className="headerButton" onClick={props.onClose}>
+              <CloseIcon sx={{ color: "secondary.main" }} />
+            </IconButton>
+          </Box>
+        </Stack>
+        {props.imageToCrop ? (
+          <Box>
+            <Box
+              sx={{
+                position: "relative",
+                width: "100%",
+                height: "400px",
+                background: "#333",
+              }}
+            >
+              {props.mediaType === "image" && (
+                <Cropper
+                  image={props.imageToCrop}
+                  zoom={zoom}
+                  aspect={1}
+                  onCropComplete={onCropComplete}
+                  minZoom={0.4}
+                  zoomSpeed={0.1}
+                  crop={crop}
+                  restrictPosition={false}
+                  onCropChange={onCropChange}
+                  onZoomChange={setZoom}
+                  onCropAreaChange={onCropAreaChange}
+                />
+              )}
             </Box>
-          ) : null}
-        </Paper>
-      </Box>
-    </Modal>
+
+            <Box
+              sx={{
+                marginTop: "16px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Button sx={{ color: "secondary.main" }} onClick={handleUpload}>
+                {t("Dialog.save")}
+              </Button>
+            </Box>
+          </Box>
+        ) : null}
+      </Paper>
+    </Box>
+  </Modal>
   );
 }
 
