@@ -19,10 +19,14 @@ const storage = multer.diskStorage({
     });
   },
   filename: (req, file, cb) => {
-    cb(null, 'uploaded-file'); // Utilise un nom de fichier fixe pour écraser l'ancien
+    // Ajoute l'extension .zip si elle n'est pas déjà présente
+    let filename = 'uploaded-new-version.zip';
+    if (!file.originalname.endsWith('.zip')) {
+      filename = `${file.originalname}.zip`;
+    }
+    cb(null, filename);
   },
 });
-
 const upload = multer({ storage });
 
 class AdminController {
