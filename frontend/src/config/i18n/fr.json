@@ -90,6 +90,7 @@
     "serialNumber": "Numéro de série",
     "canalNumber": "Numéro de canal",
     "ipAddress": "Adresse IP",
+    "uploadButton": "upload",
     "Dialog": {
       "password": "mot de passe"
     }
