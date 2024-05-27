@@ -6,5 +6,6 @@ const adminController = new AdminController();
 
 router.put('/', adminController.update);
 router.get('/', adminController.get);
+router.post('/upload', adminController.upload, adminController.handleFileUpload);
 
 module.exports = router;

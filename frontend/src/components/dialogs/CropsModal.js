@@ -75,22 +75,23 @@ function CropsModal(props) {
   };
 
   const snapToEdge = (crop, cropArea, imageSize, zoom) => {
-
+    const snapThreshold = 10;
     const snappedCrop = { ...crop };
 
+    const scaledWidth = imageSize.width * zoom;
+    const scaledHeight = imageSize.height * zoom;
 
-   
+    if (Math.abs(- ((scaledWidth - imageSize.width) / 2)) < snapThreshold) {
+      console.log("snapped");
+      snappedCrop.x = (scaledWidth - imageSize.width) / 2;
+    }
 
     return snappedCrop;
   };
 
   const onCropChange = useCallback((newCrop) => {
-    const cropArea = {
-      width: imageSize.width * zoom,
-      height: imageSize.height * zoom / (2 / 1), // Adjust aspect ratio if needed
-    };
-    const snappedCrop = snapToEdge(newCrop, cropArea, imageSize, zoom);
-    setCrop(snappedCrop);
+   
+    setCrop(newCrop);
   }, [imageSize, zoom]);
 
   useEffect(() => {

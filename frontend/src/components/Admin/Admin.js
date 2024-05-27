@@ -11,6 +11,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import AdminService from "../../services/adminService";
+import { Button } from "@mui/material";
 
 function AdminPage() {
   const { t } = useTranslation();
@@ -21,12 +22,12 @@ function AdminPage() {
     ip: "",
   });
 
+  const [file, setFile] = useState(null);
+  const [fileError, setFileError] = useState("");
+
   useEffect(() => {
     getAdmin();
   }, []);
-
-
-
 
   async function getAdmin() {
     try {
@@ -40,7 +41,6 @@ function AdminPage() {
         });
       }
     } catch (error) {
-      // Handle errors here
       console.error("Failed to fetch admin data:", error);
     }
   }
@@ -67,6 +67,33 @@ function AdminPage() {
   const handleBlur = (event) => {
     const { name, value } = event.target;
     updateAdmin(name, value);
+  };
+
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      if (selectedFile.type === "application/zip" || selectedFile.name.endsWith(".zip")) {
+        setFile(selectedFile);
+        setFileError("");
+      } else {
+        setFile(null);
+        setFileError(t("Admin.fileError"));
+      }
+    }
+  };
+
+  const handleFileUpload = async () => {
+    if (!file) {
+      console.error("No file selected or invalid file type");
+      return;
+    }
+
+    try {
+      const response = await AdminService.uploadFile(file);
+      console.log("File uploaded successfully:", response);
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    }
   };
 
   return (
@@ -118,11 +145,27 @@ function AdminPage() {
                   onChange={handleInputChange}
                 />
               </Stack>
+
+              {/* File upload section */}
+              <Stack direction="row" alignItems="center" spacing={2}>
+                <input
+                  type="file"
+                  accept=".zip"
+                  onChange={handleFileChange}
+                />
+                <Button variant="contained" onClick={handleFileUpload}>
+                  {t("Admin.uploadButton")}
+                </Button>
+              </Stack>
+              {fileError && (
+                <Typography color="error" variant="subtitle2">
+                  {fileError}
+                </Typography>
+              )}
             </Stack>
           </Box>
         </Paper>
       </Grid>
-
     </>
   );
 }

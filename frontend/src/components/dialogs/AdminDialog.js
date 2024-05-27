@@ -17,6 +17,7 @@ function AdminDialog({ open, onClose, onAdd, adminPassword, setAdminPassword }) 
       <DialogTitle>{t("Login.password")}</DialogTitle>
       <DialogContent>
         <TextField
+          type="password"
           fullWidth
           id="standard-basic"
           autoComplete="off"

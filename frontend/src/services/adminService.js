@@ -34,6 +34,26 @@ class AdminService {
       throw error;
     }
   }
+
+  async uploadFile(file) {
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const response = await fetchWithAuth(`${URL_API}/admin/upload`, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return await response.json();
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
 }
 
 const adminServiceInstance = new AdminService();
