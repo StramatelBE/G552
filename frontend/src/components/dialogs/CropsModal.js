@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Box,
   IconButton,
@@ -7,6 +7,8 @@ import {
   Stack,
   Typography,
   Button,
+  Switch,
+  FormControlLabel,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import Cropper from "react-easy-crop";
@@ -15,10 +17,12 @@ import CloseIcon from "@mui/icons-material/Close";
 import UploadIcon from "@mui/icons-material/Upload";
 
 function CropsModal(props) {
-  const { t } = useTranslation(); // Utilisation de useTranslation
+  const { t } = useTranslation();
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+  const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
+  const [restrictPosition, setRestrictPosition] = useState(true);
 
   const onCropComplete = useCallback((_, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -64,10 +68,41 @@ function CropsModal(props) {
       if (!props.imageToCrop || !croppedAreaPixels) return;
       const croppedImage = await getCroppedImage();
       props.uploadMediaCropped([croppedImage]);
+      setCrop({ x: 0, y: 0 })
     } else if (props.mediaType === "video") {
       props.uploadMediaCropped([props.imageToCrop], croppedAreaPixels);
     }
   };
+
+  const snapToEdge = (crop, cropArea, imageSize, zoom) => {
+
+    const snappedCrop = { ...crop };
+
+
+   
+
+    return snappedCrop;
+  };
+
+  const onCropChange = useCallback((newCrop) => {
+    const cropArea = {
+      width: imageSize.width * zoom,
+      height: imageSize.height * zoom / (2 / 1), // Adjust aspect ratio if needed
+    };
+    const snappedCrop = snapToEdge(newCrop, cropArea, imageSize, zoom);
+    setCrop(snappedCrop);
+  }, [imageSize, zoom]);
+
+  useEffect(() => {
+    const loadImage = async () => {
+      const image = await createImage(props.imageToCrop);
+      setImageSize({ width: image.width, height: image.height });
+    };
+
+    if (props.imageToCrop) {
+      loadImage();
+    }
+  }, [props.imageToCrop]);
 
   return (
     <Modal open={props.open} onClose={props.onClose}>
@@ -110,14 +145,13 @@ function CropsModal(props) {
                   <Cropper
                     image={props.imageToCrop}
                     zoom={zoom}
-                    aspect={2 / 1}
+                    aspect={19 / 12}
                     onCropComplete={onCropComplete}
-                    minZoom={0.4}
+                    minZoom={0.1}
                     zoomSpeed={0.1}
                     crop={crop}
-                    /* restrictPosition={false} */
-                    objectFit="vertical-cover"
-                    onCropChange={setCrop}
+                    restrictPosition={restrictPosition}
+                    onCropChange={onCropChange}
                     onZoomChange={setZoom}
                   />
                 )}
@@ -131,6 +165,16 @@ function CropsModal(props) {
                   alignItems: "center",
                 }}
               >
+                <FormControlLabel
+                  control={
+                    <Switch
+                    color="secondary"
+                      checked={restrictPosition}
+                      onChange={() => setRestrictPosition(!restrictPosition)}
+                    />
+                  }
+                  label={t("Restrict Position")}
+                />
                 <Button sx={{ color: "secondary.main" }} onClick={handleUpload}>
                   {t("Dialog.save")}
                 </Button>
@@ -144,3 +188,4 @@ function CropsModal(props) {
 }
 
 export default CropsModal;
+
