@@ -13,6 +13,8 @@ class UserController {
         res.status(500).json({ message: err });
       });
   };
+
+
   updateLanguage  = (req, res) => {
     console.log("updateLanguage", req.body);
     this.user
@@ -24,6 +26,7 @@ class UserController {
         res.status(500).json({ message: err });
       });
   }
+  
 
   update = (req, res) => {
     this.user

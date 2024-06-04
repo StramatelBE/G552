@@ -74,6 +74,8 @@ function DiaporamaModal(props) {
                 }}
                 src={props.currentMedia.path}
                 controls
+                autoPlay
+                preload="auto"
               />
             ) : null)}
           <Box sx={{ textAlign: "center", marginTop: "16px", display: "flex" }}>

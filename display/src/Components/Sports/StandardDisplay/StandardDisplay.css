@@ -1,0 +1,219 @@
+.scoreboard {
+  width: 512px;
+  height: 256px;
+  display: flex;
+  outline: 1px solid #036cdb !important;
+}
+
+@font-face {
+  font-family: "D-DIN-Bold"; /* Nommez la police comme vous le souhaitez, ce nom est utilisé pour la référence */
+  src: local("D-DIN-Bold"),
+    /* Nom pour rechercher la police localement sur l'ordinateur de l'utilisateur */
+      url("../../fonts/D-DIN-Bold.otf") format("opentype"); /* Ajustez le chemin selon l'endroit où vous avez placé votre fichier .otf */
+  font-weight: bold; /* Ici, c'est 'bold' parce que la police est déjà une version 'bold' */
+  font-style: normal;
+}
+
+body {
+  font-family: "D-DIN-Bold", sans-serif;
+  margin: 0px !important;
+  background-color: #000000;
+  height: 256px;
+  width: 512px;
+  overflow: hidden;
+}
+
+.team-display {
+  height: 100%;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+
+.arrow-icon-left {
+  clip-path: polygon(100% 0%, 82.4% 49.5%, 100% 100%, 0% 50%);
+  background: #ff0000;
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+}
+
+.arrow-icon-right {
+  clip-path: polygon(0% 0%, 100% 50%, 0% 100%, 25% 50%);
+  background: #ff0000;
+  height: 20px;
+  width: 20px;
+  margin-left: 10px;
+}
+
+.team-name-display {
+  display: flex;
+  align-items: center;
+  font-family: "D-DIN-Bold", sans-serif;
+  margin-top: 15px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #ffffff;
+  font-size: 45px;
+  height: 50px;
+  width: 100%;
+  text-align: center;
+}
+
+.team-name-display-right {
+  padding-right: 10px;
+}
+
+.team-name-display-left {
+  padding-left: 10px;
+}
+
+.team-name-right {
+  direction: rtl;
+}
+
+/*.team-score-right {*/
+/*  direction: ltr;*/
+/*}*/
+
+.team-score-display {
+  font-family: "D-DIN-Bold", sans-serif;
+  display: inline-block;
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #ff0000;
+  font-size: 100px;
+  height: 75px;
+  margin-top: -6px;
+  text-align: center;
+  text-transform: full-width;
+}
+
+.character {
+  font-family: "D-DIN-Bold", sans-serif;
+  display: inline-block;
+  width: 50px;
+  text-align: center;
+}
+.characterDifferen {
+  font-family: "D-DIN-Bold", sans-serif;
+  display: inline-block;
+  width: 40px;
+  text-align: center;
+}
+
+.middle-section {
+  width: 212px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  align-self: flex-start;
+}
+
+.period {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.character-different {
+  padding-bottom: 5px;
+}
+
+.logo {
+  width: 180px;
+}
+.characterTimeoutsTimerDifferent {
+  font-family: "D-DIN-Bold";
+  color: #f9e930;
+  display: inline-block;
+  width: 25px;
+  text-align: center;
+}
+
+.characterTimeoutsTimer {
+  font-family: "D-DIN-Bold", sans-serif;
+  color: #f9e930;
+  display: inline-block;
+  width: 15px;
+  text-align: center;
+}
+
+.period-number {
+  font-family: "D-DIN-Bold", sans-serif;
+  margin: 0 10px 0 10px;
+  color: #00a13b;
+  font-size: 50px;
+  height: 61px;
+}
+
+.timer {
+  font-family: "D-DIN-Bold", sans-serif;
+  display: flex;
+  justify-content: center;
+  font-size: 90px;
+  width: 250px;
+  align-items: center;
+}
+
+.time-logo {
+  margin-top: 35px;
+}
+
+.timeout-display {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  margin-top: 4px;
+  margin-bottom: 6px;
+}
+
+.circleIcon {
+  margin-top: 3px;
+  border-radius: 10px;
+  height: 15px;
+  width: 15px;
+}
+
+.circleIcon.filled {
+  background: #00a13b;
+}
+
+.circleIcon.empty {
+  background: transparent;
+  border: 2px solid #00a13b;
+}
+
+.timeout {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.timeout-texte {
+  font-family: "D-DIN-Bold", sans-serif;
+  color: #f9e930;
+  font-size: 50px;
+}
+
+.timeout-right {
+  align-items: flex-end;
+}
+
+.hidden {
+  background: black;
+}
+
+.team-fouls-left {
+  margin-left: 25px;
+  align-items: flex-start;
+}
+
+.team-fouls-right {
+  margin-right: 25px;
+  align-items: flex-end;
+}

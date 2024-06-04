@@ -13,9 +13,12 @@ const Horn = require('./19_Horn');
 const TimerStartStop = require('./20_TimerStartStop');
 const ClockTimerDisplay = require('./21_ClockTimerDisplay');
 const TimeOut = require('./21_47_TimeOut');
+const PointsBySet = require('./22_37_PointsBySet');
 const PenaltiesTimer = require('./22_43_PenaltiesTimer');
 const IndividualFouls = require('./22_45_IndividualFouls');
-const Exclusion = require('./22_51_Exclusion');
+const Exclusion = require('./22_43_Exclusion');
+const Exclusion_Handball = require('./22_43_Exclusion_Handball');
+const ExclusionShirt = require('./22_51_ExclusionShirt');
 const PointsInSet = require('./23_44_PointsInSet');
 const PlayersInPlay = require('./38_49_PlayersInPlay');
 const sHorn = require('./50_24sHorn');
@@ -44,7 +47,10 @@ const Tools = {
     PenaltiesTimer,
     IndividualFouls,
     Exclusion,
+    Exclusion_Handball,
+    ExclusionShirt,
     PointsInSet,
+    PointsBySet,
     PlayersInPlay,
     sHorn,
     Service,

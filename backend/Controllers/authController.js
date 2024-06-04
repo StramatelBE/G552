@@ -60,7 +60,6 @@ const signIn = async (req, res) => {
   };
 
   try {
-    console.log("userController", User.getInstance());
     const userController = User.getInstance();
 
     const activeSessionModel = new ActiveSession();
@@ -76,21 +75,16 @@ const signIn = async (req, res) => {
           } else {
             if (result) {
               if (foundUser.firstLogin === 1) {
-                console.log("First login");
               }
 
               const activeSession = await activeSessionModel.getAll();
-              console.log(activeSession);
+
               const inactivity = moment
                 .duration(
                   moment(new Date()).diff(activeSession[0].last_activity)
                 )
                 .asHours();
-              console.log(inactivity, "inactivity");
-              console.log(
-                activeSession[0].active_token,
-                "activeSession[0].active_token"
-              );
+
               if (activeSession[0].activeToken !== null && inactivity < 2) {
                 console.log("Un autre utilisateur est déjà connecté");
                 return res.status(409).json({

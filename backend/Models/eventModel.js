@@ -46,12 +46,14 @@ class Event {
   }
 
   update(event) {
+    console.log(event);
     return new Promise((resolve, reject) => {
       db.run(
-        `UPDATE events SET name = ?, category = ? WHERE id = ?`,
-        [event.name, event.category, event.id],
+        `UPDATE events SET name = ? WHERE id = ?`,
+        [event.name, event.id],
         (err) => {
           if (err) {
+            console.log(err);
             reject(err);
           } else {
             resolve(this.getById(event.id));
@@ -113,7 +115,7 @@ class Event {
             });
           });
         })
-        
+
         .catch((err) => {
           console.log(err);
           reject(err);
@@ -140,9 +142,9 @@ class Event {
         [eventId],
         (err) => {
           if (err) {
-           
+
             reject(err);
-            
+
           } else {
             resolve();
           }

@@ -1,0 +1,14 @@
+.side-numbers {
+  width: 50%;
+  position: absolute;
+}
+
+.side-number {
+  margin-top: 10px;
+  height: 29px;
+  text-align: center;
+  color: white;
+  font-size: 32px;
+  font-weight: 700;
+  word-wrap: break-word;
+}

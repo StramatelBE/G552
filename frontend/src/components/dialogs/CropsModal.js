@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Box,
   IconButton,
@@ -7,6 +7,8 @@ import {
   Stack,
   Typography,
   Button,
+  Switch,
+  FormControlLabel,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import Cropper from "react-easy-crop";
@@ -15,10 +17,12 @@ import CloseIcon from "@mui/icons-material/Close";
 import UploadIcon from "@mui/icons-material/Upload";
 
 function CropsModal(props) {
-  const { t } = useTranslation(); // Utilisation de useTranslation
+  const { t } = useTranslation();
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+  const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
+  const [restrictPosition, setRestrictPosition] = useState(true);
 
   const onCropComplete = useCallback((_, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -64,10 +68,42 @@ function CropsModal(props) {
       if (!props.imageToCrop || !croppedAreaPixels) return;
       const croppedImage = await getCroppedImage();
       props.uploadMediaCropped([croppedImage]);
+      setCrop({ x: 0, y: 0 })
     } else if (props.mediaType === "video") {
       props.uploadMediaCropped([props.imageToCrop], croppedAreaPixels);
     }
   };
+
+  const snapToEdge = (crop, cropArea, imageSize, zoom) => {
+    const snapThreshold = 10;
+    const snappedCrop = { ...crop };
+
+    const scaledWidth = imageSize.width * zoom;
+    const scaledHeight = imageSize.height * zoom;
+
+    if (Math.abs(- ((scaledWidth - imageSize.width) / 2)) < snapThreshold) {
+      console.log("snapped");
+      snappedCrop.x = (scaledWidth - imageSize.width) / 2;
+    }
+
+    return snappedCrop;
+  };
+
+  const onCropChange = useCallback((newCrop) => {
+   
+    setCrop(newCrop);
+  }, [imageSize, zoom]);
+
+  useEffect(() => {
+    const loadImage = async () => {
+      const image = await createImage(props.imageToCrop);
+      setImageSize({ width: image.width, height: image.height });
+    };
+
+    if (props.imageToCrop) {
+      loadImage();
+    }
+  }, [props.imageToCrop]);
 
   return (
     <Modal open={props.open} onClose={props.onClose}>
@@ -109,14 +145,15 @@ function CropsModal(props) {
                 {props.mediaType === "image" && (
                   <Cropper
                     image={props.imageToCrop}
-                    crop={crop}
                     zoom={zoom}
-                    aspect={2 / 1}
-                    onCropChange={setCrop}
+                    aspect={19 / 12}
                     onCropComplete={onCropComplete}
+                    minZoom={0.1}
+                    zoomSpeed={0.1}
+                    crop={crop}
+                    restrictPosition={restrictPosition}
+                    onCropChange={onCropChange}
                     onZoomChange={setZoom}
-                    minZoom={0.4}
-                    restrictPosition={false}
                   />
                 )}
               </Box>
@@ -129,6 +166,16 @@ function CropsModal(props) {
                   alignItems: "center",
                 }}
               >
+                <FormControlLabel
+                  control={
+                    <Switch
+                    color="secondary"
+                      checked={restrictPosition}
+                      onChange={() => setRestrictPosition(!restrictPosition)}
+                    />
+                  }
+                  label={t("Restrict Position")}
+                />
                 <Button sx={{ color: "secondary.main" }} onClick={handleUpload}>
                   {t("Dialog.save")}
                 </Button>
@@ -142,3 +189,4 @@ function CropsModal(props) {
 }
 
 export default CropsModal;
+

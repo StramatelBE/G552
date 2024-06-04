@@ -2,43 +2,41 @@ import React, { useEffect, useState } from "react";
 
 import {
   Box,
+  CircularProgress,
   Grid,
   IconButton,
+  LinearProgress,
   Paper,
   Stack,
   Switch,
-  Typography,
-  Slider,
-  LinearProgress,
   TextField,
-  CircularProgress,
+  Typography
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-import PermMediaIcon from "@mui/icons-material/PermMedia";
-import SettingsIcon from "@mui/icons-material/Settings";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
-import LockIcon from "@mui/icons-material/Lock";
-import StorageIcon from "@mui/icons-material/Storage";
 import BugReportIcon from "@mui/icons-material/BugReport";
-import PhoneIcon from "@mui/icons-material/Phone";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LanguageIcon from "@mui/icons-material/Language";
+import LockIcon from "@mui/icons-material/Lock";
 import ModeNightIcon from "@mui/icons-material/ModeNight";
+import PhoneIcon from "@mui/icons-material/Phone";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import SettingsIcon from "@mui/icons-material/Settings";
 import StopIcon from "@mui/icons-material/Stop";
+import StorageIcon from "@mui/icons-material/Storage";
 
 import { useDarkMode } from "../../contexts/DarkModeContext";
-import ChangePasswordDialog from "../dialogs/ChangePasswordDialog";
 import authService from "../../services/authService";
 import paramService from "../../services/paramService";
 import veilleService from "../../services/veilleService";
 import LanguageSelector from "../common/LanguageSelector";
+import ChangePasswordDialog from "../dialogs/ChangePasswordDialog";
 
 import modeServiceInstance from "../../services/modeService";
+import spaceService from "../../services/spaceService";
 
 function Profile() {
   const { t } = useTranslation();
-  const [username, setUsername] = useState("John Doe");
   const [modalOpen, setModalOpen] = useState(false);
   const [param, setParam] = useState({});
   const [veille, setVeille] = useState({});
@@ -47,17 +45,50 @@ function Profile() {
   const [user, setUser] = useState(null);
   const { darkMode, setDarkMode } = useDarkMode();
   const [mode, setMode] = useState({});
+  const [Widths, setWidths] = useState([]);
+  const [sportsData, setSportsData] = useState([]);
+
+
+  let currentWidth = 0;
 
   useEffect(() => {
     modeServiceInstance.getMode().then((data) => {
-      console.log("data", data.mode);
       setMode(data.mode);
     });
-  }, []);
-  useEffect(() => {
+    function getRandomColor() {
+      const letters = '012233445566778899AABBCCCDEEFF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    spaceService.getSpace().then((data) => {
+      const widths = [];
+      const sportsData = [];
+      let currentWidth = 0;
+      Object.entries(data).forEach(([sport, size]) => {
+        if (sport !== 'Total') {
+          const width = (size / data.Total) * 100;
+          widths.push(width);
+          currentWidth += width;
+          sportsData.push({
+            name: sport,
+            color: getRandomColor(),
+            width: width,
+          });
+        }
+      });
+      console.log("sportsData", sportsData);
+      setWidths(widths);
+      console.log("widths", widths);
+      setSportsData(sportsData);
+    });
     const currentUser = authService.getCurrentUser();
     setUser(currentUser);
   }, []);
+
 
   function setModeTest(mode) {
     const datamode = { event_id: null, mode: mode };
@@ -67,9 +98,11 @@ function Profile() {
     });
   }
 
+
+
   useEffect(() => {
     if (user) {
-      setUsername(user.user.username);
+
       paramService.getByUserId(user.user.id).then((paramData) => {
         const paramDataItem = paramData?.[0] || {};
         setParam(paramDataItem);
@@ -101,13 +134,13 @@ function Profile() {
   const handleEventAutoChange = (event) => {
     const updatedParam = { ...param, event_auto: event.target.checked ? 1 : 0 };
     setParam(updatedParam);
-    paramService.update(updatedParam).then((response) => {});
+    paramService.update(updatedParam).then((response) => { });
   };
 
   const handleVeilleChange = (event) => {
     const updatedVeille = { ...veille, enable: event.target.checked ? 1 : 0 };
     setVeille(updatedVeille);
-    veilleService.update(updatedVeille).then((response) => {});
+    veilleService.update(updatedVeille).then((response) => { });
   };
 
   function updatedVeille01(veille) {
@@ -125,10 +158,16 @@ function Profile() {
       end_time: newValue[1],
     };
     setVeille(updatedVeille);
-    veilleService.update(updatedVeille).then((response) => {});
+    veilleService.update(updatedVeille).then((response) => { });
   };
 
-  const percentage = (usedSize / totalSize) * 100;
+  const calculateProgressValue = (usedSize, totalSize) => {
+    const percentage = (usedSize / totalSize) * 100;
+    return isNaN(percentage) ? 0 : percentage;
+  };
+
+
+
 
   return (
     <>
@@ -157,6 +196,7 @@ function Profile() {
           >
             <Grid container spacing={6}>
               <Grid item xs={12} sm={6}>
+
                 <Stack spacing={2}>
                   <Typography variant="h6" sx={{ color: "text.secondary" }}>
                     {t("Profile.application")}
@@ -198,27 +238,7 @@ function Profile() {
                     </Stack>
                     <Switch checked={darkMode} color="secondary" />
                   </Stack>
-                  <Stack
-                    onClick={toggleModal}
-                    direction="row"
-                    alignItems="center"
-                    spacing={3}
-                  >
-                    <IconButton disabled>
-                      <StorageIcon sx={{ color: "text.secondary" }} />
-                    </IconButton>
 
-                    <Box sx={{ flexGrow: 1 }}>
-                      <Typography variant="h8" sx={{ color: "text.primary" }}>
-                        {t("Profile.usedStorageSpace")}
-                      </Typography>
-                      <LinearProgress
-                        variant="determinate"
-                        value={percentage}
-                        color={percentage > 80 ? "error" : "secondary"}
-                      />
-                    </Box>
-                  </Stack>
                   <Stack
                     direction="row"
                     justifyContent="space-between"
@@ -331,7 +351,7 @@ function Profile() {
                       checked={param.event_auto === 1}
                     />
                   </Stack> */}
-                  <Stack
+                  {/* <Stack
                     direction="row"
                     justifyContent="space-between"
                     alignItems="center"
@@ -349,37 +369,40 @@ function Profile() {
                       checked={veille.enable === 1}
                       onChange={handleVeilleChange}
                     />
-                  </Stack>
+                  </Stack> */}
                   <Stack
                     direction="row"
                     justifyContent="space-between"
                     alignItems="center"
                     spacing={3}
-                    /*  onClick={handleVeilleChange} */
+                    onClick={handleVeilleChange}
                   >
                     <Stack spacing={3} direction="row" alignItems="center">
                       <IconButton disabled>
                         <ModeNightIcon sx={{ color: "text.secondary" }} />
                       </IconButton>
-                      <Typography>heure de restart:</Typography>
+                      <Typography>heure de redémarrage:</Typography>
                     </Stack>
-                    {/* textinput */}
-                    {/* to int */}
+
                     <TextField
-                      type="text"
+                      type="time"
                       value={veille.restart_at}
-                      onChange={(e) => {
+                      onInput={(e) => {
+                        console.log("Input changed", e.target.value);
                         const updatedVeille = {
                           ...veille,
-                          restart_at: parseInt(e.target.value),
+                          restart_at: e.target.value,
                         };
-                        updatedVeille01(updatedVeille); // Assuming setVeille is the state setter function for 'veille'
+                        updatedVeille01(updatedVeille);
                       }}
                       required
                       margin="normal"
+                      inputProps={{
+                        step: 300, // Pas de 5 minutes pour la sélection de l'heure
+                      }}
                     />
                   </Stack>
-                  <Stack>
+                  {/*  <Stack>
                     <Slider
                       m={5}
                       color="secondary"
@@ -398,10 +421,49 @@ function Profile() {
                       onChange={handleSliderChange}
                       disabled={veille.enable === 0}
                     />
-                  </Stack>
+                  </Stack> */}
                 </Stack>
               </Grid>
             </Grid>
+            <Stack
+              direction="row"
+              alignItems="center"
+              spacing={1}
+            >
+              <IconButton disabled>
+                <StorageIcon sx={{ color: "text.secondary" }} />
+              </IconButton>
+
+              <Box sx={{ flexGrow: 1 }}>
+                <Typography variant="h8" sx={{ color: "text.primary" }}>
+                  {t("Profile.usedStorageSpace")}
+                </Typography>
+              </Box>
+              <Box sx={{ flexGrow: 10 }}>
+                <Box sx={{ display: 'flex', height: '20px', outline: '1px solid #dbd2d2 !important' }}>
+                  {sportsData.length > 0 && sportsData.filter(sport => sport.width >= 1).map((sport, index) => (
+                    <Box
+                      key={index}
+                      sx={{
+                        width: `${sport.width}%`,
+                        backgroundColor: sport.color,
+                      }}
+                    />
+                  ))}
+                </Box>
+
+              </Box>
+            </Stack>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', mt: 1 }}>
+              {sportsData.length > 0 && sportsData.filter(sport => sport.width >= 1).map((sport, index) => (
+                <Box key={index} sx={{ display: 'flex', alignItems: 'center', mr: 1, mb: 1 }}>
+                  <Box sx={{ width: 10, height: 10, bgcolor: sport.color }} />
+                  <Typography variant="body2" sx={{ ml: 1 }}>
+                    {sport.name}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
           </Box>
         </Paper>
       </Grid>

@@ -4,9 +4,9 @@ After=network.target
 
 [Service]
 Type=simple
-User=stramatel
-WorkingDirectory=/home/stramatel/server/build/display
-ExecStart=/bin/bash /home/stramatel/server/build/display/startDisplay.sh
+User=STRAMATEL
+WorkingDirectory=/home/STRAMATEL/builds/builds/
+ExecStart=/bin/bash /home/STRAMATEL/builds/builds/startDisplay.sh
 Restart=on-failure
 
 [Install]

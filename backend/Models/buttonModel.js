@@ -40,8 +40,8 @@ class Button {
 
     initializeButtons() {
         const insertSql = `INSERT INTO button (name) VALUES (?)`;
-        const buttons = Array.from({ length: 15 }, (_, i) => `Button ${i + 1}`);
-        
+        const buttons = Array.from({ length: 15 }, (_, i) => `Button ${i}`);
+
         db.serialize(() => {
             db.run('BEGIN TRANSACTION');
             buttons.forEach(buttonName => {

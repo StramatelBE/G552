@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/StramatelBE/G552/static/css/main.e22fcb20.css",
-    "main.js": "/StramatelBE/G552/static/js/main.83d75f93.js",
-    "static/media/D-DIN-Bold.otf": "/StramatelBE/G552/static/media/D-DIN-Bold.7bb4b1a4a4621668d12a.otf",
-    "index.html": "/StramatelBE/G552/index.html",
-    "main.e22fcb20.css.map": "/StramatelBE/G552/static/css/main.e22fcb20.css.map",
-    "main.83d75f93.js.map": "/StramatelBE/G552/static/js/main.83d75f93.js.map"
+    "main.css": "/static/css/main.30adeb66.css",
+    "main.js": "/static/js/main.83d75f93.js",
+    "static/media/D-DIN-Bold.otf": "/static/media/D-DIN-Bold.7bb4b1a4a4621668d12a.otf",
+    "index.html": "/index.html",
+    "main.30adeb66.css.map": "/static/css/main.30adeb66.css.map",
+    "main.83d75f93.js.map": "/static/js/main.83d75f93.js.map"
   },
   "entrypoints": [
-    "static/css/main.e22fcb20.css",
+    "static/css/main.30adeb66.css",
     "static/js/main.83d75f93.js"
   ]
 }

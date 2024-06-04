@@ -1,10 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import './Mode.css';
+import ScoringMode from './ScoringMode';
+
 
 const MediaMode = ({mediaState, mediaMode}) => {
     const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
 
+
     useEffect(() => {
+
         if (!Array.isArray(mediaState) || mediaState.length === 0) {
             console.log("No media available");
             return;
@@ -31,35 +35,30 @@ const MediaMode = ({mediaState, mediaMode}) => {
 
     const currentMedia = mediaState[currentMediaIndex];
     const isVideo = currentMedia.type === "video" || currentMedia.type === "video/mp4"
-    const mediaPath = currentMedia.path || ''; // Default to empty string if path is not provided
+    const mediaPath = currentMedia.path || ''; 
     const shouldLoop = mediaState.length === 1 && isVideo;
 
     return (
-        <>
-            {isVideo ? (
-                mediaMode ?
+        <>  {mediaPath === null ?
+            <ScoringMode gameState={gameState} />
+        :
+            isVideo ? (
+         
                     <video
-                        src={"../../Frontend/build" + mediaPath}
+                        src={"http://localhost:3000" + mediaPath}
                         style={{width: "512px", height: "256px"}}
                         autoPlay
                         preload={"auto"}
                         onEnded={() => setCurrentMediaIndex((currentMediaIndex + 1) % mediaState.length)}
                         loop={shouldLoop}
-                    /> :
-                    <video
-                        src={mediaPath}
-                        autoPlay
-                        preload={"auto"}
-                        onEnded={() => setCurrentMediaIndex((currentMediaIndex + 1) % mediaState.length)}
                     />
             ) : (
                 <>
-                    {mediaMode ?
-                        <img src={"../../Frontend/build" + mediaPath}
+                    {
+                        <img src={"http://localhost:3000" + mediaPath}
                              style={{width: "512px", height: "256px"}}
                              alt="Media content"/>
-                        :
-                        <img src={mediaPath} alt="Media content"/>
+                       
                     }
                 </>
             )}

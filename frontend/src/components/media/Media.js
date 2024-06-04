@@ -1,10 +1,10 @@
 import {
   Box,
+  Hidden,
   ImageList,
   ImageListItem,
   Paper,
   Stack,
-  Tab,
 } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
@@ -16,8 +16,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ImageIcon from "@mui/icons-material/Image";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import SortIcon from "@mui/icons-material/Sort";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import {
   Table,
   TableBody,
@@ -26,13 +24,17 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
 
+import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
+import TableRowsIcon from "@mui/icons-material/TableRows";
 import EventMediaService from "../../services/eventMediaService";
 import UploadService from "../../services/uploadService";
 import CropsModal from "../dialogs/CropsModal";
 import DeleteMediaDialog from "../dialogs/DeleteMediaDialog";
-import TableRowsIcon from "@mui/icons-material/TableRows";
-import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
+import authService from "../../services/authService";
+
 function Medias(props) {
   const { t } = useTranslation(); // Utilisation de useTranslation
   const uploadService = UploadService();
@@ -49,28 +51,56 @@ function Medias(props) {
   const { setProgress } = useContext(LoadingContext);
   const [sortCriteria, setSortCriteria] = useState("recent");
   const [viewMode, setViewMode] = useState("grid");
+  const [inputKey, setInputKey] = useState(0);
 
   const toggleViewMode = () => {
+    console.log("toggleViewMode", viewMode);
     setViewMode(viewMode === "grid" ? "table" : "grid");
   };
   const toggleSortCriteria = () => {
-    console.log(sortedMedia);
     setSortCriteria(sortCriteria === "name" ? "recent" : "name");
+    updateUploadMediaMedias();
   };
 
   const sortMedia = (media, criteria) => {
     if (criteria === "name") {
+      console.log("media", media);
       return [...media].sort((a, b) =>
         a.originalFileName.localeCompare(b.originalFileName)
       );
     } else {
-      // Assuming 'uploaded_at' is in a standard format that can be sorted directly
       return [...media].sort(
         (a, b) => new Date(b.uploaded_at) - new Date(a.uploaded_at)
       );
     }
   };
-  const sortedMedia = sortMedia(props.eventMedia[1].medias, sortCriteria);
+
+  // Function to update the medias array for the "uploadMedia" title
+  async function updateUploadMediaMedias() {
+    await props.setEventMedia((currentEventMedia) => {
+      console.log("currentEventMedia", currentEventMedia);
+      const uploadMediaIndex = currentEventMedia.findIndex(
+        (media) => media.title === "uploadMedia"
+      );
+      if (uploadMediaIndex === -1) {
+        return currentEventMedia;
+      }
+
+      const sortedMedias = sortMedia(
+        currentEventMedia[uploadMediaIndex].medias,
+        sortCriteria
+      );
+
+      const newEventMedia = [...currentEventMedia];
+      newEventMedia[uploadMediaIndex] = {
+        ...newEventMedia[uploadMediaIndex],
+        medias: sortedMedias,
+      };
+      console.log("newEventMedia", newEventMedia);
+
+      return newEventMedia;
+    });
+  }
 
   const handleTouchStart = (imageId) => {
     clearTimeout(longPressTimer);
@@ -100,7 +130,6 @@ function Medias(props) {
   }
 
   function displayDialogUpload() {
-    console.log("displayDialogUpload");
     setDialogUpload(!dialogUpload);
     setImageToCrop(null);
   }
@@ -114,7 +143,9 @@ function Medias(props) {
   }
 
   function goToCrop(event) {
-    console.log("upload");
+    setImageToCrop(event.target.files[0]);
+    setInputKey((prevKey) => prevKey + 1);
+    setImageToCrop(null);
     if (event && event.target.files[0].type.split("/")[0] === "video") {
       uploadService
         .upload(setLoading, event.target.files[0], setProgress)
@@ -161,39 +192,20 @@ function Medias(props) {
     }
   }
 
-  const renderTable = (media) => {
-    return (
-      <TableContainer component={Paper}>
-        <Table aria-label="media table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="right">Name</TableCell>
-              <TableCell align="right">Type</TableCell>
-              <TableCell align="right">Date</TableCell>
-              <TableCell align="right">Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {media.map((file) => (
-              <TableRow
-                key={file.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell align="right">{file.originalFileName}</TableCell>
-                <TableCell align="right">{file.type}</TableCell>
-                <TableCell align="right">{file.uploaded_at}</TableCell>
-                <TableCell align="right">
-                  <IconButton onClick={() => OpenDialogDelete(file)}>
-                    <DeleteIcon color="error" />
-                  </IconButton>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    );
-  };
+  function addmediatodiaporam(file) {
+    console.log("addmediatodiaporam", file);
+    EventMediaService.create({
+      mediaId: file.idBdd,
+      eventId: props.id,
+      duration: 1,
+      userId: authService.getCurrentUser().user.id,
+      media_pos_in_event: props.eventMedia[1].medias.length + 1,
+    }).then((result) => {
+      console.log("result", result);
+      props.getEvents();
+    });
+  }
+
   return (
     <Box>
       <Paper className="mainPaperPage">
@@ -210,6 +222,7 @@ function Medias(props) {
             <IconButton
               className="headerButton"
               onClick={() => {
+                //remove the file input
                 document.getElementById("inputFile").click();
               }}
             >
@@ -221,26 +234,25 @@ function Medias(props) {
               id="inputFile"
               style={{ display: "none" }}
               onChange={goToCrop}
+              key={inputKey}
             />
           </Box>
         </Stack>
         <IconButton onClick={toggleViewMode}>
           {viewMode === "grid" ? (
-            <TableRowsIcon sx={{ color: "secondary.main" }} />
-          ) : (
             <InsertPhotoIcon sx={{ color: "secondary.main" }} />
+          ) : (
+            <TableRowsIcon sx={{ color: "secondary.main" }} />
           )}
-          <Typography>
+          {/*  <Typography>
             {viewMode === "grid"
               ? "Switch to Table View"
               : "Switch to Grid View"}
-          </Typography>
+          </Typography> */}
         </IconButton>
         <IconButton onClick={toggleSortCriteria}>
           <SortIcon sx={{ color: "secondary.main" }} />
-          <Typography>
-            {sortCriteria === "name" ? "Most Recent" : "Name"}
-          </Typography>
+          <Typography>{sortCriteria === "name" ? "Name" : "Date"}</Typography>
         </IconButton>
         <Droppable
           droppableId={`${props.eventMedia[1].id}`}
@@ -250,10 +262,13 @@ function Medias(props) {
             <div ref={provided.innerRef}>
               {props.eventMedia[1].medias ? (
                 props.eventMedia[1].medias.length > 0 ? (
-                  <Box className="containerPage">
+                  <Box
+                    className="containerPage"
+                    sx={{ height: "calc(94vh - 220px)", overflowY: "auto" }}
+                  >
                     {viewMode === "grid" ? (
-                      <ImageList variant="masonry" cols={2} gap={8}>
-                        {sortedMedia.map((file, index) => (
+                      <ImageList variant="visible" cols={2} gap={8}>
+                        {props.eventMedia[1].medias.map((file, index) => (
                           <ImageListItem key={file.id}>
                             <Draggable
                               disableInteractiveElementBlocking
@@ -341,7 +356,67 @@ function Medias(props) {
                         ))}
                       </ImageList>
                     ) : (
-                      renderTable(sortedMedia)
+                      <TableContainer sx={{ width: "100%" }} component={Paper}>
+                        <Table aria-label="media table">
+                          <TableHead>
+                            <TableRow>
+                              <TableCell align="right"> </TableCell>
+                              <TableCell align="right">Name</TableCell>
+                              <TableCell align="right">Type</TableCell>
+                              <TableCell align="right">Date</TableCell>
+                              <TableCell align="right">Actions</TableCell>
+                            </TableRow>
+                          </TableHead>
+                          <TableBody>
+                            {props.eventMedia[1].medias.map((file, index) => (
+                              <TableRow
+                                key={file.id}
+                                sx={{
+                                  "&:last-child td, &:last-child th": {
+                                    border: 0,
+                                  },
+                                }}
+                              >
+                                <TableCell align="right">
+                                  {props.id === undefined ? (
+                                    <IconButton disabled={true}>
+                                      <AddIcon />
+                                    </IconButton>
+                                  ) : (
+                                    <IconButton
+                                      onClick={() => addmediatodiaporam(file)}
+                                    >
+                                      <AddIcon color="error" />
+                                    </IconButton>
+                                  )}
+                                </TableCell>
+                                <TableCell
+                                  align="right"
+                                  style={{
+                                    textOverflow: "ellipsis",
+                                    whiteSpace: "nowrap",
+                                    maxWidth: "120px",
+                                    overflow: "hidden",
+                                  }}
+                                >
+                                  {file.originalFileName}
+                                </TableCell>
+                                <TableCell align="right">{file.type}</TableCell>
+                                <TableCell align="right">
+                                  {file.uploaded_at}
+                                </TableCell>
+                                <TableCell align="right">
+                                  <IconButton
+                                    onClick={() => OpenDialogDelete(file)}
+                                  >
+                                    <DeleteIcon color="error" />
+                                  </IconButton>
+                                </TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </TableContainer>
                     )}
                   </Box>
                 ) : (

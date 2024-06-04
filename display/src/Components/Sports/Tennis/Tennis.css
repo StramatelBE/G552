@@ -1,0 +1,239 @@
+.scoreboard {
+  width: 512px !important;
+  height: 256px !important;
+  position: absolute;
+  /* background: #005239 !important; */
+  background: #002017 !important;
+
+}
+
+.container-tennis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid #005239;
+  width: 503;
+  height: 247px;
+}
+
+.score-tennis {
+  table-layout: fixed;
+  width: 100%;
+  text-align: center;
+  border-radius: 5px;
+ 
+}
+
+
+
+
+tr {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.set-cell {
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.player {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+.player-top {
+  top: 186px;
+}
+
+.player-bottom {
+  top: 85px;
+}
+
+.player-margin {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.logo-tennis {
+  display: inline-block; /* Changer de block à inline-block */
+  width: auto;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.tr-text {
+  border-radius: 5px;
+  background: #000000;
+}
+
+.player-back {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  height: 58px;
+  width: 120px; /* S'assurer que la largeur s'ajuste automatiquement */
+  border-radius: 5px;
+  background: black;
+}
+
+.player-name {
+  width: inherit;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  color: #ecd60a;
+  font-weight: 700;
+  white-space: nowrap; /* Empêche la rupture de ligne pour le nom du joueur */
+}
+
+
+.set-score {
+  display: flex;
+  border-radius: 5px;
+  width: 40px;
+  height: 60px;
+  /* background: #242121; */
+  color: #ecd60a;
+  background: black;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  /* color: #c96d06; */
+  font-size: 35px;
+  font-weight: 700;
+}
+
+
+.set-text {
+  display: flex;
+  width: 40px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 35px;
+  font-weight: 700;
+  color: white;
+}
+
+/* .score:last-child {
+  width: 100px;
+} */
+
+.dot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 10px;
+  min-height: 10px;
+  border-radius: 9999px;
+  padding: 2px;
+  margin: 2px;
+}
+
+.set-player-name {
+  display: flex;
+  min-width: 165px;
+  width: auto;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  color: #005239;
+  font-weight: 700;
+}
+
+/* .player-name {
+  display: block;
+  width: auto;
+  color: #c96d06;
+  font-weight: 700;
+} */
+
+.score-background {
+  width: 50px;
+  height: 60px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  background: #242121;
+}
+
+.sets {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.set,
+.points {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 41px;
+  text-align: center;
+  color: white;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+
+
+.setimage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  top: 5px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.point {
+  width: 64px;
+}
+
+.score {
+  font-size: 62px;
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  width: auto;
+  padding: 2px;
+  /* background: #242121; */
+  background: black;
+  text-align: center;
+  color: white;
+  font-size: 35px;
+  font-weight: 700;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    visibility: visible;
+  }
+  51%,
+  100% {
+    visibility: hidden;
+  }
+}
+
+.blinking {
+  animation: blink 1s steps(1, start) infinite;
+}

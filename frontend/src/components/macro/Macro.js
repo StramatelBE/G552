@@ -60,8 +60,8 @@ function Macro() {
     await macroService.update(macro);
   }
 
-  const ignoreMacrosIds = [0, 1, 2, 10, 11, 12, 13, 14];
-
+  const MacrosIdsNotUse = [0];
+  const ignoreMacrosIds = [10, 11, 12, 13, 14, 15];
   return (
     <Grid item>
       <Paper className="mainPaperPage">
@@ -78,58 +78,63 @@ function Macro() {
         <Stack>
           <Box className="containerPage" sx={{ paddingTop: "0" }}>
             <Table stickyHeader size="small">
-              <TableHead>
+              {/* <TableHead>
                 <TableRow>
-                  <TableCell>{t("Macro.number")}</TableCell>
-                  <TableCell align="right">{t("Macro.slideshow")}</TableCell>
+                  <TableCell></TableCell>
+                  <TableCell align="right"></TableCell>
                 </TableRow>
-              </TableHead>
+              </TableHead> */}
               <TableBody>
                 {macros
-                  ? macros
-                      .filter(
-                        (macro) => !ignoreMacrosIds.includes(macro.button_id)
-                      )
-                      .map((macro) => (
-                        <TableRow key={macro.button_id}>
-                          <TableCell>{macro.button_id}</TableCell>
-                          <TableCell align="right">
-                            <Select
-                              sx={{ width: "30vh" }}
-                              align="left"
-                              value={macro.event_id || "choisir event"}
-                              onChange={(e) => {
-                                const updatedData = macros.map((item) => {
-                                  if (
-                                    macro.originalIndex === item.originalIndex
-                                  ) {
-                                    updateMacro({
-                                      ...item,
-                                      event_id: e.target.value,
-                                    });
-                                    return {
-                                      ...item,
-                                      event_id: e.target.value,
-                                    };
-                                  }
-                                  return item;
-                                });
-                                setMacros(updatedData);
-                              }}
-                            >
-                              <MenuItem value="choisir event">
-                                {t("Macro.none")}
-                              </MenuItem>
-                              {events &&
-                                events.map((event) => (
-                                  <MenuItem key={event.id} value={event.id}>
-                                    {event.name}
-                                  </MenuItem>
-                                ))}
-                            </Select>
-                          </TableCell>
-                        </TableRow>
-                      ))
+                  ? macros.filter((macro) => !ignoreMacrosIds.includes(macro.button_id)).map((macro) => (
+                    <TableRow key={macro.button_id}>
+                      <TableCell>
+                        <img
+                          src={`macro/${macro.button_id}.png`}
+                          alt={`Macro ${macro.button_id}`}
+                          width="50"
+                          height="50"
+                        />
+                      </TableCell>
+                      <TableCell align="right">
+                        {MacrosIdsNotUse.includes(macro.button_id) ? (
+                          <Typography>{t(`Macro.Explanation.${macro.button_id + 1}`)}</Typography>
+                        ) : (
+                          <Select
+                            sx={{ width: "30vh" }}
+                            align="left"
+                            value={macro.event_id || "choisir event"}
+                            onChange={(e) => {
+                              const updatedData = macros.map((item) => {
+                                if (macro.originalIndex === item.originalIndex) {
+                                  updateMacro({
+                                    ...item,
+                                    event_id: e.target.value,
+                                  });
+                                  return {
+                                    ...item,
+                                    event_id: e.target.value,
+                                  };
+                                }
+                                return item;
+                              });
+                              setMacros(updatedData);
+                            }}
+                          >
+                            <MenuItem value="choisir event">
+                              {t("Macro.none")}
+                            </MenuItem>
+                            {events &&
+                              events.map((event) => (
+                                <MenuItem key={event.id} value={event.id}>
+                                  {event.name}
+                                </MenuItem>
+                              ))}
+                          </Select>
+                        )}
+                      </TableCell>
+                    </TableRow>
+                  ))
                   : null}
               </TableBody>
             </Table>

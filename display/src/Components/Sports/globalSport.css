@@ -1,0 +1,114 @@
+.container-sport {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: black;
+}
+
+.container-team-sport {
+  width: 226px;
+  height: 256px;
+  position: absolute;
+}
+.container-score-sport {
+  width: 226px;
+  height: 93px;
+  position: absolute;
+  overflow: hidden;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container-score {
+  width: 226px;
+  height: 93px;
+  position: absolute;
+  overflow: hidden;
+}
+.score-sport {
+  height: 90px;
+  width: 226px;
+  font-size: 100px;
+  color: #ff0000;
+  font-weight: 700;
+}
+
+.team-name-sport {
+  font-weight: bold;
+  width: 226px;
+  height: 50px;
+  color: white;
+  font-size: 45px;
+  font-weight: 700;
+  position: absolute;
+}
+.timeout-hand {
+  width: 15px;
+  height: 90px;
+  position: absolute;
+}
+
+.timeout-dot-sport {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  background: #00a13b;
+  border-radius: 9999px;
+}
+.time-exclusion-sport {
+  display: flex;
+  width: 120px;
+  position: absolute;
+  color: #ebff00;
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.logo-stramatel {
+  width: 130px;
+  height: 21px;
+  top: 235px;
+  position: absolute;
+}
+
+.period-sport {
+  position: absolute;
+  width: 60px;
+  height: 90px;
+  color: #00a13b;
+  font-size: 60px;
+  font-weight: 700;
+}
+.timer-sport {
+  width: 512px;
+  height: 76px;
+  top: 140px;
+  font-weight: 700;
+  position: absolute;
+  color: white;
+  font-size: 95px;
+}
+
+.score-sport {
+  position: absolute;
+  transition: transform 0.5s ease-out;
+}
+
+.home-score.new-score {
+  transform: translateY(-100%);
+}
+
+.guest-score.new-score {
+  transform: translateY(-100%);
+}
+
+.home-score.old-score {
+  transform: translateY(100%);
+}
+
+.guest-score.old-score {
+  transform: translateY(100%);
+}

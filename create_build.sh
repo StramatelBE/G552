@@ -24,8 +24,8 @@ echo "Creating Version Folder"
 if [ -d "$FOLDER" ]; then
     echo "This Version directory already exists: $VERSION_NUMBER"
     if [ -f "$CHECKSUM" ]; then
-        bash ./scripts/build/project_build.sh > /dev/null 2>&1
-        zip -9 -r $BUILD build/ > /dev/null 2>&1
+        bash ./scripts/build/project_build.sh
+        zip -9 -r $BUILD build/
         NEW_CHECKSUM=$(sha256sum $BUILD | awk '{print $1}')
         
         if [ "$NEW_CHECKSUM" != "$(cat $CHECKSUM)" ]; then
@@ -49,13 +49,19 @@ else
     mkdir -p $METADATA
     echo "$VERSION_NUMBER" > $VERSION
     echo "Building project version: $VERSION_NUMBER."
-    bash ./scripts/build/project_build.sh > /dev/null 2>&1
+    bash ./scripts/build/project_build.sh
+    rm -r build/backend/node_modules
     echo "Packaging builds..."
-    zip -9 -r $BUILD build/* > /dev/null 2>&1
+    zip -9 -r $BUILD build/*
     echo "Creating checksum..."
     sha256sum $BUILD | awk '{print $1'} > $CHECKSUM
     check_duplicate_checksums
     echo "Copying files..."
-    cp -r $FOLDER $BUILD_REPO/$VERSION_NUMBER
+    cp -r $FOLDER $BUILD_REPO
     echo "Files copied!"
 fi
+    rm -r build/*
+    rm -r display/build
+    rm -r frontend/build
+    
+    echo "Cleaned!"

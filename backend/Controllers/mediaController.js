@@ -10,8 +10,9 @@ class MediaController {
     this.storage = multer.diskStorage({
       destination: (req, file, cb) => {
         const username = req.params.user;
-        const userFolder =`${process.env.UPLOAD_PATH}${username}`;
+        const userFolder = `${process.env.UPLOAD_PATH}${username}`;
         cb(null, userFolder);
+        console.log("userFolder", userFolder);
       },
       filename: (req, file, cb) => {
         const hash = crypto.createHash("sha256");
@@ -21,7 +22,7 @@ class MediaController {
         file.filename = fileName;
       },
     });
-    this.upload = multer({ storage: this.storage });
+    this.upload = multer({ storage: this.storage, limits: { fileSize: 1000 * 1024 * 1024 } });
     this.media = new Media();
     this.create = this.create.bind(this);
     this.update = this.update.bind(this);
@@ -31,12 +32,11 @@ class MediaController {
     this.delete = this.delete.bind(this);
   }
 
-
   create = (req, res) => {
     const username = req.params.user;
     this.upload.single("file")(req, res, (err) => {
       if (err) {
-        console.log(err);
+        console.log(err, "test");
         res.status(500).json({ message: err });
       } else {
         sharedEmitter.emit("created", req.file.filename);
@@ -45,23 +45,9 @@ class MediaController {
 
         this.media
           .create(req.file, id, username)
-          .then((media) => {
-            fs.rename(
-              req.file.path,
-              `${process.env.UPLOAD_PATH} ${username} / ${req.file.filename}`,
-              (erreur) => {
-                if (erreur) {
-                  console.error(
-                    "Erreur lors du déplacement du fichier :",
-                    erreur
-                  );
-                } else {
-                  console.log("Fichier déplacé avec succès");
-                }
-              }
-            );
-          })
+          .then((media) => { })
           .catch((err) => {
+
             res.status(500).json({ message: err });
           });
       }
@@ -126,6 +112,7 @@ class MediaController {
       .getById(req.params.id)
       .then((file) => {
         const filePath = file.path;
+
         fs.unlink(process.env.UPLOAD_PATH + filePath, (err) => {
           if (err) {
             {

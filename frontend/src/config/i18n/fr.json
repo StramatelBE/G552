@@ -3,7 +3,15 @@
     "title": "Macro",
     "number": "nombre",
     "slideshow": "diaporama",
-    "none": "aucun"
+    "none": "aucun",
+    "Explanation": {
+      "1": "Affiche le score",
+      "11": "lance l'animation 1 point",
+      "12": "lance l'animation 2 points",
+      "13": "lance l'animation 3 points",
+      "14": "lance l'animation temps mort",
+      "15": "lance l'animation faute"
+    }
   },
   "Profile": {
     "title": "Paramètre",
@@ -12,7 +20,7 @@
     "darkMode": "Mode sombre",
     "usedStorageSpace": "Espace de stockage utilisé",
     "panelsTest": "Test des panneaux",
-    "language": "Langue",
+    "languages": "Langue",
     "info": "Informations",
     "account": "Compte",
     "automaticStandby": "Mise en veille automatique",
@@ -22,14 +30,18 @@
     }
   },
   "Diaporama": {
-    "title": "Diaporama",
-    "emptyListMessage": "Ajouter des diaporamas avec +",
-    "listTitle": "Liste des diaporamas",
+    "title": "playlists",
+    "emptyListMessage": "Ajouter des playlists avec +",
+    "listTitle": "Liste des playlists",
     "Dialog": {
-      "addNew": "Ajouter un nouveau diaporama",
+      "addNew": "Ajouter un nouveau playlists",
       "name": "Nom",
       "areYouSureToDelete": "Êtes-vous sûr de vouloir supprimer",
-      "areYouSureToDeleteMediaEvent": "Êtes-vous sûr de vouloir supprimer cet événement diaporama ?"
+      "areYouSureToDeleteMediaEvent": "Êtes-vous sûr de vouloir supprimer cet événement playlists ?"
+    },
+    "DialogUpdate": {
+      "newName": "Nouveau nom de la playlists",
+      "updateName": "Mettre a jour le nom de la playlists"
     }
   },
   "Login": {
@@ -53,7 +65,7 @@
   },
   "Media": {
     "title": "Média",
-    "add": "Ajouter",
+    "add": "Ajouter des Medias avec +",
     "upload": "Télécharger",
     "Dialog": {
       "areYouSureToDelete": "Do you want to delete this media?"
@@ -68,5 +80,19 @@
     "confirmDeletion": "confirmer la suppression",
     "yes": "Oui",
     "no": "Non"
+  },
+  "Scoreboard": {
+    "Guest": "Visiteur",
+    "Home": "Locaux"
+  },
+  "Admin": {
+    "title": "Administration",
+    "serialNumber": "Numéro de série",
+    "canalNumber": "Numéro de canal",
+    "ipAddress": "Adresse IP",
+    "uploadButton": "upload",
+    "Dialog": {
+      "password": "mot de passe"
+    }
   }
 }

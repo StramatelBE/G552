@@ -26,7 +26,7 @@ sudo apt upgrade -y >/dev/null 2>&1
 
 #BASIC UTILITIES
 print_progress "Installing basic utilities...        "
-sudo apt install -y vim curl wget git zip >/dev/null 2>&1
+sudo apt install -y vim curl wget git >/dev/null 2>&1
 
 #CLONE REPOSITORY
 print_progress "Cloning repository...               "

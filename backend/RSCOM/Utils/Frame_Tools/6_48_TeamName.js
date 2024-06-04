@@ -8,13 +8,17 @@ function TeamName(startIndex, _message) {
     // the size is 18/2 because we want to slice 18 bytes, but the buffer is in utf16, so 2 bytes per character
     const slicedBuffer = buffer.slice(startIndex, startIndex + 9 * 2);
 
-    // const slicedBuffer = buffer.slice(startIndex, startIndex + 18 * 2);
+     // Replace all occurrences of 20 20 with 00 20 in the sliced buffer
+     // TODO: fix it in YOANN's code
+     for (let i = 0; i < slicedBuffer.length - 2; i += 2) {
+        if (slicedBuffer[i] === 0x20 && slicedBuffer[i + 1] === 0x20) {
+            slicedBuffer[i] = 0x00; // Change the first 20 to 00
+            // No need to change the second 20 as it's already 20
+        }
+    }
 
-    // Decode using utf32le with iconv-lite
-    // remove any character that is not a letter or a number or a letter with an accent or space
 
-
-    const decodedMessage = iconv.decode(slicedBuffer, 'utf16').replace(/[^a-zA-Z0-9À-ÿ]/g, '');
+    const decodedMessage = iconv.decode(slicedBuffer, 'utf16');
 
 
     console.log('Decoded Message:' + decodedMessage);

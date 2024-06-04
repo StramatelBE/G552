@@ -1,41 +1,43 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { Droppable } from "react-beautiful-dnd";
-import { useTranslation } from "react-i18next";
+import AddIcon from "@mui/icons-material/Add";
+import CloseIcon from "@mui/icons-material/Close";
+import DeleteIcon from "@mui/icons-material/Delete";
+import PermMediaIcon from "@mui/icons-material/PermMedia";
+import SlideshowIcon from "@mui/icons-material/Slideshow";
 import {
   Box,
-  CircularProgress,
   IconButton,
+  Menu,
+  MenuItem,
   Paper,
   Stack,
   Table,
   TableBody,
   TableContainer,
-  Typography,
+  Typography
 } from "@mui/material";
-
-import CloseIcon from "@mui/icons-material/Close";
-import PermMediaIcon from "@mui/icons-material/PermMedia";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import SlideshowIcon from "@mui/icons-material/Slideshow";
-import StopIcon from "@mui/icons-material/Stop";
-import DeleteIcon from "@mui/icons-material/Delete";
-
+import EditIcon from '@mui/icons-material/Edit';
+import React, { useEffect, useState } from "react";
+import { Droppable } from "react-beautiful-dnd";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import eventMediaService from "../../../services/eventMediaService";
 import eventService from "../../../services/eventService";
+import {
+  default as modeService,
+  default as modeServiceInstance,
+} from "../../../services/modeService";
 import DeleteEventDialog from "../../dialogs/DeleteEventDialog";
 import DeleteMediaEventDialog from "../../dialogs/DeleteMediaEventDialog";
-import DiaporamaMedia from "../media/DiaporamaMedia";
-import modeServiceInstance from "../../../services/modeService";
 import DiaporamaModal from "../../dialogs/DiaporamaModal";
-import eventMediaService from "../../../services/eventMediaService";
-import modeService from "../../../services/modeService";
+import DiaporamaMedia from "../media/DiaporamaMedia";
+import UpdateNameDialogOpen from "../../dialogs/UpdateNameDialogOpen";
 
 function DiaporamaConfig(props) {
-  const { id } = useParams();
   const { t } = useTranslation();
   const navigate = useNavigate();
 
   const [event, setEvent] = useState({});
+  const [updateNameDialogOpen, setUpdateNameDialogOpen] = useState(false);
   const [deleteMediaDialogOpen, setDeleteMediaDialogOpen] = useState(false);
   const [deleteEventDialogOpen, setDeleteEventDialogOpen] = useState(false);
   const [isPlayModalOpen, setIsPlayModalOpen] = useState(false);
@@ -45,6 +47,8 @@ function DiaporamaConfig(props) {
   const [activeMediaIndex, setActiveMediaIndex] = useState(0);
   const [isAutoPlayEnabled, setIsAutoPlayEnabled] = useState(true);
   const [mode, setMode] = useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
 
   useEffect(() => {
     props.getEvents();
@@ -103,6 +107,7 @@ function DiaporamaConfig(props) {
     if (activeMediaIndex === 0) {
       setActiveMediaIndex(props.eventMedia[0].medias.length - 1);
     } else {
+      console.log((prevIndex) => prevIndex - 1);
       setActiveMediaIndex((prevIndex) => prevIndex - 1);
     }
   }
@@ -115,6 +120,9 @@ function DiaporamaConfig(props) {
     }
   }
 
+  function updateNameEvent() {
+    console.log("updateNameEvent");
+  }
   function toggleAutoPlay() {
     setIsAutoPlayEnabled((prevState) => !prevState);
   }
@@ -122,7 +130,11 @@ function DiaporamaConfig(props) {
   function handleRowHover(rowId) {
     setHoveredRow(rowId);
   }
-
+  function openUpdateNameDialog() {
+    setUpdateNameDialogOpen(!updateNameDialogOpen);
+    props.getEvents();
+    getMediasByID();
+  }
   function openDeleteEventDialog() {
     setDeleteEventDialogOpen(true);
   }
@@ -150,9 +162,10 @@ function DiaporamaConfig(props) {
   }
 
   async function deleteEventMedia() {
-    const eventMediaDelete = props.eventMedia[0].medias[idEventMediaDelete];
+    const eventMediaDelete = props.eventMedia[0].medias[idEventMediaDelete].id;
+    console.log(props.eventMedia[0].medias[idEventMediaDelete]);
     try {
-      await eventMediaService.delete(id, eventMediaDelete);
+      await eventMediaService.delete(eventMediaDelete);
       await getMediasByID();
       closeDeleteDialog();
     } catch (error) {
@@ -194,6 +207,24 @@ function DiaporamaConfig(props) {
       console.error("Erreur lors de la suppression d'un événement :", error);
     }
   }
+  const handleOpenMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+  };
+
+  function addPanel() {
+    console.log("test", props.id);
+    eventMediaService.addPanel(props.id, props.eventMedia[0].medias.length).then((res) => {
+
+      getMediasByID();
+      handleCloseMenu();
+
+    });
+
+  }
 
   return (
     <Box>
@@ -224,13 +255,45 @@ function DiaporamaConfig(props) {
           <Box className="headerRight">
             <IconButton
               className="headerButton"
+              onClick={openUpdateNameDialog}
+            >
+              <EditIcon sx={{ color: "secondary.main" }} />
+            </IconButton>
+            <IconButton
+              aria-controls={open ? "basic-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleOpenMenu}
+              className="headerButton"
+            >
+              <AddIcon sx={{ color: "secondary.main" }} />
+            </IconButton>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleCloseMenu}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+              }}
+            >
+              <MenuItem onClick={addPanel}>Panneau</MenuItem>
+            </Menu>
+            <IconButton
+              className="headerButton"
               onClick={openDeleteEventDialog}
             >
               <DeleteIcon sx={{ color: "secondary.main" }} />
             </IconButton>
-            <IconButton className="headerButton" onClick={openPlayModal}>
-              <SlideshowIcon sx={{ color: "secondary.main" }} />
-            </IconButton>
+            {props.eventMedia[0]?.medias.length > 0 ? (
+              <IconButton className="headerButton" onClick={openPlayModal}>
+                <SlideshowIcon sx={{ color: "secondary.main" }} />
+              </IconButton>
+            ) : (
+              <IconButton disabled={true}>
+                <SlideshowIcon />
+              </IconButton>
+            )}
           </Box>
         </Stack>
 
@@ -294,6 +357,12 @@ function DiaporamaConfig(props) {
         open={deleteMediaDialogOpen}
         onClose={closeDeleteDialog}
         onDelete={deleteEventMedia}
+      />
+
+      <UpdateNameDialogOpen
+        open={updateNameDialogOpen}
+        onClose={openUpdateNameDialog}
+        event={event}
       />
     </Box>
   );

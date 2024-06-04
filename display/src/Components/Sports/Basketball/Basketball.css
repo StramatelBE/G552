@@ -1,0 +1,74 @@
+.fouls-basket {
+  width: 25px;
+  height: 46px;
+  position: absolute;
+  text-align: center;
+  color: #ebff00;
+  font-size: 50px;
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+.home-possession {
+  clip-path: polygon(100% 0%, 82.4% 49.5%, 100% 100%, 0% 50%);
+  background: #ff0000;
+  height: 20px;
+  width: 20px;
+  left: 203px;
+  top: 40px;
+  position: absolute;
+}
+
+.guest-possession {
+  clip-path: polygon(0% 0%, 100% 50%, 0% 100%, 25% 50%);
+  background: #ff0000;
+  height: 20px;
+  width: 20px;
+  left: 293px;
+  top: 40px;
+  position: absolute;
+}
+.square-fouls-basket {
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  background-color: red;
+}
+
+.logo-fiba {
+  width: 32px;
+  height: 65px;
+  position: absolute;
+}
+
+.score-in {
+  /* no warp */
+  overflow: hidden;
+  animation: text-animation-in 0.5s ease-in-out;
+}
+
+.score-out {
+  /* no warp */
+  overflow: hidden;
+  animation: text-animation_out 0.5s ease-in-out;
+}
+
+/* Define the keyframes for the animation */
+@keyframes text-animation-in {
+  0% {
+    margin-top: -11.24rem;
+  }
+
+  100% {
+    margin-top: 0;
+  }
+}
+@keyframes text-animation_out {
+  0% {
+    margin-top: 0;
+  }
+
+  100% {
+    margin-top: 11.24rem;
+  }
+}

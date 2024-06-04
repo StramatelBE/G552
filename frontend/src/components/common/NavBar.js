@@ -23,8 +23,9 @@ function NavBar() {
     setLogoutDialogOpen(false);
   }
 
-  function logout() {
-    AuthService.logout();
+  async function logout() {
+    localStorage.removeItem("user");
+    await AuthService.logout();
     window.location.reload();
   }
 

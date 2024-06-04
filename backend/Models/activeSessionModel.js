@@ -18,7 +18,6 @@ class ActiveSession {
       if (err) {
         console.error("Error creating activeSessions table:", err.message);
       } else {
-      
         this.initializeTableIfEmpty();
       }
     });
@@ -44,7 +43,7 @@ class ActiveSession {
     // Remplacez les valeurs ci-dessous par les valeurs initiales souhaitées
     const userId = null;
     const activeToken = null;
-    const lastActivity = null
+    const lastActivity = null;
 
     db.run(insertSql, [userId, activeToken, lastActivity], (err) => {
       if (err) {
@@ -53,7 +52,6 @@ class ActiveSession {
           err.message
         );
       } else {
-
       }
     });
   }
@@ -74,12 +72,14 @@ class ActiveSession {
     });
   }
   logout() {
+    console.log("logout");
     return new Promise((resolve, reject) => {
       db.run(
         `UPDATE activeSessions SET userId = NULL ,activeToken = NULL, last_activity = NULL WHERE id = 1`,
 
         (err) => {
           if (err) {
+            console.log("err", err);
             reject(err);
           } else {
             resolve();

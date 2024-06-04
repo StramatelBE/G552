@@ -27,7 +27,7 @@ import { switchToClairTheme } from "./themes/clairTheme.ts";
 import { switchToDarkTheme } from "./themes/darkTheme.ts";
 
 function App() {
-  const [token, setToken] = useState();
+  const [token, setToken] = useState(null);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const { darkMode } = useDarkMode();
@@ -38,7 +38,16 @@ function App() {
     setProgress: setProgress,
   };
   useEffect(() => {
-    setToken(AuthService.getCurrentUser());
+    const token = AuthService.getCurrentUser();
+    console.log("token", AuthService.getCurrentUser());
+    if (token) {
+      console.log("token");
+      setToken(token);
+    } else {
+      console.log("no token");
+      setToken(null);
+    }
+    console.log("token", token);
   }, []);
 
   useEffect(() => {
@@ -71,7 +80,7 @@ function App() {
             )}
             <Header darkMode={darkMode} />
             <Box className="mainContainer">
-              {token && token.user.firstLogin === 1 ? (
+              {token?.user.firstLogin && token?.user.firstLogin === 1 ? (
                 <Grid
                   container
                   sx={{
@@ -120,7 +129,7 @@ function App() {
                 </Grid>
               )}
             </Box>
-            {token && token.user.firstLogin !== 1 ? (
+            {token && token?.user.firstLogin !== 1 ? (
               <Box>
                 <Navbar />
               </Box>
