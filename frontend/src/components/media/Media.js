@@ -136,6 +136,10 @@ function Medias(props) {
   function displayDialogDelete() {
     setDialogDelete(!dialogDelete);
   }
+  const getImageRatio = (width, height) => width / height;
+  const isRatioEqual = (width1, height1, width2, height2) => {
+    return Math.abs(getImageRatio(width1, height1) - getImageRatio(width2, height2)) < 0.01;
+  };
 
   function goToCrop(event) {
     const files = Array.from(event.target.files);
@@ -161,14 +165,41 @@ function Medias(props) {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         return new Promise(resolve => {
-          reader.onload = () => resolve(reader.result);
+          reader.onload = () => {
+            const img = new Image();
+            img.src = reader.result;
+            img.onload = () => {
+              const targetWidth = parseInt(process.env.REACT_APP_WIDTH, 10);
+              const targetHeight = parseInt(process.env.REACT_APP_HEIGHT, 10);
+              console.log("img", img.width, img.height, targetWidth, targetHeight);
+              if (isRatioEqual(img.width, img.height, targetWidth, targetHeight)) {
+                // Upload directly if the ratio matches directly if the ratio matches
+                const fileWithOriginalName = new File([file], file.name, {
+                  type: file.type,
+                });
+                uploadService
+                  .upload(setLoading, fileWithOriginalName, setProgress)
+                  .then(() => {
+                    props.getMedias();
+                  })
+                  .catch((error) => {
+                    console.error(error);
+                  });
+              } else {
+                // Add to the list of images to crop if the ratio doesn't match
+                resolve(reader.result);
+              }
+            };
+          };
         });
       });
-
       Promise.all(readers).then(results => {
-        setImagesToCrop(results);
-        setMediaType("image");
-        displayDialogUpload();
+        const validResults = results.filter(result => result !== undefined);
+        if (validResults.length > 0) {
+          setImagesToCrop(validResults);
+          setMediaType("image");
+          displayDialogUpload();
+        }
       });
     }
 
