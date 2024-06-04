@@ -23,6 +23,8 @@ function CropsModal(props) {
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
   const [restrictPosition, setRestrictPosition] = useState(true);
+  const [currentFileIndex, setCurrentFileIndex] = useState(0);
+  const [filesToCrop, setFilesToCrop] = useState([]);
 
   const onCropComplete = useCallback((_, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -37,7 +39,7 @@ function CropsModal(props) {
     });
 
   const getCroppedImage = async () => {
-    const image = await createImage(props.imageToCrop);
+    const image = await createImage(filesToCrop[currentFileIndex]);
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
 
@@ -65,45 +67,43 @@ function CropsModal(props) {
 
   const handleUpload = async () => {
     if (props.mediaType === "image") {
-      if (!props.imageToCrop || !croppedAreaPixels) return;
+      if (!filesToCrop[0] || !croppedAreaPixels) return;
       const croppedImage = await getCroppedImage();
       props.uploadMediaCropped([croppedImage]);
-      setCrop({ x: 0, y: 0 })
+      setCrop({ x: 0, y: 0 });
     } else if (props.mediaType === "video") {
-      props.uploadMediaCropped([props.imageToCrop], croppedAreaPixels);
-    }
-  };
-
-  const snapToEdge = (crop, cropArea, imageSize, zoom) => {
-    const snapThreshold = 10;
-    const snappedCrop = { ...crop };
-
-    const scaledWidth = imageSize.width * zoom;
-    const scaledHeight = imageSize.height * zoom;
-
-    if (Math.abs(- ((scaledWidth - imageSize.width) / 2)) < snapThreshold) {
-      console.log("snapped");
-      snappedCrop.x = (scaledWidth - imageSize.width) / 2;
+      props.uploadMediaCropped([filesToCrop[0]], croppedAreaPixels);
     }
 
-    return snappedCrop;
+    if (currentFileIndex < filesToCrop.length - 1) {
+
+    } else {
+      props.onClose();
+    }
   };
 
   const onCropChange = useCallback((newCrop) => {
-   
     setCrop(newCrop);
   }, [imageSize, zoom]);
 
   useEffect(() => {
     const loadImage = async () => {
-      const image = await createImage(props.imageToCrop);
+      const image = await createImage(filesToCrop[0]);
       setImageSize({ width: image.width, height: image.height });
     };
+    console.log();
+    console.log(filesToCrop[currentFileIndex]);
 
-    if (props.imageToCrop) {
+    if (filesToCrop[0]) {
       loadImage();
     }
-  }, [props.imageToCrop]);
+  }, [filesToCrop, currentFileIndex]);
+
+  useEffect(() => {
+    if (props.imagesToCrop) {
+      setFilesToCrop(props.imagesToCrop);
+    }
+  }, [props.imagesToCrop]);
 
   return (
     <Modal open={props.open} onClose={props.onClose}>
@@ -132,7 +132,7 @@ function CropsModal(props) {
               </IconButton>
             </Box>
           </Stack>
-          {props.imageToCrop ? (
+          {filesToCrop[0] ? (
             <Box>
               <Box
                 sx={{
@@ -144,7 +144,7 @@ function CropsModal(props) {
               >
                 {props.mediaType === "image" && (
                   <Cropper
-                    image={props.imageToCrop}
+                    image={filesToCrop[currentFileIndex]}
                     zoom={zoom}
                     aspect={19 / 12}
                     onCropComplete={onCropComplete}
@@ -169,7 +169,7 @@ function CropsModal(props) {
                 <FormControlLabel
                   control={
                     <Switch
-                    color="secondary"
+                      color="secondary"
                       checked={restrictPosition}
                       onChange={() => setRestrictPosition(!restrictPosition)}
                     />
@@ -189,4 +189,3 @@ function CropsModal(props) {
 }
 
 export default CropsModal;
-

@@ -1,10 +1,9 @@
 import {
   Box,
-  Hidden,
   ImageList,
   ImageListItem,
   Paper,
-  Stack,
+  Stack
 } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
@@ -29,11 +28,11 @@ import Typography from "@mui/material/Typography";
 
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import TableRowsIcon from "@mui/icons-material/TableRows";
+import authService from "../../services/authService";
 import EventMediaService from "../../services/eventMediaService";
 import UploadService from "../../services/uploadService";
 import CropsModal from "../dialogs/CropsModal";
 import DeleteMediaDialog from "../dialogs/DeleteMediaDialog";
-import authService from "../../services/authService";
 
 function Medias(props) {
   const { t } = useTranslation(); // Utilisation de useTranslation
@@ -43,8 +42,8 @@ function Medias(props) {
   const [dialogUpload, setDialogUpload] = useState(false);
   const [dialogDelete, setDialogDelete] = useState(false);
   const [FileToDelete, setFileToDelete] = useState();
-  const [imageToCrop, setImageToCrop] = useState(null);
-  const [originalName, setOriginalName] = useState(null);
+  const [imagesToCrop, setImagesToCrop] = useState([]);
+  const [originalNames, setOriginalNames] = useState([]);
   const [mediaType, setMediaType] = useState(null);
   const [longPressTimer, setLongPressTimer] = useState(null);
   const { setLoading } = useContext(LoadingContext);
@@ -54,7 +53,6 @@ function Medias(props) {
   const [inputKey, setInputKey] = useState(0);
 
   const toggleViewMode = () => {
-    console.log("toggleViewMode", viewMode);
     setViewMode(viewMode === "grid" ? "table" : "grid");
   };
   const toggleSortCriteria = () => {
@@ -64,7 +62,6 @@ function Medias(props) {
 
   const sortMedia = (media, criteria) => {
     if (criteria === "name") {
-      console.log("media", media);
       return [...media].sort((a, b) =>
         a.originalFileName.localeCompare(b.originalFileName)
       );
@@ -78,7 +75,6 @@ function Medias(props) {
   // Function to update the medias array for the "uploadMedia" title
   async function updateUploadMediaMedias() {
     await props.setEventMedia((currentEventMedia) => {
-      console.log("currentEventMedia", currentEventMedia);
       const uploadMediaIndex = currentEventMedia.findIndex(
         (media) => media.title === "uploadMedia"
       );
@@ -96,7 +92,6 @@ function Medias(props) {
         ...newEventMedia[uploadMediaIndex],
         medias: sortedMedias,
       };
-      console.log("newEventMedia", newEventMedia);
 
       return newEventMedia;
     });
@@ -131,7 +126,7 @@ function Medias(props) {
 
   function displayDialogUpload() {
     setDialogUpload(!dialogUpload);
-    setImageToCrop(null);
+    /* setImagesToCrop([]); */
   }
 
   function OpenDialogDelete(file) {
@@ -143,31 +138,45 @@ function Medias(props) {
   }
 
   function goToCrop(event) {
-    setImageToCrop(event.target.files[0]);
-    setInputKey((prevKey) => prevKey + 1);
-    setImageToCrop(null);
-    if (event && event.target.files[0].type.split("/")[0] === "video") {
-      uploadService
-        .upload(setLoading, event.target.files[0], setProgress)
-        .then(() => {
-          props.getMedias();
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    } else {
-      setOriginalName(event.target.files[0].name);
-      const reader = new FileReader();
-      reader.addEventListener("load", () => setImageToCrop(reader.result));
-      reader.readAsDataURL(event.target.files[0]);
-      setMediaType(event.target.files[0].type.split("/")[0]);
-      displayDialogUpload();
+    const files = Array.from(event.target.files);
+    const imageFiles = files.filter(file => file.type.split("/")[0] === "image");
+    const videoFiles = files.filter(file => file.type.split("/")[0] === "video");
+
+    if (videoFiles.length > 0) {
+      videoFiles.forEach(file => {
+        uploadService
+          .upload(setLoading, file, setProgress)
+          .then(() => {
+            props.getMedias();
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      });
     }
+
+    if (imageFiles.length > 0) {
+      setOriginalNames(imageFiles.map(file => file.name));
+      const readers = imageFiles.map(file => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        return new Promise(resolve => {
+          reader.onload = () => resolve(reader.result);
+        });
+      });
+
+      Promise.all(readers).then(results => {
+        setImagesToCrop(results);
+        setMediaType("image");
+        displayDialogUpload();
+      });
+    }
+
     setSelectedImage(null);
   }
 
   function uploadMediaCropped(event) {
-    const fileWithOriginalName = new File([event[0]], originalName, {
+    const fileWithOriginalName = new File([event[0]], originalNames[0], {
       type: "image/jpeg",
     });
 
@@ -180,8 +189,13 @@ function Medias(props) {
         console.error(error);
       });
 
-    displayDialogUpload();
-    setImageToCrop(null);
+    setOriginalNames(originalNames.slice(1));
+    if (originalNames.length > 1) {
+      setImagesToCrop(imagesToCrop.slice(1));
+    } else {
+      displayDialogUpload();
+      /* setImagesToCrop([]); */
+    }
   }
 
   function handleImageClick(imageId) {
@@ -193,7 +207,6 @@ function Medias(props) {
   }
 
   function addmediatodiaporam(file) {
-    console.log("addmediatodiaporam", file);
     EventMediaService.create({
       mediaId: file.idBdd,
       eventId: props.id,
@@ -201,7 +214,6 @@ function Medias(props) {
       userId: authService.getCurrentUser().user.id,
       media_pos_in_event: props.eventMedia[1].medias.length + 1,
     }).then((result) => {
-      console.log("result", result);
       props.getEvents();
     });
   }
@@ -222,19 +234,18 @@ function Medias(props) {
             <IconButton
               className="headerButton"
               onClick={() => {
-                //remove the file input
                 document.getElementById("inputFile").click();
               }}
             >
               <AddIcon sx={{ color: "secondary.main" }} />
             </IconButton>
-
             <input
               type="file"
               id="inputFile"
               style={{ display: "none" }}
-              onChange={goToCrop}
+              onChange={(e) => goToCrop(e, true)}
               key={inputKey}
+              multiple
             />
           </Box>
         </Stack>
@@ -244,11 +255,6 @@ function Medias(props) {
           ) : (
             <TableRowsIcon sx={{ color: "secondary.main" }} />
           )}
-          {/*  <Typography>
-            {viewMode === "grid"
-              ? "Switch to Table View"
-              : "Switch to Grid View"}
-          </Typography> */}
         </IconButton>
         <IconButton onClick={toggleSortCriteria}>
           <SortIcon sx={{ color: "secondary.main" }} />
@@ -433,11 +439,10 @@ function Medias(props) {
         </Droppable>
       </Paper>
       {/* Modal upload  */}
-
       <CropsModal
         open={dialogUpload}
         onClose={displayDialogUpload}
-        imageToCrop={imageToCrop}
+        imagesToCrop={imagesToCrop}
         uploadMediaCropped={uploadMediaCropped}
         mediaType={mediaType}
       />
