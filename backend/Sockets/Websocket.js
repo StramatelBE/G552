@@ -68,5 +68,4 @@ module.exports = function(app) {
     server.listen(config.portWS, () => {
         console.log(`WebSocket Server started on ${config.ip}:${config.portWS}`);
     });
-
 }
