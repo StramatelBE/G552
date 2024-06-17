@@ -1,6 +1,7 @@
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import {
   Box,
+  Button,
   Grid,
   IconButton,
   Paper,
@@ -10,10 +11,11 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useSnackbar } from "../../contexts/SnackbarContext";
 import AdminService from "../../services/adminService";
-import { Button } from "@mui/material";
 
 function AdminPage() {
+  const { openSnackbar } = useSnackbar();
   const { t } = useTranslation();
 
   const [admin, setAdmin] = useState({
@@ -33,7 +35,6 @@ function AdminPage() {
     try {
       const result = await AdminService.getAdmin();
       if (result) {
-        console.log("result", result);
         setAdmin({
           serialnumber: result.serialnumber,
           canal: result.canal,
@@ -64,10 +65,6 @@ function AdminPage() {
     }
   }
 
-  const handleBlur = (event) => {
-    const { name, value } = event.target;
-    updateAdmin(name, value);
-  };
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -91,8 +88,10 @@ function AdminPage() {
     try {
       const response = await AdminService.uploadFile(file);
       console.log("File uploaded successfully:", response);
+      openSnackbar(t("Admin.uploadSuccess"), "success");
     } catch (error) {
       console.error("Error uploading file:", error);
+      openSnackbar(t("Admin.uploadError"), "error");
     }
   };
 
