@@ -41,10 +41,8 @@ function App() {
     const token = AuthService.getCurrentUser();
     console.log("token", AuthService.getCurrentUser());
     if (token) {
-      console.log("token");
       setToken(token);
     } else {
-      console.log("no token");
       setToken(null);
     }
     console.log("token", token);

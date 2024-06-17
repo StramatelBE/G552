@@ -2,25 +2,28 @@ import React, { useState } from "react";
 import { AppBar, Box, Toolbar } from "@mui/material";
 import { useNavigate } from "react-router-dom"; // Importez useNavigate pour la redirection
 import AdminDialog from "../dialogs/AdminDialog";
+import authService from "../../services/authService";
 
 function Header(props) {
+  const token = authService.getCurrentUser();
   const [modal, setModal] = useState(false);
   const [adminPassword, setAdminPassword] = useState("");
-  const navigate = useNavigate(); // Hook pour naviguer
+  const navigate = useNavigate();
+  const currentPath = window.location.pathname;
 
   function toggleModal() {
     setModal(!modal);
   }
+
   const handleLogoClick = (event) => {
-
-    if (event.ctrlKey && event.altKey) {
+    if (event.ctrlKey && event.altKey && token && currentPath !== "/admin") {
       toggleModal();
-
     }
   };
+
   function adminPasswordCheck() {
     if (adminPassword === process.env.REACT_APP_PASSWORD_ADMIN) {
-      toggleModal()
+      toggleModal();
       navigate("/admin");
       setAdminPassword("");
     } else {
@@ -53,7 +56,7 @@ function Header(props) {
             }
             alt="Logo"
             sx={{ width: "200px", height: "auto" }}
-            onClick={handleLogoClick} // Ajouter le gestionnaire d'événements ici
+            onClick={handleLogoClick}
           />
         </Toolbar>
       </AppBar>

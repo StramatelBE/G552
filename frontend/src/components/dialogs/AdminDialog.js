@@ -22,6 +22,11 @@ function AdminDialog({ open, onClose, onAdd, adminPassword, setAdminPassword }) 
           id="standard-basic"
           autoComplete="off"
           value={adminPassword}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              onAdd();
+            }
+          }}
           onChange={(e) => setAdminPassword(e.target.value)}
         />
       </DialogContent>
