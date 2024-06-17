@@ -19,6 +19,10 @@ class SpaceController {
     }
 
     try {
+      if (process.platform === 'win32') {
+        return res.status(400).json({ message: 'Cette fonctionnalité n\'est pas disponible sur Windows' });
+      }
+
       const newUser = User.getInstance();
       const users = await newUser.getAll();
       const dirs = users.map(user => `${process.env.REMAINING_SPACE}${user.username}`);

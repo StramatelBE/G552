@@ -5,7 +5,6 @@ import {
   CircularProgress,
   Grid,
   IconButton,
-  LinearProgress,
   Paper,
   Stack,
   Switch,
@@ -80,11 +79,12 @@ function Profile() {
           });
         }
       });
-      console.log("sportsData", sportsData);
       setWidths(widths);
-      console.log("widths", widths);
       setSportsData(sportsData);
+    }).catch((error) => {
+      console.error("Error fetching space data:", error);
     });
+
     const currentUser = authService.getCurrentUser();
     setUser(currentUser);
   }, []);
