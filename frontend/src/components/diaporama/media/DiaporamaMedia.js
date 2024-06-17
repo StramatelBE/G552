@@ -1,5 +1,5 @@
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Box, IconButton, TableCell, TableRow, TextField } from "@mui/material";
+import { Box, IconButton, TableCell, TableRow, TextField, Typography } from "@mui/material";
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 
@@ -57,6 +57,10 @@ function DiaporamaMedia(props) {
 
             > Panneau</Box>)}
           </TableCell>
+          <TableCell>
+
+            {props.item.originalFileName}
+          </TableCell>
           <TableCell p={0} align="right">
             <TextField
               value={props.item.media_dur_in_event}
@@ -67,6 +71,9 @@ function DiaporamaMedia(props) {
               disabled={props.item.type === "video"}
               style={{ width: "90px" }}
             />
+            <Typography variant="caption" display="block" gutterBottom>
+              secondes
+            </Typography>
           </TableCell>
           <TableCell p={0} align="right">
             {props.hoveredRow === props.item.id ? (

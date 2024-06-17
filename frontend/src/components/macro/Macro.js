@@ -15,6 +15,7 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
+import { useTheme } from '@mui/material/styles';
 
 import KeyboardIcon from "@mui/icons-material/Keyboard";
 
@@ -25,6 +26,7 @@ function Macro() {
   const { t } = useTranslation();
   const [macros, setMacros] = useState(null);
   const [events, setEvents] = useState([]);
+  const theme = useTheme();
 
   useEffect(() => {
     getEvent();
@@ -56,7 +58,6 @@ function Macro() {
     if (macro.event_id === "choisir event") {
       macro.event_id = null;
     }
-    /*  macroService.update(macro).then((result) => {}); */
     await macroService.update(macro);
   }
 
@@ -78,16 +79,13 @@ function Macro() {
         <Stack>
           <Box className="containerPage" sx={{ paddingTop: "0" }}>
             <Table stickyHeader size="small">
-              {/* <TableHead>
-                <TableRow>
-                  <TableCell></TableCell>
-                  <TableCell align="right"></TableCell>
-                </TableRow>
-              </TableHead> */}
               <TableBody>
                 {macros
-                  ? macros.filter((macro) => !ignoreMacrosIds.includes(macro.button_id)).map((macro) => (
-                    <TableRow key={macro.button_id}>
+                  ? macros.filter((macro) => !ignoreMacrosIds.includes(macro.button_id)).map((macro, index) => (
+                    <TableRow
+                      key={macro.button_id}
+                      sx={{ backgroundColor: index % 2 === 0 ? theme.palette.background : theme.palette.action.hover }}
+                    >
                       <TableCell>
                         <img
                           src={`macro/${macro.button_id}.png`}

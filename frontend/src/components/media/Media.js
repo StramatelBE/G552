@@ -152,6 +152,7 @@ function Medias(props) {
           .upload(setLoading, file, setProgress)
           .then(() => {
             props.getMedias();
+            setProgress(0);
           })
           .catch((error) => {
             console.error(error);
@@ -181,6 +182,7 @@ function Medias(props) {
                   .upload(setLoading, fileWithOriginalName, setProgress)
                   .then(() => {
                     props.getMedias();
+                    setProgress(0);
                   })
                   .catch((error) => {
                     console.error(error);
@@ -215,6 +217,7 @@ function Medias(props) {
       .upload(setLoading, fileWithOriginalName, setProgress)
       .then(() => {
         props.getMedias();
+        setProgress(0); // Reset progress to 0 after upload
       })
       .catch((error) => {
         console.error(error);
