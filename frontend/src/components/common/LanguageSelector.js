@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import authService from "../../services/authService";
 import { Box, FormControl, MenuItem, Select } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import useAuthStore from "../../stores/authStore";
 
 function LanguageSelector() {
+  const { user } = useAuthStore();
   const { i18n } = useTranslation();
   const [selectedLanguage, setSelectedLanguage] = useState(
     i18n.language.split("-")[0]
@@ -19,9 +21,8 @@ function LanguageSelector() {
     i18n.changeLanguage(selectedLanguage);
     localStorage.setItem("i18nextLng", selectedLanguage);
     try {
-      console.log("Current user:", authService.getCurrentUser());
-      console.log("Selected language:", selectedLanguage);
-      authService.updateLanguage(selectedLanguage, authService.getCurrentUser().user.id);
+      
+      authService.updateLanguage(selectedLanguage, user.id);
     }
     catch (error) {
       console.error("Error during language change:", error);

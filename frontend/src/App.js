@@ -19,15 +19,16 @@ import Login from "./components/login/Login";
 import Macro from "./components/macro/Macro";
 import Profile from "./components/profile/Profile";
 import Scoreboard from "./components/scoreboard/Scoreboard";
-import AuthService from "./services/authService";
 
 import Admin from "./components/Admin/Admin.js";
 import "./styles/Global.css";
 import { switchToClairTheme } from "./themes/clairTheme.ts";
 import { switchToDarkTheme } from "./themes/darkTheme.ts";
 
+import useAuthStore from "./stores/authStore.js";
+
 function App() {
-  const [token, setToken] = useState(null);
+  const { token, setToken, user } = useAuthStore();
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const { darkMode } = useDarkMode();
@@ -37,16 +38,6 @@ function App() {
     setLoading: setLoading,
     setProgress: setProgress,
   };
-  useEffect(() => {
-    const token = AuthService.getCurrentUser();
-    console.log("token", AuthService.getCurrentUser());
-    if (token) {
-      setToken(token);
-    } else {
-      setToken(null);
-    }
-    console.log("token", token);
-  }, []);
 
   useEffect(() => {
     if (darkMode) {
@@ -78,7 +69,7 @@ function App() {
             )}
             <Header darkMode={darkMode} />
             <Box className="mainContainer">
-              {token?.user.firstLogin && token?.user.firstLogin === 1 ? (
+              {user?.firstLogin && user?.firstLogin === 1 ? (
                 <Grid
                   container
                   sx={{
@@ -127,7 +118,7 @@ function App() {
                 </Grid>
               )}
             </Box>
-            {token && token?.user.firstLogin !== 1 ? (
+            {user?.firstLogin === 0 ? (
               <Box>
                 <Navbar />
               </Box>

@@ -26,6 +26,7 @@ import ScoreService from "../../../services/scoreService";
 import MacroShortcut from "../MacroShortcut";
 import SettingsModal from "./BadmintonSetting";
 import modeServiceInstance from "../../../services/modeService";
+import useAuthStore from "../../../stores/authStore";
 
 
 function Badminton() {
@@ -94,7 +95,7 @@ function Badminton() {
         option8: null,
       };
       await ScoreService.updateSettings(
-        authService.getCurrentUser().user.id,
+        useAuthStore.getState().user.id,
         score
       );
     } catch (error) {

@@ -7,6 +7,7 @@ import {
   Button,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 function DisconnectDialog({ open, onClose, logout }) {
   const { t } = useTranslation();
@@ -22,7 +23,12 @@ function DisconnectDialog({ open, onClose, logout }) {
         <Button onClick={onClose} sx={{ color: "secondary.main" }}>
           {t("Dialog.cancel")}
         </Button>
-        <Button onClick={logout} sx={{ color: "secondary.main" }}>
+        <Button
+          component={Link}
+          to="/login"
+          onClick={logout}
+          sx={{ color: "secondary.main" }}
+        >
           {t("Dialog.confirm")}
         </Button>
       </DialogActions>

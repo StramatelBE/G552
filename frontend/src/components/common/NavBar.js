@@ -1,15 +1,15 @@
-import React, { useState } from "react";
 import { BottomNavigation, BottomNavigationAction, Box } from "@mui/material";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-import PermMediaIcon from "@mui/icons-material/PermMedia";
-import LogoutIcon from "@mui/icons-material/Logout";
 import KeyboardIcon from "@mui/icons-material/Keyboard";
+import LogoutIcon from "@mui/icons-material/Logout";
+import PermMediaIcon from "@mui/icons-material/PermMedia";
 import SettingsIcon from "@mui/icons-material/Settings";
-import ScoreboardIcon from "@mui/icons-material/Scoreboard";
 
 import AuthService from "../../services/authService";
 import DisconnectDialog from "../dialogs/DisconnectDialog";
+import useAuthStore from '../../stores/authStore';
 
 function NavBar() {
   const location = useLocation();
@@ -24,9 +24,10 @@ function NavBar() {
   }
 
   async function logout() {
-    localStorage.removeItem("user");
+    const { clearToken, clearUser } = useAuthStore.getState();
+    clearToken();
+    clearUser();
     await AuthService.logout();
-    window.location.reload();
   }
 
   function getIconColor(path) {
@@ -66,6 +67,7 @@ function NavBar() {
         <BottomNavigationAction
           component={Link}
           onClick={handleLogoutDialogOpen}
+         
           label="Déconnexion"
           icon={<LogoutIcon sx={{ color: getIconColor("/login") }} />}
         />

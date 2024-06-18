@@ -33,6 +33,7 @@ import EventMediaService from "../../services/eventMediaService";
 import UploadService from "../../services/uploadService";
 import CropsModal from "../dialogs/CropsModal";
 import DeleteMediaDialog from "../dialogs/DeleteMediaDialog";
+import useAuthStore from "../../stores/authStore";
 
 function Medias(props) {
   const { t } = useTranslation(); // Utilisation de useTranslation
@@ -245,7 +246,7 @@ function Medias(props) {
       mediaId: file.idBdd,
       eventId: props.id,
       duration: 1,
-      userId: authService.getCurrentUser().user.id,
+      userId: useAuthStore.getState().user.id,
       media_pos_in_event: props.eventMedia[1].medias.length + 1,
     }).then((result) => {
       props.getEvents();

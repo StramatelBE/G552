@@ -1,5 +1,5 @@
+import useAuthStore from '../stores/authStore';
 import fetchWithAuth from '../utils/fetchWithAuth';
-import authService from "./authService";
 
 const URL_API = process.env.REACT_APP_API_URL;
 
@@ -46,7 +46,7 @@ class MacroService {
 
   async getById() {
     try {
-      const userId = authService.getCurrentUser().user.id;
+      const userId = useAuthStore.getState().user.id;
       const response = await fetchWithAuth(`${URL_API}/macros/user/${userId}`);
       if (response.ok) {
         return await response.json();

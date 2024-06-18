@@ -1,5 +1,5 @@
-import authService from "./authService";
 import { useSnackbar } from "../contexts/SnackbarContext";
+import useAuthStore from "../stores/authStore";
 import fetchWithAuth from "../utils/fetchWithAuth";
 
 const URL_API = process.env.REACT_APP_API_URL;
@@ -8,13 +8,12 @@ function useUploadService() {
   const { openSnackbar } = useSnackbar();
 
   async function get() {
-    const userId = authService.getCurrentUser().user.id;
+    const userId = useAuthStore.getState().user.id;
     try {
       const response = await fetchWithAuth(`${URL_API}/medias/${userId}`);
       if (!response.ok) {
         throw new Error("Error fetching data");
       }
-      console.log("response", response);
       return await response.json();
     } catch (error) {
       console.error(error);
@@ -52,9 +51,9 @@ function useUploadService() {
     formData.append("file", file);
 
     try {
-      const username = authService.getCurrentUser().user.username;
-      const userId = authService.getCurrentUser().user.id;
-      const accessToken = authService.getCurrentUser().accessToken;
+      const username = useAuthStore.getState().user.username;
+      const userId = useAuthStore.getState().user.id;
+      const accessToken = useAuthStore.getState().token;
       const url = `${URL_API}/medias/${username}/${userId}`;
 
       return new Promise((resolve, reject) => {

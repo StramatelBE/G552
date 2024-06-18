@@ -3,9 +3,11 @@ import { AppBar, Box, Toolbar } from "@mui/material";
 import { useNavigate } from "react-router-dom"; // Importez useNavigate pour la redirection
 import AdminDialog from "../dialogs/AdminDialog";
 import authService from "../../services/authService";
+import useAuthStore from "../../stores/authStore";
 
 function Header(props) {
-  const token = authService.getCurrentUser();
+
+  const { token } = useAuthStore();
   const [modal, setModal] = useState(false);
   const [adminPassword, setAdminPassword] = useState("");
   const navigate = useNavigate();

@@ -13,6 +13,7 @@ import { useTranslation } from "react-i18next";
 
 import CloseIcon from "@mui/icons-material/Close";
 import AuthService from "../../services/authService";
+import useAuthStore from "../../stores/authStore";
 
 function ChangePassword() {
   const { t } = useTranslation();
@@ -40,9 +41,12 @@ function ChangePassword() {
     }
   }
 
-  function disconnect() {
-    AuthService.logout();
-    window.location.reload();
+ async function disconnect() {
+    const { clearToken, clearUser } = useAuthStore.getState();
+    clearToken();
+    clearUser();
+    await AuthService.logout();
+
   }
 
   return (

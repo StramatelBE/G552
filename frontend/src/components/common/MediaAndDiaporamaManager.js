@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
-import { v4 as uuidv4 } from "uuid";
+import React, { useEffect, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useParams } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
-import Media from "../media/Media";
-import Diaporama from "../diaporama/Diaporama";
-import UploadService from "../../services/uploadService";
-import authService from "../../services/authService";
 import EventMediaService from "../../services/eventMediaService";
+import UploadService from "../../services/uploadService";
+import useAuthStore from "../../stores/authStore"; // Importation du store
+import Diaporama from "../diaporama/Diaporama";
+import Media from "../media/Media";
 
 function MediaAndDiaporamaManager() {
   const uploadService = UploadService();
@@ -218,7 +218,7 @@ function MediaAndDiaporamaManager() {
           mediaId: item.idBdd,
           eventId: id,
           duration: 1,
-          userId: authService.getCurrentUser().user.id,
+          userId: useAuthStore.getState().user.id, // Utilisation du store pour obtenir l'ID de l'utilisateur
           media_pos_in_event: destination.index + 1,
         }).then((createResult) => {
           // Une fois que la promesse create() est résolue, appel à la méthode update() pour mettre à jour les positions des éléments multimédias

@@ -8,13 +8,13 @@ import authService from "../../services/authService";
 import Handball from "./handball/Handball";
 
 import "../../styles/Scoreboard.css";
+import useAuthStore from "../../stores/authStore";
 
 function Scoreboard() {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    console.log(authService.getCurrentUser());
-    setCurrentUser(authService.getCurrentUser());
+    setCurrentUser(useAuthStore.getState().user);
   }, []);
 
   return (

@@ -1,12 +1,12 @@
+import useAuthStore from '../stores/authStore';
 import fetchWithAuth from '../utils/fetchWithAuth';
-import AuthService from './authService';
 
 const URL_API = process.env.REACT_APP_API_URL;
 
 class EventService {
   static async create(name) {
-    const currentUser = AuthService.getCurrentUser();
-    const userId = currentUser?.user?.id;
+    const currentUser = useAuthStore.getState().user;
+    const userId = currentUser?.id;
     try {
       const response = await fetchWithAuth(`${URL_API}/events`, {
         method: 'POST',
@@ -27,8 +27,8 @@ class EventService {
   }
 
   static async get() {
-    const currentUser = AuthService.getCurrentUser();
-    const userId = currentUser?.user?.id;
+    const userId = useAuthStore.getState().user.id;
+    console.log("userId", userId);
     try {
       const response = await fetchWithAuth(`${URL_API}/events/user/${userId}`);
       if (response.ok) {

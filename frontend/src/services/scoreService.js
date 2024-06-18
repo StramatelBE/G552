@@ -1,5 +1,5 @@
+import useAuthStore from '../stores/authStore';
 import fetchWithAuth from '../utils/fetchWithAuth';
-import authService from "./authService";
 
 // Use environment variable for the API URL
 const URL_API = process.env.REACT_APP_API_URL;
@@ -7,8 +7,8 @@ const URL_API = process.env.REACT_APP_API_URL;
 class ScoreService {
   // Get the current user's ID
   getCurrentUserId() {
-    const currentUser = authService.getCurrentUser();
-    return currentUser ?  currentUser.user.id : null; // Adjusted to match expected user object structure
+    const currentUser = useAuthStore.getState().user;
+    return currentUser ?  currentUser.id : null; // Adjusted to match expected user object structure
   }
 
   // Get all scores for the current user

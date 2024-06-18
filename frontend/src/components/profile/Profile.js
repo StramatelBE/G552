@@ -25,7 +25,6 @@ import StopIcon from "@mui/icons-material/Stop";
 import StorageIcon from "@mui/icons-material/Storage";
 
 import { useDarkMode } from "../../contexts/DarkModeContext";
-import authService from "../../services/authService";
 import paramService from "../../services/paramService";
 import veilleService from "../../services/veilleService";
 import LanguageSelector from "../common/LanguageSelector";
@@ -33,6 +32,7 @@ import ChangePasswordDialog from "../dialogs/ChangePasswordDialog";
 
 import modeServiceInstance from "../../services/modeService";
 import spaceService from "../../services/spaceService";
+import useAuthStore from "../../stores/authStore";
 
 function Profile() {
   const { t } = useTranslation();
@@ -85,7 +85,7 @@ function Profile() {
       console.error("Error fetching space data:", error);
     });
 
-    const currentUser = authService.getCurrentUser();
+    const currentUser = useAuthStore.getState().user;
     setUser(currentUser);
   }, []);
 
@@ -102,8 +102,8 @@ function Profile() {
 
   useEffect(() => {
     if (user) {
-
-      paramService.getByUserId(user.user.id).then((paramData) => {
+    console.log("user",user);
+      paramService.getByUserId(user.id).then((paramData) => {
         const paramDataItem = paramData?.[0] || {};
         setParam(paramDataItem);
 
