@@ -34,6 +34,7 @@ import UploadService from "../../services/uploadService";
 import CropsModal from "../dialogs/CropsModal";
 import DeleteMediaDialog from "../dialogs/DeleteMediaDialog";
 import useAuthStore from "../../stores/authStore";
+import DuplicateMediaDialog from "../dialogs/DuplicateMediaDialog";
 
 function Medias(props) {
   const { t } = useTranslation(); // Utilisation de useTranslation
@@ -52,6 +53,8 @@ function Medias(props) {
   const [sortCriteria, setSortCriteria] = useState("recent");
   const [viewMode, setViewMode] = useState("grid");
   const [inputKey, setInputKey] = useState(0);
+  const [duplicateDialogOpen, setDuplicateDialogOpen] = useState(false);
+  const [duplicateFile, setDuplicateFile] = useState(null);
 
   const toggleViewMode = () => {
     setViewMode(viewMode === "grid" ? "table" : "grid");
@@ -148,6 +151,16 @@ function Medias(props) {
     const videoFiles = files.filter(file => file.type.split("/")[0] === "video");
 
     if (videoFiles.length > 0) {
+      const duplicate = videoFiles.find(file => 
+        props.eventMedia[1].medias.some(media => media.originalFileName === file.name)
+      );
+
+      if (duplicate) {
+        setDuplicateFile(duplicate);
+        setDuplicateDialogOpen(true);
+        return;
+      }
+
       videoFiles.forEach(file => {
         uploadService
           .upload(setLoading, file, setProgress)
@@ -251,6 +264,21 @@ function Medias(props) {
     }).then((result) => {
       props.getEvents();
     });
+  }
+
+  function handleDuplicateConfirm() {
+    uploadService
+      .upload(setLoading, duplicateFile, setProgress)
+      .then(() => {
+        props.getMedias();
+        setProgress(0);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    setDuplicateDialogOpen(false);
+    setDuplicateFile(null);
   }
 
   return (
@@ -444,7 +472,7 @@ function Medias(props) {
                                 </TableCell>
                                 <TableCell align="right">{file.type}</TableCell>
                                 <TableCell align="right">
-                                  {file.uploaded_at}
+                                  {file.uploaded_at.split(' ')[0]} {/* Enlever l'heure */}
                                 </TableCell>
                                 <TableCell align="right">
                                   <IconButton
@@ -487,6 +515,11 @@ function Medias(props) {
         onClose={displayDialogDelete}
         DeleteFile={DeleteFile}
         displayDialogDelete={displayDialogDelete}
+      />
+      <DuplicateMediaDialog
+        open={duplicateDialogOpen}
+        onClose={() => setDuplicateDialogOpen(false)}
+        onConfirm={handleDuplicateConfirm}
       />
     </Box>
   );
