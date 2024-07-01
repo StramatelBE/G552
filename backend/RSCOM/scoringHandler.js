@@ -99,10 +99,12 @@ const handleScoring = async (scoring) => {
 
         //console.log("Mode:", scoring.Mode);
 
-        console.log("here")
+        console.log("1")
         if (scoreMode.includes(scoring.Mode)) {
             // console.log("score mode");
             scoring.Language = getLanguage.language;
+            console.log("2")
+
 
             unixSocketSetup.sendData(scoring);
             previousMacrosDataMode = scoring.Mode;
@@ -121,6 +123,8 @@ const handleScoring = async (scoring) => {
     } catch (error) {
         // console.error("Error fetching macros:", error.message);
         scoring.Mode = 0;
+        console.log("3")
+
         unixSocketSetup.sendData(scoring);
     }
 };
