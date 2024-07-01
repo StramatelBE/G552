@@ -196,3 +196,7 @@ img {
     display: flex;
     justify-content: center;
 }
+
+.qr-item h2 {
+  color: white;
+}
