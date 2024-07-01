@@ -98,7 +98,6 @@ class UserController {
       });
   };
   updateFirstLogin = (req, res) => {
-    console.log("updateFirstLogin");
     this.user
       .updateFirstLogin(req.params.id)
       .then((user) => {

@@ -34,6 +34,8 @@ class AuthService {
   }
 
   async logout() {
+    useAuthStore.getState().setToken(null); 
+    useAuthStore.getState().setUser(null); 
     try {
      await fetchWithAuth(`${URL_API}/activeSessions/logout`, {
         method: "PUT",
@@ -60,12 +62,10 @@ class AuthService {
 
   async changePassword(newPassword) {
     try {
-      const user = this.getCurrentUser();
-      console.log("user", user);
-
+        const user = useAuthStore.getState().user;
       if (user) {
         const response = await fetchWithAuth(
-          `${URL_API}/auth/modifyPassword/${user.user.id}`,
+          `${URL_API}/auth/modifyPassword/${user.id}`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

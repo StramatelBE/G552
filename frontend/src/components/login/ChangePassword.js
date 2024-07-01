@@ -24,14 +24,11 @@ function ChangePassword() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const user = JSON.parse(localStorage.getItem("user"));
     if (newPassword !== confirmPassword) {
       setError(t("Login.passwordMismatch"));
     }
     try {
       await AuthService.changePassword(newPassword);
-      user.user.firstLogin = 0;
-      localStorage.setItem("user", JSON.stringify(user));
       setSuccess(true);
       setError(null);
       AuthService.logout();

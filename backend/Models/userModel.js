@@ -197,7 +197,6 @@ class User {
   }
 
   updateFirstLogin(userId) {
-    console.log("updateFirstLogin", userId);
     return new Promise((resolve, reject) => {
       db.run(
         `UPDATE users SET firstLogin = 0 WHERE id = ?`,
