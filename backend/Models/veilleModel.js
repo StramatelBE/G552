@@ -90,7 +90,10 @@ class Veille {
 
   update(veille) {
     return new Promise((resolve, reject) => {
+      console.log("before emit.")
+
         sharedEmitter.emit('updateSchedule', veille.restart_at);  // Ensure you pass the necessary data for listeners
+        console.log("has sended.")
         db.run(
             `UPDATE veille
              SET enable = ?, start_time = ?, end_time = ?, restart_at = ?

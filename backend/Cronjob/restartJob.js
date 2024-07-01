@@ -45,6 +45,7 @@ const restartJob = {
     });
 
     sharedEmitter.on('updateSchedule', (newTime) => {
+      console.log("receiving update in cron")
       const [newHour, newMinute] = newTime.split(':').map(String);
       this.scheduleReboot(newHour, newMinute);
     });
