@@ -107,9 +107,9 @@ class Game {
   };
 
   static isValid(_message) {
-    console.log("Frame length: ", _message.length);
-    console.log("First : ", _message[0]);
-    console.log("Last : ", _message[_message.length - 1]);
+    // console.log("Frame length: ", _message.length);
+    // console.log("First : ", _message[0]);
+    // console.log("Last : ", _message[_message.length - 1]);
     return _message[0] === 248;
   }
 
@@ -223,9 +223,9 @@ static select = (_message) => {
     if (toInsert != null) {
       toInsert.Code = _message[1];
 
-      console.log(toInsert);
+      // console.log(toInsert);
 
-      console.log(nBytesToNumber(_message[1]) + " Frame");
+      // console.log(nBytesToNumber(_message[1]) + " Frame");
       this.updateState(toInsert);
       
     }
@@ -310,9 +310,9 @@ static select = (_message) => {
   static Send() {
     // console.log("Send method was called");
     //TODO: save in db
-    console.log('chronometer:', this.State.Timer.Value);
-    console.log('received mode:', this.State.Mode);
-    console.log('language:', this.State.Language);
+    // console.log('chronometer:', this.State.Timer.Value);
+    // console.log('received mode:', this.State.Mode);
+    // console.log('language:', this.State.Language);
     sharedEmitter.emit("scoring", this.State);
   }
 }

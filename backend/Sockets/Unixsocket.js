@@ -145,17 +145,17 @@ module.exports = {
         });
     },
     sendData: function (data) {
-        console.log('DataMode sended:')
+        // console.log('DataMode sended:')
         console.log(data?.Mode)
         sharedEmitter.emit('data-received', data);
     },
     sendPrematchData: function (data) {
-        console.log('DataMode sended:')
+        // console.log('DataMode sended:')
         console.log(data?.Mode)
         sharedEmitter.emit('data-received', data);
     },
     sendMedia: function (data) {
-        console.log('MediaMode sended:')
+        // console.log('MediaMode sended:')
         console.log(data?.Mode)
         sharedEmitter.emit('data-received', data);
     }

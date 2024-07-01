@@ -30,7 +30,7 @@ class User {
             role TEXT,
             firstLogin INTEGER,
             active_token TEXT,
-            language TEXT DEFAULT 'fr'
+            language TEXT DEFAULT 'en'
         )
         `
     db.run(createTable, (err) => {
@@ -88,7 +88,7 @@ class User {
             username: sport,
             password: sport,
             role: "user",
-            language: "fr",
+            language: "en",
           };
           const folderName = `${process.env.UPLOAD_PATH}${user.username}`;
           if (!fs.existsSync(folderName)) {
