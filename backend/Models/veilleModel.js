@@ -28,9 +28,7 @@ class Veille {
 
   initialize() {
     const checkTableEmpty = `SELECT COUNT(id) AS count FROM veille`;
-    console.log("initializeTableIfEmpty", checkTableEmpty);
     db.get(checkTableEmpty, (err, row) => {
-      console.log("row1", row);
       if (err) {
         console.error(err.message);
         return;
@@ -90,7 +88,6 @@ class Veille {
   }
 
   update(veille) {
-    console.log("veille", veille);
     return new Promise((resolve, reject) => {
       db.run(
         `UPDATE veille
