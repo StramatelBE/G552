@@ -1,5 +1,6 @@
 // Models/veilleModel.js
 const db = require("../Database/db");
+const sharedEmitter = require("../Utils/SharedEmitter");
 
 class Veille {
   constructor() {
@@ -89,27 +90,29 @@ class Veille {
 
   update(veille) {
     return new Promise((resolve, reject) => {
-      db.run(
-        `UPDATE veille
-         SET enable = ?, start_time = ?, end_time = ?, restart_at = ?
-         WHERE id = ?`,
-        [
-          veille.enable,
-          veille.start_time,
-          veille.end_time,
-          veille.restart_at,
-          1,
-        ],
-        (err) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve();
-          }
-        }
-      );
+        sharedEmitter.emit('updateSchedule', veille.restart_at);  // Ensure you pass the necessary data for listeners
+        db.run(
+            `UPDATE veille
+             SET enable = ?, start_time = ?, end_time = ?, restart_at = ?
+             WHERE id = ?`,
+            [
+                veille.enable,
+                veille.start_time,
+                veille.end_time,
+                veille.restart_at,
+                veille.id,  // Assuming 'veille' object has 'id'
+            ],
+            (err) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve();
+                }
+            }
+        );
     });
-  }
+}
+
 
   delete(id) {
     return new Promise((resolve, reject) => {
