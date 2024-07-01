@@ -26,9 +26,7 @@ function MediaAndDiaporamaManager() {
       medias: [],
     },
   ]);
-  useEffect(() => {
-    console.log("eventMedia", eventMedia);
-  }, [eventMedia]);
+
 
   const { id } = useParams();
 
@@ -156,7 +154,6 @@ function MediaAndDiaporamaManager() {
     switch (source.droppableId) {
       case destination.droppableId:
         // Déplacer un élément multimédia dans la même colonne
-        console.log("eventMedia", eventMedia[0].medias);
         /*  console.log("meme colonne"); */
         const newMedias = Array.from(start.medias);
         newMedias.splice(source.index, 1);

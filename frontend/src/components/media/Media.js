@@ -35,6 +35,7 @@ import CropsModal from "../dialogs/CropsModal";
 import DeleteMediaDialog from "../dialogs/DeleteMediaDialog";
 import useAuthStore from "../../stores/authStore";
 import DuplicateMediaDialog from "../dialogs/DuplicateMediaDialog";
+import { useTheme } from '@mui/material/styles';
 
 function Medias(props) {
   const { t } = useTranslation(); // Utilisation de useTranslation
@@ -55,7 +56,7 @@ function Medias(props) {
   const [inputKey, setInputKey] = useState(0);
   const [duplicateDialogOpen, setDuplicateDialogOpen] = useState(false);
   const [duplicateFile, setDuplicateFile] = useState(null);
-
+  const theme = useTheme()
   const toggleViewMode = () => {
     setViewMode(viewMode === "grid" ? "table" : "grid");
   };
@@ -150,17 +151,19 @@ function Medias(props) {
     const imageFiles = files.filter(file => file.type.split("/")[0] === "image");
     const videoFiles = files.filter(file => file.type.split("/")[0] === "video");
 
+
+    console.log(imageFiles,videoFiles);
+    const duplicate = files.find(file => 
+      props.eventMedia[1].medias.some(media => media.originalFileName === file.name)
+    );
+
+    if (duplicate) {
+      setDuplicateFile(duplicate);
+      setDuplicateDialogOpen(true);
+      return;
+    }
+
     if (videoFiles.length > 0) {
-      const duplicate = videoFiles.find(file => 
-        props.eventMedia[1].medias.some(media => media.originalFileName === file.name)
-      );
-
-      if (duplicate) {
-        setDuplicateFile(duplicate);
-        setDuplicateDialogOpen(true);
-        return;
-      }
-
       videoFiles.forEach(file => {
         uploadService
           .upload(setLoading, file, setProgress)
@@ -186,7 +189,6 @@ function Medias(props) {
             img.onload = () => {
               const targetWidth = parseInt(process.env.REACT_APP_WIDTH, 10);
               const targetHeight = parseInt(process.env.REACT_APP_HEIGHT, 10);
-              console.log("img", img.width, img.height, targetWidth, targetHeight);
               if (isRatioEqual(img.width, img.height, targetWidth, targetHeight)) {
                 // Upload directly if the ratio matches directly if the ratio matches
                 const fileWithOriginalName = new File([file], file.name, {
@@ -436,15 +438,14 @@ function Medias(props) {
                               <TableCell align="right">Actions</TableCell>
                             </TableRow>
                           </TableHead>
-                          <TableBody>
+                          <TableBody >
                             {props.eventMedia[1].medias.map((file, index) => (
                               <TableRow
+                              sx={{ backgroundColor: index % 2 === 0 ? theme.palette.background : theme.palette.action.hover,"&:last-child td, &:last-child th": {
+                                border: 0,
+                              }, }}
                                 key={file.id}
-                                sx={{
-                                  "&:last-child td, &:last-child th": {
-                                    border: 0,
-                                  },
-                                }}
+
                               >
                                 <TableCell align="right">
                                   {props.id === undefined ? (

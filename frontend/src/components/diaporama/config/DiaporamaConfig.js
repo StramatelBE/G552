@@ -259,7 +259,7 @@ function DiaporamaConfig(props) {
             >
               <EditIcon sx={{ color: "secondary.main" }} />
             </IconButton>
-            <IconButton
+         {/*    <IconButton
               aria-controls={open ? "basic-menu" : undefined}
               aria-haspopup="true"
               aria-expanded={open ? "true" : undefined}
@@ -278,7 +278,7 @@ function DiaporamaConfig(props) {
               }}
             >
               <MenuItem onClick={addPanel}>Panneau</MenuItem>
-            </Menu>
+            </Menu> */}
             <IconButton
               className="headerButton"
               onClick={openDeleteEventDialog}

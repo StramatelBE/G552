@@ -28,7 +28,6 @@ class EventService {
 
   static async get() {
     const userId = useAuthStore.getState().user.id;
-    console.log("userId", userId);
     try {
       const response = await fetchWithAuth(`${URL_API}/events/user/${userId}`);
       if (response.ok) {
@@ -55,7 +54,6 @@ class EventService {
     }
   }
   static async update(event) {
-    console.log(event);
     try {
       const response = await fetchWithAuth(`${URL_API}/events/${event.id}`, {
         method: 'PUT',

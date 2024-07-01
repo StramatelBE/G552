@@ -2,16 +2,18 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Box, IconButton, TableCell, TableRow, TextField, Typography } from "@mui/material";
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
-
+import { useTheme } from '@mui/material/styles';
 function DiaporamaMedia(props) {
   function handleDurationChange(event) {
     props.updateMedia(event.target.value, props.index);
   }
+  const theme = useTheme()
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   return (
     <Draggable draggableId={props.item.id.toString()} index={props.index}>
       {(provided, snapshot) => (
         <TableRow
+        sx={{ backgroundColor: props.index % 2 === 0 ? theme.palette.background : theme.palette.action.hover }}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
@@ -33,10 +35,10 @@ function DiaporamaMedia(props) {
               <Box
                 component="video"
                 sx={{
-                  minHeight: "calc(15vh)",
+                  minHeight: "calc(9vh)",
                   minWidth: "calc(15vh)",
                   maxWidth: "calc(15vh)",
-                  maxHeight: "calc(15vh)",
+                  maxHeight: "calc(9vh)",
                 }}
                 alt={props.item.title}
                 src={props.item.path}
@@ -44,10 +46,10 @@ function DiaporamaMedia(props) {
             ) : props.item.type === "image" ? (
               <Box
                 sx={{
-                  minHeight: "calc(15vh)",
+                  minHeight: "calc(9vh)",
                   minWidth: "calc(15vh)",
                   maxWidth: "calc(15vh)",
-                  maxHeight: "calc(15vh)",
+                  maxHeight: "calc(9vh)",
                 }}
                 src={props.item.path}
                 alt={props.item.title}
