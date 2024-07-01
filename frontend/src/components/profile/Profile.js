@@ -481,7 +481,7 @@ function Profile() {
               </Box>
               <Box sx={{ flexGrow: 10 }}>
                 <Box sx={{ display: 'flex', height: '20px', outline: '1px solid #dbd2d2 !important' }}>
-                  {sportsData.length > 0 && sportsData.filter(sport => sport.width >= 1).map((sport, index) => (
+                  {sportsData.length > 0 && sportsData.map((sport, index) => (
                     <Box
                       key={index}
                       sx={{
