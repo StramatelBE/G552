@@ -41,7 +41,6 @@ const handleScoring = async (scoring) => {
         };
 
         const handleMacroMode = async (mode, gameState) => {
-            console.log("macro mode!")
             // console.log("macro mode");
 
             // console.log("Mode", mode);
@@ -52,18 +51,15 @@ const handleScoring = async (scoring) => {
             //console.log("macrosData", macrosData)
             if (scoreMode.includes(macrosData)) {
                 // console.log("No event for this macro, sending Mode", scoring.Mode);
-                console.log("macro includes")
                 scoring.Mode = scoreMode[0];
                 unixSocketSetup.sendData(scoring);
             } else if (macrosData && macrosData[0]) {
-                console.log("macro data")
 
                 macrosData[0].Mode = mode;
                 previousMacrosDataMode = mode; // Update the cache
                 unixSocketSetup.sendMedia(macrosData[0]);
             } else {
                 // console.log("No event for this macro, sending Mode", scoring.Mode);
-                console.log("macro no")
 
                 scoring.Mode = scoreMode[0];
                 unixSocketSetup.sendData(scoring);
@@ -105,17 +101,14 @@ const handleScoring = async (scoring) => {
 
         //console.log("Mode:", scoring.Mode);
 
-        console.log("1")
         if (scoreMode.includes(scoring.Mode)) {
             // console.log("score mode");
             scoring.Language = getLanguage.language;
-            console.log("2")
 
 
             unixSocketSetup.sendData(scoring);
             previousMacrosDataMode = scoring.Mode;
         } else if (stopModes.includes(scoring.Mode)) {
-            console.log("4")
 
             let stop = {};
             stop.Mode = scoring.Mode;
@@ -132,7 +125,6 @@ const handleScoring = async (scoring) => {
     } catch (error) {
         // console.error("Error fetching macros:", error.message);
         scoring.Mode = 0;
-        console.log("3")
 
         unixSocketSetup.sendData(scoring);
     }
