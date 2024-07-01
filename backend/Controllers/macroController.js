@@ -25,11 +25,14 @@ class MacroController {
             else if (buttonId === 0) return console.log("Button id is :", buttonId, " Scoring Mode activated");
         
             // Récupérer l'utilisateur par nom de sport
+            console.log("macro by btton")
 
             const user = await this.user.getByUsername(sport);
             if (!user) throw new Error(`No user found for sport: ${sport}`);
         
             // Récupérer les macros pour l'utilisateur spécifique et le bouton donné
+            console.log("USR")
+
 
             const macros = await this.macro.getByUserId(user.id)
             if (!macros.length) throw new Error("No macros found for this user");
