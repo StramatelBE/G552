@@ -70,7 +70,7 @@ class MacroController {
         
 
         catch(error) {
-            console.error(error.message);  // This will log the error message.
+            // console.error(error.message);  // This will log the error message.
             return 0;
         }
     }
