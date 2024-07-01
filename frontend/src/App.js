@@ -28,7 +28,7 @@ import { switchToDarkTheme } from "./themes/darkTheme.ts";
 import useAuthStore from "./stores/authStore.js";
 
 function App() {
-  const { token, setToken, user } = useAuthStore();
+  const { token, user } = useAuthStore();
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const { darkMode } = useDarkMode();

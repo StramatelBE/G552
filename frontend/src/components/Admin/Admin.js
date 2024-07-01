@@ -57,13 +57,13 @@ function AdminPage() {
     }
   };
 
-  async function updateAdmin(name, value) {
-    try {
-      await AdminService.updateAdmin({ [name]: value });
-    } catch (error) {
-      console.error("Failed to update admin data:", error);
-    }
-  }
+  // async function updateAdmin(name, value) {
+  //   try {
+  //     await AdminService.updateAdmin({ [name]: value });
+  //   } catch (error) {
+  //     console.error("Failed to update admin data:", error);
+  //   }
+  // }
 
 
   const handleFileChange = (event) => {

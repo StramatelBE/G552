@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AppBar, Box, Toolbar } from "@mui/material";
 import { useNavigate } from "react-router-dom"; // Importez useNavigate pour la redirection
 import AdminDialog from "../dialogs/AdminDialog";
-import authService from "../../services/authService";
+// import authService from "../../services/authService";
 import useAuthStore from "../../stores/authStore";
 
 function Header(props) {

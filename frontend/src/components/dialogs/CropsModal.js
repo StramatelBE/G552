@@ -23,7 +23,7 @@ function CropsModal(props) {
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
   const [restrictPosition, setRestrictPosition] = useState(true);
-  const [currentFileIndex, setCurrentFileIndex] = useState(0);
+  const [currentFileIndex] = useState(0);
   const [filesToCrop, setFilesToCrop] = useState([]);
 
   const onCropComplete = useCallback((_, croppedAreaPixels) => {
@@ -84,7 +84,7 @@ function CropsModal(props) {
 
   const onCropChange = useCallback((newCrop) => {
     setCrop(newCrop);
-  }, [imageSize, zoom]);
+  });
 
   useEffect(() => {
     const loadImage = async () => {
