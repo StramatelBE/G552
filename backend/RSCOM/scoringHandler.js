@@ -99,7 +99,7 @@ const handleScoring = async (scoring) => {
 
         //console.log("Mode:", scoring.Mode);
 
-
+        console.log("here")
         if (scoreMode.includes(scoring.Mode)) {
             // console.log("score mode");
             scoring.Language = getLanguage.language;
