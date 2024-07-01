@@ -4,11 +4,16 @@ import "./Mode.css";
 const LogoMode = () => {
     return (
         <div className="container">
-            <img
-                src="http://localhost:3000/medias/Logo/LOGO_Stramatel.gif"
+            <video
+                src="http://localhost:3000/medias/Logo/stramatel.mp4"
+                autoplay
+                loop
+                muted
+                style={{ width: '100%', height: 'auto' }}  // Adjust sizing as needed
             />
         </div>
     );
+    
 }
 
 export default LogoMode;
