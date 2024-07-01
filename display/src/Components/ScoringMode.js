@@ -29,13 +29,13 @@ const ScoringMode = ({ gameState }) => {
   
     if (gameState.Home.TeamName.trim() === 'Home') {
       setHomeTN(i18next.t('Scoreboard.Home'));
-      console.log(gameState.Home.TeamName);
+      // console.log(gameState.Home.TeamName);
     } else {
       setHomeTN(gameState.Home.TeamName);
     }
     if (gameState.Guest.TeamName.trim() === 'Guest') {
       setGuestTN(i18next.t('Scoreboard.Guest'));
-      console.log(gameState.Guest.TeamName);
+      // console.log(gameState.Guest.TeamName);
     } else {
       setGuestTN(gameState.Guest.TeamName);
     }
@@ -46,11 +46,11 @@ const ScoringMode = ({ gameState }) => {
 
     gameState.Home.TeamName = homeTN;
     gameState.Guest.TeamName = guestTN;
-    console.log(gameState.Home.TeamName);
-    console.log(gameState.Guest.TeamName);
+    // console.log(gameState.Home.TeamName);
+    // console.log(gameState.Guest.TeamName);
     setLiveGameState(gameState);
     setSport(gameState.Display);
-    console.log(gameState);
+    // console.log(gameState);
 
 
   }, [gameState]);

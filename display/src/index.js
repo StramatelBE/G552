@@ -34,7 +34,7 @@ const App = () => {
     };
 
     ipcRenderer.on("server-data", (event, data) => {
-      console.log(data.Mode);
+      // console.log(data.Mode);
       switch (data.Mode) {
         case 0:
           setMode("scoring");

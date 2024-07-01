@@ -95,16 +95,16 @@ const server = net.createServer((client) => {
 
                 // console.log('Sent score gameState', data)
             } else if (immediateModes.includes(data?.Mode)) {
-                console.log("Mode instant:", data?.Mode)
+                // console.log("Mode instant:", data?.Mode)
                 previousDataMode = data?.Mode;
                 previousData = data;
                 client.write(JSON.stringify(data) + '\n');
             } else if (!deepEqual(data, previousData) && macroModes.includes(data?.Mode)) {
-                console.log("Mode Macro:", data?.Mode)
-                console.log(data);
+                // console.log("Mode Macro:", data?.Mode)
+                // console.log(data);
                 previousDataMode = data?.Mode;
                 previousData = data;
-                console.log("+")
+                // console.log("+")
                 client.write(JSON.stringify(data) + '\n');
             }
 
@@ -124,7 +124,7 @@ const server = net.createServer((client) => {
 
     client.on('scoring', (data) => {
         try {
-            console.log('Received raw gameState', data)
+            // console.log('Received raw gameState', data)
             const parsedData = JSON.parse(data.toString());
             sharedEmitter.emit('data-received', parsedData);
         } catch (err) {
@@ -146,17 +146,17 @@ module.exports = {
     },
     sendData: function (data) {
         // console.log('DataMode sended:')
-        console.log(data?.Mode)
+        // console.log(data?.Mode)
         sharedEmitter.emit('data-received', data);
     },
     sendPrematchData: function (data) {
         // console.log('DataMode sended:')
-        console.log(data?.Mode)
+        // console.log(data?.Mode)
         sharedEmitter.emit('data-received', data);
     },
     sendMedia: function (data) {
         // console.log('MediaMode sended:')
-        console.log(data?.Mode)
+        // console.log(data?.Mode)
         sharedEmitter.emit('data-received', data);
     }
 }

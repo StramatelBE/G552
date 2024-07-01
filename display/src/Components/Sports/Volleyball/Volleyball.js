@@ -96,7 +96,7 @@ function Volleyball({ gameState: incomingGameState }) {
   }
 
   function formatSideScore(point) {
-    console.log("test", point);
+    // console.log("test", point);
     if (point < 10) {
       return "0" + point;
     }

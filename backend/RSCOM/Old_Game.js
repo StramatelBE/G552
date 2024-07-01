@@ -114,9 +114,9 @@ class Game {
   };
 
   static isValid(_message) {
-    console.log("Frame length: ", _message.length);
-    console.log("First : ", _message[0]);
-    console.log("Last : ", _message[_message.length - 1]);
+    // console.log("Frame length: ", _message.length);
+    // console.log("First : ", _message[0]);
+    // console.log("Last : ", _message[_message.length - 1]);
     return _message[0] === 248;
   }
 
@@ -206,10 +206,10 @@ class Game {
     }
 
     if (toInsert != null) {
-      console.log("toInsert: ", toInsert);
+      // console.log("toInsert: ", toInsert);
       // console.log("Home Exclusion Timer: ", toInsert?.Home?.Exclusion?.Timer);
       // console.log("Guest Exclusion Timer: ", toInsert?.Guest?.Exclusion?.Timer);
-      console.log(_message[1] + " Frame");
+      // console.log(_message[1] + " Frame");
       this.updateState(toInsert);
       
     }
