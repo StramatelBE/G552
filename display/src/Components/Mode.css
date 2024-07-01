@@ -170,3 +170,29 @@ img {
   height: auto; /* Maintient le ratio d'aspect de l'image */
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.qr-container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin-bottom: 20px; 
+}
+
+.qr-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
