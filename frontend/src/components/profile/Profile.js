@@ -114,12 +114,12 @@ function Profile() {
     <>
       <Grid item xs={12}>
         <Paper className="mainPaperPage">
-          <Stack className="herderTitlePage">
+          <Stack className="headerTitlePage">
             <Box className="headerLeft">
-              <IconButton disabled className="headerButton">
+              <IconButton disabled>
                 <SettingsIcon sx={{ color: "primary.light" }} />
               </IconButton>
-              <Typography variant="h6" sx={{ color: "text.primary" }} className="headerTitle">
+              <Typography variant="h6" sx={{ color: "text.primary" }}>
                 {t("Profile.title")}
               </Typography>
             </Box>
@@ -127,7 +127,61 @@ function Profile() {
           <Box className="containerPage" sx={{ paddingLeft: { xs: 2, sm: 6 }, paddingRight: { xs: 2, sm: 6 } }}>
             <Grid container spacing={6}>
               <Grid item xs={12} sm={6}>
-                {/* Other components remain unchanged */}
+                <Stack spacing={2}>
+                  <Typography variant="h6" sx={{ color: "text.secondary" }}>
+                    {t("Profile.application")}
+                  </Typography>
+                  <Stack direction="row" alignItems="center" spacing={3} onClick={toggleModal}>
+                    <IconButton disabled>
+                      <LockIcon sx={{ color: "text.secondary" }} />
+                    </IconButton>
+                    <Typography sx={{ color: "text.primary", textTransform: "none", padding: "0" }}>
+                      {t("Profile.changePassword")}
+                    </Typography>
+                  </Stack>
+                  <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={3} onClick={setIsDarkMode}>
+                    <Stack direction="row" alignItems="center" spacing={3}>
+                      <IconButton disabled>
+                        <DarkModeIcon sx={{ color: "text.secondary" }} />
+                      </IconButton>
+                      <Typography sx={{ color: "text.primary" }}>
+                        {t("Profile.darkMode")}
+                      </Typography>
+                    </Stack>
+                    <Switch checked={darkMode} color="secondary" />
+                  </Stack>
+                  <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={3}>
+                    <Stack direction="row" alignItems="center" spacing={3}>
+                      <IconButton disabled>
+                        <BugReportIcon sx={{ color: "text.secondary" }} />
+                      </IconButton>
+                      <Typography sx={{ color: "text.primary" }}>
+                        {t("Profile.panelsTest")}
+                      </Typography>
+                    </Stack>
+                    {mode && mode === "test" ? (
+                      <IconButton onClick={() => setModeTest(null)} size="large" sx={{ p: 0 }}>
+                        <StopIcon sx={{ color: "secondary.main" }} />
+                        <CircularProgress size={24} sx={{ position: "absolute", left: 14, color: "secondary.main" }} />
+                      </IconButton>
+                    ) : (
+                      <IconButton onClick={() => setModeTest("test")} sx={{ p: 0 }}>
+                        <PlayArrowIcon sx={{ fontSize: 30, color: "secondary.main" }} />
+                      </IconButton>
+                    )}
+                  </Stack>
+                  <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={3}>
+                    <Stack direction="row" alignItems="center" spacing={3}>
+                      <IconButton disabled>
+                        <LanguageIcon sx={{ color: "text.secondary" }} />
+                      </IconButton>
+                      <Typography sx={{ color: "text.primary" }}>
+                        {t("Profile.languages")}
+                      </Typography>
+                    </Stack>
+                    <LanguageSelector />
+                  </Stack>
+                </Stack>
               </Grid>
               <Grid item xs={12} sm={6}>
                 <Stack spacing={2}>
@@ -135,7 +189,7 @@ function Profile() {
                     {t("Profile.account")}
                   </Typography>
                   <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={3}>
-                    <Stack spacing={3} direction="row" alignItems="center">
+                    <Stack direction="row" alignItems="center" spacing={3}>
                       <IconButton disabled>
                         <ModeNightIcon sx={{ color: "text.secondary" }} />
                       </IconButton>
