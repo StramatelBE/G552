@@ -6,7 +6,7 @@ const LogoMode = () => {
         <div className="container">
             <video
                 src="http://localhost:3000/medias/Logo/stramatel.mp4"
-                autoplay
+                autoPlay
                 loop
                 muted
                 style={{ width: '100%', height: 'auto' }}  // Adjust sizing as needed
