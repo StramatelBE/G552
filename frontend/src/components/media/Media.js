@@ -52,11 +52,12 @@ function Medias(props) {
   const { setLoading } = useContext(LoadingContext);
   const { setProgress } = useContext(LoadingContext);
   const [sortCriteria, setSortCriteria] = useState("recent");
-  const [viewMode, setViewMode] = useState("grid");
+  const [viewMode, setViewMode] = useState("table");
   const [inputKey, setInputKey] = useState(0);
   const [duplicateDialogOpen, setDuplicateDialogOpen] = useState(false);
   const [duplicateFile, setDuplicateFile] = useState(null);
   const theme = useTheme()
+
   const toggleViewMode = () => {
     setViewMode(viewMode === "grid" ? "table" : "grid");
   };
