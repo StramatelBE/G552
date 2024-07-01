@@ -10,6 +10,14 @@ const LogoMode = () => {
                 title="QR Code"
             />
             <img
+             src="http://localhost:3000/medias/QR/wifi.png"
+             alt="Logo"
+            />
+            <img
+             src="http://localhost:3000/medias/QR/website.png"
+             alt="Logo"
+            />
+            <img
                 src="http://localhost:3000/medias/Logo/LOGO_Stramatel.gif"
                 alt="Logo"
             />
